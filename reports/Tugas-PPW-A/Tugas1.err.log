@@ -32,6 +32,6 @@ Here is a preview of the cell contents:
 -------------------
 ['import requests', 'from bs4 import BeautifulSoup', 'import pandas as pd', 'import time', '']
 ...
-['# Menyimpan dataframe ke file CSV', 'df.to_csv("Crawl-berita.csv", index=False)', '', '# Menampilkan dataframe', 'print(df)']
+['    "isi": isi', '})', '', '# Menyimpan dataframe ke file CSV', 'df.to_csv("Crawl-berita.csv", index=False)']
 -------------------
 

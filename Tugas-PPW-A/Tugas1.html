@@ -430,6 +430,9 @@ document.write(`
     <span class="n">articles</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;article&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;list-content__item&quot;</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">article</span> <span class="ow">in</span> <span class="n">articles</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">judul</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span>  <span class="c1"># Hentikan jika sudah 10 berita</span>
+            <span class="k">return</span>
+
         <span class="k">try</span><span class="p">:</span>
             <span class="n">link</span> <span class="o">=</span> <span class="n">article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)[</span><span class="s2">&quot;href&quot;</span><span class="p">]</span>
             <span class="n">article_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
@@ -465,6 +468,9 @@ document.write(`
 <span class="c1"># Melakukan iterasi untuk setiap url dan kategori</span>
 <span class="k">for</span> <span class="n">base_url</span><span class="p">,</span> <span class="n">category</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">base_urls</span><span class="p">,</span> <span class="n">categories</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>  <span class="c1"># Looping untuk beralih halaman</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">judul</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span>  <span class="c1"># Hentikan jika sudah 10 berita</span>
+            <span class="k">break</span>
+
         <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">page</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="n">get_data</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">category</span><span class="p">)</span>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Menambahkan jeda waktu 2 detik antara permintaan halaman</span>
@@ -478,13 +484,13 @@ document.write(`
 
 <span class="c1"># Menyimpan dataframe ke file CSV</span>
 <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;Crawl-berita.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-<span class="c1"># Menampilkan dataframe</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paralimpiade 2024: Qonitah Gagal Sumbang Emas Pertama Indonesia
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bukan Maksud Alex Marquez Lindas Bagnaia
 </pre></div>
 </div>
@@ -512,241 +518,18 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Detik-Detik Marc Marquez Juarai MotoGP Aragon
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Steve Lewton Juara Golf Indonesia Open 2024
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-1-6c5a71e955d4&gt;</span> in <span class="ni">&lt;cell line: 52&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">53</span>     <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>  <span class="c1"># Looping untuk beralih halaman</span>
-<span class="g g-Whitespace">     </span><span class="mi">54</span>         <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">page</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="ne">---&gt; </span><span class="mi">55</span>         <span class="n">get_data</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">category</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">56</span>         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Menambahkan jeda waktu 2 detik antara permintaan halaman</span>
-<span class="g g-Whitespace">     </span><span class="mi">57</span> 
-
-<span class="nn">&lt;ipython-input-1-6c5a71e955d4&gt;</span> in <span class="ni">get_data</span><span class="nt">(url, kategori)</span>
-<span class="g g-Whitespace">     </span><span class="mi">38</span> 
-<span class="g g-Whitespace">     </span><span class="mi">39</span>         <span class="nb">print</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">40</span>         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Menambahkan jeda waktu 1 detik antara permintaan artikel</span>
-<span class="g g-Whitespace">     </span><span class="mi">41</span> 
-<span class="g g-Whitespace">     </span><span class="mi">42</span> <span class="c1"># Membuat list url dan kategori yang akan di-crawl</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
-</pre></div>
-</div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">files</span>
-
-<span class="c1"># Upload file dari komputer</span>
-<span class="n">uploaded</span> <span class="o">=</span> <span class="n">files</span><span class="o">.</span><span class="n">upload</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Crawl-berita.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-     <input type="file" id="files-91d69ce6-1d9b-4592-8cec-6513593a7da7" name="files[]" multiple disabled
-        style="border:none" />
-     <output id="result-91d69ce6-1d9b-4592-8cec-6513593a7da7">
-      Upload widget is only available when the cell has been executed in the
-      current browser session. Please rerun this cell to enable.
-      </output>
-      <script>// Copyright 2017 Google LLC
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//      http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-/**
- * @fileoverview Helpers for google.colab Python module.
- */
-(function(scope) {
-function span(text, styleAttributes = {}) {
-  const element = document.createElement('span');
-  element.textContent = text;
-  for (const key of Object.keys(styleAttributes)) {
-    element.style[key] = styleAttributes[key];
-  }
-  return element;
-}
-
-// Max number of bytes which will be uploaded at a time.
-const MAX_PAYLOAD_SIZE = 100 * 1024;
-
-function _uploadFiles(inputId, outputId) {
-  const steps = uploadFilesStep(inputId, outputId);
-  const outputElement = document.getElementById(outputId);
-  // Cache steps on the outputElement to make it available for the next call
-  // to uploadFilesContinue from Python.
-  outputElement.steps = steps;
-
-  return _uploadFilesContinue(outputId);
-}
-
-// This is roughly an async generator (not supported in the browser yet),
-// where there are multiple asynchronous steps and the Python side is going
-// to poll for completion of each step.
-// This uses a Promise to block the python side on completion of each step,
-// then passes the result of the previous step as the input to the next step.
-function _uploadFilesContinue(outputId) {
-  const outputElement = document.getElementById(outputId);
-  const steps = outputElement.steps;
-
-  const next = steps.next(outputElement.lastPromiseValue);
-  return Promise.resolve(next.value.promise).then((value) => {
-    // Cache the last promise value to make it available to the next
-    // step of the generator.
-    outputElement.lastPromiseValue = value;
-    return next.value.response;
-  });
-}
-
-/**
- * Generator function which is called between each async step of the upload
- * process.
- * @param {string} inputId Element ID of the input file picker element.
- * @param {string} outputId Element ID of the output display.
- * @return {!Iterable<!Object>} Iterable of next steps.
- */
-function* uploadFilesStep(inputId, outputId) {
-  const inputElement = document.getElementById(inputId);
-  inputElement.disabled = false;
-
-  const outputElement = document.getElementById(outputId);
-  outputElement.innerHTML = '';
-
-  const pickedPromise = new Promise((resolve) => {
-    inputElement.addEventListener('change', (e) => {
-      resolve(e.target.files);
-    });
-  });
-
-  const cancel = document.createElement('button');
-  inputElement.parentElement.appendChild(cancel);
-  cancel.textContent = 'Cancel upload';
-  const cancelPromise = new Promise((resolve) => {
-    cancel.onclick = () => {
-      resolve(null);
-    };
-  });
-
-  // Wait for the user to pick the files.
-  const files = yield {
-    promise: Promise.race([pickedPromise, cancelPromise]),
-    response: {
-      action: 'starting',
-    }
-  };
-
-  cancel.remove();
-
-  // Disable the input element since further picks are not allowed.
-  inputElement.disabled = true;
-
-  if (!files) {
-    return {
-      response: {
-        action: 'complete',
-      }
-    };
-  }
-
-  for (const file of files) {
-    const li = document.createElement('li');
-    li.append(span(file.name, {fontWeight: 'bold'}));
-    li.append(span(
-        `(${file.type || 'n/a'}) - ${file.size} bytes, ` +
-        `last modified: ${
-            file.lastModifiedDate ? file.lastModifiedDate.toLocaleDateString() :
-                                    'n/a'} - `));
-    const percent = span('0% done');
-    li.appendChild(percent);
-
-    outputElement.appendChild(li);
-
-    const fileDataPromise = new Promise((resolve) => {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        resolve(e.target.result);
-      };
-      reader.readAsArrayBuffer(file);
-    });
-    // Wait for the data to be ready.
-    let fileData = yield {
-      promise: fileDataPromise,
-      response: {
-        action: 'continue',
-      }
-    };
-
-    // Use a chunked sending to avoid message size limits. See b/62115660.
-    let position = 0;
-    do {
-      const length = Math.min(fileData.byteLength - position, MAX_PAYLOAD_SIZE);
-      const chunk = new Uint8Array(fileData, position, length);
-      position += length;
-
-      const base64 = btoa(String.fromCharCode.apply(null, chunk));
-      yield {
-        response: {
-          action: 'append',
-          file: file.name,
-          data: base64,
-        },
-      };
-
-      let percentDone = fileData.byteLength === 0 ?
-          100 :
-          Math.round((position / fileData.byteLength) * 100);
-      percent.textContent = `${percentDone}% done`;
-
-    } while (position < fileData.byteLength);
-  }
-
-  // All done.
-  yield {
-    response: {
-      action: 'complete',
-    }
-  };
-}
-
-scope.google = scope.google || {};
-scope.google.colab = scope.google.colab || {};
-scope.google.colab._files = {
-  _uploadFiles,
-  _uploadFilesContinue,
-};
-})(self);
-</script> </div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saving Crawl-berita.csv to Crawl-berita (1).csv
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">io</span>
-
-<span class="c1"># Membaca file CSV yang diunggah dan menyimpannya ke dalam DataFrame dengan variabel df</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">uploaded</span><span class="p">[</span><span class="s1">&#39;Crawl-berita (1).csv&#39;</span><span class="p">]))</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html">
-  <div id="df-ecfb5703-26bf-4e2b-9f2c-54e83db7ed58" class="colab-df-container">
+  <div id="df-dc080e99-1dfd-4855-84a4-f4e05f4766b5" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -773,79 +556,79 @@ scope.google.colab._files = {
   <tbody>
     <tr>
       <th>0</th>
+      <td>Paralimpiade 2024: Qonitah Gagal Sumbang Emas ...</td>
+      <td>Senin, 02 Sep 2024 14:18 WIB</td>
+      <td>Jakarta - Atlet Indonesia, Qonitah Ikhtiar Sya...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bukan Maksud Alex Marquez Lindas Bagnaia</td>
+      <td>Senin, 02 Sep 2024 13:45 WIB</td>
+      <td>Jakarta - Tabrakan Alex Marquez dengan Frances...</td>
+    </tr>
+    <tr>
+      <th>2</th>
       <td>Mansion Sports Gelar Turnamen Biliar, Sediakan...</td>
       <td>Senin, 02 Sep 2024 12:44 WIB</td>
       <td>Jakarta - Para pecinta biliar, bersiaplah untu...</td>
     </tr>
     <tr>
-      <th>1</th>
+      <th>3</th>
       <td>Komentar Marc Marquez soal Tabrakan Adiknya de...</td>
       <td>Senin, 02 Sep 2024 12:30 WIB</td>
       <td>Jakarta - Marc Marquez mengomentari tabrakan a...</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>4</th>
       <td>Lanjut Puasa Kemenangan, Verstappen: Tak Reali...</td>
       <td>Senin, 02 Sep 2024 10:30 WIB</td>
       <td>Monza - Pebalap Red Bull Racing Max Verstappen...</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>5</th>
       <td>Duet Leo/Bagas Terus Melesat!</td>
       <td>Senin, 02 Sep 2024 07:58 WIB</td>
       <td>Jakarta - Leo Rolly Carnando/Bagas Maulana mer...</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>6</th>
       <td>Momen Alex Marquez Kesal Seusai Bertabrakan de...</td>
-      <td>32,273 Views  |  Senin, 02 Sep 2024 04:33 WIB</td>
+      <td>35,768 Views  |  Senin, 02 Sep 2024 04:33 WIB</td>
       <td>Alex Marquez dan Francesco Bagnaia bertabrakan...</td>
     </tr>
     <tr>
-      <th>5</th>
+      <th>7</th>
       <td>Paralimpiade 2024: Boccia Sumbang Tiga Medali ...</td>
       <td>Senin, 02 Sep 2024 05:54 WIB</td>
       <td>Paris - Indonesia menambah tiga medali pada ha...</td>
     </tr>
     <tr>
-      <th>6</th>
+      <th>8</th>
       <td>Juara MotoGP Aragon, Marquez: Saya Mengorbanka...</td>
-      <td>8,469 Views  |  Senin, 02 Sep 2024 03:27 WIB</td>
+      <td>8,969 Views  |  Senin, 02 Sep 2024 03:27 WIB</td>
       <td>Marc Marquez berhasil menjadi juara MotoGP Ara...</td>
     </tr>
     <tr>
-      <th>7</th>
+      <th>9</th>
       <td>Detik-Detik Marc Marquez Juarai MotoGP Aragon</td>
       <td>Senin, 02 Sep 2024 04:21 WIB</td>
       <td>Jakarta - Marc Marquez menjuarai MotoGP Aragon...</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>Steve Lewton Juara Golf Indonesia Open 2024</td>
-      <td>Senin, 02 Sep 2024 01:50 WIB</td>
-      <td>Jakarta - Steve Lewton menjadi juara di Indone...</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>Hub Archery Championship Digelar Lagi, Demi Ol...</td>
-      <td>Senin, 02 Sep 2024 01:45 WIB</td>
-      <td>Bekasi - Pembinaan jadi salah satu kunci utama...</td>
     </tr>
   </tbody>
 </table>
 </div>
     <div class="colab-df-buttons">
-
+      
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-ecfb5703-26bf-4e2b-9f2c-54e83db7ed58')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-dc080e99-1dfd-4855-84a4-f4e05f4766b5')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
-
+      
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
     <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
   </svg>
     </button>
-
+    
   <style>
     .colab-df-container {
       display:flex;
@@ -889,12 +672,12 @@ scope.google.colab._files = {
 
     <script>
       const buttonEl =
-        document.querySelector('#df-ecfb5703-26bf-4e2b-9f2c-54e83db7ed58 button.colab-df-convert');
+        document.querySelector('#df-dc080e99-1dfd-4855-84a4-f4e05f4766b5 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-ecfb5703-26bf-4e2b-9f2c-54e83db7ed58');
+        const element = document.querySelector('#df-dc080e99-1dfd-4855-84a4-f4e05f4766b5');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -912,138 +695,10 @@ scope.google.colab._files = {
       }
     </script>
   </div>
-
-
-<div id="df-fe90c5ad-71aa-493b-bb95-82008779937b">
-  <button class="colab-df-quickchart" onclick="quickchart('df-fe90c5ad-71aa-493b-bb95-82008779937b')"
-            title="Suggest charts"
-            style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-  </button>
-
-<style>
-  .colab-df-quickchart {
-      --bg-color: #E8F0FE;
-      --fill-color: #1967D2;
-      --hover-bg-color: #E2EBFA;
-      --hover-fill-color: #174EA6;
-      --disabled-fill-color: #AAA;
-      --disabled-bg-color: #DDD;
-  }
-
-  [theme=dark] .colab-df-quickchart {
-      --bg-color: #3B4455;
-      --fill-color: #D2E3FC;
-      --hover-bg-color: #434B5C;
-      --hover-fill-color: #FFFFFF;
-      --disabled-bg-color: #3B4455;
-      --disabled-fill-color: #666;
-  }
-
-  .colab-df-quickchart {
-    background-color: var(--bg-color);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: var(--fill-color);
-    height: 32px;
-    padding: 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: var(--hover-bg-color);
-    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: var(--button-hover-fill-color);
-  }
-
-  .colab-df-quickchart-complete:disabled,
-  .colab-df-quickchart-complete:disabled:hover {
-    background-color: var(--disabled-bg-color);
-    fill: var(--disabled-fill-color);
-    box-shadow: none;
-  }
-
-  .colab-df-spinner {
-    border: 2px solid var(--fill-color);
-    border-color: transparent;
-    border-bottom-color: var(--fill-color);
-    animation:
-      spin 1s steps(1) infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-      border-left-color: var(--fill-color);
-    }
-    20% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    30% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-      border-right-color: var(--fill-color);
-    }
-    40% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    60% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-    }
-    80% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-bottom-color: var(--fill-color);
-    }
-    90% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-    }
-  }
-</style>
-
-  <script>
-    async function quickchart(key) {
-      const quickchartButtonEl =
-        document.querySelector('#' + key + ' button');
-      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
-      quickchartButtonEl.classList.add('colab-df-spinner');
-      try {
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      } catch (error) {
-        console.error('Error during call to suggestCharts:', error);
-      }
-      quickchartButtonEl.classList.remove('colab-df-spinner');
-      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
-    }
-    (() => {
-      let quickchartButtonEl =
-        document.querySelector('#df-fe90c5ad-71aa-493b-bb95-82008779937b button');
-      quickchartButtonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-    })();
-  </script>
-</div>
-
+  
     </div>
   </div>
-</div></div>
+  </div></div>
 </div>
 </section>
 
