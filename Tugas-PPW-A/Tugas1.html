@@ -180,6 +180,7 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Tugas Pertemuan 1</a></li>
+
 </ul>
 
     </div>
@@ -383,7 +384,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -399,6 +402,16 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tugas Pertemuan 1</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#crawling-berita-olahraga">Crawling berita olahraga</a></li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -410,6 +423,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="tugas-pertemuan-1">
 <h1>Tugas Pertemuan 1<a class="headerlink" href="#tugas-pertemuan-1" title="Link to this heading">#</a></h1>
+<p>Crawling berita</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
@@ -520,6 +534,11 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="crawling-berita-olahraga">
+<h1>Crawling berita olahraga<a class="headerlink" href="#crawling-berita-olahraga" title="Link to this heading">#</a></h1>
+<p>Crawling data atau web crawling adalah proses ekstraksi informasi dari situs web dengan menggunakan program komputer. Tujuan utama dari web crawling adalah untuk mengumpulkan data dari berbagai sumber di internet.
+Terdapat berbagai macam library yang dapat digunakan untuk crawling data. Library yang digunakan untuk crawling berita Kompas yaitu Beautiful Soup dan Requests. Beautiful Soup Digunakan untuk mengekstrak informasi dari HTML dan Request digunakan untuk mengirim permintaan HTTP dan mengakses halaman web.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Crawl-berita.csv&quot;</span><span class="p">)</span>
@@ -529,7 +548,7 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-be6998d9-3c4f-4090-bfd7-f093578a7ac3" class="colab-df-container">
+  <div id="df-7ff1dca2-ac61-47de-9a8a-4fc14206839f" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -599,7 +618,7 @@ document.write(`
     <tr>
       <th>7</th>
       <td>Momen Alex Marquez Kesal Seusai Bertabrakan de...</td>
-      <td>36,759 Views  |  Senin, 02 Sep 2024 04:33 WIB</td>
+      <td>38,208 Views  |  Senin, 02 Sep 2024 04:33 WIB</td>
       <td>Alex Marquez dan Francesco Bagnaia bertabrakan...</td>
     </tr>
     <tr>
@@ -611,7 +630,7 @@ document.write(`
     <tr>
       <th>9</th>
       <td>Juara MotoGP Aragon, Marquez: Saya Mengorbanka...</td>
-      <td>9,092 Views  |  Senin, 02 Sep 2024 03:27 WIB</td>
+      <td>9,222 Views  |  Senin, 02 Sep 2024 03:27 WIB</td>
       <td>Marc Marquez berhasil menjadi juara MotoGP Ara...</td>
     </tr>
   </tbody>
@@ -620,7 +639,7 @@ document.write(`
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-be6998d9-3c4f-4090-bfd7-f093578a7ac3')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-7ff1dca2-ac61-47de-9a8a-4fc14206839f')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -672,12 +691,12 @@ document.write(`
 
     <script>
       const buttonEl =
-        document.querySelector('#df-be6998d9-3c4f-4090-bfd7-f093578a7ac3 button.colab-df-convert');
+        document.querySelector('#df-7ff1dca2-ac61-47de-9a8a-4fc14206839f button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-be6998d9-3c4f-4090-bfd7-f093578a7ac3');
+        const element = document.querySelector('#df-7ff1dca2-ac61-47de-9a8a-4fc14206839f');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -747,6 +766,23 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tugas Pertemuan 1</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#crawling-berita-olahraga">Crawling berita olahraga</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>
