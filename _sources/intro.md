@@ -1,7 +1,10 @@
-# Welcome to my profile Agus Muhammad Al Hasib
+# Welcome to my profile 
 
-Trunojoyo University
+Nama: Agus Muhammad Al Hasib
 
+Nim : 210411100227
+
+Kelas : Pencarian & Penambangan Web A
 
 ```{tableofcontents}
 ```
