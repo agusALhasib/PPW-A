@@ -454,11 +454,11 @@ Terdapat berbagai macam library yang dapat digunakan untuk crawling data. Librar
 </div>
 </div>
 </div>
-<p>Selanjutnya untuk mengumpulkan data berita dari situs web <a class="reference external" href="http://Detik.com">Detik.com</a> dan menyimpannya dalam format CSV.</p>
+<p>Selanjutnya kumpulkan data berita dari website <a class="reference external" href="http://Detik.com">Detik.com</a> dan simpan dalam format CSV.</p>
 <ul class="simple">
-<li><p>Proses pengambilan data dengan Fungsi get_data yang digunakan untuk mengambil artikel berita dari halaman yang ditentukan. Kode ini bertujuan crawl URL, mem-parsing HTML untuk menemukan artikel, dan kemudian mengambil detail artikel (judul, tanggal, isi berita, kategori) dari setiap link artikel yang ditemukan.</p></li>
-<li><p>Pembersihan Konten/data menggunakan fungsi clean_content untuk menghapus elemen yang tidak diinginkan.</p></li>
-<li><p>Save Data artikel (judul, tanggal, isi berita, kategori) disimpan dalam list dan kemudian dikumpulkan dalam DataFrame Pandas.</p></li>
+<li><p>Proses pengambilan data dengan fungsi get_data  digunakan untuk mengambil artikel  dari halaman yang ditentukan. Kode ini bertujuan crawl URL, mem-parsing HTML untuk menemukan artikel, dan kemudian mengambil detail artikel (judul, tanggal, isi berita, kategori) dari setiap tautan artikel yang ditemukan.</p></li>
+<li><p>Pembersihan Konten/data menggunakan fungsi clean_content untuk menghapus elemen yang tidak di inginkan.</p></li>
+<li><p>Save Data artikel (judul, tanggal, isi berita, kategori) disimpan dalam daftar list dan kemudian dikumpulkan dalam DataFrame Pandas.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -599,7 +599,7 @@ Terdapat berbagai macam library yang dapat digunakan untuk crawling data. Librar
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-d691e615-6273-48df-bed7-3bdabb101755" class="colab-df-container">
+  <div id="df-1d6875bf-bc29-4072-9536-df4dccebe290" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -642,7 +642,7 @@ Terdapat berbagai macam library yang dapat digunakan untuk crawling data. Librar
     <tr>
       <th>2</th>
       <td>Jokowi Resmikan Pembangunan-Renovasi Venue PON...</td>
-      <td>2,968 Views  |  Senin, 09 Sep 2024 12:03 WIB</td>
+      <td>3,878 Views  |  Senin, 09 Sep 2024 12:03 WIB</td>
       <td>Presiden Joko Widodo ( Jokowi ) meresmikan pem...</td>
       <td>Olahraga</td>
     </tr>
@@ -656,7 +656,7 @@ Terdapat berbagai macam library yang dapat digunakan untuk crawling data. Librar
     <tr>
       <th>4</th>
       <td>Menangi MotoGP San Marino di Luar Dugaan Marc ...</td>
-      <td>3,413 Views  |  Senin, 09 Sep 2024 12:08 WIB</td>
+      <td>3,867 Views  |  Senin, 09 Sep 2024 12:08 WIB</td>
       <td>Marc Marquez tak menduga dia bakal memenangi M...</td>
       <td>Olahraga</td>
     </tr>
@@ -666,7 +666,7 @@ Terdapat berbagai macam library yang dapat digunakan untuk crawling data. Librar
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-d691e615-6273-48df-bed7-3bdabb101755')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-1d6875bf-bc29-4072-9536-df4dccebe290')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -718,12 +718,12 @@ Terdapat berbagai macam library yang dapat digunakan untuk crawling data. Librar
 
     <script>
       const buttonEl =
-        document.querySelector('#df-d691e615-6273-48df-bed7-3bdabb101755 button.colab-df-convert');
+        document.querySelector('#df-1d6875bf-bc29-4072-9536-df4dccebe290 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-d691e615-6273-48df-bed7-3bdabb101755');
+        const element = document.querySelector('#df-1d6875bf-bc29-4072-9536-df4dccebe290');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -755,7 +755,7 @@ Terdapat berbagai macam library yang dapat digunakan untuk crawling data. Librar
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-050fd43d-6730-4875-ba4c-b706fdf9a0d9" class="colab-df-container">
+  <div id="df-1d2ed3b9-dc01-4619-a164-8a7b23be1f0c" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -783,37 +783,37 @@ Terdapat berbagai macam library yang dapat digunakan untuk crawling data. Librar
   <tbody>
     <tr>
       <th>95</th>
+      <td>Jahe Gajah dan Emprit Diracik Jadi Minuman Kek...</td>
+      <td>Sabtu, 07 Sep 2024 18:00 WIB</td>
+      <td>Jakarta - Memanfaatkan kekayaan rempah-rempah ...</td>
+      <td>Makanan</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>Nyeleneh! Pria Ini Makan Indomie Goreng Campur...</td>
+      <td>Sabtu, 07 Sep 2024 17:00 WIB</td>
+      <td>Jakarta - Indomie goreng biasanya dinikmati de...</td>
+      <td>Makanan</td>
+    </tr>
+    <tr>
+      <th>97</th>
       <td>Keren! Seniman Makanan Asal Jepang Ini Ubah Su...</td>
       <td>Sabtu, 07 Sep 2024 16:00 WIB</td>
       <td>Jakarta - Seniman makanan asal Jepang, Takayo ...</td>
       <td>Makanan</td>
     </tr>
     <tr>
-      <th>96</th>
+      <th>98</th>
       <td>Paus Fransiskus Santap Parpadelle hingga Cicip...</td>
       <td>Sabtu, 07 Sep 2024 15:00 WIB</td>
       <td>Jakarta - Selama di Jakarta, Paus Fransiskus d...</td>
       <td>Makanan</td>
     </tr>
     <tr>
-      <th>97</th>
+      <th>99</th>
       <td>Keren! Restoran McDonald's Ini Berkonsep 'Fine...</td>
       <td>Sabtu, 07 Sep 2024 14:00 WIB</td>
       <td>Jakarta - Berbeda dengan konsep restoran cepat...</td>
-      <td>Makanan</td>
-    </tr>
-    <tr>
-      <th>98</th>
-      <td>Title Not Found</td>
-      <td>Date Not Found</td>
-      <td>Content Not Found</td>
-      <td>Makanan</td>
-    </tr>
-    <tr>
-      <th>99</th>
-      <td>Mencicip Legitnya Cokelat Viral Asal Bali yang...</td>
-      <td>Sabtu, 07 Sep 2024 13:30 WIB</td>
-      <td>Jakarta - Tidak hanya pie susu yang ikonik, co...</td>
       <td>Makanan</td>
     </tr>
   </tbody>
@@ -822,7 +822,7 @@ Terdapat berbagai macam library yang dapat digunakan untuk crawling data. Librar
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-050fd43d-6730-4875-ba4c-b706fdf9a0d9')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-1d2ed3b9-dc01-4619-a164-8a7b23be1f0c')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -874,12 +874,12 @@ Terdapat berbagai macam library yang dapat digunakan untuk crawling data. Librar
 
     <script>
       const buttonEl =
-        document.querySelector('#df-050fd43d-6730-4875-ba4c-b706fdf9a0d9 button.colab-df-convert');
+        document.querySelector('#df-1d2ed3b9-dc01-4619-a164-8a7b23be1f0c button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-050fd43d-6730-4875-ba4c-b706fdf9a0d9');
+        const element = document.querySelector('#df-1d2ed3b9-dc01-4619-a164-8a7b23be1f0c');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
