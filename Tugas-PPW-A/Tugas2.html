@@ -1,0 +1,1956 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>&lt;no title&gt; &#8212; Penambangan web</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Tugas-PPW-A/Tugas2';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Tugas Pertemuan 1 - Crawling berita online" href="Tugas1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Penambangan web - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Penambangan web - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to my profile
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Tugas1.html"><strong>Tugas Pertemuan 1 - Crawling berita online</strong></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/tree/gh-pages/blob/gh-pages/_sources/Tugas-PPW-A/Tugas2.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/agusALhasib/PPW-A/tree/gh-pages" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/agusALhasib/PPW-A/tree/gh-pages/issues/new?title=Issue%20on%20page%20%2FTugas-PPW-A/Tugas2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Tugas-PPW-A/Tugas2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><no title></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p><strong>Tugas Pertemuan 2 - Pre-Processing Data Berita <a class="reference external" href="http://detik.com">detik.com</a></strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Drive already mounted at /content/drive; to attempt to forcibly remount, call drive.mount(&quot;/content/drive&quot;, force_remount=True).
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;/content/drive/My Drive/PPW-A/report/Tugas-PPW-A/data_berita_detik.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-7082a899-55f9-4977-923a-72392bd6bd30" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>judul</th>
+      <th>tanggal</th>
+      <th>isi</th>
+      <th>kategori</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Sulit Kejar Marc Marquez, Bagnaia Belum Fit 10...</td>
+      <td>Senin, 09 Sep 2024 14:30 WIB</td>
+      <td>Jakarta - Marc Marquez jadi kampiun di MotoGP ...</td>
+      <td>Olahraga</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Potret Pelari Maraton Uganda yang Tewas Dibaka...</td>
+      <td>Senin, 09 Sep 2024 13:30 WIB</td>
+      <td>Uganda - Pelari maraton Olimpiade Uganda Rebec...</td>
+      <td>Olahraga</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Jokowi Resmikan Pembangunan-Renovasi Venue PON...</td>
+      <td>2,968 Views  |  Senin, 09 Sep 2024 12:03 WIB</td>
+      <td>Presiden Joko Widodo ( Jokowi ) meresmikan pem...</td>
+      <td>Olahraga</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Dua Kali Ganti Motor Bikin Jorge Martin Gigit ...</td>
+      <td>Senin, 09 Sep 2024 13:15 WIB</td>
+      <td>Jakarta - Jorge Martin cuma finis ke-15 di Mot...</td>
+      <td>Olahraga</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Menangi MotoGP San Marino di Luar Dugaan Marc ...</td>
+      <td>3,413 Views  |  Senin, 09 Sep 2024 12:08 WIB</td>
+      <td>Marc Marquez tak menduga dia bakal memenangi M...</td>
+      <td>Olahraga</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Paralimpiade Paris 2024 Usai, Indonesia Cetak ...</td>
+      <td>Senin, 09 Sep 2024 12:08 WIB</td>
+      <td>Prancis - Paralimpiade Paris 2024 resmi berakh...</td>
+      <td>Olahraga</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+      
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-7082a899-55f9-4977-923a-72392bd6bd30')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+      
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+    
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-7082a899-55f9-4977-923a-72392bd6bd30 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-7082a899-55f9-4977-923a-72392bd6bd30');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+  
+    </div>
+  </div>
+  </div></div>
+</div>
+<p><strong>CLEANING</strong></p>
+<hr class="docutils" />
+<p><strong>Cleaning Data</strong> adalah proses pemrosesan teks awal  yang bertujuan untuk membersihkan  data  teks dari elemen yang tidak perlu atau mengganggu, seperti:</p>
+<ul class="simple">
+<li><p>Tanda baca
+(punctuation) titik, koma, tanda seru</p></li>
+<li><p>Tag</p></li>
+<li><p>URL</p></li>
+<li><p>Simbol-simbol</p></li>
+<li><p>Emoticon</p></li>
+<li><p>Angka random</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">string</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
+
+<span class="k">def</span> <span class="nf">remove_url</span><span class="p">(</span><span class="n">ulasan</span><span class="p">):</span>
+  <span class="n">url</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;https?://\S+|www\.S+&#39;</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">url</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ulasan</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">remove_html</span><span class="p">(</span><span class="n">ulasan</span><span class="p">):</span>
+  <span class="n">html</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&lt;.#?&gt;&#39;</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">html</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ulasan</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">remove_emoji</span><span class="p">(</span><span class="n">ulasan</span><span class="p">):</span>
+  <span class="n">emoji_pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;[&quot;</span>
+      <span class="sa">u</span><span class="s2">&quot;</span><span class="se">\U0001F600</span><span class="s2">-</span><span class="se">\U0001F64F</span><span class="s2">&quot;</span>
+      <span class="sa">u</span><span class="s2">&quot;</span><span class="se">\U0001F300</span><span class="s2">-</span><span class="se">\U0001F5FF</span><span class="s2">&quot;</span>
+      <span class="sa">u</span><span class="s2">&quot;</span><span class="se">\U0001F680</span><span class="s2">-</span><span class="se">\U0001F6FF</span><span class="s2">&quot;</span>
+      <span class="sa">u</span><span class="s2">&quot;</span><span class="se">\U0001F1E0</span><span class="s2">-</span><span class="se">\U0001F1FF</span><span class="s2">&quot;&quot;]+&quot;</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">UNICODE</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">emoji_pattern</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ulasan</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">remove_numbers</span><span class="p">(</span><span class="n">ulasan</span><span class="p">):</span>
+  <span class="n">ulasan</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d+&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ulasan</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">ulasan</span>
+
+<span class="k">def</span> <span class="nf">remove_symbols</span><span class="p">(</span><span class="n">ulasan</span><span class="p">):</span>
+  <span class="n">ulasan</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^a-zA-Z0-9\s]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ulasan</span><span class="p">)</span> <span class="c1">#menghapus semua simbol</span>
+  <span class="k">return</span> <span class="n">ulasan</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;cleansing&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;isi&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">remove_url</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;cleansing&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;cleansing&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">remove_html</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;cleansing&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;cleansing&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">remove_emoji</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;cleansing&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;cleansing&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">remove_symbols</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;cleansing&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;cleansing&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">remove_numbers</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-a0017efb-5c28-4b73-b779-8a3e5c9da8f4" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>judul</th>
+      <th>tanggal</th>
+      <th>isi</th>
+      <th>kategori</th>
+      <th>cleansing</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Sulit Kejar Marc Marquez, Bagnaia Belum Fit 10...</td>
+      <td>Senin, 09 Sep 2024 14:30 WIB</td>
+      <td>Jakarta - Marc Marquez jadi kampiun di MotoGP ...</td>
+      <td>Olahraga</td>
+      <td>Jakarta  Marc Marquez jadi kampiun di MotoGP S...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Potret Pelari Maraton Uganda yang Tewas Dibaka...</td>
+      <td>Senin, 09 Sep 2024 13:30 WIB</td>
+      <td>Uganda - Pelari maraton Olimpiade Uganda Rebec...</td>
+      <td>Olahraga</td>
+      <td>Uganda  Pelari maraton Olimpiade Uganda Rebecc...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Jokowi Resmikan Pembangunan-Renovasi Venue PON...</td>
+      <td>2,968 Views  |  Senin, 09 Sep 2024 12:03 WIB</td>
+      <td>Presiden Joko Widodo ( Jokowi ) meresmikan pem...</td>
+      <td>Olahraga</td>
+      <td>Presiden Joko Widodo  Jokowi  meresmikan pemba...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Dua Kali Ganti Motor Bikin Jorge Martin Gigit ...</td>
+      <td>Senin, 09 Sep 2024 13:15 WIB</td>
+      <td>Jakarta - Jorge Martin cuma finis ke-15 di Mot...</td>
+      <td>Olahraga</td>
+      <td>Jakarta  Jorge Martin cuma finis ke di MotoGP ...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Menangi MotoGP San Marino di Luar Dugaan Marc ...</td>
+      <td>3,413 Views  |  Senin, 09 Sep 2024 12:08 WIB</td>
+      <td>Marc Marquez tak menduga dia bakal memenangi M...</td>
+      <td>Olahraga</td>
+      <td>Marc Marquez tak menduga dia bakal memenangi M...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Paralimpiade Paris 2024 Usai, Indonesia Cetak ...</td>
+      <td>Senin, 09 Sep 2024 12:08 WIB</td>
+      <td>Prancis - Paralimpiade Paris 2024 resmi berakh...</td>
+      <td>Olahraga</td>
+      <td>Prancis  Paralimpiade Paris  resmi berakhir Me...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+      
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-a0017efb-5c28-4b73-b779-8a3e5c9da8f4')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+      
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+    
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-a0017efb-5c28-4b73-b779-8a3e5c9da8f4 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-a0017efb-5c28-4b73-b779-8a3e5c9da8f4');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+  
+    </div>
+  </div>
+  </div></div>
+</div>
+<p><strong>CASE FOLDING</strong></p>
+<hr class="docutils" />
+<p><strong>Casefolding</strong> adalah langkah prapemrosesan yang mencakup mengubah semua karakter dalam teks menjadi huruf kecil. Tujuan dari casefolding adalah
+adalah  untuk menghilangkan ambiguitas yang mungkin timbul akibat perbedaan huruf besar  dan kecil.
+Misalnya, kata yang sama tetapi ditulis dengan huruf besar atau kecil akan  dianggap sebagai entitas yang berbeda.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">case_folding</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+      <span class="n">lowercase_text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+      <span class="k">return</span> <span class="n">lowercase_text</span>
+    <span class="k">else</span> <span class="p">:</span>
+      <span class="k">return</span> <span class="n">text</span>
+
+<span class="n">df</span> <span class="p">[</span><span class="s1">&#39;case_folding&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;cleansing&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">case_folding</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-7a7a4bda-d15e-4656-b5a3-cb9f811b2332" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>judul</th>
+      <th>tanggal</th>
+      <th>isi</th>
+      <th>kategori</th>
+      <th>cleansing</th>
+      <th>case_folding</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Sulit Kejar Marc Marquez, Bagnaia Belum Fit 10...</td>
+      <td>Senin, 09 Sep 2024 14:30 WIB</td>
+      <td>Jakarta - Marc Marquez jadi kampiun di MotoGP ...</td>
+      <td>Olahraga</td>
+      <td>Jakarta  Marc Marquez jadi kampiun di MotoGP S...</td>
+      <td>jakarta  marc marquez jadi kampiun di motogp s...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Potret Pelari Maraton Uganda yang Tewas Dibaka...</td>
+      <td>Senin, 09 Sep 2024 13:30 WIB</td>
+      <td>Uganda - Pelari maraton Olimpiade Uganda Rebec...</td>
+      <td>Olahraga</td>
+      <td>Uganda  Pelari maraton Olimpiade Uganda Rebecc...</td>
+      <td>uganda  pelari maraton olimpiade uganda rebecc...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Jokowi Resmikan Pembangunan-Renovasi Venue PON...</td>
+      <td>2,968 Views  |  Senin, 09 Sep 2024 12:03 WIB</td>
+      <td>Presiden Joko Widodo ( Jokowi ) meresmikan pem...</td>
+      <td>Olahraga</td>
+      <td>Presiden Joko Widodo  Jokowi  meresmikan pemba...</td>
+      <td>presiden joko widodo  jokowi  meresmikan pemba...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Dua Kali Ganti Motor Bikin Jorge Martin Gigit ...</td>
+      <td>Senin, 09 Sep 2024 13:15 WIB</td>
+      <td>Jakarta - Jorge Martin cuma finis ke-15 di Mot...</td>
+      <td>Olahraga</td>
+      <td>Jakarta  Jorge Martin cuma finis ke di MotoGP ...</td>
+      <td>jakarta  jorge martin cuma finis ke di motogp ...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Menangi MotoGP San Marino di Luar Dugaan Marc ...</td>
+      <td>3,413 Views  |  Senin, 09 Sep 2024 12:08 WIB</td>
+      <td>Marc Marquez tak menduga dia bakal memenangi M...</td>
+      <td>Olahraga</td>
+      <td>Marc Marquez tak menduga dia bakal memenangi M...</td>
+      <td>marc marquez tak menduga dia bakal memenangi m...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Paralimpiade Paris 2024 Usai, Indonesia Cetak ...</td>
+      <td>Senin, 09 Sep 2024 12:08 WIB</td>
+      <td>Prancis - Paralimpiade Paris 2024 resmi berakh...</td>
+      <td>Olahraga</td>
+      <td>Prancis  Paralimpiade Paris  resmi berakhir Me...</td>
+      <td>prancis  paralimpiade paris  resmi berakhir me...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+      
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-7a7a4bda-d15e-4656-b5a3-cb9f811b2332')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+      
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+    
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-7a7a4bda-d15e-4656-b5a3-cb9f811b2332 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-7a7a4bda-d15e-4656-b5a3-cb9f811b2332');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+  
+    </div>
+  </div>
+  </div></div>
+</div>
+<p><strong>TOKENIZATION</strong></p>
+<hr class="docutils" />
+<p><strong>Tokenization atau Tokenisasi</strong> memisahkan kata per kata dengan operator tokenize pada text
+processing. Tujuannya untuk dikelompokkan kemunculan suatu kata pada proses
+selanjutnya.Lebih jelasnya untuk memecah teks menjadi unit terkecil yang dapat
+berupa kata,frasa atau karakter terpisah.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
+<span class="k">def</span> <span class="nf">tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">tokens</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;tokenize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;case_folding&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">tokenize</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-e55b8ee3-197c-4190-9fab-3dff3644f4f6" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>judul</th>
+      <th>tanggal</th>
+      <th>isi</th>
+      <th>kategori</th>
+      <th>cleansing</th>
+      <th>case_folding</th>
+      <th>tokenize</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Sulit Kejar Marc Marquez, Bagnaia Belum Fit 10...</td>
+      <td>Senin, 09 Sep 2024 14:30 WIB</td>
+      <td>Jakarta - Marc Marquez jadi kampiun di MotoGP ...</td>
+      <td>Olahraga</td>
+      <td>Jakarta  Marc Marquez jadi kampiun di MotoGP S...</td>
+      <td>jakarta  marc marquez jadi kampiun di motogp s...</td>
+      <td>[jakarta, marc, marquez, jadi, kampiun, di, mo...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Potret Pelari Maraton Uganda yang Tewas Dibaka...</td>
+      <td>Senin, 09 Sep 2024 13:30 WIB</td>
+      <td>Uganda - Pelari maraton Olimpiade Uganda Rebec...</td>
+      <td>Olahraga</td>
+      <td>Uganda  Pelari maraton Olimpiade Uganda Rebecc...</td>
+      <td>uganda  pelari maraton olimpiade uganda rebecc...</td>
+      <td>[uganda, pelari, maraton, olimpiade, uganda, r...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Jokowi Resmikan Pembangunan-Renovasi Venue PON...</td>
+      <td>2,968 Views  |  Senin, 09 Sep 2024 12:03 WIB</td>
+      <td>Presiden Joko Widodo ( Jokowi ) meresmikan pem...</td>
+      <td>Olahraga</td>
+      <td>Presiden Joko Widodo  Jokowi  meresmikan pemba...</td>
+      <td>presiden joko widodo  jokowi  meresmikan pemba...</td>
+      <td>[presiden, joko, widodo, jokowi, meresmikan, p...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Dua Kali Ganti Motor Bikin Jorge Martin Gigit ...</td>
+      <td>Senin, 09 Sep 2024 13:15 WIB</td>
+      <td>Jakarta - Jorge Martin cuma finis ke-15 di Mot...</td>
+      <td>Olahraga</td>
+      <td>Jakarta  Jorge Martin cuma finis ke di MotoGP ...</td>
+      <td>jakarta  jorge martin cuma finis ke di motogp ...</td>
+      <td>[jakarta, jorge, martin, cuma, finis, ke, di, ...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Menangi MotoGP San Marino di Luar Dugaan Marc ...</td>
+      <td>3,413 Views  |  Senin, 09 Sep 2024 12:08 WIB</td>
+      <td>Marc Marquez tak menduga dia bakal memenangi M...</td>
+      <td>Olahraga</td>
+      <td>Marc Marquez tak menduga dia bakal memenangi M...</td>
+      <td>marc marquez tak menduga dia bakal memenangi m...</td>
+      <td>[marc, marquez, tak, menduga, dia, bakal, meme...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Paralimpiade Paris 2024 Usai, Indonesia Cetak ...</td>
+      <td>Senin, 09 Sep 2024 12:08 WIB</td>
+      <td>Prancis - Paralimpiade Paris 2024 resmi berakh...</td>
+      <td>Olahraga</td>
+      <td>Prancis  Paralimpiade Paris  resmi berakhir Me...</td>
+      <td>prancis  paralimpiade paris  resmi berakhir me...</td>
+      <td>[prancis, paralimpiade, paris, resmi, berakhir...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+      
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-e55b8ee3-197c-4190-9fab-3dff3644f4f6')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+      
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+    
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-e55b8ee3-197c-4190-9fab-3dff3644f4f6 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-e55b8ee3-197c-4190-9fab-3dff3644f4f6');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+  
+    </div>
+  </div>
+  </div></div>
+</div>
+<p><strong>FILTERING/STOPWORD REMOVAL</strong></p>
+<hr class="docutils" />
+<p>Tahap <strong>Stopword Removal</strong> yakni sebagai tahap pemilihan kata-kata yang
+dianggap tidak penting atau kata yang tidak relevan.Untuk mengetahui kata mana yang
+tidak relevan berdasarkan dari daftar stopword removal yang digunakan.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stopwords&#39;</span><span class="p">)</span>
+<span class="n">stop_words</span> <span class="o">=</span> <span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;indonesian&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package stopwords to /root/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pada tahap ini menggunakan library <strong>NLTK stopword removal bahasa indonesia</strong>.Contoh stopwords dalam bahasa Indonesia adalah “yang” , “bahwa”, “itu”, ”ini”, “dengan” dan sebagainya.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">remove_stopwords</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+  <span class="k">return</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">text</span> <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">]</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Filtering/stopword removal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;tokenize&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">remove_stopwords</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-844bda89-aff2-4196-bf94-569610bc0ab0" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>judul</th>
+      <th>tanggal</th>
+      <th>isi</th>
+      <th>kategori</th>
+      <th>cleansing</th>
+      <th>case_folding</th>
+      <th>tokenize</th>
+      <th>Filtering/stopword removal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Sulit Kejar Marc Marquez, Bagnaia Belum Fit 10...</td>
+      <td>Senin, 09 Sep 2024 14:30 WIB</td>
+      <td>Jakarta - Marc Marquez jadi kampiun di MotoGP ...</td>
+      <td>Olahraga</td>
+      <td>Jakarta  Marc Marquez jadi kampiun di MotoGP S...</td>
+      <td>jakarta  marc marquez jadi kampiun di motogp s...</td>
+      <td>[jakarta, marc, marquez, jadi, kampiun, di, mo...</td>
+      <td>jakarta marc marquez kampiun motogp san marino...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Potret Pelari Maraton Uganda yang Tewas Dibaka...</td>
+      <td>Senin, 09 Sep 2024 13:30 WIB</td>
+      <td>Uganda - Pelari maraton Olimpiade Uganda Rebec...</td>
+      <td>Olahraga</td>
+      <td>Uganda  Pelari maraton Olimpiade Uganda Rebecc...</td>
+      <td>uganda  pelari maraton olimpiade uganda rebecc...</td>
+      <td>[uganda, pelari, maraton, olimpiade, uganda, r...</td>
+      <td>uganda pelari maraton olimpiade uganda rebecca...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Jokowi Resmikan Pembangunan-Renovasi Venue PON...</td>
+      <td>2,968 Views  |  Senin, 09 Sep 2024 12:03 WIB</td>
+      <td>Presiden Joko Widodo ( Jokowi ) meresmikan pem...</td>
+      <td>Olahraga</td>
+      <td>Presiden Joko Widodo  Jokowi  meresmikan pemba...</td>
+      <td>presiden joko widodo  jokowi  meresmikan pemba...</td>
+      <td>[presiden, joko, widodo, jokowi, meresmikan, p...</td>
+      <td>presiden joko widodo jokowi meresmikan pembang...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Dua Kali Ganti Motor Bikin Jorge Martin Gigit ...</td>
+      <td>Senin, 09 Sep 2024 13:15 WIB</td>
+      <td>Jakarta - Jorge Martin cuma finis ke-15 di Mot...</td>
+      <td>Olahraga</td>
+      <td>Jakarta  Jorge Martin cuma finis ke di MotoGP ...</td>
+      <td>jakarta  jorge martin cuma finis ke di motogp ...</td>
+      <td>[jakarta, jorge, martin, cuma, finis, ke, di, ...</td>
+      <td>jakarta jorge martin finis motogp san marino k...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Menangi MotoGP San Marino di Luar Dugaan Marc ...</td>
+      <td>3,413 Views  |  Senin, 09 Sep 2024 12:08 WIB</td>
+      <td>Marc Marquez tak menduga dia bakal memenangi M...</td>
+      <td>Olahraga</td>
+      <td>Marc Marquez tak menduga dia bakal memenangi M...</td>
+      <td>marc marquez tak menduga dia bakal memenangi m...</td>
+      <td>[marc, marquez, tak, menduga, dia, bakal, meme...</td>
+      <td>marc marquez menduga memenangi motogp san mari...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Paralimpiade Paris 2024 Usai, Indonesia Cetak ...</td>
+      <td>Senin, 09 Sep 2024 12:08 WIB</td>
+      <td>Prancis - Paralimpiade Paris 2024 resmi berakh...</td>
+      <td>Olahraga</td>
+      <td>Prancis  Paralimpiade Paris  resmi berakhir Me...</td>
+      <td>prancis  paralimpiade paris  resmi berakhir me...</td>
+      <td>[prancis, paralimpiade, paris, resmi, berakhir...</td>
+      <td>prancis paralimpiade paris resmi merah putih m...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+      
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-844bda89-aff2-4196-bf94-569610bc0ab0')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+      
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+    
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-844bda89-aff2-4196-bf94-569610bc0ab0 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-844bda89-aff2-4196-bf94-569610bc0ab0');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+  
+    </div>
+  </div>
+  </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;/content/drive/My Drive/PPW-A/report/Tugas-PPW-A/hasil_preprocesing.csv&quot;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p><strong>TERM FREQUENCY AND INVERSE DOCUMENT FREQUNENCY (TF-IDF)</strong></p>
+<hr class="docutils" />
+<p><strong>Count Vectorizer</strong> mengonversi setiap dokumen teks menjadi vektor yang berisi
+frekuensi kemunculan setiap kata dalam dokumen tersebut.Pembobotan TF-IDF
+menghitung nilai bobot setiap kata untuk setiap dokumen. Ini dibagi menjadi dua proses
+yaitu <strong>TF</strong> dan <strong>IDF</strong>.</p>
+<p><strong>TF (Term Frequency)</strong> menghitung jumlah kemunculan setiap kata dalam dokumen,
+dan dengan kemunculan kata terbanyak, nilai kata tersebut adalah yang terbesar.</p>
+<p><strong>IDF (Inverse Document Frequency)</strong> menghitung jumlah dokumen untuk setiap kata yang
+jarang muncul dalam dokumen yang dianggap memiliki nilai terbesar. Jika kata tersebut
+memiliki banyak kemunculan kata dalam dokumen, hasilnya akan memiliki nilai yang
+kecil.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;/content/drive/My Drive/PPW-A/report/Tugas-PPW-A/hasil_preprocesing.csv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="image.png" src="data:image/png;base64,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" /></p>
+<p>Keterangan :</p>
+<ul class="simple">
+<li><p>𝑓𝑖,𝑗 : jumlah kata i muncul dalam dokumen j</p></li>
+<li><p>𝑓𝑖 : jumlah dokumen yang mengandung I</p></li>
+<li><p>N : total seluruh dokumen.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+
+<span class="c1"># Menginisialisasi TfidfVectorizer tanpa max_features dan stop_words</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
+
+<span class="c1"># Menghitung TF-IDF untuk kolom &#39;isi&#39; dari dataframe</span>
+<span class="n">tfidf_matrix</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Filtering/stopword removal&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mengubah hasilnya menjadi DataFrame</span>
+<span class="n">tfidf_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tfidf_matrix</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">())</span>
+<span class="n">tfidf_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-971b7e80-380c-49b5-9ccf-03367a54c43f" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>aa</th>
+      <th>abaaba</th>
+      <th>abadi</th>
+      <th>abang</th>
+      <th>abnormal</th>
+      <th>abon</th>
+      <th>abuabu</th>
+      <th>academy</th>
+      <th>acar</th>
+      <th>acara</th>
+      <th>...</th>
+      <th>zaeni</th>
+      <th>zaitun</th>
+      <th>zakaria</th>
+      <th>zakariaaura</th>
+      <th>zarco</th>
+      <th>zat</th>
+      <th>zeaxanthin</th>
+      <th>zilazik</th>
+      <th>zita</th>
+      <th>zucchini</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.046412</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.038278</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>10 rows × 4477 columns</p>
+</div>
+    <div class="colab-df-buttons">
+      
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-971b7e80-380c-49b5-9ccf-03367a54c43f')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+      
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+    
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-971b7e80-380c-49b5-9ccf-03367a54c43f button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-971b7e80-380c-49b5-9ccf-03367a54c43f');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+  
+    </div>
+  </div>
+  </div></div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Tugas-PPW-A"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Tugas1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><strong>Tugas Pertemuan 1 - Crawling berita online</strong></p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Al-Hasib
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
