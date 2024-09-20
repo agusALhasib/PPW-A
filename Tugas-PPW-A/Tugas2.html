@@ -60,6 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Tugas-PPW-A/Tugas2';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tugas 3 - Logistic Regression" href="Tugas3.html" />
     <link rel="prev" title="Tugas Pertemuan 1 - Crawling berita online" href="Tugas1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -181,6 +182,7 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Tugas1.html"><strong>Tugas Pertemuan 1 - Crawling berita online</strong></a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Tugas Pertemuan 2 - Pre-Processing Data Berita detik.com</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tugas3.html">Tugas 3 - Logistic Regression</a></li>
 </ul>
 
     </div>
@@ -435,7 +437,7 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-a8767891-c84c-4fc1-bc67-258426a5a8c6" class="colab-df-container">
+  <div id="df-5eabcc6e-0af0-4df5-858c-729135ee4dd7" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -463,44 +465,44 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>Hong Kong Open 2024: Gregoria Gugup Jelang Kem...</td>
-      <td>Senin, 09 Sep 2024 17:25 WIB</td>
-      <td>Jakarta - Gregoria Mariska Tunjung akan kembal...</td>
+      <td>Daftar Earlybird OPPO Run 2024 Pakai BRImo Bis...</td>
+      <td>Jumat, 20 Sep 2024 20:13 WIB</td>
+      <td>Jakarta - Setelah resmi mengumumkan acara lari...</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Hong Kong Open 2024: RI Kirim 12 Wakil, Jonata...</td>
-      <td>Senin, 09 Sep 2024 16:30 WIB</td>
-      <td>Jakarta - Indonesia mengirim 12 wakilnya ke Ho...</td>
+      <td>China Open 2024: Fajar/Rian Terdepak di Peremp...</td>
+      <td>Jumat, 20 Sep 2024 18:02 WIB</td>
+      <td>Jakarta - China Open 2024 menjalani babak pere...</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Rekap Indonesia di Paralimpiade 2024: Turun Po...</td>
-      <td>Senin, 09 Sep 2024 15:30 WIB</td>
-      <td>Jakarta - Indonesia menempati posisi 50 klasem...</td>
+      <td>China Open 2024: Jonatan Christe Maju ke Semif...</td>
+      <td>Jumat, 20 Sep 2024 16:56 WIB</td>
+      <td>Jakarta - China Open 2024 memainkan laga perem...</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Sulit Kejar Marc Marquez, Bagnaia Belum Fit 10...</td>
-      <td>Senin, 09 Sep 2024 14:30 WIB</td>
-      <td>Jakarta - Marc Marquez jadi kampiun di MotoGP ...</td>
+      <td>Hasil FP1 MotoGP Emilia Romagna: Marc Marquez ...</td>
+      <td>Jumat, 20 Sep 2024 16:35 WIB</td>
+      <td>Misano Adriatico - Marc Marquez jadi yang terd...</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Potret Pelari Maraton Uganda yang Tewas Dibaka...</td>
-      <td>Senin, 09 Sep 2024 13:30 WIB</td>
-      <td>Uganda - Pelari maraton Olimpiade Uganda Rebec...</td>
+      <td>Pendaftaran Calon Ketum PP Perbasi: Budisatrio...</td>
+      <td>Jumat, 20 Sep 2024 15:50 WIB</td>
+      <td>Jakarta - Budisatrio Djiwandono secara resmi m...</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>Jokowi Resmikan Pembangunan-Renovasi Venue PON...</td>
-      <td>5,846 Views  |  Senin, 09 Sep 2024 12:03 WIB</td>
-      <td>Presiden Joko Widodo ( Jokowi ) meresmikan pem...</td>
+      <td>Daniel/Fikri Senang Menang, tapi Tak Puas deng...</td>
+      <td>Jumat, 20 Sep 2024 13:15 WIB</td>
+      <td>Jakarta - Daniel Marthin/Muhammad Shohibul Fik...</td>
       <td>Olahraga</td>
     </tr>
   </tbody>
@@ -509,7 +511,7 @@ document.write(`
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-a8767891-c84c-4fc1-bc67-258426a5a8c6')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-5eabcc6e-0af0-4df5-858c-729135ee4dd7')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -561,12 +563,12 @@ document.write(`
 
     <script>
       const buttonEl =
-        document.querySelector('#df-a8767891-c84c-4fc1-bc67-258426a5a8c6 button.colab-df-convert');
+        document.querySelector('#df-5eabcc6e-0af0-4df5-858c-729135ee4dd7 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-a8767891-c84c-4fc1-bc67-258426a5a8c6');
+        const element = document.querySelector('#df-5eabcc6e-0af0-4df5-858c-729135ee4dd7');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -643,7 +645,7 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-2362717a-e59f-4dbb-bbff-825bd024e269" class="colab-df-container">
+  <div id="df-6d63e0ef-1999-4549-8faa-e60b59ead2db" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -672,51 +674,51 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>Hong Kong Open 2024: Gregoria Gugup Jelang Kem...</td>
-      <td>Senin, 09 Sep 2024 17:25 WIB</td>
-      <td>Jakarta - Gregoria Mariska Tunjung akan kembal...</td>
+      <td>Daftar Earlybird OPPO Run 2024 Pakai BRImo Bis...</td>
+      <td>Jumat, 20 Sep 2024 20:13 WIB</td>
+      <td>Jakarta - Setelah resmi mengumumkan acara lari...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Gregoria Mariska Tunjung akan kembali...</td>
+      <td>Jakarta  Setelah resmi mengumumkan acara lari ...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Hong Kong Open 2024: RI Kirim 12 Wakil, Jonata...</td>
-      <td>Senin, 09 Sep 2024 16:30 WIB</td>
-      <td>Jakarta - Indonesia mengirim 12 wakilnya ke Ho...</td>
+      <td>China Open 2024: Fajar/Rian Terdepak di Peremp...</td>
+      <td>Jumat, 20 Sep 2024 18:02 WIB</td>
+      <td>Jakarta - China Open 2024 menjalani babak pere...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Indonesia mengirim  wakilnya ke Hong ...</td>
+      <td>Jakarta  China Open  menjalani babak perempatf...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Rekap Indonesia di Paralimpiade 2024: Turun Po...</td>
-      <td>Senin, 09 Sep 2024 15:30 WIB</td>
-      <td>Jakarta - Indonesia menempati posisi 50 klasem...</td>
+      <td>China Open 2024: Jonatan Christe Maju ke Semif...</td>
+      <td>Jumat, 20 Sep 2024 16:56 WIB</td>
+      <td>Jakarta - China Open 2024 memainkan laga perem...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Indonesia menempati posisi  klasemen ...</td>
+      <td>Jakarta  China Open  memainkan laga perempatfi...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Sulit Kejar Marc Marquez, Bagnaia Belum Fit 10...</td>
-      <td>Senin, 09 Sep 2024 14:30 WIB</td>
-      <td>Jakarta - Marc Marquez jadi kampiun di MotoGP ...</td>
+      <td>Hasil FP1 MotoGP Emilia Romagna: Marc Marquez ...</td>
+      <td>Jumat, 20 Sep 2024 16:35 WIB</td>
+      <td>Misano Adriatico - Marc Marquez jadi yang terd...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Marc Marquez jadi kampiun di MotoGP S...</td>
+      <td>Misano Adriatico  Marc Marquez jadi yang terde...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Potret Pelari Maraton Uganda yang Tewas Dibaka...</td>
-      <td>Senin, 09 Sep 2024 13:30 WIB</td>
-      <td>Uganda - Pelari maraton Olimpiade Uganda Rebec...</td>
+      <td>Pendaftaran Calon Ketum PP Perbasi: Budisatrio...</td>
+      <td>Jumat, 20 Sep 2024 15:50 WIB</td>
+      <td>Jakarta - Budisatrio Djiwandono secara resmi m...</td>
       <td>Olahraga</td>
-      <td>Uganda  Pelari maraton Olimpiade Uganda Rebecc...</td>
+      <td>Jakarta  Budisatrio Djiwandono secara resmi me...</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>Jokowi Resmikan Pembangunan-Renovasi Venue PON...</td>
-      <td>5,846 Views  |  Senin, 09 Sep 2024 12:03 WIB</td>
-      <td>Presiden Joko Widodo ( Jokowi ) meresmikan pem...</td>
+      <td>Daniel/Fikri Senang Menang, tapi Tak Puas deng...</td>
+      <td>Jumat, 20 Sep 2024 13:15 WIB</td>
+      <td>Jakarta - Daniel Marthin/Muhammad Shohibul Fik...</td>
       <td>Olahraga</td>
-      <td>Presiden Joko Widodo  Jokowi  meresmikan pemba...</td>
+      <td>Jakarta  Daniel MarthinMuhammad Shohibul Fikri...</td>
     </tr>
   </tbody>
 </table>
@@ -724,7 +726,7 @@ document.write(`
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-2362717a-e59f-4dbb-bbff-825bd024e269')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-6d63e0ef-1999-4549-8faa-e60b59ead2db')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -776,12 +778,12 @@ document.write(`
 
     <script>
       const buttonEl =
-        document.querySelector('#df-2362717a-e59f-4dbb-bbff-825bd024e269 button.colab-df-convert');
+        document.querySelector('#df-6d63e0ef-1999-4549-8faa-e60b59ead2db button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-2362717a-e59f-4dbb-bbff-825bd024e269');
+        const element = document.querySelector('#df-6d63e0ef-1999-4549-8faa-e60b59ead2db');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -826,7 +828,7 @@ Misalnya, kata yang sama tetapi ditulis dengan huruf besar atau kecil akan  dian
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-6109c17e-3793-4b32-81a4-f1e79112b812" class="colab-df-container">
+  <div id="df-067172bc-a62b-494d-a96e-45ed4c7c23f9" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -856,57 +858,57 @@ Misalnya, kata yang sama tetapi ditulis dengan huruf besar atau kecil akan  dian
   <tbody>
     <tr>
       <th>0</th>
-      <td>Hong Kong Open 2024: Gregoria Gugup Jelang Kem...</td>
-      <td>Senin, 09 Sep 2024 17:25 WIB</td>
-      <td>Jakarta - Gregoria Mariska Tunjung akan kembal...</td>
+      <td>Daftar Earlybird OPPO Run 2024 Pakai BRImo Bis...</td>
+      <td>Jumat, 20 Sep 2024 20:13 WIB</td>
+      <td>Jakarta - Setelah resmi mengumumkan acara lari...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Gregoria Mariska Tunjung akan kembali...</td>
-      <td>jakarta  gregoria mariska tunjung akan kembali...</td>
+      <td>Jakarta  Setelah resmi mengumumkan acara lari ...</td>
+      <td>jakarta  setelah resmi mengumumkan acara lari ...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Hong Kong Open 2024: RI Kirim 12 Wakil, Jonata...</td>
-      <td>Senin, 09 Sep 2024 16:30 WIB</td>
-      <td>Jakarta - Indonesia mengirim 12 wakilnya ke Ho...</td>
+      <td>China Open 2024: Fajar/Rian Terdepak di Peremp...</td>
+      <td>Jumat, 20 Sep 2024 18:02 WIB</td>
+      <td>Jakarta - China Open 2024 menjalani babak pere...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Indonesia mengirim  wakilnya ke Hong ...</td>
-      <td>jakarta  indonesia mengirim  wakilnya ke hong ...</td>
+      <td>Jakarta  China Open  menjalani babak perempatf...</td>
+      <td>jakarta  china open  menjalani babak perempatf...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Rekap Indonesia di Paralimpiade 2024: Turun Po...</td>
-      <td>Senin, 09 Sep 2024 15:30 WIB</td>
-      <td>Jakarta - Indonesia menempati posisi 50 klasem...</td>
+      <td>China Open 2024: Jonatan Christe Maju ke Semif...</td>
+      <td>Jumat, 20 Sep 2024 16:56 WIB</td>
+      <td>Jakarta - China Open 2024 memainkan laga perem...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Indonesia menempati posisi  klasemen ...</td>
-      <td>jakarta  indonesia menempati posisi  klasemen ...</td>
+      <td>Jakarta  China Open  memainkan laga perempatfi...</td>
+      <td>jakarta  china open  memainkan laga perempatfi...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Sulit Kejar Marc Marquez, Bagnaia Belum Fit 10...</td>
-      <td>Senin, 09 Sep 2024 14:30 WIB</td>
-      <td>Jakarta - Marc Marquez jadi kampiun di MotoGP ...</td>
+      <td>Hasil FP1 MotoGP Emilia Romagna: Marc Marquez ...</td>
+      <td>Jumat, 20 Sep 2024 16:35 WIB</td>
+      <td>Misano Adriatico - Marc Marquez jadi yang terd...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Marc Marquez jadi kampiun di MotoGP S...</td>
-      <td>jakarta  marc marquez jadi kampiun di motogp s...</td>
+      <td>Misano Adriatico  Marc Marquez jadi yang terde...</td>
+      <td>misano adriatico  marc marquez jadi yang terde...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Potret Pelari Maraton Uganda yang Tewas Dibaka...</td>
-      <td>Senin, 09 Sep 2024 13:30 WIB</td>
-      <td>Uganda - Pelari maraton Olimpiade Uganda Rebec...</td>
+      <td>Pendaftaran Calon Ketum PP Perbasi: Budisatrio...</td>
+      <td>Jumat, 20 Sep 2024 15:50 WIB</td>
+      <td>Jakarta - Budisatrio Djiwandono secara resmi m...</td>
       <td>Olahraga</td>
-      <td>Uganda  Pelari maraton Olimpiade Uganda Rebecc...</td>
-      <td>uganda  pelari maraton olimpiade uganda rebecc...</td>
+      <td>Jakarta  Budisatrio Djiwandono secara resmi me...</td>
+      <td>jakarta  budisatrio djiwandono secara resmi me...</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>Jokowi Resmikan Pembangunan-Renovasi Venue PON...</td>
-      <td>5,846 Views  |  Senin, 09 Sep 2024 12:03 WIB</td>
-      <td>Presiden Joko Widodo ( Jokowi ) meresmikan pem...</td>
+      <td>Daniel/Fikri Senang Menang, tapi Tak Puas deng...</td>
+      <td>Jumat, 20 Sep 2024 13:15 WIB</td>
+      <td>Jakarta - Daniel Marthin/Muhammad Shohibul Fik...</td>
       <td>Olahraga</td>
-      <td>Presiden Joko Widodo  Jokowi  meresmikan pemba...</td>
-      <td>presiden joko widodo  jokowi  meresmikan pemba...</td>
+      <td>Jakarta  Daniel MarthinMuhammad Shohibul Fikri...</td>
+      <td>jakarta  daniel marthinmuhammad shohibul fikri...</td>
     </tr>
   </tbody>
 </table>
@@ -914,7 +916,7 @@ Misalnya, kata yang sama tetapi ditulis dengan huruf besar atau kecil akan  dian
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-6109c17e-3793-4b32-81a4-f1e79112b812')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-067172bc-a62b-494d-a96e-45ed4c7c23f9')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -966,12 +968,12 @@ Misalnya, kata yang sama tetapi ditulis dengan huruf besar atau kecil akan  dian
 
     <script>
       const buttonEl =
-        document.querySelector('#df-6109c17e-3793-4b32-81a4-f1e79112b812 button.colab-df-convert');
+        document.querySelector('#df-067172bc-a62b-494d-a96e-45ed4c7c23f9 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-6109c17e-3793-4b32-81a4-f1e79112b812');
+        const element = document.querySelector('#df-067172bc-a62b-494d-a96e-45ed4c7c23f9');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1014,7 +1016,7 @@ berupa kata,frasa atau karakter terpisah.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-5484692f-d84a-42ac-ba87-2d3f3c695eda" class="colab-df-container">
+  <div id="df-8c1f86ca-47b3-41ad-968d-21669d9b5dfd" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1045,63 +1047,63 @@ berupa kata,frasa atau karakter terpisah.</p>
   <tbody>
     <tr>
       <th>0</th>
-      <td>Hong Kong Open 2024: Gregoria Gugup Jelang Kem...</td>
-      <td>Senin, 09 Sep 2024 17:25 WIB</td>
-      <td>Jakarta - Gregoria Mariska Tunjung akan kembal...</td>
+      <td>Daftar Earlybird OPPO Run 2024 Pakai BRImo Bis...</td>
+      <td>Jumat, 20 Sep 2024 20:13 WIB</td>
+      <td>Jakarta - Setelah resmi mengumumkan acara lari...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Gregoria Mariska Tunjung akan kembali...</td>
-      <td>jakarta  gregoria mariska tunjung akan kembali...</td>
-      <td>[jakarta, gregoria, mariska, tunjung, akan, ke...</td>
+      <td>Jakarta  Setelah resmi mengumumkan acara lari ...</td>
+      <td>jakarta  setelah resmi mengumumkan acara lari ...</td>
+      <td>[jakarta, setelah, resmi, mengumumkan, acara, ...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Hong Kong Open 2024: RI Kirim 12 Wakil, Jonata...</td>
-      <td>Senin, 09 Sep 2024 16:30 WIB</td>
-      <td>Jakarta - Indonesia mengirim 12 wakilnya ke Ho...</td>
+      <td>China Open 2024: Fajar/Rian Terdepak di Peremp...</td>
+      <td>Jumat, 20 Sep 2024 18:02 WIB</td>
+      <td>Jakarta - China Open 2024 menjalani babak pere...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Indonesia mengirim  wakilnya ke Hong ...</td>
-      <td>jakarta  indonesia mengirim  wakilnya ke hong ...</td>
-      <td>[jakarta, indonesia, mengirim, wakilnya, ke, h...</td>
+      <td>Jakarta  China Open  menjalani babak perempatf...</td>
+      <td>jakarta  china open  menjalani babak perempatf...</td>
+      <td>[jakarta, china, open, menjalani, babak, perem...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Rekap Indonesia di Paralimpiade 2024: Turun Po...</td>
-      <td>Senin, 09 Sep 2024 15:30 WIB</td>
-      <td>Jakarta - Indonesia menempati posisi 50 klasem...</td>
+      <td>China Open 2024: Jonatan Christe Maju ke Semif...</td>
+      <td>Jumat, 20 Sep 2024 16:56 WIB</td>
+      <td>Jakarta - China Open 2024 memainkan laga perem...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Indonesia menempati posisi  klasemen ...</td>
-      <td>jakarta  indonesia menempati posisi  klasemen ...</td>
-      <td>[jakarta, indonesia, menempati, posisi, klasem...</td>
+      <td>Jakarta  China Open  memainkan laga perempatfi...</td>
+      <td>jakarta  china open  memainkan laga perempatfi...</td>
+      <td>[jakarta, china, open, memainkan, laga, peremp...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Sulit Kejar Marc Marquez, Bagnaia Belum Fit 10...</td>
-      <td>Senin, 09 Sep 2024 14:30 WIB</td>
-      <td>Jakarta - Marc Marquez jadi kampiun di MotoGP ...</td>
+      <td>Hasil FP1 MotoGP Emilia Romagna: Marc Marquez ...</td>
+      <td>Jumat, 20 Sep 2024 16:35 WIB</td>
+      <td>Misano Adriatico - Marc Marquez jadi yang terd...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Marc Marquez jadi kampiun di MotoGP S...</td>
-      <td>jakarta  marc marquez jadi kampiun di motogp s...</td>
-      <td>[jakarta, marc, marquez, jadi, kampiun, di, mo...</td>
+      <td>Misano Adriatico  Marc Marquez jadi yang terde...</td>
+      <td>misano adriatico  marc marquez jadi yang terde...</td>
+      <td>[misano, adriatico, marc, marquez, jadi, yang,...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Potret Pelari Maraton Uganda yang Tewas Dibaka...</td>
-      <td>Senin, 09 Sep 2024 13:30 WIB</td>
-      <td>Uganda - Pelari maraton Olimpiade Uganda Rebec...</td>
+      <td>Pendaftaran Calon Ketum PP Perbasi: Budisatrio...</td>
+      <td>Jumat, 20 Sep 2024 15:50 WIB</td>
+      <td>Jakarta - Budisatrio Djiwandono secara resmi m...</td>
       <td>Olahraga</td>
-      <td>Uganda  Pelari maraton Olimpiade Uganda Rebecc...</td>
-      <td>uganda  pelari maraton olimpiade uganda rebecc...</td>
-      <td>[uganda, pelari, maraton, olimpiade, uganda, r...</td>
+      <td>Jakarta  Budisatrio Djiwandono secara resmi me...</td>
+      <td>jakarta  budisatrio djiwandono secara resmi me...</td>
+      <td>[jakarta, budisatrio, djiwandono, secara, resm...</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>Jokowi Resmikan Pembangunan-Renovasi Venue PON...</td>
-      <td>5,846 Views  |  Senin, 09 Sep 2024 12:03 WIB</td>
-      <td>Presiden Joko Widodo ( Jokowi ) meresmikan pem...</td>
+      <td>Daniel/Fikri Senang Menang, tapi Tak Puas deng...</td>
+      <td>Jumat, 20 Sep 2024 13:15 WIB</td>
+      <td>Jakarta - Daniel Marthin/Muhammad Shohibul Fik...</td>
       <td>Olahraga</td>
-      <td>Presiden Joko Widodo  Jokowi  meresmikan pemba...</td>
-      <td>presiden joko widodo  jokowi  meresmikan pemba...</td>
-      <td>[presiden, joko, widodo, jokowi, meresmikan, p...</td>
+      <td>Jakarta  Daniel MarthinMuhammad Shohibul Fikri...</td>
+      <td>jakarta  daniel marthinmuhammad shohibul fikri...</td>
+      <td>[jakarta, daniel, marthinmuhammad, shohibul, f...</td>
     </tr>
   </tbody>
 </table>
@@ -1109,7 +1111,7 @@ berupa kata,frasa atau karakter terpisah.</p>
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-5484692f-d84a-42ac-ba87-2d3f3c695eda')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-8c1f86ca-47b3-41ad-968d-21669d9b5dfd')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -1161,12 +1163,12 @@ berupa kata,frasa atau karakter terpisah.</p>
 
     <script>
       const buttonEl =
-        document.querySelector('#df-5484692f-d84a-42ac-ba87-2d3f3c695eda button.colab-df-convert');
+        document.querySelector('#df-8c1f86ca-47b3-41ad-968d-21669d9b5dfd button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-5484692f-d84a-42ac-ba87-2d3f3c695eda');
+        const element = document.querySelector('#df-8c1f86ca-47b3-41ad-968d-21669d9b5dfd');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1221,7 +1223,7 @@ berupa kata,frasa atau karakter terpisah.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-4bef443c-924e-433e-9c62-2c46139f2cca" class="colab-df-container">
+  <div id="df-d4f3a3ca-6ca5-4ad3-8c56-414f48c0b93b" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1253,69 +1255,69 @@ berupa kata,frasa atau karakter terpisah.</p>
   <tbody>
     <tr>
       <th>0</th>
-      <td>Hong Kong Open 2024: Gregoria Gugup Jelang Kem...</td>
-      <td>Senin, 09 Sep 2024 17:25 WIB</td>
-      <td>Jakarta - Gregoria Mariska Tunjung akan kembal...</td>
+      <td>Daftar Earlybird OPPO Run 2024 Pakai BRImo Bis...</td>
+      <td>Jumat, 20 Sep 2024 20:13 WIB</td>
+      <td>Jakarta - Setelah resmi mengumumkan acara lari...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Gregoria Mariska Tunjung akan kembali...</td>
-      <td>jakarta  gregoria mariska tunjung akan kembali...</td>
-      <td>[jakarta, gregoria, mariska, tunjung, akan, ke...</td>
-      <td>jakarta gregoria mariska tunjung bertanding ho...</td>
+      <td>Jakarta  Setelah resmi mengumumkan acara lari ...</td>
+      <td>jakarta  setelah resmi mengumumkan acara lari ...</td>
+      <td>[jakarta, setelah, resmi, mengumumkan, acara, ...</td>
+      <td>jakarta resmi mengumumkan acara lari perdanany...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Hong Kong Open 2024: RI Kirim 12 Wakil, Jonata...</td>
-      <td>Senin, 09 Sep 2024 16:30 WIB</td>
-      <td>Jakarta - Indonesia mengirim 12 wakilnya ke Ho...</td>
+      <td>China Open 2024: Fajar/Rian Terdepak di Peremp...</td>
+      <td>Jumat, 20 Sep 2024 18:02 WIB</td>
+      <td>Jakarta - China Open 2024 menjalani babak pere...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Indonesia mengirim  wakilnya ke Hong ...</td>
-      <td>jakarta  indonesia mengirim  wakilnya ke hong ...</td>
-      <td>[jakarta, indonesia, mengirim, wakilnya, ke, h...</td>
-      <td>jakarta indonesia mengirim wakilnya hong kong ...</td>
+      <td>Jakarta  China Open  menjalani babak perempatf...</td>
+      <td>jakarta  china open  menjalani babak perempatf...</td>
+      <td>[jakarta, china, open, menjalani, babak, perem...</td>
+      <td>jakarta china open menjalani babak perempatfin...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Rekap Indonesia di Paralimpiade 2024: Turun Po...</td>
-      <td>Senin, 09 Sep 2024 15:30 WIB</td>
-      <td>Jakarta - Indonesia menempati posisi 50 klasem...</td>
+      <td>China Open 2024: Jonatan Christe Maju ke Semif...</td>
+      <td>Jumat, 20 Sep 2024 16:56 WIB</td>
+      <td>Jakarta - China Open 2024 memainkan laga perem...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Indonesia menempati posisi  klasemen ...</td>
-      <td>jakarta  indonesia menempati posisi  klasemen ...</td>
-      <td>[jakarta, indonesia, menempati, posisi, klasem...</td>
-      <td>jakarta indonesia menempati posisi klasemen me...</td>
+      <td>Jakarta  China Open  memainkan laga perempatfi...</td>
+      <td>jakarta  china open  memainkan laga perempatfi...</td>
+      <td>[jakarta, china, open, memainkan, laga, peremp...</td>
+      <td>jakarta china open memainkan laga perempatfina...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Sulit Kejar Marc Marquez, Bagnaia Belum Fit 10...</td>
-      <td>Senin, 09 Sep 2024 14:30 WIB</td>
-      <td>Jakarta - Marc Marquez jadi kampiun di MotoGP ...</td>
+      <td>Hasil FP1 MotoGP Emilia Romagna: Marc Marquez ...</td>
+      <td>Jumat, 20 Sep 2024 16:35 WIB</td>
+      <td>Misano Adriatico - Marc Marquez jadi yang terd...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Marc Marquez jadi kampiun di MotoGP S...</td>
-      <td>jakarta  marc marquez jadi kampiun di motogp s...</td>
-      <td>[jakarta, marc, marquez, jadi, kampiun, di, mo...</td>
-      <td>jakarta marc marquez kampiun motogp san marino...</td>
+      <td>Misano Adriatico  Marc Marquez jadi yang terde...</td>
+      <td>misano adriatico  marc marquez jadi yang terde...</td>
+      <td>[misano, adriatico, marc, marquez, jadi, yang,...</td>
+      <td>misano adriatico marc marquez terdepan free pr...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Potret Pelari Maraton Uganda yang Tewas Dibaka...</td>
-      <td>Senin, 09 Sep 2024 13:30 WIB</td>
-      <td>Uganda - Pelari maraton Olimpiade Uganda Rebec...</td>
+      <td>Pendaftaran Calon Ketum PP Perbasi: Budisatrio...</td>
+      <td>Jumat, 20 Sep 2024 15:50 WIB</td>
+      <td>Jakarta - Budisatrio Djiwandono secara resmi m...</td>
       <td>Olahraga</td>
-      <td>Uganda  Pelari maraton Olimpiade Uganda Rebecc...</td>
-      <td>uganda  pelari maraton olimpiade uganda rebecc...</td>
-      <td>[uganda, pelari, maraton, olimpiade, uganda, r...</td>
-      <td>uganda pelari maraton olimpiade uganda rebecca...</td>
+      <td>Jakarta  Budisatrio Djiwandono secara resmi me...</td>
+      <td>jakarta  budisatrio djiwandono secara resmi me...</td>
+      <td>[jakarta, budisatrio, djiwandono, secara, resm...</td>
+      <td>jakarta budisatrio djiwandono resmi mengembali...</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>Jokowi Resmikan Pembangunan-Renovasi Venue PON...</td>
-      <td>5,846 Views  |  Senin, 09 Sep 2024 12:03 WIB</td>
-      <td>Presiden Joko Widodo ( Jokowi ) meresmikan pem...</td>
+      <td>Daniel/Fikri Senang Menang, tapi Tak Puas deng...</td>
+      <td>Jumat, 20 Sep 2024 13:15 WIB</td>
+      <td>Jakarta - Daniel Marthin/Muhammad Shohibul Fik...</td>
       <td>Olahraga</td>
-      <td>Presiden Joko Widodo  Jokowi  meresmikan pemba...</td>
-      <td>presiden joko widodo  jokowi  meresmikan pemba...</td>
-      <td>[presiden, joko, widodo, jokowi, meresmikan, p...</td>
-      <td>presiden joko widodo jokowi meresmikan pembang...</td>
+      <td>Jakarta  Daniel MarthinMuhammad Shohibul Fikri...</td>
+      <td>jakarta  daniel marthinmuhammad shohibul fikri...</td>
+      <td>[jakarta, daniel, marthinmuhammad, shohibul, f...</td>
+      <td>jakarta daniel marthinmuhammad shohibul fikri ...</td>
     </tr>
   </tbody>
 </table>
@@ -1323,7 +1325,7 @@ berupa kata,frasa atau karakter terpisah.</p>
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-4bef443c-924e-433e-9c62-2c46139f2cca')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-d4f3a3ca-6ca5-4ad3-8c56-414f48c0b93b')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -1375,12 +1377,12 @@ berupa kata,frasa atau karakter terpisah.</p>
 
     <script>
       const buttonEl =
-        document.querySelector('#df-4bef443c-924e-433e-9c62-2c46139f2cca button.colab-df-convert');
+        document.querySelector('#df-d4f3a3ca-6ca5-4ad3-8c56-414f48c0b93b button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-4bef443c-924e-433e-9c62-2c46139f2cca');
+        const element = document.querySelector('#df-d4f3a3ca-6ca5-4ad3-8c56-414f48c0b93b');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1456,7 +1458,7 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-0b70325f-e5dc-45d3-9a16-5c9eb55ef9e6" class="colab-df-container">
+  <div id="df-eea07400-d25b-456e-b5a4-0fe770728049" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1475,27 +1477,27 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>aa</th>
-      <th>abaaba</th>
-      <th>abadi</th>
-      <th>abang</th>
-      <th>abnormal</th>
-      <th>abon</th>
+      <th>abdel</th>
       <th>absen</th>
-      <th>abuabu</th>
       <th>academy</th>
-      <th>acar</th>
+      <th>acara</th>
+      <th>aceh</th>
+      <th>acehsumatera</th>
+      <th>acehsumut</th>
+      <th>achrian</th>
+      <th>acosta</th>
+      <th>adaptasi</th>
       <th>...</th>
-      <th>zaitun</th>
-      <th>zakaria</th>
-      <th>zakariaaura</th>
-      <th>zarco</th>
       <th>zat</th>
-      <th>zayana</th>
-      <th>zeaxanthin</th>
-      <th>zilazik</th>
-      <th>zita</th>
-      <th>zucchini</th>
+      <th>zero</th>
+      <th>zerogram</th>
+      <th>zhehuang</th>
+      <th>zidane</th>
+      <th>zikri</th>
+      <th>zona</th>
+      <th>zonk</th>
+      <th>zulfikar</th>
+      <th>zulkifli</th>
     </tr>
   </thead>
   <tbody>
@@ -1504,20 +1506,20 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.269379</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.076186</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1528,20 +1530,20 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1552,20 +1554,20 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.100398</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1576,20 +1578,20 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.167464</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1600,20 +1602,20 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1624,20 +1626,20 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1648,20 +1650,20 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1672,20 +1674,20 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.086127</td>
+      <td>0.04763</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1696,20 +1698,20 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1720,20 +1722,20 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.106848</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1741,12 +1743,12 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
     </tr>
   </tbody>
 </table>
-<p>10 rows × 4564 columns</p>
+<p>10 rows × 4614 columns</p>
 </div>
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-0b70325f-e5dc-45d3-9a16-5c9eb55ef9e6')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-eea07400-d25b-456e-b5a4-0fe770728049')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -1798,12 +1800,12 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
 
     <script>
       const buttonEl =
-        document.querySelector('#df-0b70325f-e5dc-45d3-9a16-5c9eb55ef9e6 button.colab-df-convert');
+        document.querySelector('#df-eea07400-d25b-456e-b5a4-0fe770728049 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-0b70325f-e5dc-45d3-9a16-5c9eb55ef9e6');
+        const element = document.querySelector('#df-eea07400-d25b-456e-b5a4-0fe770728049');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1866,6 +1868,15 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title"><strong>Tugas Pertemuan 1 - Crawling berita online</strong></p>
       </div>
+    </a>
+    <a class="right-next"
+       href="Tugas3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tugas 3 - Logistic Regression</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
