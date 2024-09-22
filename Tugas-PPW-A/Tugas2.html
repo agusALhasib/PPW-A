@@ -60,6 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Tugas-PPW-A/Tugas2';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tugas 3 - Logistic Regression" href="Tugas3.html" />
     <link rel="prev" title="Tugas Pertemuan 1 - Crawling berita online" href="Tugas1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -181,6 +182,7 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Tugas1.html"><strong>Tugas Pertemuan 1 - Crawling berita online</strong></a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Tugas Pertemuan 2 - Pre-Processing Data Berita detik.com</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tugas3.html">Tugas 3 - Logistic Regression</a></li>
 </ul>
 
     </div>
@@ -435,7 +437,7 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-e25d6773-1a90-4fda-942d-501fdf6da1a5" class="colab-df-container">
+  <div id="df-9ecadd22-794a-44d2-8d81-5a2a2cdfca26" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -463,44 +465,44 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>Hasil Practice MotoGP Emilia Romagna 2024: Bag...</td>
-      <td>Jumat, 20 Sep 2024 21:16 WIB</td>
-      <td>Misano - Pebalap Ducati Francesco Bagnaia tamp...</td>
+      <td>Link Live Streaming MotoGP Emilia Romagna 2024...</td>
+      <td>Minggu, 22 Sep 2024 16:10 WIB</td>
+      <td>Jakarta - MotoGP Emilia Romagna 2024 digelar p...</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Daftar Earlybird OPPO Run 2024 Pakai BRImo Bis...</td>
-      <td>Jumat, 20 Sep 2024 20:13 WIB</td>
-      <td>Jakarta - Setelah resmi mengumumkan acara lari...</td>
+      <td>Potret Kemeriahan Ajang RunHub 2024</td>
+      <td>Minggu, 22 Sep 2024 15:26 WIB</td>
+      <td>Jakarta - Dalam rangka memperingati hari perhu...</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>China Open 2024: Fajar/Rian Terdepak di Peremp...</td>
-      <td>Jumat, 20 Sep 2024 18:02 WIB</td>
-      <td>Jakarta - China Open 2024 menjalani babak pere...</td>
+      <td>Marc Marquez Realistis di MotoGP Emilia Romagn...</td>
+      <td>Minggu, 22 Sep 2024 15:00 WIB</td>
+      <td>Jakarta - Rider Gresini Racing , Marc Marquez ...</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>China Open 2024: Jonatan Christe Maju ke Semif...</td>
-      <td>Jumat, 20 Sep 2024 16:56 WIB</td>
-      <td>Jakarta - China Open 2024 memainkan laga perem...</td>
+      <td>Konsentrasi Jorge Martin Hilang, Kans Menang p...</td>
+      <td>Minggu, 22 Sep 2024 12:00 WIB</td>
+      <td>Jakarta - Sprint race MotoGP Emilia Romagna 20...</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Hasil FP1 MotoGP Emilia Romagna: Marc Marquez ...</td>
-      <td>Jumat, 20 Sep 2024 16:35 WIB</td>
-      <td>Misano Adriatico - Marc Marquez jadi yang terd...</td>
+      <td>Jadwal MotoGP Hari Ini: Adu Cepat di Emilia Ro...</td>
+      <td>Minggu, 22 Sep 2024 08:45 WIB</td>
+      <td>Misano - Seri ke-14 MotoGP 2024 digelar malam ...</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>Pendaftaran Calon Ketum PP Perbasi: Budisatrio...</td>
-      <td>Jumat, 20 Sep 2024 15:50 WIB</td>
-      <td>Jakarta - Budisatrio Djiwandono secara resmi m...</td>
+      <td>Bagnaia Akui Butuh Eror dari Jorge Martin untu...</td>
+      <td>Minggu, 22 Sep 2024 06:20 WIB</td>
+      <td>Misano - Francesco Bagnaia mengakui, dirinya b...</td>
       <td>Olahraga</td>
     </tr>
   </tbody>
@@ -509,7 +511,7 @@ document.write(`
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-e25d6773-1a90-4fda-942d-501fdf6da1a5')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-9ecadd22-794a-44d2-8d81-5a2a2cdfca26')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -561,12 +563,12 @@ document.write(`
 
     <script>
       const buttonEl =
-        document.querySelector('#df-e25d6773-1a90-4fda-942d-501fdf6da1a5 button.colab-df-convert');
+        document.querySelector('#df-9ecadd22-794a-44d2-8d81-5a2a2cdfca26 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-e25d6773-1a90-4fda-942d-501fdf6da1a5');
+        const element = document.querySelector('#df-9ecadd22-794a-44d2-8d81-5a2a2cdfca26');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -643,7 +645,7 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-a0097713-9574-4699-bc3a-f5e9e950878f" class="colab-df-container">
+  <div id="df-a5d9197f-4986-41a2-9da2-c1c57ad20cac" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -672,51 +674,51 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>Hasil Practice MotoGP Emilia Romagna 2024: Bag...</td>
-      <td>Jumat, 20 Sep 2024 21:16 WIB</td>
-      <td>Misano - Pebalap Ducati Francesco Bagnaia tamp...</td>
+      <td>Link Live Streaming MotoGP Emilia Romagna 2024...</td>
+      <td>Minggu, 22 Sep 2024 16:10 WIB</td>
+      <td>Jakarta - MotoGP Emilia Romagna 2024 digelar p...</td>
       <td>Olahraga</td>
-      <td>Misano  Pebalap Ducati Francesco Bagnaia tampi...</td>
+      <td>Jakarta  MotoGP Emilia Romagna  digelar pada h...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Daftar Earlybird OPPO Run 2024 Pakai BRImo Bis...</td>
-      <td>Jumat, 20 Sep 2024 20:13 WIB</td>
-      <td>Jakarta - Setelah resmi mengumumkan acara lari...</td>
+      <td>Potret Kemeriahan Ajang RunHub 2024</td>
+      <td>Minggu, 22 Sep 2024 15:26 WIB</td>
+      <td>Jakarta - Dalam rangka memperingati hari perhu...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Setelah resmi mengumumkan acara lari ...</td>
+      <td>Jakarta  Dalam rangka memperingati hari perhub...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>China Open 2024: Fajar/Rian Terdepak di Peremp...</td>
-      <td>Jumat, 20 Sep 2024 18:02 WIB</td>
-      <td>Jakarta - China Open 2024 menjalani babak pere...</td>
+      <td>Marc Marquez Realistis di MotoGP Emilia Romagn...</td>
+      <td>Minggu, 22 Sep 2024 15:00 WIB</td>
+      <td>Jakarta - Rider Gresini Racing , Marc Marquez ...</td>
       <td>Olahraga</td>
-      <td>Jakarta  China Open  menjalani babak perempatf...</td>
+      <td>Jakarta  Rider Gresini Racing  Marc Marquez  m...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>China Open 2024: Jonatan Christe Maju ke Semif...</td>
-      <td>Jumat, 20 Sep 2024 16:56 WIB</td>
-      <td>Jakarta - China Open 2024 memainkan laga perem...</td>
+      <td>Konsentrasi Jorge Martin Hilang, Kans Menang p...</td>
+      <td>Minggu, 22 Sep 2024 12:00 WIB</td>
+      <td>Jakarta - Sprint race MotoGP Emilia Romagna 20...</td>
       <td>Olahraga</td>
-      <td>Jakarta  China Open  memainkan laga perempatfi...</td>
+      <td>Jakarta  Sprint race MotoGP Emilia Romagna  ga...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Hasil FP1 MotoGP Emilia Romagna: Marc Marquez ...</td>
-      <td>Jumat, 20 Sep 2024 16:35 WIB</td>
-      <td>Misano Adriatico - Marc Marquez jadi yang terd...</td>
+      <td>Jadwal MotoGP Hari Ini: Adu Cepat di Emilia Ro...</td>
+      <td>Minggu, 22 Sep 2024 08:45 WIB</td>
+      <td>Misano - Seri ke-14 MotoGP 2024 digelar malam ...</td>
       <td>Olahraga</td>
-      <td>Misano Adriatico  Marc Marquez jadi yang terde...</td>
+      <td>Misano  Seri ke MotoGP  digelar malam hari ini...</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>Pendaftaran Calon Ketum PP Perbasi: Budisatrio...</td>
-      <td>Jumat, 20 Sep 2024 15:50 WIB</td>
-      <td>Jakarta - Budisatrio Djiwandono secara resmi m...</td>
+      <td>Bagnaia Akui Butuh Eror dari Jorge Martin untu...</td>
+      <td>Minggu, 22 Sep 2024 06:20 WIB</td>
+      <td>Misano - Francesco Bagnaia mengakui, dirinya b...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Budisatrio Djiwandono secara resmi me...</td>
+      <td>Misano  Francesco Bagnaia mengakui dirinya but...</td>
     </tr>
   </tbody>
 </table>
@@ -724,7 +726,7 @@ document.write(`
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-a0097713-9574-4699-bc3a-f5e9e950878f')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-a5d9197f-4986-41a2-9da2-c1c57ad20cac')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -776,12 +778,12 @@ document.write(`
 
     <script>
       const buttonEl =
-        document.querySelector('#df-a0097713-9574-4699-bc3a-f5e9e950878f button.colab-df-convert');
+        document.querySelector('#df-a5d9197f-4986-41a2-9da2-c1c57ad20cac button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-a0097713-9574-4699-bc3a-f5e9e950878f');
+        const element = document.querySelector('#df-a5d9197f-4986-41a2-9da2-c1c57ad20cac');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -826,7 +828,7 @@ Misalnya, kata yang sama tetapi ditulis dengan huruf besar atau kecil akan  dian
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-d6f828f1-ebf3-412e-b791-b63018696b46" class="colab-df-container">
+  <div id="df-6f95a7fa-db36-4120-ba8e-09ea6c05f531" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -856,57 +858,57 @@ Misalnya, kata yang sama tetapi ditulis dengan huruf besar atau kecil akan  dian
   <tbody>
     <tr>
       <th>0</th>
-      <td>Hasil Practice MotoGP Emilia Romagna 2024: Bag...</td>
-      <td>Jumat, 20 Sep 2024 21:16 WIB</td>
-      <td>Misano - Pebalap Ducati Francesco Bagnaia tamp...</td>
+      <td>Link Live Streaming MotoGP Emilia Romagna 2024...</td>
+      <td>Minggu, 22 Sep 2024 16:10 WIB</td>
+      <td>Jakarta - MotoGP Emilia Romagna 2024 digelar p...</td>
       <td>Olahraga</td>
-      <td>Misano  Pebalap Ducati Francesco Bagnaia tampi...</td>
-      <td>misano  pebalap ducati francesco bagnaia tampi...</td>
+      <td>Jakarta  MotoGP Emilia Romagna  digelar pada h...</td>
+      <td>jakarta  motogp emilia romagna  digelar pada h...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Daftar Earlybird OPPO Run 2024 Pakai BRImo Bis...</td>
-      <td>Jumat, 20 Sep 2024 20:13 WIB</td>
-      <td>Jakarta - Setelah resmi mengumumkan acara lari...</td>
+      <td>Potret Kemeriahan Ajang RunHub 2024</td>
+      <td>Minggu, 22 Sep 2024 15:26 WIB</td>
+      <td>Jakarta - Dalam rangka memperingati hari perhu...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Setelah resmi mengumumkan acara lari ...</td>
-      <td>jakarta  setelah resmi mengumumkan acara lari ...</td>
+      <td>Jakarta  Dalam rangka memperingati hari perhub...</td>
+      <td>jakarta  dalam rangka memperingati hari perhub...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>China Open 2024: Fajar/Rian Terdepak di Peremp...</td>
-      <td>Jumat, 20 Sep 2024 18:02 WIB</td>
-      <td>Jakarta - China Open 2024 menjalani babak pere...</td>
+      <td>Marc Marquez Realistis di MotoGP Emilia Romagn...</td>
+      <td>Minggu, 22 Sep 2024 15:00 WIB</td>
+      <td>Jakarta - Rider Gresini Racing , Marc Marquez ...</td>
       <td>Olahraga</td>
-      <td>Jakarta  China Open  menjalani babak perempatf...</td>
-      <td>jakarta  china open  menjalani babak perempatf...</td>
+      <td>Jakarta  Rider Gresini Racing  Marc Marquez  m...</td>
+      <td>jakarta  rider gresini racing  marc marquez  m...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>China Open 2024: Jonatan Christe Maju ke Semif...</td>
-      <td>Jumat, 20 Sep 2024 16:56 WIB</td>
-      <td>Jakarta - China Open 2024 memainkan laga perem...</td>
+      <td>Konsentrasi Jorge Martin Hilang, Kans Menang p...</td>
+      <td>Minggu, 22 Sep 2024 12:00 WIB</td>
+      <td>Jakarta - Sprint race MotoGP Emilia Romagna 20...</td>
       <td>Olahraga</td>
-      <td>Jakarta  China Open  memainkan laga perempatfi...</td>
-      <td>jakarta  china open  memainkan laga perempatfi...</td>
+      <td>Jakarta  Sprint race MotoGP Emilia Romagna  ga...</td>
+      <td>jakarta  sprint race motogp emilia romagna  ga...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Hasil FP1 MotoGP Emilia Romagna: Marc Marquez ...</td>
-      <td>Jumat, 20 Sep 2024 16:35 WIB</td>
-      <td>Misano Adriatico - Marc Marquez jadi yang terd...</td>
+      <td>Jadwal MotoGP Hari Ini: Adu Cepat di Emilia Ro...</td>
+      <td>Minggu, 22 Sep 2024 08:45 WIB</td>
+      <td>Misano - Seri ke-14 MotoGP 2024 digelar malam ...</td>
       <td>Olahraga</td>
-      <td>Misano Adriatico  Marc Marquez jadi yang terde...</td>
-      <td>misano adriatico  marc marquez jadi yang terde...</td>
+      <td>Misano  Seri ke MotoGP  digelar malam hari ini...</td>
+      <td>misano  seri ke motogp  digelar malam hari ini...</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>Pendaftaran Calon Ketum PP Perbasi: Budisatrio...</td>
-      <td>Jumat, 20 Sep 2024 15:50 WIB</td>
-      <td>Jakarta - Budisatrio Djiwandono secara resmi m...</td>
+      <td>Bagnaia Akui Butuh Eror dari Jorge Martin untu...</td>
+      <td>Minggu, 22 Sep 2024 06:20 WIB</td>
+      <td>Misano - Francesco Bagnaia mengakui, dirinya b...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Budisatrio Djiwandono secara resmi me...</td>
-      <td>jakarta  budisatrio djiwandono secara resmi me...</td>
+      <td>Misano  Francesco Bagnaia mengakui dirinya but...</td>
+      <td>misano  francesco bagnaia mengakui dirinya but...</td>
     </tr>
   </tbody>
 </table>
@@ -914,7 +916,7 @@ Misalnya, kata yang sama tetapi ditulis dengan huruf besar atau kecil akan  dian
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-d6f828f1-ebf3-412e-b791-b63018696b46')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-6f95a7fa-db36-4120-ba8e-09ea6c05f531')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -966,12 +968,12 @@ Misalnya, kata yang sama tetapi ditulis dengan huruf besar atau kecil akan  dian
 
     <script>
       const buttonEl =
-        document.querySelector('#df-d6f828f1-ebf3-412e-b791-b63018696b46 button.colab-df-convert');
+        document.querySelector('#df-6f95a7fa-db36-4120-ba8e-09ea6c05f531 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-d6f828f1-ebf3-412e-b791-b63018696b46');
+        const element = document.querySelector('#df-6f95a7fa-db36-4120-ba8e-09ea6c05f531');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1014,7 +1016,7 @@ berupa kata,frasa atau karakter terpisah.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-6d18188f-0920-4e7c-ab54-2b53153089ec" class="colab-df-container">
+  <div id="df-d1ae8480-330c-450c-af4f-62870d0e1d99" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1045,63 +1047,63 @@ berupa kata,frasa atau karakter terpisah.</p>
   <tbody>
     <tr>
       <th>0</th>
-      <td>Hasil Practice MotoGP Emilia Romagna 2024: Bag...</td>
-      <td>Jumat, 20 Sep 2024 21:16 WIB</td>
-      <td>Misano - Pebalap Ducati Francesco Bagnaia tamp...</td>
+      <td>Link Live Streaming MotoGP Emilia Romagna 2024...</td>
+      <td>Minggu, 22 Sep 2024 16:10 WIB</td>
+      <td>Jakarta - MotoGP Emilia Romagna 2024 digelar p...</td>
       <td>Olahraga</td>
-      <td>Misano  Pebalap Ducati Francesco Bagnaia tampi...</td>
-      <td>misano  pebalap ducati francesco bagnaia tampi...</td>
-      <td>[misano, pebalap, ducati, francesco, bagnaia, ...</td>
+      <td>Jakarta  MotoGP Emilia Romagna  digelar pada h...</td>
+      <td>jakarta  motogp emilia romagna  digelar pada h...</td>
+      <td>[jakarta, motogp, emilia, romagna, digelar, pa...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Daftar Earlybird OPPO Run 2024 Pakai BRImo Bis...</td>
-      <td>Jumat, 20 Sep 2024 20:13 WIB</td>
-      <td>Jakarta - Setelah resmi mengumumkan acara lari...</td>
+      <td>Potret Kemeriahan Ajang RunHub 2024</td>
+      <td>Minggu, 22 Sep 2024 15:26 WIB</td>
+      <td>Jakarta - Dalam rangka memperingati hari perhu...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Setelah resmi mengumumkan acara lari ...</td>
-      <td>jakarta  setelah resmi mengumumkan acara lari ...</td>
-      <td>[jakarta, setelah, resmi, mengumumkan, acara, ...</td>
+      <td>Jakarta  Dalam rangka memperingati hari perhub...</td>
+      <td>jakarta  dalam rangka memperingati hari perhub...</td>
+      <td>[jakarta, dalam, rangka, memperingati, hari, p...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>China Open 2024: Fajar/Rian Terdepak di Peremp...</td>
-      <td>Jumat, 20 Sep 2024 18:02 WIB</td>
-      <td>Jakarta - China Open 2024 menjalani babak pere...</td>
+      <td>Marc Marquez Realistis di MotoGP Emilia Romagn...</td>
+      <td>Minggu, 22 Sep 2024 15:00 WIB</td>
+      <td>Jakarta - Rider Gresini Racing , Marc Marquez ...</td>
       <td>Olahraga</td>
-      <td>Jakarta  China Open  menjalani babak perempatf...</td>
-      <td>jakarta  china open  menjalani babak perempatf...</td>
-      <td>[jakarta, china, open, menjalani, babak, perem...</td>
+      <td>Jakarta  Rider Gresini Racing  Marc Marquez  m...</td>
+      <td>jakarta  rider gresini racing  marc marquez  m...</td>
+      <td>[jakarta, rider, gresini, racing, marc, marque...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>China Open 2024: Jonatan Christe Maju ke Semif...</td>
-      <td>Jumat, 20 Sep 2024 16:56 WIB</td>
-      <td>Jakarta - China Open 2024 memainkan laga perem...</td>
+      <td>Konsentrasi Jorge Martin Hilang, Kans Menang p...</td>
+      <td>Minggu, 22 Sep 2024 12:00 WIB</td>
+      <td>Jakarta - Sprint race MotoGP Emilia Romagna 20...</td>
       <td>Olahraga</td>
-      <td>Jakarta  China Open  memainkan laga perempatfi...</td>
-      <td>jakarta  china open  memainkan laga perempatfi...</td>
-      <td>[jakarta, china, open, memainkan, laga, peremp...</td>
+      <td>Jakarta  Sprint race MotoGP Emilia Romagna  ga...</td>
+      <td>jakarta  sprint race motogp emilia romagna  ga...</td>
+      <td>[jakarta, sprint, race, motogp, emilia, romagn...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Hasil FP1 MotoGP Emilia Romagna: Marc Marquez ...</td>
-      <td>Jumat, 20 Sep 2024 16:35 WIB</td>
-      <td>Misano Adriatico - Marc Marquez jadi yang terd...</td>
+      <td>Jadwal MotoGP Hari Ini: Adu Cepat di Emilia Ro...</td>
+      <td>Minggu, 22 Sep 2024 08:45 WIB</td>
+      <td>Misano - Seri ke-14 MotoGP 2024 digelar malam ...</td>
       <td>Olahraga</td>
-      <td>Misano Adriatico  Marc Marquez jadi yang terde...</td>
-      <td>misano adriatico  marc marquez jadi yang terde...</td>
-      <td>[misano, adriatico, marc, marquez, jadi, yang,...</td>
+      <td>Misano  Seri ke MotoGP  digelar malam hari ini...</td>
+      <td>misano  seri ke motogp  digelar malam hari ini...</td>
+      <td>[misano, seri, ke, motogp, digelar, malam, har...</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>Pendaftaran Calon Ketum PP Perbasi: Budisatrio...</td>
-      <td>Jumat, 20 Sep 2024 15:50 WIB</td>
-      <td>Jakarta - Budisatrio Djiwandono secara resmi m...</td>
+      <td>Bagnaia Akui Butuh Eror dari Jorge Martin untu...</td>
+      <td>Minggu, 22 Sep 2024 06:20 WIB</td>
+      <td>Misano - Francesco Bagnaia mengakui, dirinya b...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Budisatrio Djiwandono secara resmi me...</td>
-      <td>jakarta  budisatrio djiwandono secara resmi me...</td>
-      <td>[jakarta, budisatrio, djiwandono, secara, resm...</td>
+      <td>Misano  Francesco Bagnaia mengakui dirinya but...</td>
+      <td>misano  francesco bagnaia mengakui dirinya but...</td>
+      <td>[misano, francesco, bagnaia, mengakui, dirinya...</td>
     </tr>
   </tbody>
 </table>
@@ -1109,7 +1111,7 @@ berupa kata,frasa atau karakter terpisah.</p>
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-6d18188f-0920-4e7c-ab54-2b53153089ec')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-d1ae8480-330c-450c-af4f-62870d0e1d99')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -1161,12 +1163,12 @@ berupa kata,frasa atau karakter terpisah.</p>
 
     <script>
       const buttonEl =
-        document.querySelector('#df-6d18188f-0920-4e7c-ab54-2b53153089ec button.colab-df-convert');
+        document.querySelector('#df-d1ae8480-330c-450c-af4f-62870d0e1d99 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-6d18188f-0920-4e7c-ab54-2b53153089ec');
+        const element = document.querySelector('#df-d1ae8480-330c-450c-af4f-62870d0e1d99');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1202,7 +1204,7 @@ berupa kata,frasa atau karakter terpisah.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package stopwords to /root/nltk_data...
-[nltk_data]   Package stopwords is already up-to-date!
+[nltk_data]   Unzipping corpora/stopwords.zip.
 </pre></div>
 </div>
 </div>
@@ -1221,7 +1223,7 @@ berupa kata,frasa atau karakter terpisah.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-22768167-e325-4d58-b2dc-e1251c8d18c1" class="colab-df-container">
+  <div id="df-d7c9d7dc-4e00-4a4c-b37d-a6d57d2e4e00" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1253,69 +1255,69 @@ berupa kata,frasa atau karakter terpisah.</p>
   <tbody>
     <tr>
       <th>0</th>
-      <td>Hasil Practice MotoGP Emilia Romagna 2024: Bag...</td>
-      <td>Jumat, 20 Sep 2024 21:16 WIB</td>
-      <td>Misano - Pebalap Ducati Francesco Bagnaia tamp...</td>
+      <td>Link Live Streaming MotoGP Emilia Romagna 2024...</td>
+      <td>Minggu, 22 Sep 2024 16:10 WIB</td>
+      <td>Jakarta - MotoGP Emilia Romagna 2024 digelar p...</td>
       <td>Olahraga</td>
-      <td>Misano  Pebalap Ducati Francesco Bagnaia tampi...</td>
-      <td>misano  pebalap ducati francesco bagnaia tampi...</td>
-      <td>[misano, pebalap, ducati, francesco, bagnaia, ...</td>
-      <td>misano pebalap ducati francesco bagnaia tampil...</td>
+      <td>Jakarta  MotoGP Emilia Romagna  digelar pada h...</td>
+      <td>jakarta  motogp emilia romagna  digelar pada h...</td>
+      <td>[jakarta, motogp, emilia, romagna, digelar, pa...</td>
+      <td>jakarta motogp emilia romagna digelar informas...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Daftar Earlybird OPPO Run 2024 Pakai BRImo Bis...</td>
-      <td>Jumat, 20 Sep 2024 20:13 WIB</td>
-      <td>Jakarta - Setelah resmi mengumumkan acara lari...</td>
+      <td>Potret Kemeriahan Ajang RunHub 2024</td>
+      <td>Minggu, 22 Sep 2024 15:26 WIB</td>
+      <td>Jakarta - Dalam rangka memperingati hari perhu...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Setelah resmi mengumumkan acara lari ...</td>
-      <td>jakarta  setelah resmi mengumumkan acara lari ...</td>
-      <td>[jakarta, setelah, resmi, mengumumkan, acara, ...</td>
-      <td>jakarta resmi mengumumkan acara lari perdanany...</td>
+      <td>Jakarta  Dalam rangka memperingati hari perhub...</td>
+      <td>jakarta  dalam rangka memperingati hari perhub...</td>
+      <td>[jakarta, dalam, rangka, memperingati, hari, p...</td>
+      <td>jakarta rangka memperingati perhubungan nasion...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>China Open 2024: Fajar/Rian Terdepak di Peremp...</td>
-      <td>Jumat, 20 Sep 2024 18:02 WIB</td>
-      <td>Jakarta - China Open 2024 menjalani babak pere...</td>
+      <td>Marc Marquez Realistis di MotoGP Emilia Romagn...</td>
+      <td>Minggu, 22 Sep 2024 15:00 WIB</td>
+      <td>Jakarta - Rider Gresini Racing , Marc Marquez ...</td>
       <td>Olahraga</td>
-      <td>Jakarta  China Open  menjalani babak perempatf...</td>
-      <td>jakarta  china open  menjalani babak perempatf...</td>
-      <td>[jakarta, china, open, menjalani, babak, perem...</td>
-      <td>jakarta china open menjalani babak perempatfin...</td>
+      <td>Jakarta  Rider Gresini Racing  Marc Marquez  m...</td>
+      <td>jakarta  rider gresini racing  marc marquez  m...</td>
+      <td>[jakarta, rider, gresini, racing, marc, marque...</td>
+      <td>jakarta rider gresini racing marc marquez meng...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>China Open 2024: Jonatan Christe Maju ke Semif...</td>
-      <td>Jumat, 20 Sep 2024 16:56 WIB</td>
-      <td>Jakarta - China Open 2024 memainkan laga perem...</td>
+      <td>Konsentrasi Jorge Martin Hilang, Kans Menang p...</td>
+      <td>Minggu, 22 Sep 2024 12:00 WIB</td>
+      <td>Jakarta - Sprint race MotoGP Emilia Romagna 20...</td>
       <td>Olahraga</td>
-      <td>Jakarta  China Open  memainkan laga perempatfi...</td>
-      <td>jakarta  china open  memainkan laga perempatfi...</td>
-      <td>[jakarta, china, open, memainkan, laga, peremp...</td>
-      <td>jakarta china open memainkan laga perempatfina...</td>
+      <td>Jakarta  Sprint race MotoGP Emilia Romagna  ga...</td>
+      <td>jakarta  sprint race motogp emilia romagna  ga...</td>
+      <td>[jakarta, sprint, race, motogp, emilia, romagn...</td>
+      <td>jakarta sprint race motogp emilia romagna gaga...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Hasil FP1 MotoGP Emilia Romagna: Marc Marquez ...</td>
-      <td>Jumat, 20 Sep 2024 16:35 WIB</td>
-      <td>Misano Adriatico - Marc Marquez jadi yang terd...</td>
+      <td>Jadwal MotoGP Hari Ini: Adu Cepat di Emilia Ro...</td>
+      <td>Minggu, 22 Sep 2024 08:45 WIB</td>
+      <td>Misano - Seri ke-14 MotoGP 2024 digelar malam ...</td>
       <td>Olahraga</td>
-      <td>Misano Adriatico  Marc Marquez jadi yang terde...</td>
-      <td>misano adriatico  marc marquez jadi yang terde...</td>
-      <td>[misano, adriatico, marc, marquez, jadi, yang,...</td>
-      <td>misano adriatico marc marquez terdepan free pr...</td>
+      <td>Misano  Seri ke MotoGP  digelar malam hari ini...</td>
+      <td>misano  seri ke motogp  digelar malam hari ini...</td>
+      <td>[misano, seri, ke, motogp, digelar, malam, har...</td>
+      <td>misano seri motogp digelar malam emilia romagn...</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>Pendaftaran Calon Ketum PP Perbasi: Budisatrio...</td>
-      <td>Jumat, 20 Sep 2024 15:50 WIB</td>
-      <td>Jakarta - Budisatrio Djiwandono secara resmi m...</td>
+      <td>Bagnaia Akui Butuh Eror dari Jorge Martin untu...</td>
+      <td>Minggu, 22 Sep 2024 06:20 WIB</td>
+      <td>Misano - Francesco Bagnaia mengakui, dirinya b...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Budisatrio Djiwandono secara resmi me...</td>
-      <td>jakarta  budisatrio djiwandono secara resmi me...</td>
-      <td>[jakarta, budisatrio, djiwandono, secara, resm...</td>
-      <td>jakarta budisatrio djiwandono resmi mengembali...</td>
+      <td>Misano  Francesco Bagnaia mengakui dirinya but...</td>
+      <td>misano  francesco bagnaia mengakui dirinya but...</td>
+      <td>[misano, francesco, bagnaia, mengakui, dirinya...</td>
+      <td>misano francesco bagnaia mengakui butuh kesala...</td>
     </tr>
   </tbody>
 </table>
@@ -1323,7 +1325,7 @@ berupa kata,frasa atau karakter terpisah.</p>
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-22768167-e325-4d58-b2dc-e1251c8d18c1')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-d7c9d7dc-4e00-4a4c-b37d-a6d57d2e4e00')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -1375,12 +1377,12 @@ berupa kata,frasa atau karakter terpisah.</p>
 
     <script>
       const buttonEl =
-        document.querySelector('#df-22768167-e325-4d58-b2dc-e1251c8d18c1 button.colab-df-convert');
+        document.querySelector('#df-d7c9d7dc-4e00-4a4c-b37d-a6d57d2e4e00 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-22768167-e325-4d58-b2dc-e1251c8d18c1');
+        const element = document.querySelector('#df-d7c9d7dc-4e00-4a4c-b37d-a6d57d2e4e00');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1456,7 +1458,7 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-9c9fc1dc-303e-4219-9b04-c4d4fdecd974" class="colab-df-container">
+  <div id="df-c8b5f716-ab84-44f4-a46d-61d9f0f20b9d" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1475,27 +1477,27 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>abdel</th>
-      <th>absen</th>
+      <th>aang</th>
+      <th>abdul</th>
+      <th>abimanyu</th>
+      <th>abud</th>
       <th>academy</th>
       <th>acara</th>
       <th>aceh</th>
       <th>acehsumatera</th>
       <th>acehsumut</th>
-      <th>achrian</th>
-      <th>acosta</th>
-      <th>adaptasi</th>
+      <th>acehsunatera</th>
       <th>...</th>
+      <th>zaleefya</th>
+      <th>zaman</th>
+      <th>zan</th>
+      <th>zarco</th>
       <th>zat</th>
-      <th>zero</th>
-      <th>zerogram</th>
       <th>zhehuang</th>
-      <th>zidane</th>
+      <th>zhou</th>
       <th>zikri</th>
-      <th>zona</th>
-      <th>zonk</th>
+      <th>zivan</th>
       <th>zulfikar</th>
-      <th>zulkifli</th>
     </tr>
   </thead>
   <tbody>
@@ -1503,14 +1505,14 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <th>0</th>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.075664</td>
+      <td>0.000000</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1520,21 +1522,21 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>1</th>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.269347</td>
-      <td>0.00000</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1544,21 +1546,21 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2</th>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1568,21 +1570,21 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>3</th>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1592,21 +1594,21 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>4</th>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.163564</td>
+      <td>0.000000</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1616,21 +1618,21 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>5</th>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1640,21 +1642,21 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>6</th>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
-      <td>0.000000</td>
+      <td>0.030851</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.050215</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.025108</td>
+      <td>0.030851</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1664,21 +1666,21 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.030851</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>7</th>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1688,21 +1690,21 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>8</th>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
-      <td>0.08606</td>
-      <td>0.047593</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1712,21 +1714,21 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>9</th>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1736,17 +1738,17 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
     </tr>
   </tbody>
 </table>
-<p>10 rows × 4620 columns</p>
+<p>10 rows × 4622 columns</p>
 </div>
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-9c9fc1dc-303e-4219-9b04-c4d4fdecd974')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-c8b5f716-ab84-44f4-a46d-61d9f0f20b9d')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -1798,12 +1800,12 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
 
     <script>
       const buttonEl =
-        document.querySelector('#df-9c9fc1dc-303e-4219-9b04-c4d4fdecd974 button.colab-df-convert');
+        document.querySelector('#df-c8b5f716-ab84-44f4-a46d-61d9f0f20b9d button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-9c9fc1dc-303e-4219-9b04-c4d4fdecd974');
+        const element = document.querySelector('#df-c8b5f716-ab84-44f4-a46d-61d9f0f20b9d');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1866,6 +1868,15 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title"><strong>Tugas Pertemuan 1 - Crawling berita online</strong></p>
       </div>
+    </a>
+    <a class="right-next"
+       href="Tugas3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tugas 3 - Logistic Regression</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
