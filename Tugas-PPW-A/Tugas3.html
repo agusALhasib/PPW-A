@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>&lt;no title&gt; &#8212; Penambangan web</title>
+    <title>Tugas Pertemuan 3 &#8212; Penambangan web</title>
   
   
   
@@ -178,9 +178,10 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Tugas1.html"><strong>Tugas Pertemuan 1 - Crawling berita online</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="Tugas2.html">Tugas Pertemuan 2 - Pre-Processing Data Berita detik.com</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Tugas Pertemuan 3</a></li>
 </ul>
 
     </div>
@@ -384,9 +385,7 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -397,19 +396,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>Tugas Pertemuan 3</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -419,7 +410,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <div class="cell docutils container">
+  <section class="tex2jax_ignore mathjax_ignore" id="tugas-pertemuan-3">
+<h1>Tugas Pertemuan 3<a class="headerlink" href="#tugas-pertemuan-3" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
 <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
@@ -443,7 +436,7 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-10bdfdb4-11c9-49cd-8ebc-f8e675ad2b14" class="colab-df-container">
+  <div id="df-2a1c275e-4d78-4a75-baf9-7f641436aebb" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -475,58 +468,58 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>Jorge Martin: Saya Pantas Menang di MotoGP Emi...</td>
-      <td>Minggu, 22 Sep 2024 22:15 WIB</td>
-      <td>Jakarta - Rider Pramac Ducati , Jorge Martin ,...</td>
+      <td>MotoGP: Rekor-rekor di Sirkuit Mandalika</td>
+      <td>Rabu, 25 Sep 2024 20:30 WIB</td>
+      <td>Jakarta - MotoGP Mandalika sudah menghadirkan ...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Rider Pramac Ducati  Jorge Martin  ha...</td>
-      <td>jakarta  rider pramac ducati  jorge martin  ha...</td>
-      <td>['jakarta', 'rider', 'pramac', 'ducati', 'jorg...</td>
-      <td>jakarta rider pramac ducati jorge martin puas ...</td>
+      <td>Jakarta  MotoGP Mandalika sudah menghadirkan r...</td>
+      <td>jakarta  motogp mandalika sudah menghadirkan r...</td>
+      <td>['jakarta', 'motogp', 'mandalika', 'sudah', 'm...</td>
+      <td>jakarta motogp mandalika menghadirkan rekor ge...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Momen Bastianini Salip Martin di Last Lap Moto...</td>
-      <td>758 Views  |  Minggu, 22 Sep 2024 21:33 WIB</td>
-      <td>Enea Bastianini juara MotoGP Emilia Romagna 20...</td>
+      <td>BWF World Tour Finals 2024: Baru Tiga Wakil RI...</td>
+      <td>Rabu, 25 Sep 2024 19:55 WIB</td>
+      <td>Jakarta - Ranking BWF World Tour Finals 2024 m...</td>
       <td>Olahraga</td>
-      <td>Enea Bastianini juara MotoGP Emilia Romagna  K...</td>
-      <td>enea bastianini juara motogp emilia romagna  k...</td>
-      <td>['enea', 'bastianini', 'juara', 'motogp', 'emi...</td>
-      <td>enea bastianini juara motogp emilia romagna ke...</td>
+      <td>Jakarta  Ranking BWF World Tour Finals  masih ...</td>
+      <td>jakarta  ranking bwf world tour finals  masih ...</td>
+      <td>['jakarta', 'ranking', 'bwf', 'world', 'tour',...</td>
+      <td>jakarta ranking bwf world tour finals berjalan...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>MotoGP Emilia Romagna 2024: Kemenangan yang Lu...</td>
-      <td>Minggu, 22 Sep 2024 21:30 WIB</td>
-      <td>Jakarta - Rider Ducati , Enea Bastianini , mem...</td>
+      <td>Video Marc Marquez Senyum-senyum Lihat Aksi Az...</td>
+      <td>Rabu, 25 Sep 2024 19:46 WIB</td>
+      <td>Jakarta - Siswi SDN 7 Mataram, asal Kota Matar...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Rider Ducati  Enea Bastianini  memeti...</td>
-      <td>jakarta  rider ducati  enea bastianini  memeti...</td>
-      <td>['jakarta', 'rider', 'ducati', 'enea', 'bastia...</td>
-      <td>jakarta rider ducati enea bastianini memetik k...</td>
+      <td>Jakarta  Siswi SDN  Mataram asal Kota Mataram ...</td>
+      <td>jakarta  siswi sdn  mataram asal kota mataram ...</td>
+      <td>['jakarta', 'siswi', 'sdn', 'mataram', 'asal',...</td>
+      <td>jakarta siswi sdn mataram kota mataram nusa te...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Hasil Formula 1 GP Singapura: Lando Norris Juara</td>
-      <td>Minggu, 22 Sep 2024 21:17 WIB</td>
-      <td>Singapura - Lando Norris menjadi pemenang Form...</td>
+      <td>MotoGP Mandalika: Bahagianya Marc Marquez Kemb...</td>
+      <td>Rabu, 25 Sep 2024 19:40 WIB</td>
+      <td>Jakarta - MotoGP Mandalika 2024 berlangsung ak...</td>
       <td>Olahraga</td>
-      <td>Singapura  Lando Norris menjadi pemenang Formu...</td>
-      <td>singapura  lando norris menjadi pemenang formu...</td>
-      <td>['singapura', 'lando', 'norris', 'menjadi', 'p...</td>
-      <td>singapura lando norris pemenang formula gp sin...</td>
+      <td>Jakarta  MotoGP Mandalika  berlangsung akhir p...</td>
+      <td>jakarta  motogp mandalika  berlangsung akhir p...</td>
+      <td>['jakarta', 'motogp', 'mandalika', 'berlangsun...</td>
+      <td>jakarta motogp mandalika pekan marc marquez se...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Kontribusi InJourney di Amman Mineral Men's Wo...</td>
-      <td>Minggu, 22 Sep 2024 20:49 WIB</td>
-      <td>Jakarta - Holding BUMN sektor aviasi dan pariw...</td>
+      <td>MotoGP Mandalika 2024: Ada Pemenang Baru Lagi?</td>
+      <td>Rabu, 25 Sep 2024 19:15 WIB</td>
+      <td>Jakarta - MotoGP Mandalika menyajikan pemenang...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Holding BUMN sektor aviasi dan pariwi...</td>
-      <td>jakarta  holding bumn sektor aviasi dan pariwi...</td>
-      <td>['jakarta', 'holding', 'bumn', 'sektor', 'avia...</td>
-      <td>jakarta holding bumn sektor aviasi pariwisata ...</td>
+      <td>Jakarta  MotoGP Mandalika menyajikan pemenang ...</td>
+      <td>jakarta  motogp mandalika menyajikan pemenang ...</td>
+      <td>['jakarta', 'motogp', 'mandalika', 'menyajikan...</td>
+      <td>jakarta motogp mandalika menyajikan pemenang b...</td>
     </tr>
   </tbody>
 </table>
@@ -534,7 +527,7 @@ document.write(`
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-10bdfdb4-11c9-49cd-8ebc-f8e675ad2b14')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-2a1c275e-4d78-4a75-baf9-7f641436aebb')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -586,12 +579,12 @@ document.write(`
 
     <script>
       const buttonEl =
-        document.querySelector('#df-10bdfdb4-11c9-49cd-8ebc-f8e675ad2b14 button.colab-df-convert');
+        document.querySelector('#df-2a1c275e-4d78-4a75-baf9-7f641436aebb button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-10bdfdb4-11c9-49cd-8ebc-f8e675ad2b14');
+        const element = document.querySelector('#df-2a1c275e-4d78-4a75-baf9-7f641436aebb');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -666,7 +659,7 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-d15596de-c359-4da5-99a3-b86246c741dd" class="colab-df-container">
+  <div id="df-763073b0-bb3d-49be-955f-1a3923ad0473" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -685,27 +678,27 @@ document.write(`
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>aang</th>
-      <th>abdul</th>
-      <th>abimanyu</th>
-      <th>abis</th>
-      <th>abud</th>
-      <th>academy</th>
+      <th>aa</th>
+      <th>aati</th>
+      <th>abad</th>
+      <th>abadi</th>
+      <th>abc</th>
+      <th>absen</th>
+      <th>acar</th>
       <th>acara</th>
-      <th>aceh</th>
-      <th>acehsumatera</th>
-      <th>acehsumut</th>
+      <th>aci</th>
+      <th>acosta</th>
       <th>...</th>
+      <th>yzrm</th>
+      <th>yzrmdiyakini</th>
+      <th>zaidihendra</th>
+      <th>zaitun</th>
       <th>zaman</th>
-      <th>zan</th>
-      <th>zarco</th>
-      <th>zat</th>
-      <th>zhehuang</th>
-      <th>zheng</th>
+      <th>zar</th>
+      <th>zayan</th>
+      <th>zero</th>
       <th>zhou</th>
-      <th>zivan</th>
       <th>zona</th>
-      <th>zul</th>
     </tr>
   </thead>
   <tbody>
@@ -716,21 +709,21 @@ document.write(`
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -740,21 +733,21 @@ document.write(`
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.063059</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -764,21 +757,21 @@ document.write(`
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -788,21 +781,21 @@ document.write(`
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.042339</td>
       <td>0.0</td>
-      <td>0.042339</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -812,21 +805,21 @@ document.write(`
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -836,21 +829,21 @@ document.write(`
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -860,21 +853,21 @@ document.write(`
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.062591</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -884,21 +877,21 @@ document.write(`
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -908,21 +901,21 @@ document.write(`
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.031071</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.041058</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -932,31 +925,31 @@ document.write(`
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.047392</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.067008</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
   </tbody>
 </table>
-<p>10 rows × 4372 columns</p>
+<p>10 rows × 4472 columns</p>
 </div>
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-d15596de-c359-4da5-99a3-b86246c741dd')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-763073b0-bb3d-49be-955f-1a3923ad0473')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -1008,12 +1001,12 @@ document.write(`
 
     <script>
       const buttonEl =
-        document.querySelector('#df-d15596de-c359-4da5-99a3-b86246c741dd button.colab-df-convert');
+        document.querySelector('#df-763073b0-bb3d-49be-955f-1a3923ad0473 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-d15596de-c359-4da5-99a3-b86246c741dd');
+        const element = document.querySelector('#df-763073b0-bb3d-49be-955f-1a3923ad0473');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1055,8 +1048,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of X_train: (80, 4372)
-Shape of X_test: (20, 4372)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of X_train: (80, 4472)
+Shape of X_test: (20, 4472)
 </pre></div>
 </div>
 </div>
@@ -1105,22 +1098,22 @@ Shape of X_test: (20, 4372)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 75.00%
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 90.00%
 Confusion Matrix:
-[[8 0]
- [5 7]]
+[[ 8  0]
+ [ 2 10]]
 
 Classification Report:
               precision    recall  f1-score   support
 
-     Makanan       0.62      1.00      0.76         8
-    Olahraga       1.00      0.58      0.74        12
+     Makanan       0.80      1.00      0.89         8
+    Olahraga       1.00      0.83      0.91        12
 
-    accuracy                           0.75        20
-   macro avg       0.81      0.79      0.75        20
-weighted avg       0.85      0.75      0.75        20
+    accuracy                           0.90        20
+   macro avg       0.90      0.92      0.90        20
+weighted avg       0.92      0.90      0.90        20
 
-Cross-validation accuracy: 88.75%
+Cross-validation accuracy: 93.75%
 </pre></div>
 </div>
 </div>
@@ -1201,6 +1194,7 @@ Prediksi untuk teks 2: Makanan
 </div>
 </div>
 </div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1247,21 +1241,6 @@ Prediksi untuk teks 2: Makanan
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-  </nav></div>
-
-</div></div>
               
             
           </div>
