@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Tugas-PPW-A/Tugas4';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Tugas Pertemuan 3" href="Tugas3.html" />
+    <link rel="prev" title="Word Embedding" href="Skip-Gram.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -182,6 +182,14 @@
 <li class="toctree-l1"><a class="reference internal" href="Tugas1.html"><strong>Tugas Pertemuan 1 - Crawling berita online</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="Tugas2.html">Tugas Pertemuan 2 - Pre-Processing Data Berita detik.com</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Tugas3.html">Tugas Pertemuan 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Skip-Gram.html">Word Embedding</a></li>
+
+
+
+
+
+
+
 <li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Pengujian sample baru</strong></a></li>
 </ul>
 
@@ -435,7 +443,7 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-2d075a07-1212-46a9-8216-5cc052657d99" class="colab-df-container">
+  <div id="df-6fad13a5-1297-4a38-9632-e768a979033a" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -467,58 +475,58 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>MotoGP: Rekor-rekor di Sirkuit Mandalika</td>
-      <td>Rabu, 25 Sep 2024 20:30 WIB</td>
-      <td>Jakarta - MotoGP Mandalika sudah menghadirkan ...</td>
+      <td>Para Tua-tua Keladi di NBA</td>
+      <td>Selasa, 08 Okt 2024 17:50 WIB</td>
+      <td>Jakarta - Jelang musim NBA 2024-2025, masih ad...</td>
       <td>Olahraga</td>
-      <td>Jakarta  MotoGP Mandalika sudah menghadirkan r...</td>
-      <td>jakarta  motogp mandalika sudah menghadirkan r...</td>
-      <td>['jakarta', 'motogp', 'mandalika', 'sudah', 'm...</td>
-      <td>jakarta motogp mandalika menghadirkan rekor ge...</td>
+      <td>Jakarta  Jelang musim NBA  masih ada beberapa ...</td>
+      <td>jakarta  jelang musim nba  masih ada beberapa ...</td>
+      <td>['jakarta', 'jelang', 'musim', 'nba', 'masih',...</td>
+      <td>jakarta jelang musim nba pemain usia jagoan ti...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>BWF World Tour Finals 2024: Baru Tiga Wakil RI...</td>
-      <td>Rabu, 25 Sep 2024 19:55 WIB</td>
-      <td>Jakarta - Ranking BWF World Tour Finals 2024 m...</td>
+      <td>Akhir Dramatis Pertahankan Gelar di Final AXIS...</td>
+      <td>Selasa, 08 Okt 2024 15:57 WIB</td>
+      <td>Malang - Turnamen AXIS Nation Cup 2024 di Sudi...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Ranking BWF World Tour Finals  masih ...</td>
-      <td>jakarta  ranking bwf world tour finals  masih ...</td>
-      <td>['jakarta', 'ranking', 'bwf', 'world', 'tour',...</td>
-      <td>jakarta ranking bwf world tour finals berjalan...</td>
+      <td>Malang  Turnamen AXIS Nation Cup  di Sudimoro ...</td>
+      <td>malang  turnamen axis nation cup  di sudimoro ...</td>
+      <td>['malang', 'turnamen', 'axis', 'nation', 'cup'...</td>
+      <td>malang turnamen axis nation cup sudimoro futsa...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Video Marc Marquez Senyum-senyum Lihat Aksi Az...</td>
-      <td>Rabu, 25 Sep 2024 19:46 WIB</td>
-      <td>Jakarta - Siswi SDN 7 Mataram, asal Kota Matar...</td>
+      <td>Artur Beterbiev Bagai Khabib Nurmagomedov di D...</td>
+      <td>Selasa, 08 Okt 2024 15:15 WIB</td>
+      <td>Jakarta - Khabib Nurmagomedov merupakan legend...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Siswi SDN  Mataram asal Kota Mataram ...</td>
-      <td>jakarta  siswi sdn  mataram asal kota mataram ...</td>
-      <td>['jakarta', 'siswi', 'sdn', 'mataram', 'asal',...</td>
-      <td>jakarta siswi sdn mataram kota mataram nusa te...</td>
+      <td>Jakarta  Khabib Nurmagomedov merupakan legenda...</td>
+      <td>jakarta  khabib nurmagomedov merupakan legenda...</td>
+      <td>['jakarta', 'khabib', 'nurmagomedov', 'merupak...</td>
+      <td>jakarta khabib nurmagomedov legenda ufc terkal...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>MotoGP Mandalika: Bahagianya Marc Marquez Kemb...</td>
-      <td>Rabu, 25 Sep 2024 19:40 WIB</td>
-      <td>Jakarta - MotoGP Mandalika 2024 berlangsung ak...</td>
+      <td>Isekai Run: Event Lari Terbesar di Jakarta Coc...</td>
+      <td>Selasa, 08 Okt 2024 14:21 WIB</td>
+      <td>Jakarta - Siap merasakan pengalaman lari palin...</td>
       <td>Olahraga</td>
-      <td>Jakarta  MotoGP Mandalika  berlangsung akhir p...</td>
-      <td>jakarta  motogp mandalika  berlangsung akhir p...</td>
-      <td>['jakarta', 'motogp', 'mandalika', 'berlangsun...</td>
-      <td>jakarta motogp mandalika pekan marc marquez se...</td>
+      <td>Jakarta  Siap merasakan pengalaman lari paling...</td>
+      <td>jakarta  siap merasakan pengalaman lari paling...</td>
+      <td>['jakarta', 'siap', 'merasakan', 'pengalaman',...</td>
+      <td>jakarta merasakan pengalaman lari seru unik is...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>MotoGP Mandalika 2024: Ada Pemenang Baru Lagi?</td>
-      <td>Rabu, 25 Sep 2024 19:15 WIB</td>
-      <td>Jakarta - MotoGP Mandalika menyajikan pemenang...</td>
+      <td>Murid Marc Marquez di Ambang Pecahkan Rekor Va...</td>
+      <td>Selasa, 08 Okt 2024 11:15 WIB</td>
+      <td>Jakarta - Sebuah rekor berusia 27 tahun dari V...</td>
       <td>Olahraga</td>
-      <td>Jakarta  MotoGP Mandalika menyajikan pemenang ...</td>
-      <td>jakarta  motogp mandalika menyajikan pemenang ...</td>
-      <td>['jakarta', 'motogp', 'mandalika', 'menyajikan...</td>
-      <td>jakarta motogp mandalika menyajikan pemenang b...</td>
+      <td>Jakarta  Sebuah rekor berusia  tahun dari Vale...</td>
+      <td>jakarta  sebuah rekor berusia  tahun dari vale...</td>
+      <td>['jakarta', 'sebuah', 'rekor', 'berusia', 'tah...</td>
+      <td>jakarta rekor berusia valentino rossi berpelua...</td>
     </tr>
   </tbody>
 </table>
@@ -526,7 +534,7 @@ document.write(`
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-2d075a07-1212-46a9-8216-5cc052657d99')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-6fad13a5-1297-4a38-9632-e768a979033a')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -578,12 +586,12 @@ document.write(`
 
     <script>
       const buttonEl =
-        document.querySelector('#df-2d075a07-1212-46a9-8216-5cc052657d99 button.colab-df-convert');
+        document.querySelector('#df-6fad13a5-1297-4a38-9632-e768a979033a button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-2d075a07-1212-46a9-8216-5cc052657d99');
+        const element = document.querySelector('#df-6fad13a5-1297-4a38-9632-e768a979033a');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -631,95 +639,95 @@ document.write(`
 
 DataFrame setelah Label Encoding:
                                                 judul  \
-0            MotoGP: Rekor-rekor di Sirkuit Mandalika   
-1   BWF World Tour Finals 2024: Baru Tiga Wakil RI...   
-2   Video Marc Marquez Senyum-senyum Lihat Aksi Az...   
-3   MotoGP Mandalika: Bahagianya Marc Marquez Kemb...   
-4      MotoGP Mandalika 2024: Ada Pemenang Baru Lagi?   
+0                          Para Tua-tua Keladi di NBA   
+1   Akhir Dramatis Pertahankan Gelar di Final AXIS...   
+2   Artur Beterbiev Bagai Khabib Nurmagomedov di D...   
+3   Isekai Run: Event Lari Terbesar di Jakarta Coc...   
+4   Murid Marc Marquez di Ambang Pecahkan Rekor Va...   
 ..                                                ...   
-95  Orang Jepang Gemar Makan Ikan Mentah, Ini 5 Fa...   
-96  Keren! Pelayan Ini Selamatkan Pelanggan dari M...   
-97  Ayam Goreng Terenak di Jepang Ini Lokasinya di...   
-98  5 Bakmi Ayam Kampung Enak di Sunter dan Kelapa...   
-99  Tom Yum Vs Tom Kha, Apa Beda Dua Sup Khas Thai...   
+95  3 Resep Salad Buah Segar untuk Camilan Sehat d...   
+96  5 Fakta Kunafa yang Jadi Isian Cokelat Viral d...   
+97  Resep Kwetiau Daging dan Bokchoy yang Gurih Mu...   
+98  Etiket Ditraktir Makan hingga Bakmi Ayam Kampu...   
+99  Resep Oseng Tahu Goreng Cabe Ijo, Lauk Praktis...   
 
                           tanggal  \
-0     Rabu, 25 Sep 2024 20:30 WIB   
-1     Rabu, 25 Sep 2024 19:55 WIB   
-2     Rabu, 25 Sep 2024 19:46 WIB   
-3     Rabu, 25 Sep 2024 19:40 WIB   
-4     Rabu, 25 Sep 2024 19:15 WIB   
+0   Selasa, 08 Okt 2024 17:50 WIB   
+1   Selasa, 08 Okt 2024 15:57 WIB   
+2   Selasa, 08 Okt 2024 15:15 WIB   
+3   Selasa, 08 Okt 2024 14:21 WIB   
+4   Selasa, 08 Okt 2024 11:15 WIB   
 ..                            ...   
-95  Selasa, 24 Sep 2024 13:30 WIB   
-96  Selasa, 24 Sep 2024 13:00 WIB   
-97  Selasa, 24 Sep 2024 12:30 WIB   
-98  Selasa, 24 Sep 2024 12:00 WIB   
-99  Selasa, 24 Sep 2024 11:30 WIB   
+95   Senin, 07 Okt 2024 11:00 WIB   
+96   Senin, 07 Okt 2024 10:30 WIB   
+97   Senin, 07 Okt 2024 10:00 WIB   
+98   Senin, 07 Okt 2024 09:30 WIB   
+99   Senin, 07 Okt 2024 09:03 WIB   
 
                                                   isi  kategori  \
-0   Jakarta - MotoGP Mandalika sudah menghadirkan ...  Olahraga   
-1   Jakarta - Ranking BWF World Tour Finals 2024 m...  Olahraga   
-2   Jakarta - Siswi SDN 7 Mataram, asal Kota Matar...  Olahraga   
-3   Jakarta - MotoGP Mandalika 2024 berlangsung ak...  Olahraga   
-4   Jakarta - MotoGP Mandalika menyajikan pemenang...  Olahraga   
+0   Jakarta - Jelang musim NBA 2024-2025, masih ad...  Olahraga   
+1   Malang - Turnamen AXIS Nation Cup 2024 di Sudi...  Olahraga   
+2   Jakarta - Khabib Nurmagomedov merupakan legend...  Olahraga   
+3   Jakarta - Siap merasakan pengalaman lari palin...  Olahraga   
+4   Jakarta - Sebuah rekor berusia 27 tahun dari V...  Olahraga   
 ..                                                ...       ...   
-95  Jakarta - Orang Jepang punya kebiasaan konsums...   Makanan   
-96  Jakarta - Aksi yang dilakukan pelayan restoran...   Makanan   
-97  Jakarta - Di Jepang, ada banyak tempat makan t...   Makanan   
-98  Jakarta - Bagi pecinta kuliner bakmi, pastinya...   Makanan   
-99  Jakarta - Kuliner khas Thailand banyak yang be...   Makanan   
+95  Tentang Bahan Langkah Jakarta - Salad buah ada...   Makanan   
+96  Jakarta - Sebuah cokelat asal Dubai mendadak v...   Makanan   
+97  Tentang Bahan Langkah Jakarta - Selain nasi, k...   Makanan   
+98  Jakarta - Saat ditraktir makan, ada etiket yan...   Makanan   
+99  Tentang Bahan Langkah Jakarta - Tahu goreng ya...   Makanan   
 
                                             cleansing  \
-0   Jakarta  MotoGP Mandalika sudah menghadirkan r...   
-1   Jakarta  Ranking BWF World Tour Finals  masih ...   
-2   Jakarta  Siswi SDN  Mataram asal Kota Mataram ...   
-3   Jakarta  MotoGP Mandalika  berlangsung akhir p...   
-4   Jakarta  MotoGP Mandalika menyajikan pemenang ...   
+0   Jakarta  Jelang musim NBA  masih ada beberapa ...   
+1   Malang  Turnamen AXIS Nation Cup  di Sudimoro ...   
+2   Jakarta  Khabib Nurmagomedov merupakan legenda...   
+3   Jakarta  Siap merasakan pengalaman lari paling...   
+4   Jakarta  Sebuah rekor berusia  tahun dari Vale...   
 ..                                                ...   
-95  Jakarta  Orang Jepang punya kebiasaan konsumsi...   
-96  Jakarta  Aksi yang dilakukan pelayan restoran ...   
-97  Jakarta  Di Jepang ada banyak tempat makan ter...   
-98  Jakarta  Bagi pecinta kuliner bakmi pastinya k...   
-99  Jakarta  Kuliner khas Thailand banyak yang ber...   
+95  Tentang Bahan Langkah Jakarta  Salad buah adal...   
+96  Jakarta  Sebuah cokelat asal Dubai mendadak vi...   
+97  Tentang Bahan Langkah Jakarta  Selain nasi ket...   
+98  Jakarta  Saat ditraktir makan ada etiket yang ...   
+99  Tentang Bahan Langkah Jakarta  Tahu goreng yan...   
 
                                          case_folding  \
-0   jakarta  motogp mandalika sudah menghadirkan r...   
-1   jakarta  ranking bwf world tour finals  masih ...   
-2   jakarta  siswi sdn  mataram asal kota mataram ...   
-3   jakarta  motogp mandalika  berlangsung akhir p...   
-4   jakarta  motogp mandalika menyajikan pemenang ...   
+0   jakarta  jelang musim nba  masih ada beberapa ...   
+1   malang  turnamen axis nation cup  di sudimoro ...   
+2   jakarta  khabib nurmagomedov merupakan legenda...   
+3   jakarta  siap merasakan pengalaman lari paling...   
+4   jakarta  sebuah rekor berusia  tahun dari vale...   
 ..                                                ...   
-95  jakarta  orang jepang punya kebiasaan konsumsi...   
-96  jakarta  aksi yang dilakukan pelayan restoran ...   
-97  jakarta  di jepang ada banyak tempat makan ter...   
-98  jakarta  bagi pecinta kuliner bakmi pastinya k...   
-99  jakarta  kuliner khas thailand banyak yang ber...   
+95  tentang bahan langkah jakarta  salad buah adal...   
+96  jakarta  sebuah cokelat asal dubai mendadak vi...   
+97  tentang bahan langkah jakarta  selain nasi ket...   
+98  jakarta  saat ditraktir makan ada etiket yang ...   
+99  tentang bahan langkah jakarta  tahu goreng yan...   
 
                                              tokenize  \
-0   [&#39;jakarta&#39;, &#39;motogp&#39;, &#39;mandalika&#39;, &#39;sudah&#39;, &#39;m...   
-1   [&#39;jakarta&#39;, &#39;ranking&#39;, &#39;bwf&#39;, &#39;world&#39;, &#39;tour&#39;,...   
-2   [&#39;jakarta&#39;, &#39;siswi&#39;, &#39;sdn&#39;, &#39;mataram&#39;, &#39;asal&#39;,...   
-3   [&#39;jakarta&#39;, &#39;motogp&#39;, &#39;mandalika&#39;, &#39;berlangsun...   
-4   [&#39;jakarta&#39;, &#39;motogp&#39;, &#39;mandalika&#39;, &#39;menyajikan...   
+0   [&#39;jakarta&#39;, &#39;jelang&#39;, &#39;musim&#39;, &#39;nba&#39;, &#39;masih&#39;,...   
+1   [&#39;malang&#39;, &#39;turnamen&#39;, &#39;axis&#39;, &#39;nation&#39;, &#39;cup&#39;...   
+2   [&#39;jakarta&#39;, &#39;khabib&#39;, &#39;nurmagomedov&#39;, &#39;merupak...   
+3   [&#39;jakarta&#39;, &#39;siap&#39;, &#39;merasakan&#39;, &#39;pengalaman&#39;,...   
+4   [&#39;jakarta&#39;, &#39;sebuah&#39;, &#39;rekor&#39;, &#39;berusia&#39;, &#39;tah...   
 ..                                                ...   
-95  [&#39;jakarta&#39;, &#39;orang&#39;, &#39;jepang&#39;, &#39;punya&#39;, &#39;kebia...   
-96  [&#39;jakarta&#39;, &#39;aksi&#39;, &#39;yang&#39;, &#39;dilakukan&#39;, &#39;pela...   
-97  [&#39;jakarta&#39;, &#39;di&#39;, &#39;jepang&#39;, &#39;ada&#39;, &#39;banyak&#39;, &#39;...   
-98  [&#39;jakarta&#39;, &#39;bagi&#39;, &#39;pecinta&#39;, &#39;kuliner&#39;, &#39;bak...   
-99  [&#39;jakarta&#39;, &#39;kuliner&#39;, &#39;khas&#39;, &#39;thailand&#39;, &#39;ba...   
+95  [&#39;tentang&#39;, &#39;bahan&#39;, &#39;langkah&#39;, &#39;jakarta&#39;, &#39;sa...   
+96  [&#39;jakarta&#39;, &#39;sebuah&#39;, &#39;cokelat&#39;, &#39;asal&#39;, &#39;duba...   
+97  [&#39;tentang&#39;, &#39;bahan&#39;, &#39;langkah&#39;, &#39;jakarta&#39;, &#39;se...   
+98  [&#39;jakarta&#39;, &#39;saat&#39;, &#39;ditraktir&#39;, &#39;makan&#39;, &#39;ada...   
+99  [&#39;tentang&#39;, &#39;bahan&#39;, &#39;langkah&#39;, &#39;jakarta&#39;, &#39;ta...   
 
                            Filtering/stopword removal  kategori_encoded  
-0   jakarta motogp mandalika menghadirkan rekor ge...                 1  
-1   jakarta ranking bwf world tour finals berjalan...                 1  
-2   jakarta siswi sdn mataram kota mataram nusa te...                 1  
-3   jakarta motogp mandalika pekan marc marquez se...                 1  
-4   jakarta motogp mandalika menyajikan pemenang b...                 1  
+0   jakarta jelang musim nba pemain usia jagoan ti...                 1  
+1   malang turnamen axis nation cup sudimoro futsa...                 1  
+2   jakarta khabib nurmagomedov legenda ufc terkal...                 1  
+3   jakarta merasakan pengalaman lari seru unik is...                 1  
+4   jakarta rekor berusia valentino rossi berpelua...                 1  
 ..                                                ...               ...  
-95  jakarta orang jepang kebiasaan konsumsi ikan m...                 0  
-96  jakarta aksi pelayan restoran tuai pujian berk...                 0  
-97  jakarta jepang makan tersembunyi lokasinya ant...                 0  
-98  jakarta pecinta kuliner bakmi pastinya melewat...                 0  
-99  jakarta kuliner khas thailand bercita segar to...                 0  
+95  bahan langkah jakarta salad buah hidangan sega...                 0  
+96  jakarta cokelat dubai mendadak viral bikin ora...                 0  
+97  bahan langkah jakarta nasi ketiau pilihan maka...                 0  
+98  jakarta ditraktir makan etiket diperhatikan so...                 0  
+99  bahan langkah jakarta goreng murah gurih enak ...                 0  
 
 [100 rows x 9 columns]
 </pre></div>
@@ -746,17 +754,17 @@ DataFrame setelah Label Encoding:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     jakarta motogp mandalika menghadirkan rekor ge...
-1     jakarta ranking bwf world tour finals berjalan...
-2     jakarta siswi sdn mataram kota mataram nusa te...
-3     jakarta motogp mandalika pekan marc marquez se...
-4     jakarta motogp mandalika menyajikan pemenang b...
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     jakarta jelang musim nba pemain usia jagoan ti...
+1     malang turnamen axis nation cup sudimoro futsa...
+2     jakarta khabib nurmagomedov legenda ufc terkal...
+3     jakarta merasakan pengalaman lari seru unik is...
+4     jakarta rekor berusia valentino rossi berpelua...
                             ...                        
-95    jakarta orang jepang kebiasaan konsumsi ikan m...
-96    jakarta aksi pelayan restoran tuai pujian berk...
-97    jakarta jepang makan tersembunyi lokasinya ant...
-98    jakarta pecinta kuliner bakmi pastinya melewat...
-99    jakarta kuliner khas thailand bercita segar to...
+95    bahan langkah jakarta salad buah hidangan sega...
+96    jakarta cokelat dubai mendadak viral bikin ora...
+97    bahan langkah jakarta nasi ketiau pilihan maka...
+98    jakarta ditraktir makan etiket diperhatikan so...
+99    bahan langkah jakarta goreng murah gurih enak ...
 Name: Filtering/stopword removal, Length: 100, dtype: object
 0     1
 1     1
@@ -802,7 +810,7 @@ Jumlah data uji: 20
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-cd3e9abf-4c71-4923-b218-18c113987192" class="colab-df-container">
+  <div id="df-ef7fe85a-956b-4725-9e39-2e87512f2ffd" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -821,27 +829,27 @@ Jumlah data uji: 20
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>aati</th>
       <th>abad</th>
       <th>abadi</th>
-      <th>abc</th>
-      <th>absen</th>
+      <th>abang</th>
       <th>acar</th>
       <th>acara</th>
-      <th>aci</th>
+      <th>aceh</th>
+      <th>acehsumatra</th>
+      <th>achmadin</th>
       <th>acosta</th>
-      <th>acute</th>
+      <th>adakan</th>
       <th>...</th>
-      <th>yum</th>
-      <th>yummy</th>
-      <th>yuni</th>
+      <th>yuk</th>
+      <th>yuliansyah</th>
+      <th>yusan</th>
       <th>yzrm</th>
-      <th>yzrmdiyakini</th>
-      <th>zaitun</th>
       <th>zaman</th>
-      <th>zayan</th>
-      <th>zhou</th>
-      <th>zona</th>
+      <th>zarco</th>
+      <th>ziko</th>
+      <th>zita</th>
+      <th>zoe</th>
+      <th>zoom</th>
     </tr>
   </thead>
   <tbody>
@@ -851,18 +859,18 @@ Jumlah data uji: 20
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.272157</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>...</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.00000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
@@ -875,20 +883,20 @@ Jumlah data uji: 20
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>...</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.00000</td>
       <td>0.0</td>
-      <td>0.305825</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -899,18 +907,18 @@ Jumlah data uji: 20
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.102787</td>
       <td>0.0</td>
       <td>...</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.08644</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
@@ -923,18 +931,18 @@ Jumlah data uji: 20
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.027923</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>...</td>
+      <td>0.277463</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.00000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
@@ -947,18 +955,18 @@ Jumlah data uji: 20
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.152766</td>
       <td>0.0</td>
-      <td>0.089592</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>...</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.00000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
@@ -995,18 +1003,18 @@ Jumlah data uji: 20
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.078143</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>...</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.00000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
@@ -1019,18 +1027,18 @@ Jumlah data uji: 20
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>...</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.00000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
@@ -1043,20 +1051,20 @@ Jumlah data uji: 20
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.00000</td>
-      <td>0.0</td>
       <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.042295</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1067,18 +1075,18 @@ Jumlah data uji: 20
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.101400</td>
       <td>0.0</td>
       <td>...</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.00000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
@@ -1091,18 +1099,18 @@ Jumlah data uji: 20
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>...</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.00000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
@@ -1111,12 +1119,12 @@ Jumlah data uji: 20
     </tr>
   </tbody>
 </table>
-<p>80 rows × 3814 columns</p>
+<p>80 rows × 3858 columns</p>
 </div>
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-cd3e9abf-4c71-4923-b218-18c113987192')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-ef7fe85a-956b-4725-9e39-2e87512f2ffd')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -1168,12 +1176,12 @@ Jumlah data uji: 20
 
     <script>
       const buttonEl =
-        document.querySelector('#df-cd3e9abf-4c71-4923-b218-18c113987192 button.colab-df-convert');
+        document.querySelector('#df-ef7fe85a-956b-4725-9e39-2e87512f2ffd button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-cd3e9abf-4c71-4923-b218-18c113987192');
+        const element = document.querySelector('#df-ef7fe85a-956b-4725-9e39-2e87512f2ffd');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1208,7 +1216,7 @@ Jumlah data uji: 20
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-2ecde2ee-6889-465a-b667-90b63278f737" class="colab-df-container">
+  <div id="df-d249f9b6-053c-497a-b762-148be2c922cb" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1227,27 +1235,27 @@ Jumlah data uji: 20
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>aati</th>
       <th>abad</th>
       <th>abadi</th>
-      <th>abc</th>
-      <th>absen</th>
+      <th>abang</th>
       <th>acar</th>
       <th>acara</th>
-      <th>aci</th>
+      <th>aceh</th>
+      <th>acehsumatra</th>
+      <th>achmadin</th>
       <th>acosta</th>
-      <th>acute</th>
+      <th>adakan</th>
       <th>...</th>
-      <th>yum</th>
-      <th>yummy</th>
-      <th>yuni</th>
+      <th>yuk</th>
+      <th>yuliansyah</th>
+      <th>yusan</th>
       <th>yzrm</th>
-      <th>yzrmdiyakini</th>
-      <th>zaitun</th>
       <th>zaman</th>
-      <th>zayan</th>
-      <th>zhou</th>
-      <th>zona</th>
+      <th>zarco</th>
+      <th>ziko</th>
+      <th>zita</th>
+      <th>zoe</th>
+      <th>zoom</th>
     </tr>
   </thead>
   <tbody>
@@ -1517,12 +1525,12 @@ Jumlah data uji: 20
     </tr>
   </tbody>
 </table>
-<p>80 rows × 3814 columns</p>
+<p>80 rows × 3858 columns</p>
 </div>
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-2ecde2ee-6889-465a-b667-90b63278f737')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-d249f9b6-053c-497a-b762-148be2c922cb')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -1574,12 +1582,12 @@ Jumlah data uji: 20
 
     <script>
       const buttonEl =
-        document.querySelector('#df-2ecde2ee-6889-465a-b667-90b63278f737 button.colab-df-convert');
+        document.querySelector('#df-d249f9b6-053c-497a-b762-148be2c922cb button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-2ecde2ee-6889-465a-b667-90b63278f737');
+        const element = document.querySelector('#df-d249f9b6-053c-497a-b762-148be2c922cb');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1635,20 +1643,20 @@ Jumlah data uji: 20
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Node  Degree Centrality
-2893        qobe           0.000262
-2329         mie           0.000262
-0           aati           0.000000
-2548       pakan           0.000000
-2537    pabrikan           0.000000
-...          ...                ...
-1275      indeks           0.000000
-1276       india           0.000000
-1277  individual           0.000000
-1278    indofood           0.000000
-3813        zona           0.000000
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>             Node  Degree Centrality
+1712         kuno           0.000259
+3614        tidur           0.000259
+988            es           0.000259
+1681         krim           0.000259
+2557         omah           0.000259
+...           ...                ...
+1290       italia           0.000000
+1291     italiano           0.000000
+1292         iwan           0.000000
+1293  jabodetabek           0.000000
+3857         zoom           0.000000
 
-[3814 rows x 2 columns]
+[3858 rows x 2 columns]
 </pre></div>
 </div>
 </div>
@@ -1670,7 +1678,7 @@ Jumlah data uji: 20
 </pre></div>
 </div>
 <div class="output text_html">
-  <div id="df-e7c80616-4353-40c1-b0c0-fcd4c1a9887a" class="colab-df-container">
+  <div id="df-22561204-3057-47e0-83b5-262f6cb5214d" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1689,16 +1697,16 @@ Jumlah data uji: 20
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>qobe</th>
-      <th>mie</th>
-      <th>aati</th>
-      <th>pakan</th>
-      <th>pabrikan</th>
-      <th>pacar</th>
-      <th>pacarnya</th>
-      <th>packets</th>
-      <th>pad</th>
-      <th>padang</th>
+      <th>kuno</th>
+      <th>tidur</th>
+      <th>es</th>
+      <th>krim</th>
+      <th>omah</th>
+      <th>teh</th>
+      <th>abad</th>
+      <th>oseng</th>
+      <th>origin</th>
+      <th>organorgan</th>
     </tr>
   </thead>
   <tbody>
@@ -1852,7 +1860,7 @@ Jumlah data uji: 20
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-e7c80616-4353-40c1-b0c0-fcd4c1a9887a')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-22561204-3057-47e0-83b5-262f6cb5214d')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -1904,12 +1912,12 @@ Jumlah data uji: 20
 
     <script>
       const buttonEl =
-        document.querySelector('#df-e7c80616-4353-40c1-b0c0-fcd4c1a9887a button.colab-df-convert');
+        document.querySelector('#df-22561204-3057-47e0-83b5-262f6cb5214d button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-e7c80616-4353-40c1-b0c0-fcd4c1a9887a');
+        const element = document.querySelector('#df-22561204-3057-47e0-83b5-262f6cb5214d');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1970,7 +1978,7 @@ Jumlah data uji: 20
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d9e660c22edf19020fdb9c5680420c3f6b743e3cc06e2c3cf221781689172c44.png" src="../_images/d9e660c22edf19020fdb9c5680420c3f6b743e3cc06e2c3cf221781689172c44.png" />
+<img alt="../_images/2ec6daedfd0d2b7120d740e7b1fe08cb8fbb2135df473bb0c370baac682da0f0.png" src="../_images/2ec6daedfd0d2b7120d740e7b1fe08cb8fbb2135df473bb0c370baac682da0f0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1995,17 +2003,17 @@ Jumlah data uji: 20
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       Node  Degree Centrality  Closeness Centrality  Betweenness Centrality
-0      qobe           0.000262              0.111111                     0.0
-1       mie           0.000262              0.111111                     0.0
-2      aati           0.000000              0.000000                     0.0
-3     pakan           0.000000              0.000000                     0.0
-4  pabrikan           0.000000              0.000000                     0.0
-5     pacar           0.000000              0.000000                     0.0
-6  pacarnya           0.000000              0.000000                     0.0
-7   packets           0.000000              0.000000                     0.0
-8       pad           0.000000              0.000000                     0.0
-9    padang           0.000000              0.000000                     0.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         Node  Degree Centrality  Closeness Centrality  Betweenness Centrality
+0        kuno           0.000259              0.111111                     0.0
+1       tidur           0.000259              0.111111                     0.0
+2          es           0.000259              0.111111                     0.0
+3        krim           0.000259              0.111111                     0.0
+4        omah           0.000259              0.111111                     0.0
+5         teh           0.000259              0.111111                     0.0
+6        abad           0.000000              0.000000                     0.0
+7       oseng           0.000000              0.000000                     0.0
+8      origin           0.000000              0.000000                     0.0
+9  organorgan           0.000000              0.000000                     0.0
 </pre></div>
 </div>
 </div>
@@ -2028,29 +2036,17 @@ Jumlah data uji: 20
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cosine Similarity antara Fitur Teratas:
-              qobe       mie  aati  pakan  pabrikan  pacar  pacarnya  packets  \
-qobe      1.000000  0.707107   0.0    0.0       0.0    0.0       0.0      0.0   
-mie       0.707107  1.000000   0.0    0.0       0.0    0.0       0.0      0.0   
-aati      0.000000  0.000000   0.0    0.0       0.0    0.0       0.0      0.0   
-pakan     0.000000  0.000000   0.0    0.0       0.0    0.0       0.0      0.0   
-pabrikan  0.000000  0.000000   0.0    0.0       0.0    0.0       0.0      0.0   
-pacar     0.000000  0.000000   0.0    0.0       0.0    0.0       0.0      0.0   
-pacarnya  0.000000  0.000000   0.0    0.0       0.0    0.0       0.0      0.0   
-packets   0.000000  0.000000   0.0    0.0       0.0    0.0       0.0      0.0   
-pad       0.000000  0.000000   0.0    0.0       0.0    0.0       0.0      0.0   
-padang    0.000000  0.000000   0.0    0.0       0.0    0.0       0.0      0.0   
-
-          pad  padang  
-qobe      0.0     0.0  
-mie       0.0     0.0  
-aati      0.0     0.0  
-pakan     0.0     0.0  
-pabrikan  0.0     0.0  
-pacar     0.0     0.0  
-pacarnya  0.0     0.0  
-packets   0.0     0.0  
-pad       0.0     0.0  
-padang    0.0     0.0  
+            kuno  tidur   es  krim  omah  teh  abad  oseng  origin  organorgan
+kuno         1.0    0.0  0.0   0.0   1.0  0.0   0.0    0.0     0.0         0.0
+tidur        0.0    1.0  0.0   0.0   0.0  1.0   0.0    0.0     0.0         0.0
+es           0.0    0.0  1.0   1.0   0.0  0.0   0.0    0.0     0.0         0.0
+krim         0.0    0.0  1.0   1.0   0.0  0.0   0.0    0.0     0.0         0.0
+omah         1.0    0.0  0.0   0.0   1.0  0.0   0.0    0.0     0.0         0.0
+teh          0.0    1.0  0.0   0.0   0.0  1.0   0.0    0.0     0.0         0.0
+abad         0.0    0.0  0.0   0.0   0.0  0.0   0.0    0.0     0.0         0.0
+oseng        0.0    0.0  0.0   0.0   0.0  0.0   0.0    0.0     0.0         0.0
+origin       0.0    0.0  0.0   0.0   0.0  0.0   0.0    0.0     0.0         0.0
+organorgan   0.0    0.0  0.0   0.0   0.0  0.0   0.0    0.0     0.0         0.0
 </pre></div>
 </div>
 </div>
@@ -2345,12 +2341,12 @@ Betweenness Centrality:
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Tugas3.html"
+       href="Skip-Gram.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Tugas Pertemuan 3</p>
+        <p class="prev-next-title">Word Embedding</p>
       </div>
     </a>
 </div>
