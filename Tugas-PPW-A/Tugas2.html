@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Tugas Pertemuan 2 - Pre-Processing Data Berita detik.com &#8212; Penambangan web</title>
+    <title>Tugas Pertemuan 2 - Pre-Processing Data dengan TF-IDF &#8212; Penambangan web</title>
   
   
   
@@ -16,17 +16,19 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
@@ -36,10 +38,11 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -60,10 +63,11 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Tugas-PPW-A/Tugas2';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Tugas Pertemuan 3" href="Tugas3.html" />
+    <link rel="next" title="Tugas Pertemuan 3 - Logistic Regression" href="Tugas3.html" />
     <link rel="prev" title="Tugas Pertemuan 1 - Crawling berita online" href="Tugas1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -79,19 +83,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -99,7 +92,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -107,8 +99,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -124,7 +116,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -154,21 +147,17 @@
     
     
     <img src="../_static/logo.png" class="logo__image only-light" alt="Penambangan web - Home"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Penambangan web - Home"/>`);</script>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Penambangan web - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -181,8 +170,8 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Tugas1.html"><strong>Tugas Pertemuan 1 - Crawling berita online</strong></a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Tugas Pertemuan 2 - Pre-Processing Data Berita detik.com</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Tugas3.html">Tugas Pertemuan 3</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Tugas Pertemuan 2 - Pre-Processing Data dengan TF-IDF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tugas3.html">Tugas Pertemuan 3 - Logistic Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Skip-Gram.html">Word Embedding</a></li>
 
 
@@ -191,9 +180,9 @@
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="Tugas4.html">Tugas Pertemuan 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tugas4.html">Tugas 4 - Graph</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="Tugas5.html">Tugas 5 : Centrality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tugas5.html">Tugas 5 : Query dengan kalimat</a></li>
 </ul>
 
     </div>
@@ -379,24 +368,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 
 </div></div>
       
@@ -408,7 +389,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Tugas Pertemuan 2 - Pre-Processing Data Berita detik.com</h1>
+    <h1>Tugas Pertemuan 2 - Pre-Processing Data dengan TF-IDF</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -422,8 +403,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="tugas-pertemuan-2-pre-processing-data-berita-detik-com">
-<h1>Tugas Pertemuan 2 - Pre-Processing Data Berita <a class="reference external" href="http://detik.com">detik.com</a><a class="headerlink" href="#tugas-pertemuan-2-pre-processing-data-berita-detik-com" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="tugas-pertemuan-2-pre-processing-data-dengan-tf-idf">
+<h1>Tugas Pertemuan 2 - Pre-Processing Data dengan TF-IDF<a class="headerlink" href="#tugas-pertemuan-2-pre-processing-data-dengan-tf-idf" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
@@ -448,7 +429,7 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-954ef26a-7f29-4ff7-af24-465874a30982" class="colab-df-container">
+  <div id="df-b936abc8-8fc0-4a62-935b-4323ce73c4d0" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -476,44 +457,44 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>Media Golf Day Dahulu, BNI Indonesian Masters ...</td>
-      <td>Kamis, 17 Okt 2024 02:02 WIB</td>
-      <td>Jakarta - Turnamen golf BNI Indonesian Masters...</td>
+      <td>Jakarta Cycling Challenge 2024: Ajang Cari Bib...</td>
+      <td>Rabu, 30 Okt 2024 18:55 WIB</td>
+      <td>Jakarta - Pagelaran Jakarta Cycling Challenge ...</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Denmark Open 2024: Ahsan/Hendra Takluk dari Je...</td>
-      <td>Kamis, 17 Okt 2024 00:22 WIB</td>
-      <td>Odense - Mohammad Ahsan/Hendra Setiawan tersin...</td>
+      <td>Soal Cabor yang Dualisme, Wamenpora Taufik: Ka...</td>
+      <td>Rabu, 30 Okt 2024 14:30 WIB</td>
+      <td>Jakarta - Wakil Menpora Taufik Hidayat segera ...</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Denmark Open 2024: Ginting Tersingkir di Babak...</td>
-      <td>Rabu, 16 Okt 2024 22:42 WIB</td>
-      <td>Odense - Anthony Sinisuka Ginting tersingkir d...</td>
+      <td>Wamenpora Taufik Bakal Prioritaskan Cabor Olim...</td>
+      <td>Rabu, 30 Okt 2024 13:30 WIB</td>
+      <td>Jakarta - Wakil Menpora Taufik Hidayat mengata...</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Denmark Open 2024: Rinov/Pitha Tundukkan Wakil...</td>
-      <td>Rabu, 16 Okt 2024 22:15 WIB</td>
-      <td>Odense - Rinov Rivaldy/Pitha Haningtyas Mentar...</td>
+      <td>Budisatrio Ingin Lebih Banyak Perempuan dalam ...</td>
+      <td>Rabu, 30 Okt 2024 12:50 WIB</td>
+      <td>Jakarta - Budisatrio Djiwandono terpilih menja...</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Umar Abdullah Wakili Indonesia di FIA Motorspo...</td>
-      <td>Rabu, 16 Okt 2024 22:15 WIB</td>
-      <td>Jakarta - Bakal ada pebalap Indonesia tampil d...</td>
+      <td>Liga Taekwondo DKI Jakarta: Demi Pembinaan Atl...</td>
+      <td>Selasa, 29 Okt 2024 23:15 WIB</td>
+      <td>Jakarta - Liga Taekwondo DKI Jakarta baru saja...</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>Denmark Open 2024: Fajar/Rian Mendarat di Baba...</td>
-      <td>Rabu, 16 Okt 2024 21:49 WIB</td>
-      <td>Odense - Pasangan Fajar Alfian/Muhammad Rian A...</td>
+      <td>Budisatrio Djiwandono Jadi Ketua Umum PP Perba...</td>
+      <td>Selasa, 29 Okt 2024 23:11 WIB</td>
+      <td>Jakarta - Budisatrio Djiwandono terpilih sebag...</td>
       <td>Olahraga</td>
     </tr>
   </tbody>
@@ -522,7 +503,7 @@ document.write(`
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-954ef26a-7f29-4ff7-af24-465874a30982')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-b936abc8-8fc0-4a62-935b-4323ce73c4d0')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -574,12 +555,12 @@ document.write(`
 
     <script>
       const buttonEl =
-        document.querySelector('#df-954ef26a-7f29-4ff7-af24-465874a30982 button.colab-df-convert');
+        document.querySelector('#df-b936abc8-8fc0-4a62-935b-4323ce73c4d0 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-954ef26a-7f29-4ff7-af24-465874a30982');
+        const element = document.querySelector('#df-b936abc8-8fc0-4a62-935b-4323ce73c4d0');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -656,7 +637,7 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-aa532e7e-bf09-41c2-8492-46616104e862" class="colab-df-container">
+  <div id="df-f624f544-99ea-4de3-8c3a-93f5dba26bb8" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -685,51 +666,51 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>Media Golf Day Dahulu, BNI Indonesian Masters ...</td>
-      <td>Kamis, 17 Okt 2024 02:02 WIB</td>
-      <td>Jakarta - Turnamen golf BNI Indonesian Masters...</td>
+      <td>Jakarta Cycling Challenge 2024: Ajang Cari Bib...</td>
+      <td>Rabu, 30 Okt 2024 18:55 WIB</td>
+      <td>Jakarta - Pagelaran Jakarta Cycling Challenge ...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Turnamen golf BNI Indonesian Masters ...</td>
+      <td>Jakarta  Pagelaran Jakarta Cycling Challenge  ...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Denmark Open 2024: Ahsan/Hendra Takluk dari Je...</td>
-      <td>Kamis, 17 Okt 2024 00:22 WIB</td>
-      <td>Odense - Mohammad Ahsan/Hendra Setiawan tersin...</td>
+      <td>Soal Cabor yang Dualisme, Wamenpora Taufik: Ka...</td>
+      <td>Rabu, 30 Okt 2024 14:30 WIB</td>
+      <td>Jakarta - Wakil Menpora Taufik Hidayat segera ...</td>
       <td>Olahraga</td>
-      <td>Odense  Mohammad AhsanHendra Setiawan tersingk...</td>
+      <td>Jakarta  Wakil Menpora Taufik Hidayat segera m...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Denmark Open 2024: Ginting Tersingkir di Babak...</td>
-      <td>Rabu, 16 Okt 2024 22:42 WIB</td>
-      <td>Odense - Anthony Sinisuka Ginting tersingkir d...</td>
+      <td>Wamenpora Taufik Bakal Prioritaskan Cabor Olim...</td>
+      <td>Rabu, 30 Okt 2024 13:30 WIB</td>
+      <td>Jakarta - Wakil Menpora Taufik Hidayat mengata...</td>
       <td>Olahraga</td>
-      <td>Odense  Anthony Sinisuka Ginting tersingkir da...</td>
+      <td>Jakarta  Wakil Menpora Taufik Hidayat mengatak...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Denmark Open 2024: Rinov/Pitha Tundukkan Wakil...</td>
-      <td>Rabu, 16 Okt 2024 22:15 WIB</td>
-      <td>Odense - Rinov Rivaldy/Pitha Haningtyas Mentar...</td>
+      <td>Budisatrio Ingin Lebih Banyak Perempuan dalam ...</td>
+      <td>Rabu, 30 Okt 2024 12:50 WIB</td>
+      <td>Jakarta - Budisatrio Djiwandono terpilih menja...</td>
       <td>Olahraga</td>
-      <td>Odense  Rinov RivaldyPitha Haningtyas Mentari ...</td>
+      <td>Jakarta  Budisatrio Djiwandono terpilih menjad...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Umar Abdullah Wakili Indonesia di FIA Motorspo...</td>
-      <td>Rabu, 16 Okt 2024 22:15 WIB</td>
-      <td>Jakarta - Bakal ada pebalap Indonesia tampil d...</td>
+      <td>Liga Taekwondo DKI Jakarta: Demi Pembinaan Atl...</td>
+      <td>Selasa, 29 Okt 2024 23:15 WIB</td>
+      <td>Jakarta - Liga Taekwondo DKI Jakarta baru saja...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Bakal ada pebalap Indonesia tampil di...</td>
+      <td>Jakarta  Liga Taekwondo DKI Jakarta baru saja ...</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>Denmark Open 2024: Fajar/Rian Mendarat di Baba...</td>
-      <td>Rabu, 16 Okt 2024 21:49 WIB</td>
-      <td>Odense - Pasangan Fajar Alfian/Muhammad Rian A...</td>
+      <td>Budisatrio Djiwandono Jadi Ketua Umum PP Perba...</td>
+      <td>Selasa, 29 Okt 2024 23:11 WIB</td>
+      <td>Jakarta - Budisatrio Djiwandono terpilih sebag...</td>
       <td>Olahraga</td>
-      <td>Odense  Pasangan Fajar AlfianMuhammad Rian Ard...</td>
+      <td>Jakarta  Budisatrio Djiwandono terpilih sebaga...</td>
     </tr>
   </tbody>
 </table>
@@ -737,7 +718,7 @@ document.write(`
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-aa532e7e-bf09-41c2-8492-46616104e862')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-f624f544-99ea-4de3-8c3a-93f5dba26bb8')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -789,12 +770,12 @@ document.write(`
 
     <script>
       const buttonEl =
-        document.querySelector('#df-aa532e7e-bf09-41c2-8492-46616104e862 button.colab-df-convert');
+        document.querySelector('#df-f624f544-99ea-4de3-8c3a-93f5dba26bb8 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-aa532e7e-bf09-41c2-8492-46616104e862');
+        const element = document.querySelector('#df-f624f544-99ea-4de3-8c3a-93f5dba26bb8');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -839,7 +820,7 @@ Misalnya, kata yang sama tetapi ditulis dengan huruf besar atau kecil akan  dian
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-77fd4494-a109-4ee1-ab06-3b03a0024756" class="colab-df-container">
+  <div id="df-a4a5c68d-1cee-4b20-903d-06679b29102e" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -869,57 +850,57 @@ Misalnya, kata yang sama tetapi ditulis dengan huruf besar atau kecil akan  dian
   <tbody>
     <tr>
       <th>0</th>
-      <td>Media Golf Day Dahulu, BNI Indonesian Masters ...</td>
-      <td>Kamis, 17 Okt 2024 02:02 WIB</td>
-      <td>Jakarta - Turnamen golf BNI Indonesian Masters...</td>
+      <td>Jakarta Cycling Challenge 2024: Ajang Cari Bib...</td>
+      <td>Rabu, 30 Okt 2024 18:55 WIB</td>
+      <td>Jakarta - Pagelaran Jakarta Cycling Challenge ...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Turnamen golf BNI Indonesian Masters ...</td>
-      <td>jakarta  turnamen golf bni indonesian masters ...</td>
+      <td>Jakarta  Pagelaran Jakarta Cycling Challenge  ...</td>
+      <td>jakarta  pagelaran jakarta cycling challenge  ...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Denmark Open 2024: Ahsan/Hendra Takluk dari Je...</td>
-      <td>Kamis, 17 Okt 2024 00:22 WIB</td>
-      <td>Odense - Mohammad Ahsan/Hendra Setiawan tersin...</td>
+      <td>Soal Cabor yang Dualisme, Wamenpora Taufik: Ka...</td>
+      <td>Rabu, 30 Okt 2024 14:30 WIB</td>
+      <td>Jakarta - Wakil Menpora Taufik Hidayat segera ...</td>
       <td>Olahraga</td>
-      <td>Odense  Mohammad AhsanHendra Setiawan tersingk...</td>
-      <td>odense  mohammad ahsanhendra setiawan tersingk...</td>
+      <td>Jakarta  Wakil Menpora Taufik Hidayat segera m...</td>
+      <td>jakarta  wakil menpora taufik hidayat segera m...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Denmark Open 2024: Ginting Tersingkir di Babak...</td>
-      <td>Rabu, 16 Okt 2024 22:42 WIB</td>
-      <td>Odense - Anthony Sinisuka Ginting tersingkir d...</td>
+      <td>Wamenpora Taufik Bakal Prioritaskan Cabor Olim...</td>
+      <td>Rabu, 30 Okt 2024 13:30 WIB</td>
+      <td>Jakarta - Wakil Menpora Taufik Hidayat mengata...</td>
       <td>Olahraga</td>
-      <td>Odense  Anthony Sinisuka Ginting tersingkir da...</td>
-      <td>odense  anthony sinisuka ginting tersingkir da...</td>
+      <td>Jakarta  Wakil Menpora Taufik Hidayat mengatak...</td>
+      <td>jakarta  wakil menpora taufik hidayat mengatak...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Denmark Open 2024: Rinov/Pitha Tundukkan Wakil...</td>
-      <td>Rabu, 16 Okt 2024 22:15 WIB</td>
-      <td>Odense - Rinov Rivaldy/Pitha Haningtyas Mentar...</td>
+      <td>Budisatrio Ingin Lebih Banyak Perempuan dalam ...</td>
+      <td>Rabu, 30 Okt 2024 12:50 WIB</td>
+      <td>Jakarta - Budisatrio Djiwandono terpilih menja...</td>
       <td>Olahraga</td>
-      <td>Odense  Rinov RivaldyPitha Haningtyas Mentari ...</td>
-      <td>odense  rinov rivaldypitha haningtyas mentari ...</td>
+      <td>Jakarta  Budisatrio Djiwandono terpilih menjad...</td>
+      <td>jakarta  budisatrio djiwandono terpilih menjad...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Umar Abdullah Wakili Indonesia di FIA Motorspo...</td>
-      <td>Rabu, 16 Okt 2024 22:15 WIB</td>
-      <td>Jakarta - Bakal ada pebalap Indonesia tampil d...</td>
+      <td>Liga Taekwondo DKI Jakarta: Demi Pembinaan Atl...</td>
+      <td>Selasa, 29 Okt 2024 23:15 WIB</td>
+      <td>Jakarta - Liga Taekwondo DKI Jakarta baru saja...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Bakal ada pebalap Indonesia tampil di...</td>
-      <td>jakarta  bakal ada pebalap indonesia tampil di...</td>
+      <td>Jakarta  Liga Taekwondo DKI Jakarta baru saja ...</td>
+      <td>jakarta  liga taekwondo dki jakarta baru saja ...</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>Denmark Open 2024: Fajar/Rian Mendarat di Baba...</td>
-      <td>Rabu, 16 Okt 2024 21:49 WIB</td>
-      <td>Odense - Pasangan Fajar Alfian/Muhammad Rian A...</td>
+      <td>Budisatrio Djiwandono Jadi Ketua Umum PP Perba...</td>
+      <td>Selasa, 29 Okt 2024 23:11 WIB</td>
+      <td>Jakarta - Budisatrio Djiwandono terpilih sebag...</td>
       <td>Olahraga</td>
-      <td>Odense  Pasangan Fajar AlfianMuhammad Rian Ard...</td>
-      <td>odense  pasangan fajar alfianmuhammad rian ard...</td>
+      <td>Jakarta  Budisatrio Djiwandono terpilih sebaga...</td>
+      <td>jakarta  budisatrio djiwandono terpilih sebaga...</td>
     </tr>
   </tbody>
 </table>
@@ -927,7 +908,7 @@ Misalnya, kata yang sama tetapi ditulis dengan huruf besar atau kecil akan  dian
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-77fd4494-a109-4ee1-ab06-3b03a0024756')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-a4a5c68d-1cee-4b20-903d-06679b29102e')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -979,12 +960,12 @@ Misalnya, kata yang sama tetapi ditulis dengan huruf besar atau kecil akan  dian
 
     <script>
       const buttonEl =
-        document.querySelector('#df-77fd4494-a109-4ee1-ab06-3b03a0024756 button.colab-df-convert');
+        document.querySelector('#df-a4a5c68d-1cee-4b20-903d-06679b29102e button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-77fd4494-a109-4ee1-ab06-3b03a0024756');
+        const element = document.querySelector('#df-a4a5c68d-1cee-4b20-903d-06679b29102e');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1027,7 +1008,7 @@ berupa kata,frasa atau karakter terpisah.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-b69ca0c0-14fe-47b7-a558-ab814ceb6b51" class="colab-df-container">
+  <div id="df-e61e805f-fd72-42b4-8f59-dbce51cf8bdf" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1058,63 +1039,63 @@ berupa kata,frasa atau karakter terpisah.</p>
   <tbody>
     <tr>
       <th>0</th>
-      <td>Media Golf Day Dahulu, BNI Indonesian Masters ...</td>
-      <td>Kamis, 17 Okt 2024 02:02 WIB</td>
-      <td>Jakarta - Turnamen golf BNI Indonesian Masters...</td>
+      <td>Jakarta Cycling Challenge 2024: Ajang Cari Bib...</td>
+      <td>Rabu, 30 Okt 2024 18:55 WIB</td>
+      <td>Jakarta - Pagelaran Jakarta Cycling Challenge ...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Turnamen golf BNI Indonesian Masters ...</td>
-      <td>jakarta  turnamen golf bni indonesian masters ...</td>
-      <td>[jakarta, turnamen, golf, bni, indonesian, mas...</td>
+      <td>Jakarta  Pagelaran Jakarta Cycling Challenge  ...</td>
+      <td>jakarta  pagelaran jakarta cycling challenge  ...</td>
+      <td>[jakarta, pagelaran, jakarta, cycling, challen...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Denmark Open 2024: Ahsan/Hendra Takluk dari Je...</td>
-      <td>Kamis, 17 Okt 2024 00:22 WIB</td>
-      <td>Odense - Mohammad Ahsan/Hendra Setiawan tersin...</td>
+      <td>Soal Cabor yang Dualisme, Wamenpora Taufik: Ka...</td>
+      <td>Rabu, 30 Okt 2024 14:30 WIB</td>
+      <td>Jakarta - Wakil Menpora Taufik Hidayat segera ...</td>
       <td>Olahraga</td>
-      <td>Odense  Mohammad AhsanHendra Setiawan tersingk...</td>
-      <td>odense  mohammad ahsanhendra setiawan tersingk...</td>
-      <td>[odense, mohammad, ahsanhendra, setiawan, ters...</td>
+      <td>Jakarta  Wakil Menpora Taufik Hidayat segera m...</td>
+      <td>jakarta  wakil menpora taufik hidayat segera m...</td>
+      <td>[jakarta, wakil, menpora, taufik, hidayat, seg...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Denmark Open 2024: Ginting Tersingkir di Babak...</td>
-      <td>Rabu, 16 Okt 2024 22:42 WIB</td>
-      <td>Odense - Anthony Sinisuka Ginting tersingkir d...</td>
+      <td>Wamenpora Taufik Bakal Prioritaskan Cabor Olim...</td>
+      <td>Rabu, 30 Okt 2024 13:30 WIB</td>
+      <td>Jakarta - Wakil Menpora Taufik Hidayat mengata...</td>
       <td>Olahraga</td>
-      <td>Odense  Anthony Sinisuka Ginting tersingkir da...</td>
-      <td>odense  anthony sinisuka ginting tersingkir da...</td>
-      <td>[odense, anthony, sinisuka, ginting, tersingki...</td>
+      <td>Jakarta  Wakil Menpora Taufik Hidayat mengatak...</td>
+      <td>jakarta  wakil menpora taufik hidayat mengatak...</td>
+      <td>[jakarta, wakil, menpora, taufik, hidayat, men...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Denmark Open 2024: Rinov/Pitha Tundukkan Wakil...</td>
-      <td>Rabu, 16 Okt 2024 22:15 WIB</td>
-      <td>Odense - Rinov Rivaldy/Pitha Haningtyas Mentar...</td>
+      <td>Budisatrio Ingin Lebih Banyak Perempuan dalam ...</td>
+      <td>Rabu, 30 Okt 2024 12:50 WIB</td>
+      <td>Jakarta - Budisatrio Djiwandono terpilih menja...</td>
       <td>Olahraga</td>
-      <td>Odense  Rinov RivaldyPitha Haningtyas Mentari ...</td>
-      <td>odense  rinov rivaldypitha haningtyas mentari ...</td>
-      <td>[odense, rinov, rivaldypitha, haningtyas, ment...</td>
+      <td>Jakarta  Budisatrio Djiwandono terpilih menjad...</td>
+      <td>jakarta  budisatrio djiwandono terpilih menjad...</td>
+      <td>[jakarta, budisatrio, djiwandono, terpilih, me...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Umar Abdullah Wakili Indonesia di FIA Motorspo...</td>
-      <td>Rabu, 16 Okt 2024 22:15 WIB</td>
-      <td>Jakarta - Bakal ada pebalap Indonesia tampil d...</td>
+      <td>Liga Taekwondo DKI Jakarta: Demi Pembinaan Atl...</td>
+      <td>Selasa, 29 Okt 2024 23:15 WIB</td>
+      <td>Jakarta - Liga Taekwondo DKI Jakarta baru saja...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Bakal ada pebalap Indonesia tampil di...</td>
-      <td>jakarta  bakal ada pebalap indonesia tampil di...</td>
-      <td>[jakarta, bakal, ada, pebalap, indonesia, tamp...</td>
+      <td>Jakarta  Liga Taekwondo DKI Jakarta baru saja ...</td>
+      <td>jakarta  liga taekwondo dki jakarta baru saja ...</td>
+      <td>[jakarta, liga, taekwondo, dki, jakarta, baru,...</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>Denmark Open 2024: Fajar/Rian Mendarat di Baba...</td>
-      <td>Rabu, 16 Okt 2024 21:49 WIB</td>
-      <td>Odense - Pasangan Fajar Alfian/Muhammad Rian A...</td>
+      <td>Budisatrio Djiwandono Jadi Ketua Umum PP Perba...</td>
+      <td>Selasa, 29 Okt 2024 23:11 WIB</td>
+      <td>Jakarta - Budisatrio Djiwandono terpilih sebag...</td>
       <td>Olahraga</td>
-      <td>Odense  Pasangan Fajar AlfianMuhammad Rian Ard...</td>
-      <td>odense  pasangan fajar alfianmuhammad rian ard...</td>
-      <td>[odense, pasangan, fajar, alfianmuhammad, rian...</td>
+      <td>Jakarta  Budisatrio Djiwandono terpilih sebaga...</td>
+      <td>jakarta  budisatrio djiwandono terpilih sebaga...</td>
+      <td>[jakarta, budisatrio, djiwandono, terpilih, se...</td>
     </tr>
   </tbody>
 </table>
@@ -1122,7 +1103,7 @@ berupa kata,frasa atau karakter terpisah.</p>
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-b69ca0c0-14fe-47b7-a558-ab814ceb6b51')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-e61e805f-fd72-42b4-8f59-dbce51cf8bdf')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -1174,12 +1155,12 @@ berupa kata,frasa atau karakter terpisah.</p>
 
     <script>
       const buttonEl =
-        document.querySelector('#df-b69ca0c0-14fe-47b7-a558-ab814ceb6b51 button.colab-df-convert');
+        document.querySelector('#df-e61e805f-fd72-42b4-8f59-dbce51cf8bdf button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-b69ca0c0-14fe-47b7-a558-ab814ceb6b51');
+        const element = document.querySelector('#df-e61e805f-fd72-42b4-8f59-dbce51cf8bdf');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1215,9 +1196,7 @@ berupa kata,frasa atau karakter terpisah.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package stopwords to /root/nltk_data...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]   Unzipping corpora/stopwords.zip.
+[nltk_data]   Package stopwords is already up-to-date!
 </pre></div>
 </div>
 </div>
@@ -1236,7 +1215,7 @@ berupa kata,frasa atau karakter terpisah.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-0560714b-d33b-4640-bad5-75a0beda15f5" class="colab-df-container">
+  <div id="df-b8cca9fc-5a73-4ef9-90cd-6e948b25fec2" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1268,69 +1247,69 @@ berupa kata,frasa atau karakter terpisah.</p>
   <tbody>
     <tr>
       <th>0</th>
-      <td>Media Golf Day Dahulu, BNI Indonesian Masters ...</td>
-      <td>Kamis, 17 Okt 2024 02:02 WIB</td>
-      <td>Jakarta - Turnamen golf BNI Indonesian Masters...</td>
+      <td>Jakarta Cycling Challenge 2024: Ajang Cari Bib...</td>
+      <td>Rabu, 30 Okt 2024 18:55 WIB</td>
+      <td>Jakarta - Pagelaran Jakarta Cycling Challenge ...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Turnamen golf BNI Indonesian Masters ...</td>
-      <td>jakarta  turnamen golf bni indonesian masters ...</td>
-      <td>[jakarta, turnamen, golf, bni, indonesian, mas...</td>
-      <td>jakarta turnamen golf bni indonesian masters d...</td>
+      <td>Jakarta  Pagelaran Jakarta Cycling Challenge  ...</td>
+      <td>jakarta  pagelaran jakarta cycling challenge  ...</td>
+      <td>[jakarta, pagelaran, jakarta, cycling, challen...</td>
+      <td>jakarta pagelaran jakarta cycling challenge aj...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Denmark Open 2024: Ahsan/Hendra Takluk dari Je...</td>
-      <td>Kamis, 17 Okt 2024 00:22 WIB</td>
-      <td>Odense - Mohammad Ahsan/Hendra Setiawan tersin...</td>
+      <td>Soal Cabor yang Dualisme, Wamenpora Taufik: Ka...</td>
+      <td>Rabu, 30 Okt 2024 14:30 WIB</td>
+      <td>Jakarta - Wakil Menpora Taufik Hidayat segera ...</td>
       <td>Olahraga</td>
-      <td>Odense  Mohammad AhsanHendra Setiawan tersingk...</td>
-      <td>odense  mohammad ahsanhendra setiawan tersingk...</td>
-      <td>[odense, mohammad, ahsanhendra, setiawan, ters...</td>
-      <td>odense mohammad ahsanhendra setiawan tersingki...</td>
+      <td>Jakarta  Wakil Menpora Taufik Hidayat segera m...</td>
+      <td>jakarta  wakil menpora taufik hidayat segera m...</td>
+      <td>[jakarta, wakil, menpora, taufik, hidayat, seg...</td>
+      <td>jakarta wakil menpora taufik hidayat memanggil...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Denmark Open 2024: Ginting Tersingkir di Babak...</td>
-      <td>Rabu, 16 Okt 2024 22:42 WIB</td>
-      <td>Odense - Anthony Sinisuka Ginting tersingkir d...</td>
+      <td>Wamenpora Taufik Bakal Prioritaskan Cabor Olim...</td>
+      <td>Rabu, 30 Okt 2024 13:30 WIB</td>
+      <td>Jakarta - Wakil Menpora Taufik Hidayat mengata...</td>
       <td>Olahraga</td>
-      <td>Odense  Anthony Sinisuka Ginting tersingkir da...</td>
-      <td>odense  anthony sinisuka ginting tersingkir da...</td>
-      <td>[odense, anthony, sinisuka, ginting, tersingki...</td>
-      <td>odense anthony sinisuka ginting tersingkir den...</td>
+      <td>Jakarta  Wakil Menpora Taufik Hidayat mengatak...</td>
+      <td>jakarta  wakil menpora taufik hidayat mengatak...</td>
+      <td>[jakarta, wakil, menpora, taufik, hidayat, men...</td>
+      <td>jakarta wakil menpora taufik hidayat memperhat...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Denmark Open 2024: Rinov/Pitha Tundukkan Wakil...</td>
-      <td>Rabu, 16 Okt 2024 22:15 WIB</td>
-      <td>Odense - Rinov Rivaldy/Pitha Haningtyas Mentar...</td>
+      <td>Budisatrio Ingin Lebih Banyak Perempuan dalam ...</td>
+      <td>Rabu, 30 Okt 2024 12:50 WIB</td>
+      <td>Jakarta - Budisatrio Djiwandono terpilih menja...</td>
       <td>Olahraga</td>
-      <td>Odense  Rinov RivaldyPitha Haningtyas Mentari ...</td>
-      <td>odense  rinov rivaldypitha haningtyas mentari ...</td>
-      <td>[odense, rinov, rivaldypitha, haningtyas, ment...</td>
-      <td>odense rinov rivaldypitha haningtyas mentari m...</td>
+      <td>Jakarta  Budisatrio Djiwandono terpilih menjad...</td>
+      <td>jakarta  budisatrio djiwandono terpilih menjad...</td>
+      <td>[jakarta, budisatrio, djiwandono, terpilih, me...</td>
+      <td>jakarta budisatrio djiwandono terpilih ketua p...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Umar Abdullah Wakili Indonesia di FIA Motorspo...</td>
-      <td>Rabu, 16 Okt 2024 22:15 WIB</td>
-      <td>Jakarta - Bakal ada pebalap Indonesia tampil d...</td>
+      <td>Liga Taekwondo DKI Jakarta: Demi Pembinaan Atl...</td>
+      <td>Selasa, 29 Okt 2024 23:15 WIB</td>
+      <td>Jakarta - Liga Taekwondo DKI Jakarta baru saja...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Bakal ada pebalap Indonesia tampil di...</td>
-      <td>jakarta  bakal ada pebalap indonesia tampil di...</td>
-      <td>[jakarta, bakal, ada, pebalap, indonesia, tamp...</td>
-      <td>jakarta pebalap indonesia tampil eropa umar ab...</td>
+      <td>Jakarta  Liga Taekwondo DKI Jakarta baru saja ...</td>
+      <td>jakarta  liga taekwondo dki jakarta baru saja ...</td>
+      <td>[jakarta, liga, taekwondo, dki, jakarta, baru,...</td>
+      <td>jakarta liga taekwondo dki jakarta menuntaskan...</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>Denmark Open 2024: Fajar/Rian Mendarat di Baba...</td>
-      <td>Rabu, 16 Okt 2024 21:49 WIB</td>
-      <td>Odense - Pasangan Fajar Alfian/Muhammad Rian A...</td>
+      <td>Budisatrio Djiwandono Jadi Ketua Umum PP Perba...</td>
+      <td>Selasa, 29 Okt 2024 23:11 WIB</td>
+      <td>Jakarta - Budisatrio Djiwandono terpilih sebag...</td>
       <td>Olahraga</td>
-      <td>Odense  Pasangan Fajar AlfianMuhammad Rian Ard...</td>
-      <td>odense  pasangan fajar alfianmuhammad rian ard...</td>
-      <td>[odense, pasangan, fajar, alfianmuhammad, rian...</td>
-      <td>odense pasangan fajar alfianmuhammad rian ardi...</td>
+      <td>Jakarta  Budisatrio Djiwandono terpilih sebaga...</td>
+      <td>jakarta  budisatrio djiwandono terpilih sebaga...</td>
+      <td>[jakarta, budisatrio, djiwandono, terpilih, se...</td>
+      <td>jakarta budisatrio djiwandono terpilih ketua p...</td>
     </tr>
   </tbody>
 </table>
@@ -1338,7 +1317,7 @@ berupa kata,frasa atau karakter terpisah.</p>
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-0560714b-d33b-4640-bad5-75a0beda15f5')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-b8cca9fc-5a73-4ef9-90cd-6e948b25fec2')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -1390,12 +1369,12 @@ berupa kata,frasa atau karakter terpisah.</p>
 
     <script>
       const buttonEl =
-        document.querySelector('#df-0560714b-d33b-4640-bad5-75a0beda15f5 button.colab-df-convert');
+        document.querySelector('#df-b8cca9fc-5a73-4ef9-90cd-6e948b25fec2 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-0560714b-d33b-4640-bad5-75a0beda15f5');
+        const element = document.querySelector('#df-b8cca9fc-5a73-4ef9-90cd-6e948b25fec2');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1471,7 +1450,7 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-b3ec7b3a-408c-44cd-8618-63abb8b467e3" class="colab-df-container">
+  <div id="df-e27ac677-226b-45c5-b2c2-dee6db3c3960" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1490,27 +1469,27 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>abadi</th>
+      <th>aapc</th>
+      <th>abad</th>
       <th>abai</th>
       <th>abang</th>
-      <th>abdullah</th>
-      <th>abis</th>
-      <th>aboy</th>
+      <th>abhiram</th>
+      <th>abigail</th>
+      <th>abirezky</th>
+      <th>abrasi</th>
       <th>absen</th>
-      <th>abuabu</th>
-      <th>acar</th>
-      <th>acara</th>
+      <th>abu</th>
       <th>...</th>
-      <th>zeaxanthin</th>
-      <th>zerlinda</th>
-      <th>zhang</th>
+      <th>zaskia</th>
+      <th>zat</th>
       <th>zhehuang</th>
       <th>zhen</th>
-      <th>zi</th>
-      <th>zinc</th>
+      <th>zhi</th>
+      <th>zhou</th>
+      <th>zih</th>
+      <th>zii</th>
       <th>zona</th>
-      <th>zonk</th>
-      <th>zu</th>
+      <th>zulfikri</th>
     </tr>
   </thead>
   <tbody>
@@ -1519,249 +1498,249 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1</th>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.052813</td>
       <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>2</th>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>3</th>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.114718</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>4</th>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.061918</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>5</th>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>6</th>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.047024</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.320291</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>7</th>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.074098</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>8</th>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.057981</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>9</th>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
   </tbody>
 </table>
-<p>10 rows × 4744 columns</p>
+<p>10 rows × 5242 columns</p>
 </div>
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-b3ec7b3a-408c-44cd-8618-63abb8b467e3')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-e27ac677-226b-45c5-b2c2-dee6db3c3960')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -1813,12 +1792,12 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
 
     <script>
       const buttonEl =
-        document.querySelector('#df-b3ec7b3a-408c-44cd-8618-63abb8b467e3 button.colab-df-convert');
+        document.querySelector('#df-e27ac677-226b-45c5-b2c2-dee6db3c3960 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-b3ec7b3a-408c-44cd-8618-63abb8b467e3');
+        const element = document.querySelector('#df-e27ac677-226b-45c5-b2c2-dee6db3c3960');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1887,7 +1866,7 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Tugas Pertemuan 3</p>
+        <p class="prev-next-title">Tugas Pertemuan 3 - Logistic Regression</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1941,8 +1920,8 @@ By Al-Hasib
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
   </footer>

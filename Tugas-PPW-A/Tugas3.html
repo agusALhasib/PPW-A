@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Tugas Pertemuan 3 &#8212; Penambangan web</title>
+    <title>Tugas Pertemuan 3 - Logistic Regression &#8212; Penambangan web</title>
   
   
   
@@ -16,17 +16,19 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
@@ -36,10 +38,11 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -61,9 +64,10 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Word Embedding" href="Skip-Gram.html" />
-    <link rel="prev" title="Tugas Pertemuan 2 - Pre-Processing Data Berita detik.com" href="Tugas2.html" />
+    <link rel="prev" title="Tugas Pertemuan 2 - Pre-Processing Data dengan TF-IDF" href="Tugas2.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -79,19 +83,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -99,7 +92,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -107,8 +99,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -124,7 +116,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -154,21 +147,17 @@
     
     
     <img src="../_static/logo.png" class="logo__image only-light" alt="Penambangan web - Home"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Penambangan web - Home"/>`);</script>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Penambangan web - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -181,8 +170,8 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Tugas1.html"><strong>Tugas Pertemuan 1 - Crawling berita online</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="Tugas2.html">Tugas Pertemuan 2 - Pre-Processing Data Berita detik.com</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Tugas Pertemuan 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tugas2.html">Tugas Pertemuan 2 - Pre-Processing Data dengan TF-IDF</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Tugas Pertemuan 3 - Logistic Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Skip-Gram.html">Word Embedding</a></li>
 
 
@@ -191,9 +180,9 @@
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="Tugas4.html">Tugas Pertemuan 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tugas4.html">Tugas 4 - Graph</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="Tugas5.html">Tugas 5 : Centrality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tugas5.html">Tugas 5 : Query dengan kalimat</a></li>
 </ul>
 
     </div>
@@ -379,24 +368,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 
 </div></div>
       
@@ -408,7 +389,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Tugas Pertemuan 3</h1>
+    <h1>Tugas Pertemuan 3 - Logistic Regression</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -422,8 +403,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="tugas-pertemuan-3">
-<h1>Tugas Pertemuan 3<a class="headerlink" href="#tugas-pertemuan-3" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="tugas-pertemuan-3-logistic-regression">
+<h1>Tugas Pertemuan 3 - Logistic Regression<a class="headerlink" href="#tugas-pertemuan-3-logistic-regression" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
@@ -448,7 +429,7 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-b2c4c491-509f-4b7f-9815-9dae0d08ce70" class="colab-df-container">
+  <div id="df-c253de1b-b85d-48ab-a93a-cb8404ff790e" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -480,58 +461,58 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>Media Golf Day Dahulu, BNI Indonesian Masters ...</td>
-      <td>Kamis, 17 Okt 2024 02:02 WIB</td>
-      <td>Jakarta - Turnamen golf BNI Indonesian Masters...</td>
+      <td>Jakarta Cycling Challenge 2024: Ajang Cari Bib...</td>
+      <td>Rabu, 30 Okt 2024 18:55 WIB</td>
+      <td>Jakarta - Pagelaran Jakarta Cycling Challenge ...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Turnamen golf BNI Indonesian Masters ...</td>
-      <td>jakarta  turnamen golf bni indonesian masters ...</td>
-      <td>['jakarta', 'turnamen', 'golf', 'bni', 'indone...</td>
-      <td>jakarta turnamen golf bni indonesian masters d...</td>
+      <td>Jakarta  Pagelaran Jakarta Cycling Challenge  ...</td>
+      <td>jakarta  pagelaran jakarta cycling challenge  ...</td>
+      <td>['jakarta', 'pagelaran', 'jakarta', 'cycling',...</td>
+      <td>jakarta pagelaran jakarta cycling challenge aj...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Denmark Open 2024: Ahsan/Hendra Takluk dari Je...</td>
-      <td>Kamis, 17 Okt 2024 00:22 WIB</td>
-      <td>Odense - Mohammad Ahsan/Hendra Setiawan tersin...</td>
+      <td>Soal Cabor yang Dualisme, Wamenpora Taufik: Ka...</td>
+      <td>Rabu, 30 Okt 2024 14:30 WIB</td>
+      <td>Jakarta - Wakil Menpora Taufik Hidayat segera ...</td>
       <td>Olahraga</td>
-      <td>Odense  Mohammad AhsanHendra Setiawan tersingk...</td>
-      <td>odense  mohammad ahsanhendra setiawan tersingk...</td>
-      <td>['odense', 'mohammad', 'ahsanhendra', 'setiawa...</td>
-      <td>odense mohammad ahsanhendra setiawan tersingki...</td>
+      <td>Jakarta  Wakil Menpora Taufik Hidayat segera m...</td>
+      <td>jakarta  wakil menpora taufik hidayat segera m...</td>
+      <td>['jakarta', 'wakil', 'menpora', 'taufik', 'hid...</td>
+      <td>jakarta wakil menpora taufik hidayat memanggil...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Denmark Open 2024: Ginting Tersingkir di Babak...</td>
-      <td>Rabu, 16 Okt 2024 22:42 WIB</td>
-      <td>Odense - Anthony Sinisuka Ginting tersingkir d...</td>
+      <td>Wamenpora Taufik Bakal Prioritaskan Cabor Olim...</td>
+      <td>Rabu, 30 Okt 2024 13:30 WIB</td>
+      <td>Jakarta - Wakil Menpora Taufik Hidayat mengata...</td>
       <td>Olahraga</td>
-      <td>Odense  Anthony Sinisuka Ginting tersingkir da...</td>
-      <td>odense  anthony sinisuka ginting tersingkir da...</td>
-      <td>['odense', 'anthony', 'sinisuka', 'ginting', '...</td>
-      <td>odense anthony sinisuka ginting tersingkir den...</td>
+      <td>Jakarta  Wakil Menpora Taufik Hidayat mengatak...</td>
+      <td>jakarta  wakil menpora taufik hidayat mengatak...</td>
+      <td>['jakarta', 'wakil', 'menpora', 'taufik', 'hid...</td>
+      <td>jakarta wakil menpora taufik hidayat memperhat...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Denmark Open 2024: Rinov/Pitha Tundukkan Wakil...</td>
-      <td>Rabu, 16 Okt 2024 22:15 WIB</td>
-      <td>Odense - Rinov Rivaldy/Pitha Haningtyas Mentar...</td>
+      <td>Budisatrio Ingin Lebih Banyak Perempuan dalam ...</td>
+      <td>Rabu, 30 Okt 2024 12:50 WIB</td>
+      <td>Jakarta - Budisatrio Djiwandono terpilih menja...</td>
       <td>Olahraga</td>
-      <td>Odense  Rinov RivaldyPitha Haningtyas Mentari ...</td>
-      <td>odense  rinov rivaldypitha haningtyas mentari ...</td>
-      <td>['odense', 'rinov', 'rivaldypitha', 'haningtya...</td>
-      <td>odense rinov rivaldypitha haningtyas mentari m...</td>
+      <td>Jakarta  Budisatrio Djiwandono terpilih menjad...</td>
+      <td>jakarta  budisatrio djiwandono terpilih menjad...</td>
+      <td>['jakarta', 'budisatrio', 'djiwandono', 'terpi...</td>
+      <td>jakarta budisatrio djiwandono terpilih ketua p...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Umar Abdullah Wakili Indonesia di FIA Motorspo...</td>
-      <td>Rabu, 16 Okt 2024 22:15 WIB</td>
-      <td>Jakarta - Bakal ada pebalap Indonesia tampil d...</td>
+      <td>Liga Taekwondo DKI Jakarta: Demi Pembinaan Atl...</td>
+      <td>Selasa, 29 Okt 2024 23:15 WIB</td>
+      <td>Jakarta - Liga Taekwondo DKI Jakarta baru saja...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Bakal ada pebalap Indonesia tampil di...</td>
-      <td>jakarta  bakal ada pebalap indonesia tampil di...</td>
-      <td>['jakarta', 'bakal', 'ada', 'pebalap', 'indone...</td>
-      <td>jakarta pebalap indonesia tampil eropa umar ab...</td>
+      <td>Jakarta  Liga Taekwondo DKI Jakarta baru saja ...</td>
+      <td>jakarta  liga taekwondo dki jakarta baru saja ...</td>
+      <td>['jakarta', 'liga', 'taekwondo', 'dki', 'jakar...</td>
+      <td>jakarta liga taekwondo dki jakarta menuntaskan...</td>
     </tr>
   </tbody>
 </table>
@@ -539,7 +520,7 @@ document.write(`
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-b2c4c491-509f-4b7f-9815-9dae0d08ce70')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-c253de1b-b85d-48ab-a93a-cb8404ff790e')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -591,12 +572,12 @@ document.write(`
 
     <script>
       const buttonEl =
-        document.querySelector('#df-b2c4c491-509f-4b7f-9815-9dae0d08ce70 button.colab-df-convert');
+        document.querySelector('#df-c253de1b-b85d-48ab-a93a-cb8404ff790e button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-b2c4c491-509f-4b7f-9815-9dae0d08ce70');
+        const element = document.querySelector('#df-c253de1b-b85d-48ab-a93a-cb8404ff790e');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -671,7 +652,7 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-095bdeaa-2270-4104-8f6a-a6194791d00c" class="colab-df-container">
+  <div id="df-f30d089b-fe94-4896-9996-e9bc77a023d3" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -690,27 +671,27 @@ document.write(`
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>abadi</th>
+      <th>aapc</th>
+      <th>abad</th>
       <th>abai</th>
       <th>abang</th>
-      <th>abdullah</th>
-      <th>abis</th>
-      <th>aboy</th>
+      <th>abhiram</th>
+      <th>abigail</th>
+      <th>abirezky</th>
+      <th>abrasi</th>
       <th>absen</th>
-      <th>abuabu</th>
-      <th>acar</th>
-      <th>acara</th>
+      <th>abu</th>
       <th>...</th>
-      <th>zeaxanthin</th>
-      <th>zerlinda</th>
-      <th>zhang</th>
+      <th>zaskia</th>
+      <th>zat</th>
       <th>zhehuang</th>
       <th>zhen</th>
-      <th>zi</th>
-      <th>zinc</th>
+      <th>zhi</th>
+      <th>zhou</th>
+      <th>zih</th>
+      <th>zii</th>
       <th>zona</th>
-      <th>zonk</th>
-      <th>zu</th>
+      <th>zulfikri</th>
     </tr>
   </thead>
   <tbody>
@@ -719,249 +700,249 @@ document.write(`
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1</th>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.052813</td>
       <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>2</th>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>3</th>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.114718</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>4</th>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.061918</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>5</th>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>6</th>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.047024</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.320291</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>7</th>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.074098</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>8</th>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.057981</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>9</th>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
   </tbody>
 </table>
-<p>10 rows × 4744 columns</p>
+<p>10 rows × 5242 columns</p>
 </div>
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-095bdeaa-2270-4104-8f6a-a6194791d00c')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-f30d089b-fe94-4896-9996-e9bc77a023d3')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -1013,12 +994,12 @@ document.write(`
 
     <script>
       const buttonEl =
-        document.querySelector('#df-095bdeaa-2270-4104-8f6a-a6194791d00c button.colab-df-convert');
+        document.querySelector('#df-f30d089b-fe94-4896-9996-e9bc77a023d3 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-095bdeaa-2270-4104-8f6a-a6194791d00c');
+        const element = document.querySelector('#df-f30d089b-fe94-4896-9996-e9bc77a023d3');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1060,8 +1041,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of X_train: (80, 4744)
-Shape of X_test: (20, 4744)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of X_train: (80, 5000)
+Shape of X_test: (20, 5000)
 </pre></div>
 </div>
 </div>
@@ -1110,23 +1091,22 @@ Shape of X_test: (20, 4744)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 75.00%
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 95.00%
 Confusion Matrix:
-[[8 0]
- [5 7]]
+[[ 8  0]
+ [ 1 11]]
 
 Classification Report:
               precision    recall  f1-score   support
 
-     Makanan       0.62      1.00      0.76         8
-    Olahraga       1.00      0.58      0.74        12
+     Makanan       0.89      1.00      0.94         8
+    Olahraga       1.00      0.92      0.96        12
 
-    accuracy                           0.75        20
-   macro avg       0.81      0.79      0.75        20
-weighted avg       0.85      0.75      0.75        20
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cross-validation accuracy: 88.75%
+    accuracy                           0.95        20
+   macro avg       0.94      0.96      0.95        20
+weighted avg       0.96      0.95      0.95        20
+
+Cross-validation accuracy: 88.75%
 </pre></div>
 </div>
 </div>
@@ -1201,8 +1181,44 @@ weighted avg       0.85      0.75      0.75        20
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prediksi untuk teks 1: Olahraga
-Prediksi untuk teks 2: Makanan
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-12-229be3134fdb&gt;</span> in <span class="ni">&lt;cell line: 30&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">28</span> 
+<span class="g g-Whitespace">     </span><span class="mi">29</span> <span class="c1"># Melakukan prediksi menggunakan model Logistic Regression</span>
+<span class="ne">---&gt; </span><span class="mi">30</span> <span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">new_text_tfidf</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">31</span> 
+<span class="g g-Whitespace">     </span><span class="mi">32</span> <span class="c1"># Hasil prediksi</span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/sklearn/linear_model/_base.py</span> in <span class="ni">predict</span><span class="nt">(self, X)</span>
+<span class="g g-Whitespace">    </span><span class="mi">380</span>         <span class="s2">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">381</span><span class="s2">         xp, _ = get_namespace(X)</span>
+<span class="ne">--&gt; </span><span class="mi">382</span><span class="s2">         scores = self.decision_function(X)</span>
+<span class="g g-Whitespace">    </span><span class="mi">383</span><span class="s2">         if len(scores.shape) == 1:</span>
+<span class="g g-Whitespace">    </span><span class="mi">384</span><span class="s2">             indices = xp.astype(scores &gt; 0, indexing_dtype(xp))</span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/sklearn/linear_model/_base.py</span> in <span class="ni">decision_function</span><span class="nt">(self, X)</span>
+<span class="g g-Whitespace">    </span><span class="mi">361</span><span class="s2">         xp, _ = get_namespace(X)</span>
+<span class="g g-Whitespace">    </span><span class="mi">362</span><span class="s2"> </span>
+<span class="ne">--&gt; </span><span class="mi">363</span><span class="s2">         X = self._validate_data(X, accept_sparse=&quot;csr&quot;, reset=False)</span>
+<span class="g g-Whitespace">    </span><span class="mi">364</span><span class="s2">         scores = safe_sparse_dot(X, self.coef_.T, dense_output=True) + self.intercept_</span>
+<span class="g g-Whitespace">    </span><span class="mi">365</span><span class="s2">         return xp.reshape(scores, (-1,)) if scores.shape[1] == 1 else scores</span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/sklearn/base.py</span> in <span class="ni">_validate_data</span><span class="nt">(self, X, y, reset, validate_separately, cast_to_ndarray, **check_params)</span>
+<span class="g g-Whitespace">    </span><span class="mi">652</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">653</span><span class="s2">         if not no_val_X and check_params.get(&quot;ensure_2d&quot;, True):</span>
+<span class="ne">--&gt; </span><span class="mi">654</span><span class="s2">             self._check_n_features(X, reset=reset)</span>
+<span class="g g-Whitespace">    </span><span class="mi">655</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">656</span><span class="s2">         return out</span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/sklearn/base.py</span> in <span class="ni">_check_n_features</span><span class="nt">(self, X, reset)</span>
+<span class="g g-Whitespace">    </span><span class="mi">441</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">442</span><span class="s2">         if n_features != self.n_features_in_:</span>
+<span class="ne">--&gt; </span><span class="mi">443</span><span class="s2">             raise ValueError(</span>
+<span class="g g-Whitespace">    </span><span class="mi">444</span><span class="s2">                 f&quot;X has </span><span class="si">{n_features}</span><span class="s2"> features, but </span><span class="si">{self.__class__.__name__}</span><span class="s2"> &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">445</span><span class="s2">                 f&quot;is expecting </span><span class="si">{self.n_features_in_}</span><span class="s2"> features as input.&quot;</span>
+
+<span class="ne">ValueError</span>: X has 5242 features, but LogisticRegression is expecting 5000 features as input.
 </pre></div>
 </div>
 </div>
@@ -1245,7 +1261,7 @@ Prediksi untuk teks 2: Makanan
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Tugas Pertemuan 2 - Pre-Processing Data Berita detik.com</p>
+        <p class="prev-next-title">Tugas Pertemuan 2 - Pre-Processing Data dengan TF-IDF</p>
       </div>
     </a>
     <a class="right-next"
@@ -1307,8 +1323,8 @@ By Al-Hasib
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
   </footer>
