@@ -1,0 +1,1924 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Tugas 7 : Fuzzy C-Means (SVD) &#8212; Penambangan web</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Tugas-PPW-A/Tugas7v2';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Penambangan web - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Penambangan web - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to my profile
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Tugas1.html"><strong>Tugas Pertemuan 1 - Crawling berita online</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tugas2.html">Tugas Pertemuan 2 - Pre-Processing Data dengan TF-IDF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tugas3.html">Tugas Pertemuan 3 - Logistic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Skip-Gram.html">Word Embedding</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Tugas4.html">Tugas 4 - Graph</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Tugas5.html">Tugas 5 : Query dengan kalimat</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="Tugas6.html">Tugas 6 : Klasifikasi Berita Metode Logistic Regression dengan reduksi dimensi SVD</a></li>
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/agusALhasib/PPW-A/blob/gh-pages/_sources/Tugas-PPW-A/Tugas7v2.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/agusALhasib/PPW-A" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/agusALhasib/PPW-A/issues/new?title=Issue%20on%20page%20%2FTugas-PPW-A/Tugas7v2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Tugas-PPW-A/Tugas7v2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tugas 7 : Fuzzy C-Means (SVD)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="tugas-7-fuzzy-c-means-svd">
+<h1>Tugas 7 : Fuzzy C-Means (SVD)<a class="headerlink" href="#tugas-7-fuzzy-c-means-svd" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Drive already mounted at /content/drive; to attempt to forcibly remount, call drive.mount(&quot;/content/drive&quot;, force_remount=True).
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;/content/drive/My Drive/PPW-A/report/Tugas-PPW-A/hasil_preprocesing.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-2139b603-1a1a-48da-9191-07080a5f0eab" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>judul</th>
+      <th>tanggal</th>
+      <th>isi</th>
+      <th>kategori</th>
+      <th>cleansing</th>
+      <th>case_folding</th>
+      <th>tokenize</th>
+      <th>Filtering/stopword removal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>China Masters 2024: Singkirkan Shi Yu Qi, Jona...</td>
+      <td>Sabtu, 23 Nov 2024 14:04 WIB</td>
+      <td>Jakarta - China Masters 2024 jalani babak semi...</td>
+      <td>Olahraga</td>
+      <td>Jakarta  China Masters  jalani babak semifinal...</td>
+      <td>jakarta  china masters  jalani babak semifinal...</td>
+      <td>['jakarta', 'china', 'masters', 'jalani', 'bab...</td>
+      <td>jakarta china masters jalani babak semifinal j...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Tangkal Judol, Menpora Mau Perbanyak Gelar Kej...</td>
+      <td>Sabtu, 23 Nov 2024 11:50 WIB</td>
+      <td>Jakarta - Kejuaraan Antarkampung (Tarkam) biki...</td>
+      <td>Olahraga</td>
+      <td>Jakarta  Kejuaraan Antarkampung Tarkam bikinan...</td>
+      <td>jakarta  kejuaraan antarkampung tarkam bikinan...</td>
+      <td>['jakarta', 'kejuaraan', 'antarkampung', 'tark...</td>
+      <td>jakarta kejuaraan antarkampung tarkam bikinan ...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Vinales Bidik Rekor Ini Bersama Tech3</td>
+      <td>Sabtu, 23 Nov 2024 10:50 WIB</td>
+      <td>Montmelo - Pebalap Tech3 KTM Maverick Vinales ...</td>
+      <td>Olahraga</td>
+      <td>Montmelo  Pebalap Tech KTM Maverick Vinales op...</td>
+      <td>montmelo  pebalap tech ktm maverick vinales op...</td>
+      <td>['montmelo', 'pebalap', 'tech', 'ktm', 'maveri...</td>
+      <td>montmelo pebalap tech ktm maverick vinales opt...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Gymnastics Indonesia Gelar Pelatnas di Tokyo d...</td>
+      <td>Sabtu, 23 Nov 2024 09:45 WIB</td>
+      <td>Jakarta - Pengurus Besar Persatuan Senam Indon...</td>
+      <td>Olahraga</td>
+      <td>Jakarta  Pengurus Besar Persatuan Senam Indone...</td>
+      <td>jakarta  pengurus besar persatuan senam indone...</td>
+      <td>['jakarta', 'pengurus', 'besar', 'persatuan', ...</td>
+      <td>jakarta pengurus persatuan senam indonesia gym...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Informasi Jadwal Persiapan Peserta Lari Pertam...</td>
+      <td>Sabtu, 23 Nov 2024 09:06 WIB</td>
+      <td>Jakarta - Pertamina Eco RunFest 2024 siap mema...</td>
+      <td>Olahraga</td>
+      <td>Jakarta  Pertamina Eco RunFest  siap memadukan...</td>
+      <td>jakarta  pertamina eco runfest  siap memadukan...</td>
+      <td>['jakarta', 'pertamina', 'eco', 'runfest', 'si...</td>
+      <td>jakarta pertamina eco runfest memadukan semang...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+      
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-2139b603-1a1a-48da-9191-07080a5f0eab')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+      
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+    
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-2139b603-1a1a-48da-9191-07080a5f0eab button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-2139b603-1a1a-48da-9191-07080a5f0eab');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+  
+    </div>
+  </div>
+  </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<span class="c1"># Menginisialisasi TfidfVectorizer</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
+<span class="c1"># Menghitung TF-IDF</span>
+<span class="n">tfidf_matrix</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Filtering/stopword removal&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mengubah hasilnya menjadi DataFrame</span>
+<span class="n">tfidf_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tfidf_matrix</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">())</span>
+<span class="n">tfidf_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-39b3de4b-402c-47c3-b235-8b2c15c9cca6" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>abad</th>
+      <th>abah</th>
+      <th>abbas</th>
+      <th>abdillah</th>
+      <th>abdul</th>
+      <th>abiyu</th>
+      <th>abu</th>
+      <th>abuabu</th>
+      <th>academy</th>
+      <th>acar</th>
+      <th>...</th>
+      <th>yus</th>
+      <th>yusuf</th>
+      <th>yuyang</th>
+      <th>zaman</th>
+      <th>zat</th>
+      <th>zero</th>
+      <th>zhang</th>
+      <th>zomato</th>
+      <th>zona</th>
+      <th>zu</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.073507</td>
+      <td>0.11026</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.03521</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.070421</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>10 rows × 4758 columns</p>
+</div>
+    <div class="colab-df-buttons">
+      
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-39b3de4b-402c-47c3-b235-8b2c15c9cca6')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+      
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+    
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-39b3de4b-402c-47c3-b235-8b2c15c9cca6 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-39b3de4b-402c-47c3-b235-8b2c15c9cca6');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+  
+    </div>
+  </div>
+  </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">TruncatedSVD</span>
+<span class="n">svd</span> <span class="o">=</span> <span class="n">TruncatedSVD</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>  <span class="c1"># Mulai dengan 100 komponen, bisa dikurangi lagi nanti</span>
+<span class="n">tfidf_svd_matrix</span> <span class="o">=</span> <span class="n">svd</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">tfidf_matrix</span><span class="p">)</span>
+<span class="n">svd_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tfidf_svd_matrix</span><span class="p">)</span>
+<span class="c1">#Transpose matriks hasil SVD</span>
+<span class="c1">#tfidf_svd_matrix_transposed = tfidf_svd_matrix.T</span>
+<span class="n">svd_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="c1">#svd_df.shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-9244539f-340e-45f5-844c-3f22484ab559" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>...</th>
+      <th>90</th>
+      <th>91</th>
+      <th>92</th>
+      <th>93</th>
+      <th>94</th>
+      <th>95</th>
+      <th>96</th>
+      <th>97</th>
+      <th>98</th>
+      <th>99</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.373418</td>
+      <td>-0.043784</td>
+      <td>-0.074172</td>
+      <td>-0.120709</td>
+      <td>-0.035228</td>
+      <td>0.002023</td>
+      <td>0.406643</td>
+      <td>-0.367411</td>
+      <td>-0.021586</td>
+      <td>0.102849</td>
+      <td>...</td>
+      <td>0.021061</td>
+      <td>0.181382</td>
+      <td>-0.139528</td>
+      <td>0.017278</td>
+      <td>0.118212</td>
+      <td>-0.009414</td>
+      <td>-0.075220</td>
+      <td>-0.074618</td>
+      <td>-3.144186e-18</td>
+      <td>3.794708e-18</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.037242</td>
+      <td>0.030058</td>
+      <td>0.088175</td>
+      <td>0.094009</td>
+      <td>0.190431</td>
+      <td>-0.001823</td>
+      <td>-0.082323</td>
+      <td>-0.118927</td>
+      <td>0.114293</td>
+      <td>0.047534</td>
+      <td>...</td>
+      <td>-0.003769</td>
+      <td>-0.001719</td>
+      <td>-0.000627</td>
+      <td>-0.000523</td>
+      <td>-0.004294</td>
+      <td>0.004083</td>
+      <td>-0.000285</td>
+      <td>-0.001915</td>
+      <td>-3.154351e-18</td>
+      <td>5.559924e-17</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.026148</td>
+      <td>0.010994</td>
+      <td>0.078955</td>
+      <td>0.224821</td>
+      <td>-0.087758</td>
+      <td>-0.001073</td>
+      <td>0.062013</td>
+      <td>-0.014635</td>
+      <td>-0.007630</td>
+      <td>-0.027705</td>
+      <td>...</td>
+      <td>-0.000024</td>
+      <td>-0.004161</td>
+      <td>-0.001045</td>
+      <td>0.001289</td>
+      <td>0.001373</td>
+      <td>0.000956</td>
+      <td>-0.000719</td>
+      <td>-0.001215</td>
+      <td>-3.981055e-18</td>
+      <td>-5.365784e-17</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.071612</td>
+      <td>0.022046</td>
+      <td>0.069403</td>
+      <td>0.084516</td>
+      <td>0.208586</td>
+      <td>-0.001631</td>
+      <td>-0.126410</td>
+      <td>-0.155367</td>
+      <td>0.126201</td>
+      <td>0.055112</td>
+      <td>...</td>
+      <td>0.005420</td>
+      <td>0.008423</td>
+      <td>-0.006206</td>
+      <td>0.002880</td>
+      <td>-0.002545</td>
+      <td>0.002872</td>
+      <td>-0.000354</td>
+      <td>-0.004185</td>
+      <td>-5.529431e-18</td>
+      <td>2.325614e-17</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.042803</td>
+      <td>0.030239</td>
+      <td>0.051312</td>
+      <td>0.040699</td>
+      <td>0.106369</td>
+      <td>-0.000821</td>
+      <td>-0.026340</td>
+      <td>-0.045112</td>
+      <td>0.040877</td>
+      <td>0.035654</td>
+      <td>...</td>
+      <td>-0.002762</td>
+      <td>0.014080</td>
+      <td>-0.014163</td>
+      <td>0.002360</td>
+      <td>0.005367</td>
+      <td>0.002129</td>
+      <td>0.004415</td>
+      <td>0.003658</td>
+      <td>-2.927346e-18</td>
+      <td>3.022214e-17</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>0.045994</td>
+      <td>0.198427</td>
+      <td>0.428489</td>
+      <td>-0.180859</td>
+      <td>-0.102203</td>
+      <td>0.001700</td>
+      <td>-0.064819</td>
+      <td>-0.085956</td>
+      <td>-0.069227</td>
+      <td>0.016124</td>
+      <td>...</td>
+      <td>0.002011</td>
+      <td>-0.020970</td>
+      <td>0.006818</td>
+      <td>0.003193</td>
+      <td>-0.002758</td>
+      <td>-0.010143</td>
+      <td>-0.005085</td>
+      <td>0.000245</td>
+      <td>-4.228388e-18</td>
+      <td>2.295798e-17</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>0.017611</td>
+      <td>0.064225</td>
+      <td>0.110752</td>
+      <td>0.010297</td>
+      <td>0.051503</td>
+      <td>-0.000719</td>
+      <td>-0.018168</td>
+      <td>-0.027912</td>
+      <td>-0.163246</td>
+      <td>0.027597</td>
+      <td>...</td>
+      <td>-0.001889</td>
+      <td>0.002608</td>
+      <td>0.006077</td>
+      <td>0.000269</td>
+      <td>0.000730</td>
+      <td>0.001506</td>
+      <td>-0.002846</td>
+      <td>0.004479</td>
+      <td>-8.639736e-19</td>
+      <td>4.030013e-17</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>0.015660</td>
+      <td>0.081550</td>
+      <td>0.096702</td>
+      <td>-0.019619</td>
+      <td>0.020313</td>
+      <td>-0.000320</td>
+      <td>-0.012439</td>
+      <td>-0.017507</td>
+      <td>-0.148813</td>
+      <td>0.012540</td>
+      <td>...</td>
+      <td>-0.012721</td>
+      <td>-0.003237</td>
+      <td>-0.001842</td>
+      <td>-0.000404</td>
+      <td>0.000253</td>
+      <td>0.006420</td>
+      <td>-0.004419</td>
+      <td>0.002640</td>
+      <td>-3.598196e-18</td>
+      <td>5.939395e-17</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>0.012249</td>
+      <td>0.030506</td>
+      <td>0.080932</td>
+      <td>0.092024</td>
+      <td>-0.068889</td>
+      <td>-0.001209</td>
+      <td>0.039852</td>
+      <td>-0.006808</td>
+      <td>-0.013000</td>
+      <td>0.013701</td>
+      <td>...</td>
+      <td>-0.005649</td>
+      <td>0.020231</td>
+      <td>0.019995</td>
+      <td>0.002735</td>
+      <td>0.000496</td>
+      <td>-0.001625</td>
+      <td>0.003219</td>
+      <td>-0.002701</td>
+      <td>3.469447e-18</td>
+      <td>-6.071532e-17</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>0.011781</td>
+      <td>0.054157</td>
+      <td>0.119880</td>
+      <td>-0.050000</td>
+      <td>-0.013147</td>
+      <td>0.000134</td>
+      <td>0.025528</td>
+      <td>0.011707</td>
+      <td>0.025997</td>
+      <td>-0.004901</td>
+      <td>...</td>
+      <td>0.003475</td>
+      <td>0.000527</td>
+      <td>0.006148</td>
+      <td>-0.000392</td>
+      <td>-0.000790</td>
+      <td>-0.003599</td>
+      <td>0.003937</td>
+      <td>-0.000656</td>
+      <td>5.204170e-18</td>
+      <td>-3.534499e-17</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 100 columns</p>
+</div>
+    <div class="colab-df-buttons">
+      
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-9244539f-340e-45f5-844c-3f22484ab559')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+      
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+    
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-9244539f-340e-45f5-844c-3f22484ab559 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-9244539f-340e-45f5-844c-3f22484ab559');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+  
+    </div>
+  </div>
+  </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>scikit-fuzzy
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: scikit-fuzzy in /usr/local/lib/python3.10/dist-packages (0.5.0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">skfuzzy</span> <span class="k">as</span> <span class="nn">fuzz</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Transpos matriks hasil SVD untuk Fuzzy C-Means</span>
+<span class="n">svd_normalized</span> <span class="o">=</span> <span class="n">svd_df</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
+
+<span class="c1"># Menentukan jumlah kluster</span>
+<span class="n">n_clusters</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># Untuk kategori Makanan dan Olahraga</span>
+
+<span class="c1"># Menjalankan Fuzzy C-Means</span>
+<span class="n">cntr</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">u0</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">jm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">fpc</span> <span class="o">=</span> <span class="n">fuzz</span><span class="o">.</span><span class="n">cluster</span><span class="o">.</span><span class="n">cmeans</span><span class="p">(</span>
+    <span class="n">svd_normalized</span><span class="p">,</span> <span class="n">n_clusters</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="c1"># Prediksi hasil klustering</span>
+<span class="n">fcm_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">svd_df</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fcm_labels</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualisasi</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_clusters</span><span class="p">):</span>
+    <span class="c1"># Plotk data berdasarkan label kluster</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+        <span class="n">svd_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">svd_df</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">cluster</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="n">svd_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">svd_df</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">cluster</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Cluster </span><span class="si">{</span><span class="n">cluster</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="p">)</span>
+
+<span class="c1"># Plot centroid</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">cntr</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">cntr</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Centroids&#39;</span><span class="p">)</span>
+
+<span class="c1"># Tambahkan keterangan dan label sumbu</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Komponen SVD 1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Komponen SVD 2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Clustering Fuzzy C-Means&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/08927972c8b995170f54a513f197ea6c508c21734d4791853bb798ad35a0c5be.png" src="../_images/08927972c8b995170f54a513f197ea6c508c21734d4791853bb798ad35a0c5be.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Menampilkan isi kluster 1</span>
+<span class="n">cluster_1</span> <span class="o">=</span> <span class="n">svd_df</span><span class="p">[</span><span class="n">svd_df</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Isi Cluster 1:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cluster_1</span><span class="p">)</span>
+
+<span class="c1"># Menampilkan isi kluster 2</span>
+<span class="n">cluster_2</span> <span class="o">=</span> <span class="n">svd_df</span><span class="p">[</span><span class="n">svd_df</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Isi Cluster 2:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cluster_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Isi Cluster 1:
+           0         1         2         3         4         5         6  \
+0   0.373418 -0.043784 -0.074172 -0.120709 -0.035228  0.002023  0.406643   
+6   0.509902 -0.052252 -0.057418 -0.114659  0.018825  0.001608  0.285514   
+7   0.304586 -0.031534 -0.017375 -0.018690 -0.039557 -0.000155 -0.046633   
+8   0.402278 -0.041087 -0.030162  0.004243 -0.086403 -0.000772 -0.137171   
+9   0.422661 -0.047233 -0.055219 -0.067492 -0.058847  0.000967  0.191762   
+11  0.386275 -0.019037  0.023694  0.014926  0.063329 -0.000292 -0.201141   
+12  0.223193  0.006342  0.074519  0.119022  0.189887 -0.002335 -0.128376   
+13  0.416040 -0.042867 -0.027258  0.002271 -0.034011 -0.000736 -0.151516   
+21  0.208275  0.010057  0.083008  0.155656  0.204684 -0.002529 -0.135249   
+22  0.438097 -0.046236 -0.028742 -0.005739  0.003121 -0.000518 -0.123085   
+23  0.527716 -0.046534 -0.020928  0.040452 -0.088165 -0.000917 -0.177687   
+24  0.461248 -0.031988 -0.029534 -0.058003 -0.029444  0.001250  0.163861   
+25  0.363526 -0.005983  0.049014  0.064081 -0.012046 -0.000915 -0.178419   
+30  0.450064 -0.026509  0.021600  0.015323  0.026481 -0.000276 -0.071977   
+32  0.599425 -0.054512 -0.026523  0.002669 -0.014280 -0.000501 -0.195083   
+33  0.437023 -0.046353 -0.080172 -0.112889 -0.048367  0.001588  0.269741   
+34  0.672201 -0.070386 -0.071375 -0.069456 -0.015098  0.000533  0.050175   
+35  0.412307 -0.032135 -0.030626 -0.057964  0.019463  0.001024  0.125698   
+36  0.568238 -0.063449 -0.096412 -0.143671 -0.001947  0.002158  0.324208   
+37  0.596919 -0.067550 -0.094256 -0.135930  0.010244  0.001518  0.189796   
+38  0.326391  0.001832  0.047151  0.020807  0.081936 -0.000227 -0.130779   
+40  0.329961 -0.036640 -0.027394  0.005699 -0.048730 -0.000284 -0.096143   
+41  0.304515 -0.035439 -0.029734  0.011888 -0.084384 -0.000651 -0.131946   
+43  0.503444 -0.022656  0.027060  0.052779  0.000757 -0.001011 -0.185106   
+44  0.249734 -0.019417 -0.001452  0.022291 -0.037679 -0.000068 -0.091089   
+46  0.461060 -0.047002 -0.032732 -0.004828 -0.051081 -0.000381 -0.184218   
+57  0.025735  0.082101  0.113756  0.003351  0.075081 -0.001226 -0.010586   
+59  0.010121  0.047961  0.075997  0.011723  0.132068 -0.002331  0.066949   
+60  0.035755  0.154144  0.237339 -0.036547  0.326874 -0.005235  0.379471   
+61  0.017800  0.058506  0.143720 -0.031853  0.125372 -0.002052  0.154320   
+63  0.013102  0.063974  0.081304 -0.009892  0.056482 -0.000587 -0.006958   
+64  0.022642  0.074556  0.143255 -0.027067  0.036807 -0.000348 -0.023284   
+65  0.030817  0.107265  0.231990 -0.045093  0.072851 -0.000530 -0.027165   
+68  0.026491  0.076562  0.204876 -0.057758  0.077504 -0.000884  0.138262   
+72  0.036267  0.141679  0.336404 -0.123312 -0.086828  0.001149 -0.056010   
+77  0.049395  0.065780  0.105902 -0.009208  0.129860 -0.001659  0.109818   
+81  0.037212  0.082167  0.183630 -0.006021  0.254458 -0.003913  0.277310   
+85  0.014205  0.054325  0.116941 -0.021407  0.022752 -0.000395 -0.020132   
+93  0.028618  0.145466  0.206058 -0.043359  0.264036 -0.004430  0.370346   
+94  0.030456  0.186579  0.253806 -0.063848  0.303351 -0.005143  0.439420   
+95  0.045994  0.198427  0.428489 -0.180859 -0.102203  0.001700 -0.064819   
+96  0.017611  0.064225  0.110752  0.010297  0.051503 -0.000719 -0.018168   
+97  0.015660  0.081550  0.096702 -0.019619  0.020313 -0.000320 -0.012439   
+
+           7         8         9  ...        91        92        93        94  \
+0  -0.367411 -0.021586  0.102849  ...  0.181382 -0.139528  0.017278  0.118212   
+6  -0.305240 -0.010566 -0.057629  ... -0.209299  0.146727  0.041274 -0.042970   
+7   0.099261  0.003283  0.097419  ...  0.054866 -0.024959 -0.134802 -0.091581   
+8   0.286612 -0.007022  0.451427  ... -0.021342  0.047447 -0.183356  0.206132   
+9  -0.115979 -0.021884  0.078396  ... -0.010012  0.014803 -0.012692 -0.015778   
+11  0.078196 -0.007431 -0.490806  ... -0.024081  0.012415  0.041139 -0.001477   
+12 -0.083481  0.162931  0.174094  ...  0.018807 -0.020217 -0.060627  0.003619   
+13  0.207930 -0.025079 -0.177911  ...  0.017894 -0.032952  0.002408 -0.025031   
+21 -0.111184  0.168579  0.176073  ... -0.019654  0.019576  0.039745  0.002194   
+22  0.137579  0.034358  0.153925  ...  0.058747 -0.034325  0.029716 -0.043650   
+23  0.321155  0.000452  0.455239  ...  0.060512 -0.071287  0.226801 -0.272638   
+24 -0.162391 -0.037111 -0.193373  ...  0.239078 -0.177773  0.013811  0.078718   
+25  0.130392 -0.034135 -0.376269  ... -0.026669  0.034547  0.051358  0.001718   
+30 -0.002762 -0.012835 -0.252790  ... -0.002368  0.007247 -0.076244 -0.085117   
+32  0.209568  0.006133 -0.066377  ... -0.033563  0.025650 -0.265078  0.072281   
+33 -0.202982 -0.018272  0.079757  ... -0.223964  0.161676 -0.049417 -0.107747   
+34 -0.018856  0.015058  0.161103  ... -0.089169  0.034113  0.316531  0.272075   
+35 -0.169723 -0.021300 -0.201494  ... -0.101461  0.067247  0.013019  0.024377   
+36 -0.318781 -0.012031  0.107895  ...  0.105698 -0.065473 -0.043436 -0.128575   
+37 -0.189459 -0.001747  0.084754  ...  0.035336 -0.004831 -0.129976 -0.056588   
+38 -0.005201 -0.007295 -0.377423  ...  0.014789  0.005122  0.013977  0.018263   
+40  0.175849  0.008973  0.203940  ... -0.025321  0.017981 -0.057077  0.044561   
+41  0.271020 -0.004300  0.393443  ... -0.030910  0.017386 -0.003571  0.023878   
+43  0.148259 -0.036600 -0.361547  ...  0.035583 -0.041920 -0.032908  0.001062   
+44  0.128725 -0.021415 -0.029176  ... -0.002764 -0.006123 -0.023317 -0.009067   
+46  0.244901 -0.025710 -0.174724  ...  0.030933  0.000002  0.132977 -0.012682   
+57 -0.014813 -0.196641 -0.002735  ...  0.002834  0.009150 -0.000328  0.000791   
+59  0.087054 -0.190312  0.061315  ... -0.249598 -0.290848 -0.016055 -0.005472   
+60  0.335064  0.087608 -0.040526  ...  0.012429 -0.016972 -0.003677 -0.000164   
+61  0.142460 -0.028255 -0.037592  ...  0.001340 -0.005714 -0.000987  0.000314   
+63 -0.006696 -0.154467  0.018646  ...  0.002811  0.000418 -0.000970 -0.001327   
+64 -0.020282 -0.171869  0.004318  ... -0.002994 -0.003409  0.002069 -0.000981   
+65 -0.044145 -0.129663  0.024664  ...  0.013106 -0.010421 -0.001531  0.003256   
+68  0.124052  0.052462 -0.040364  ... -0.007195 -0.009850 -0.000140  0.001675   
+72 -0.058642 -0.047308  0.014163  ... -0.000907  0.005541  0.004363 -0.000546   
+77  0.067710 -0.011630  0.013509  ... -0.007415 -0.022999  0.007911  0.002281   
+81  0.250591  0.089332 -0.024288  ... -0.009560 -0.004828  0.001490 -0.001773   
+85 -0.025933 -0.097047  0.018718  ...  0.004704  0.000761  0.000459  0.000983   
+93  0.341805  0.110013 -0.042030  ...  0.006431 -0.004457 -0.000101  0.001306   
+94  0.404511  0.112710 -0.059994  ... -0.009612  0.027742  0.000743 -0.001437   
+95 -0.085956 -0.069227  0.016124  ... -0.020970  0.006818  0.003193 -0.002758   
+96 -0.027912 -0.163246  0.027597  ...  0.002608  0.006077  0.000269  0.000730   
+97 -0.017507 -0.148813  0.012540  ... -0.003237 -0.001842 -0.000404  0.000253   
+
+          95        96        97            98            99  cluster  
+0  -0.009414 -0.075220 -0.074618 -3.144186e-18  3.794708e-18        0  
+6   0.004331  0.005592  0.006445  4.011548e-18 -6.600081e-18        0  
+7  -0.001317 -0.022330 -0.024531  6.749159e-18  5.661568e-18        0  
+8  -0.003098  0.029930  0.026046 -1.246832e-18 -1.362707e-17        0  
+9   0.002899  0.011560  0.011998 -3.333922e-18 -4.512992e-18        0  
+11  0.001562 -0.005218 -0.006441 -1.734723e-18 -2.428613e-17        0  
+12 -0.002599  0.000547 -0.001797 -3.903128e-18 -1.273938e-18        0  
+13  0.000525  0.006126  0.006428 -3.306817e-18 -8.527250e-17        0  
+21  0.004315 -0.003702 -0.003042 -3.537210e-18 -1.837723e-17        0  
+22  0.005765  0.011487  0.014696  2.547875e-18 -8.626184e-18        0  
+23  0.003982 -0.049029 -0.044707  8.619407e-18  1.177715e-17        0  
+24 -0.003344  0.000962  0.002466  6.776264e-19  2.168404e-17        0  
+25  0.003712  0.004879  0.003177 -4.472334e-19  2.114194e-17        0  
+30  0.001323  0.007151  0.005657  1.123505e-17  6.071532e-18        0  
+32 -0.002826  0.024918  0.026597 -8.090859e-18 -2.607506e-17        0  
+33 -0.003157  0.019503  0.016007  0.000000e+00  1.344411e-17        0  
+34 -0.001097  0.030038  0.033377  8.578750e-18 -2.144010e-17        0  
+35 -0.013672 -0.080614 -0.085487 -5.285486e-19  5.530786e-17        0  
+36  0.033510  0.224684  0.230760  1.084202e-18 -1.235990e-17        0  
+37 -0.025084 -0.197910 -0.204742  5.529431e-18 -3.398974e-17        0  
+38 -0.004835  0.021672  0.021648  3.903128e-18 -2.366271e-17        0  
+40 -0.003217  0.002844  0.001235 -2.547875e-18  5.678509e-17        0  
+41 -0.001218  0.011835  0.011183 -9.486769e-19  4.218224e-18        0  
+43  0.009331  0.033248  0.035248 -9.486769e-19  7.308878e-17        0  
+44  0.000749 -0.019178 -0.019881 -1.084202e-18  8.836248e-18        0  
+46 -0.002897 -0.023883 -0.026108 -1.680513e-18  1.965116e-17        0  
+57 -0.005496  0.003352 -0.000934 -4.743385e-18 -1.329300e-16        0  
+59 -0.004750  0.002097 -0.004279  1.301043e-18 -3.813004e-17        0  
+60  0.009281 -0.002154  0.002395  3.266159e-18  5.984796e-17        0  
+61  0.005401  0.001490 -0.003328  3.252607e-19  2.639355e-17        0  
+63 -0.001919  0.002390 -0.002322 -2.588533e-18 -1.548037e-17        0  
+64 -0.002208  0.001695 -0.004016  6.803369e-18 -2.368304e-17        0  
+65  0.004533  0.000369 -0.001934  1.734723e-18  1.626303e-17        0  
+68 -0.010391  0.002973 -0.006035 -2.676624e-18 -6.413395e-17        0  
+72 -0.008388  0.000268  0.002571  5.109303e-18  2.339166e-17        0  
+77 -0.007645  0.002269  0.000400  4.336809e-19 -4.987330e-17        0  
+81  0.002015 -0.000703 -0.002263 -1.691355e-17  3.765570e-17        0  
+85 -0.000562  0.002764  0.000503  2.534323e-17  1.257675e-17        0  
+93  0.004099  0.011394 -0.013839  1.761829e-19 -6.913144e-17        0  
+94 -0.012717 -0.018271  0.022204  3.821813e-18 -7.225191e-18        0  
+95 -0.010143 -0.005085  0.000245 -4.228388e-18  2.295798e-17        0  
+96  0.001506 -0.002846  0.004479 -8.639736e-19  4.030013e-17        0  
+97  0.006420 -0.004419  0.002640 -3.598196e-18  5.939395e-17        0  
+
+[43 rows x 101 columns]
+
+Isi Cluster 2:
+           0         1         2         3         4         5         6  \
+1   0.037242  0.030058  0.088175  0.094009  0.190431 -0.001823 -0.082323   
+2   0.026148  0.010994  0.078955  0.224821 -0.087758 -0.001073  0.062013   
+3   0.071612  0.022046  0.069403  0.084516  0.208586 -0.001631 -0.126410   
+4   0.042803  0.030239  0.051312  0.040699  0.106369 -0.000821 -0.026340   
+5   0.026380  0.021282  0.044002  0.068763  0.166945 -0.001552 -0.089056   
+10  0.100317  0.020443  0.106714  0.250831 -0.076000 -0.001014  0.020771   
+14  0.079592  0.046351  0.141443  0.145559  0.302339 -0.002960 -0.145533   
+15  0.052133  0.018682  0.144109  0.435847 -0.172323 -0.000532  0.113296   
+16  0.086341  0.041873  0.142198  0.165946  0.364696 -0.003368 -0.199929   
+17  0.040909  0.030283  0.079900  0.039548  0.124033 -0.001067 -0.058842   
+18  0.073512  0.028395  0.106632  0.162853  0.081242  0.000871 -0.049452   
+19  0.066176  0.027724  0.091760  0.106407  0.200060 -0.001784 -0.088136   
+20  0.048135  0.026003  0.062033  0.089365  0.153435 -0.001367 -0.098724   
+26  0.044104  0.050349  0.090164  0.056912  0.144430 -0.001026 -0.069514   
+27  0.087414  0.019519  0.197134  0.604359 -0.271368 -0.005718  0.185232   
+28  0.105777  0.041498  0.128047  0.140031  0.186305 -0.002427 -0.104839   
+29  0.042558  0.019823  0.142658  0.438140 -0.196208 -0.000230  0.133207   
+31  0.014705  0.002693  0.035876  0.091809  0.013121 -0.001744  0.015856   
+39  0.046568  0.023532  0.071438  0.066492  0.172187 -0.001060 -0.109571   
+42  0.026793  0.007986  0.062227  0.134639  0.014105 -0.002363  0.012102   
+45  0.072292  0.038428  0.136139  0.156097  0.348753 -0.003378 -0.195736   
+47  0.040378  0.018598  0.060729  0.111649  0.012042  0.037920 -0.011200   
+48  0.101307  0.020306  0.193060  0.570315 -0.259689 -0.005891  0.139443   
+49  0.080157  0.017755  0.187841  0.580517 -0.284806 -0.005781  0.168885   
+50  0.000252  0.000198  0.002163  0.008159  0.007522  0.999721  0.002334   
+51  0.015499  0.055452  0.121535 -0.047989 -0.034850  0.000493 -0.027771   
+52  0.032470  0.095907  0.088017  0.025927  0.094537 -0.001400 -0.042402   
+53  0.015298  0.057324  0.064491  0.003091  0.065482 -0.000801 -0.003443   
+54  0.061760  0.761580 -0.285051  0.037900 -0.092504  0.001001  0.029190   
+55  0.035937  0.208034  0.161723 -0.021910  0.107579 -0.001717  0.021750   
+56  0.035068  0.321138 -0.027186  0.011493  0.043069 -0.000264 -0.083515   
+58  0.039771  0.200959  0.012561  0.019761  0.107842 -0.001240 -0.071747   
+62  0.000252  0.000198  0.002163  0.008159  0.007522  0.999721  0.002334   
+66  0.010907  0.043423  0.094308 -0.028659  0.011726  0.000116  0.000475   
+67  0.007042  0.025443  0.047290 -0.013886 -0.004203  0.000042 -0.005679   
+69  0.063731  0.100603  0.250441 -0.042869 -0.062372  0.000512 -0.065381   
+70  0.051806  0.171349  0.443892 -0.214944 -0.174690  0.002396 -0.072501   
+71  0.064595  0.751435 -0.287855  0.064293 -0.027777  0.000325  0.014856   
+73  0.057944  0.766864 -0.354082  0.081729 -0.022735  0.000168  0.023600   
+74  0.028064  0.109905  0.111263 -0.004737  0.099344 -0.001482  0.028223   
+75  0.057398  0.787856 -0.275123  0.033585 -0.058795  0.000558  0.028931   
+76  0.022232  0.067556  0.134256 -0.033562  0.021250 -0.000310  0.013283   
+78  0.056885  0.180455  0.153245  0.018018  0.101788 -0.001463 -0.062912   
+79  0.017177  0.052722  0.109978 -0.028432  0.025126 -0.000296  0.013021   
+80  0.018876  0.093971  0.177820 -0.058769  0.029240 -0.000264 -0.019404   
+82  0.003869  0.004335  0.018228  0.017281  0.052455 -0.000486 -0.033014   
+83  0.043510  0.015433  0.042007  0.030438  0.103214 -0.000566 -0.037012   
+84  0.021637  0.113739  0.097762  0.012483  0.139448 -0.002542  0.066482   
+86  0.047403  0.546626 -0.185845  0.058377  0.049301 -0.000590 -0.042412   
+87  0.025391  0.102794  0.279746 -0.103865 -0.017336  0.000292 -0.010407   
+88  0.028094  0.242513 -0.003793  0.018867  0.096144 -0.001130 -0.055989   
+89  0.042507  0.348930  0.500282 -0.334472 -0.425269  0.005789 -0.113853   
+90  0.042507  0.348930  0.500282 -0.334472 -0.425269  0.005789 -0.113853   
+91  0.047965  0.515840 -0.150589  0.046966  0.061611 -0.000547 -0.089878   
+92  0.014613  0.042890  0.052501  0.004866  0.096955 -0.001423  0.045636   
+98  0.012249  0.030506  0.080932  0.092024 -0.068889 -0.001209  0.039852   
+99  0.011781  0.054157  0.119880 -0.050000 -0.013147  0.000134  0.025528   
+
+           7         8         9  ...        91        92        93        94  \
+1  -0.118927  0.114293  0.047534  ... -0.001719 -0.000627 -0.000523 -0.004294   
+2  -0.014635 -0.007630 -0.027705  ... -0.004161 -0.001045  0.001289  0.001373   
+3  -0.155367  0.126201  0.055112  ...  0.008423 -0.006206  0.002880 -0.002545   
+4  -0.045112  0.040877  0.035654  ...  0.014080 -0.014163  0.002360  0.005367   
+5  -0.105605  0.117404  0.055281  ...  0.004112  0.004224  0.000075  0.000264   
+10  0.015755 -0.004257  0.004376  ... -0.018300  0.013372  0.000913 -0.003539   
+14 -0.204170  0.157493  0.060064  ...  0.007766 -0.005230 -0.005152  0.008738   
+15 -0.044328 -0.026400 -0.019616  ... -0.023267  0.016537 -0.005208  0.010834   
+16 -0.241479  0.190051  0.071145  ... -0.002431 -0.002008 -0.004763 -0.003636   
+17 -0.056261  0.053198 -0.013980  ... -0.000667  0.011289 -0.000770 -0.002704   
+18 -0.065046  0.057057 -0.009216  ... -0.003475  0.001985  0.006825  0.003018   
+19 -0.089815  0.092100  0.032760  ...  0.010675 -0.002610  0.001574  0.001797   
+20 -0.099278  0.092832 -0.001318  ... -0.003922  0.007768  0.000681 -0.000758   
+26 -0.075079  0.034325  0.042759  ... -0.008051 -0.000025  0.000947 -0.000220   
+27 -0.012449 -0.025354  0.003890  ... -0.030234  0.043584  0.026563 -0.002612   
+28 -0.107368  0.127873  0.034714  ...  0.006939 -0.000996  0.002024 -0.004003   
+29 -0.042235 -0.032814 -0.040515  ...  0.035600 -0.023673  0.001879 -0.008426   
+31 -0.045588  0.027235 -0.065656  ... -0.043365  0.044772  0.009445 -0.008972   
+39 -0.110714  0.098983  0.018443  ... -0.005780  0.002367  0.002360  0.001124   
+42 -0.057288  0.025799 -0.074168  ...  0.043345 -0.046849 -0.005548  0.006579   
+45 -0.222227  0.191386  0.073228  ...  0.001213 -0.000177  0.003442 -0.003658   
+47 -0.030746  0.009266 -0.012750  ... -0.003985  0.000968 -0.007005  0.002535   
+48  0.007607 -0.030422  0.019682  ...  0.028107 -0.034487 -0.033967  0.011249   
+49  0.009216 -0.034834  0.024378  ... -0.021478 -0.002079 -0.007142 -0.004791   
+50  0.004865 -0.001187  0.000919  ...  0.000048 -0.000012  0.000082 -0.000028   
+51 -0.039857 -0.031677  0.000137  ... -0.001571 -0.003760 -0.003235 -0.002230   
+52 -0.049348 -0.162980  0.039514  ... -0.000620  0.004305 -0.000740 -0.001872   
+53 -0.016524 -0.101952  0.021304  ...  0.000368  0.007381  0.001616 -0.000702   
+54  0.025012  0.283370 -0.030220  ...  0.004477  0.024477 -0.007035  0.012172   
+55  0.015108 -0.187181  0.048538  ...  0.000685 -0.001010  0.003211 -0.002526   
+56 -0.076083 -0.405822  0.029409  ... -0.017770 -0.049332 -0.005172  0.002953   
+58 -0.064451 -0.473099  0.036689  ... -0.000590 -0.002152  0.001362  0.002063   
+62  0.004865 -0.001187  0.000919  ...  0.000048 -0.000012  0.000082 -0.000028   
+66 -0.005425 -0.023750  0.004030  ... -0.002027 -0.002835 -0.000402  0.000169   
+67 -0.010955 -0.002176  0.008496  ...  0.000315  0.001509 -0.000551  0.000601   
+69 -0.054077  0.021871 -0.062370  ...  0.006741 -0.003030 -0.002565 -0.002816   
+70 -0.059495  0.047234  0.029527  ... -0.007112 -0.004182  0.000651  0.002237   
+71  0.012068  0.182256 -0.011672  ...  0.082662  0.187694  0.013803 -0.013761   
+73  0.024992  0.206511 -0.024632  ... -0.037791 -0.091865 -0.006205 -0.000299   
+74  0.017704 -0.122159  0.035414  ... -0.022066 -0.021115 -0.002645 -0.000134   
+75  0.030328  0.198226 -0.019940  ... -0.036359 -0.112452 -0.001048  0.002841   
+76  0.004800 -0.029016  0.005378  ... -0.004724  0.004584  0.003673 -0.002413   
+78 -0.051750 -0.236219  0.055422  ... -0.025250 -0.031404 -0.009393  0.012444   
+79  0.007233  0.003352 -0.003971  ... -0.004714 -0.001775 -0.002734 -0.001875   
+80 -0.027634 -0.053990  0.019763  ... -0.008834 -0.005471 -0.002328 -0.001828   
+82 -0.041590  0.026851  0.017745  ... -0.000857  0.001724  0.000115 -0.000165   
+83 -0.034783  0.066709  0.056529  ...  0.005396 -0.003188 -0.001358 -0.001355   
+84  0.085734 -0.253515  0.068473  ...  0.245169  0.283530  0.017249  0.004088   
+86 -0.034060 -0.223728  0.018077  ... -0.043795 -0.057986 -0.004158 -0.000967   
+87 -0.017412 -0.009942  0.017144  ...  0.021943  0.012164  0.000469  0.001251   
+88 -0.048150 -0.445839  0.037102  ... -0.015885 -0.026718 -0.003103  0.001387   
+89 -0.094269  0.210959  0.017686  ...  0.000126 -0.002616  0.000057  0.000026   
+90 -0.094269  0.210959  0.017686  ...  0.000126 -0.002616  0.000057  0.000026   
+91 -0.080125 -0.422141  0.030587  ...  0.030210  0.083281  0.007431 -0.005745   
+92  0.064953 -0.098894  0.054791  ...  0.028207  0.044887 -0.004021  0.008446   
+98 -0.006808 -0.013000  0.013701  ...  0.020231  0.019995  0.002735  0.000496   
+99  0.011707  0.025997 -0.004901  ...  0.000527  0.006148 -0.000392 -0.000790   
+
+          95        96        97            98            99  cluster  
+1   0.004083 -0.000285 -0.001915 -3.154351e-18  5.559924e-17        1  
+2   0.000956 -0.000719 -0.001215 -3.981055e-18 -5.365784e-17        1  
+3   0.002872 -0.000354 -0.004185 -5.529431e-18  2.325614e-17        1  
+4   0.002129  0.004415  0.003658 -2.927346e-18  3.022214e-17        1  
+5   0.008848  0.005781 -0.008074  1.409463e-18 -1.864828e-17        1  
+10 -0.002421 -0.007637 -0.008765 -3.035766e-18  7.806256e-18        1  
+14  0.000700 -0.004835  0.001738 -8.998878e-18  7.066965e-17        1  
+15  0.001738  0.003374  0.003022  6.207057e-18  5.990217e-18        1  
+16 -0.007249 -0.002394 -0.002229  2.539405e-18  1.320694e-17        1  
+17 -0.001068  0.001674  0.000969  8.470329e-19  6.627186e-18        1  
+18 -0.001727 -0.003738 -0.002411  3.306817e-18 -6.478108e-17        1  
+19  0.002176 -0.001011  0.000169  6.823697e-18 -3.688998e-17        1  
+20  0.002779  0.002423 -0.003920  5.692061e-19 -2.439455e-19        1  
+26 -0.008994 -0.000768  0.001007 -1.626303e-18 -6.087795e-17        1  
+27  0.000604  0.002386  0.003118 -1.097755e-18  8.199279e-18        1  
+28  0.001820 -0.000589  0.001997  2.385245e-18  4.731187e-17        1  
+29 -0.002511 -0.005666 -0.006211 -2.656295e-18  4.621412e-18        1  
+31 -0.000582  0.000116 -0.000378 -2.710505e-18 -2.602085e-18        1  
+39  0.002575  0.002063 -0.002789 -3.523657e-18 -2.524836e-17        1  
+42  0.001066  0.001757  0.002148  1.301043e-18 -5.881797e-18        1  
+45  0.002725  0.000638  0.003688  1.732182e-19 -7.686993e-17        1  
+47  0.001687  0.001093  0.000224 -2.608861e-18 -2.129780e-17        1  
+48 -0.008197 -0.001087 -0.003821  1.301043e-18  7.887571e-18        1  
+49  0.004772 -0.000016  0.002280  7.318365e-18  1.870249e-18        1  
+50 -0.000019 -0.000012 -0.000002  7.589415e-19  1.734723e-18        1  
+51  0.008167  0.002146  0.000675 -1.246832e-18 -2.493665e-17        1  
+52 -0.004855  0.001026 -0.003212  1.883801e-18 -5.158092e-17        1  
+53  0.004319 -0.002250  0.001359  5.597194e-18  1.541600e-17        1  
+54  0.404043 -0.065473  0.016605  1.543294e-18 -7.147603e-17        1  
+55  0.028994 -0.017878  0.013458 -1.192622e-18  8.798301e-17        1  
+56 -0.005929  0.008809 -0.006051 -9.283481e-19 -1.275632e-17        1  
+58 -0.011208 -0.000191 -0.002173 -2.053631e-18 -8.012254e-17        1  
+62 -0.000019 -0.000012 -0.000002  7.589415e-19  1.734723e-18        1  
+66  0.003676 -0.003055  0.002871 -2.981556e-18  6.505213e-19        1  
+67  0.001602  0.000849 -0.000465 -1.517883e-18  3.079134e-17        1  
+69  0.001389 -0.002476 -0.002645 -1.328148e-18 -8.809143e-19        1  
+70  0.004454  0.010764 -0.007382  1.932590e-17  4.710858e-17        1  
+71 -0.200609  0.078546 -0.055416 -2.168404e-19 -2.852129e-17        1  
+73 -0.188154 -0.226565  0.242038  1.192622e-18 -8.077306e-18        1  
+74  0.006656  0.006076 -0.006567 -4.838252e-18 -3.772346e-17        1  
+75 -0.058457  0.231729 -0.214338  1.124860e-18 -2.833833e-17        1  
+76  0.004001 -0.001658 -0.001431 -2.493665e-17 -2.607506e-17        1  
+78  0.000046  0.004491  0.001452  1.176359e-17 -9.490835e-17        1  
+79  0.002230 -0.001083  0.001781  8.483882e-18  1.041105e-16        1  
+80  0.009768 -0.001434  0.000295 -5.766600e-18 -2.429290e-17        1  
+82 -0.000359  0.000258  0.000247  9.215718e-19 -4.743385e-18        1  
+83  0.003358 -0.003309 -0.000836  6.071532e-18  1.333569e-16        1  
+84  0.006990 -0.007367  0.006545  4.675622e-19 -5.208406e-18        1  
+86  0.036593  0.025538 -0.030153 -4.607859e-19  2.365526e-16        1  
+87  0.002381 -0.004205  0.004791  1.626303e-19 -5.702903e-17        1  
+88 -0.012032  0.002572 -0.001436  1.626303e-19 -3.466736e-17        1  
+89 -0.015594 -0.012354  0.013436 -3.930233e-18 -1.054387e-17        1  
+90 -0.015594 -0.012354  0.013436 -3.930233e-18 -1.054387e-17        1  
+91  0.048264 -0.044815  0.034791 -8.131516e-19  3.960726e-18        1  
+92  0.006363  0.003251  0.002901  1.517883e-18  8.478461e-17        1  
+98 -0.001625  0.003219 -0.002701  3.469447e-18 -6.071532e-17        1  
+99 -0.003599  0.003937 -0.000656  5.204170e-18 -3.534499e-17        1  
+
+[57 rows x 101 columns]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">svd_df</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span>
+<span class="c1"># Tampilkan distribusi kategori dalam kluster 1</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Distribusi Kategori dalam Cluster 1:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">][</span><span class="s1">&#39;kategori&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+
+<span class="c1"># Tampilkan distribusi kategori dalam kluster 2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Distribusi Kategori dalam Cluster 2:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">][</span><span class="s1">&#39;kategori&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Distribusi Kategori dalam Cluster 1:
+kategori
+Olahraga    26
+Makanan     17
+Name: count, dtype: int64
+
+Distribusi Kategori dalam Cluster 2:
+kategori
+Makanan     33
+Olahraga    24
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Tugas-PPW-A"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Al-Hasib
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

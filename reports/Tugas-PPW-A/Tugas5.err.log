@@ -63,7 +63,7 @@ for idx, distance in zip(indices, distances):
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mStdinNotImplementedError[0m                  Traceback (most recent call last)
-[0;32m<ipython-input-8-3dcb2071dff5>[0m in [0;36m<cell line: 31>[0;34m()[0m
+[0;32m<ipython-input-9-3dcb2071dff5>[0m in [0;36m<cell line: 31>[0;34m()[0m
 [1;32m     29[0m [0;34m[0m[0m
 [1;32m     30[0m [0;31m# Input teks dan preprocessing[0m[0;34m[0m[0;34m[0m[0m
 [0;32m---> 31[0;31m [0mquery_text[0m [0;34m=[0m [0minput[0m[0;34m([0m[0;34m"Masukkan teks: "[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
