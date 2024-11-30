@@ -171,7 +171,12 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Tugas1.html"><strong>Tugas Pertemuan 1 - Crawling berita online</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="Tugas2.html">Tugas Pertemuan 2 - Pre-Processing Data dengan TF-IDF</a></li>
+
+
+
+
 <li class="toctree-l1"><a class="reference internal" href="Tugas3.html">Tugas Pertemuan 3 - Logistic Regression</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="Skip-Gram.html">Word Embedding</a></li>
 
 
@@ -188,6 +193,7 @@
 <li class="toctree-l1"><a class="reference internal" href="Tugas6.html">Tugas 6 : Klasifikasi Berita Metode Logistic Regression dengan reduksi dimensi SVD</a></li>
 
 
+<li class="toctree-l1"><a class="reference internal" href="Tugas7.html">Tugas 7 : Clustering Web dengan Fuzzy C-Means</a></li>
 </ul>
 
     </div>
@@ -407,7 +413,13 @@
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tugas 4 - Graph</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pengujian">Pengujian</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pengujian">Pengujian</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-process-news-input">1. <strong>Fungsi <code class="docutils literal notranslate"><span class="pre">process_news_input()</span></code></strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interaksi-dengan-pengguna">2. <strong>Interaksi dengan Pengguna</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output">3. <strong>Output</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">Tujuan</a></li>
+</ul>
+</li>
 </ul>
 
             </nav>
@@ -435,6 +447,37 @@
 </div>
 </div>
 </div>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">!pip</span> <span class="pre">install</span> <span class="pre">Sastrawi</span></code></strong>:</p>
+<ul class="simple">
+<li><p>Menginstal library <strong>Sastrawi</strong>, yang digunakan untuk stemming (mengubah kata menjadi bentuk dasar) dalam bahasa Indonesia.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">nltk</span></code></strong>:</p>
+<ul class="simple">
+<li><p>Mengimpor library <strong>NLTK (Natural Language Toolkit)</strong>, yang digunakan untuk pengolahan teks, seperti tokenisasi.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">nltk.download('punkt')</span></code></strong>:</p>
+<ul class="simple">
+<li><p>Mengunduh paket <strong>‘punkt’</strong> dari NLTK, yang dibutuhkan untuk proses tokenisasi teks.</p></li>
+</ul>
+</li>
+<li><p><strong>Import library lainnya</strong>:</p>
+<ul class="simple">
+<li><p><strong>Pandas</strong>: Untuk manipulasi dan analisis data berbentuk tabel.</p></li>
+<li><p><strong>NumPy</strong>: Untuk operasi numerik.</p></li>
+<li><p><strong>Re</strong>: Untuk manipulasi teks menggunakan ekspresi reguler.</p></li>
+<li><p><strong>Stopwords</strong>: Untuk menghapus kata-kata umum (stopwords) dari teks.</p></li>
+<li><p><strong>Sastrawi</strong>: Untuk stemming bahasa Indonesia.</p></li>
+<li><p><strong>TfidfVectorizer</strong>: Untuk menghitung nilai TF-IDF pada teks.</p></li>
+<li><p><strong>Cosine Similarity</strong>: Untuk mengukur kesamaan antar dokumen.</p></li>
+<li><p><strong>NetworkX</strong>: Untuk analisis dan visualisasi grafik jaringan.</p></li>
+<li><p><strong>Matplotlib</strong>: Untuk membuat grafik atau visualisasi data.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Tujuan</strong>: Mengimpor dan mempersiapkan library yang diperlukan untuk melakukan berbagai proses analisis teks, seperti pembersihan data, transformasi teks ke nilai TF-IDF, penghitungan kesamaan dokumen, dan visualisasi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install dan import modul yang diperlukan</span>
@@ -475,6 +518,19 @@ Successfully installed Sastrawi-1.0.1
 </div>
 </div>
 </div>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">pd.read_csv(...)</span></code></strong>:</p>
+<ul class="simple">
+<li><p>Membaca file <strong>CSV</strong> berisi data berita dari lokasi tertentu di Google Drive. File ini kemudian dimuat ke dalam DataFrame <strong>Pandas</strong> untuk memudahkan analisis.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">df.head()</span></code></strong>:</p>
+<ul class="simple">
+<li><p>Menampilkan 5 baris pertama dari DataFrame untuk memberikan gambaran isi data, seperti kolom yang tersedia dan sampel datanya.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Tujuan</strong>: Memuat data berita ke dalam DataFrame.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Baca file CSV</span>
@@ -760,6 +816,19 @@ Successfully installed Sastrawi-1.0.1
   </div>
 </div></div>
 </div>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">sample_berita</span> <span class="pre">=</span> <span class="pre">df['isi'].iloc[4]</span></code></strong>:</p>
+<ul class="simple">
+<li><p>Mengambil teks berita dari kolom <strong><code class="docutils literal notranslate"><span class="pre">'isi'</span></code></strong> di baris ke-4 (indeks dimulai dari 0). Dengan kata lain, ini mengambil satu sampel berita dari dataset.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">print(sample_berita)</span></code></strong>:</p>
+<ul class="simple">
+<li><p>Mencetak isi teks berita yang diambil ke layar.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Tujuan</strong>: Menyimpan dan menampilkan salah satu berita dari dataset untuk ditinjau atau digunakan lebih lanjut.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># mengambil satu sample berita</span>
@@ -774,6 +843,49 @@ Successfully installed Sastrawi-1.0.1
 </div>
 </div>
 </div>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">result_list</span> <span class="pre">=</span> <span class="pre">[]</span></code></strong>:</p>
+<ul class="simple">
+<li><p>Membuat list kosong untuk menyimpan hasil pemisahan kalimat dari teks berita.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">sentences</span> <span class="pre">=</span> <span class="pre">sample_berita.split('.')</span></code></strong>:</p>
+<ul class="simple">
+<li><p>Memisahkan teks berita menjadi kalimat-kalimat berdasarkan tanda titik (<code class="docutils literal notranslate"><span class="pre">.</span></code>).</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">sentences</span> <span class="pre">=</span> <span class="pre">[s.strip()</span> <span class="pre">for</span> <span class="pre">s</span> <span class="pre">in</span> <span class="pre">sentences</span> <span class="pre">if</span> <span class="pre">s.strip()]</span></code></strong>:</p>
+<ul class="simple">
+<li><p>Membersihkan setiap kalimat dari spasi berlebih dan menghapus entri kosong.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">i,</span> <span class="pre">sentence</span> <span class="pre">in</span> <span class="pre">enumerate(sentences,</span> <span class="pre">1):</span></code></strong>:</p>
+<ul class="simple">
+<li><p>Melakukan iterasi untuk setiap kalimat yang telah dipisahkan.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">result_list.append(...)</span></code></strong>:</p>
+<ul>
+<li><p>Menyimpan setiap kalimat ke dalam <strong><code class="docutils literal notranslate"><span class="pre">result_list</span></code></strong> dalam bentuk dictionary berisi:</p>
+<ul>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">kalimat</span> <span class="pre">ke</span> <span class="pre">n</span></code></strong>: Label untuk menunjukkan nomor kalimat.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">kalimat</span></code></strong>: Isi teks dari kalimat tersebut.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">result_df</span> <span class="pre">=</span> <span class="pre">pd.DataFrame(result_list)</span></code></strong>:</p>
+<ul class="simple">
+<li><p>Mengonversi hasil pemisahan kalimat menjadi sebuah DataFrame agar lebih mudah dianalisis atau dilihat.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">result_df</span></code></strong>:</p>
+<ul class="simple">
+<li><p>Menampilkan DataFrame berisi daftar kalimat dengan nomor urutnya.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Tujuan</strong>: Memisahkan teks berita menjadi kalimat-kalimat yang terstruktur dan menyimpannya dalam DataFrame.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Membuat list untuk menyimpan hasil</span>
@@ -1195,6 +1307,46 @@ Successfully installed Sastrawi-1.0.1
   </div>
 </div></div>
 </div>
+<ol class="arabic simple">
+<li><p><strong>Mengunduh dan Mendefinisikan Stopwords</strong>:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">nltk.download('stopwords')</span></code></strong>: Mengunduh daftar stopwords untuk bahasa Indonesia.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">stop_words</span></code></strong>: Mengambil daftar kata umum (stopwords) dalam bahasa Indonesia.</p></li>
+</ul>
+</li>
+<li><p><strong>Fungsi Preprocessing</strong>:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">remove_url(data_berita)</span></code></strong>: Menghapus URL dari teks.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">remove_html(data_berita)</span></code></strong>: Menghapus tag HTML dari teks.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">remove_emoji(data_berita)</span></code></strong>: Menghapus emoji dari teks.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">remove_numbers(data_berita)</span></code></strong>: Menghapus angka dari teks.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">remove_symbols(data_berita)</span></code></strong>: Menghapus simbol atau karakter khusus selain huruf dan angka.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">case_folding(text)</span></code></strong>: Mengubah semua huruf dalam teks menjadi huruf kecil.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">tokenize(text)</span></code></strong>: Memecah teks menjadi kata-kata (token).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">remove_stopwords(text)</span></code></strong>: Menghapus stopwords dari teks.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">stemming(text)</span></code></strong>: Mengubah kata ke bentuk dasar (stem) menggunakan Sastrawi.</p></li>
+</ul>
+</li>
+<li><p><strong>Penerapan Preprocessing pada DataFrame</strong>:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">result_df['clean']</span></code></strong>: Secara berurutan, membersihkan setiap kalimat dari URL, HTML, emoji, simbol, angka, dan melakukan case folding.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">result_df['tokenize']</span></code></strong>: Tokenisasi kalimat menjadi daftar kata.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">result_df['stopword</span> <span class="pre">removal']</span></code></strong>: Menghapus stopwords dari token yang dihasilkan.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">result_df['stemming']</span></code></strong>: Melakukan stemming pada kata-kata yang tersisa.</p></li>
+</ul>
+</li>
+<li><p><strong>Menggabungkan Kata</strong>:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">result_df['final']</span></code></strong>: Menggabungkan kembali hasil stemming menjadi satu string untuk setiap kalimat.</p></li>
+</ul>
+</li>
+<li><p><strong>Menampilkan DataFrame Final</strong>:</p>
+<ul class="simple">
+<li><p>Menampilkan kolom “Kalimat ke-n” dan hasil akhir preprocessing teks pada kolom <strong><code class="docutils literal notranslate"><span class="pre">final</span></code></strong>.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Tujuan</strong>: Membersihkan teks berita agar siap digunakan untuk analisis lebih lanjut seperti klasifikasi atau clustering. Setiap kalimat dalam berita diolah menjadi bentuk teks yang lebih bersih dan relevan untuk pemrosesan bahasa alami.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download stopwords untuk bahasa Indonesia</span>
@@ -1613,6 +1765,49 @@ Successfully installed Sastrawi-1.0.1
   </div>
 </div></div>
 </div>
+<ol class="arabic simple">
+<li><p><strong>Gabungkan Kalimat</strong>:</p>
+<ul class="simple">
+<li><p>Menggabungkan semua teks yang sudah melalui proses <strong>preprocessing</strong> (hasil stemming) menjadi dokumen untuk setiap kalimat.</p></li>
+</ul>
+</li>
+<li><p><strong>Inisialisasi TF-IDF Vectorizer</strong>:</p>
+<ul class="simple">
+<li><p>Menggunakan <strong><code class="docutils literal notranslate"><span class="pre">TfidfVectorizer</span></code></strong> untuk menghitung skor TF-IDF dari setiap kata dalam dokumen.</p></li>
+</ul>
+</li>
+<li><p><strong>Transformasi Teks ke TF-IDF</strong>:</p>
+<ul class="simple">
+<li><p>Mengubah dokumen yang sudah diproses menjadi matriks TF-IDF. Setiap nilai di matriks merepresentasikan skor TF-IDF suatu kata dalam dokumen.</p></li>
+</ul>
+</li>
+<li><p><strong>Nama Fitur (Kata-Kata)</strong>:</p>
+<ul class="simple">
+<li><p>Mengambil daftar kata-kata unik (fitur) yang digunakan dalam representasi TF-IDF.</p></li>
+</ul>
+</li>
+<li><p><strong>Konversi ke DataFrame</strong>:</p>
+<ul class="simple">
+<li><p>Matriks TF-IDF diubah menjadi DataFrame, di mana:</p>
+<ul>
+<li><p><strong>Kolom</strong>: Kata-kata dari fitur TF-IDF.</p></li>
+<li><p><strong>Baris</strong>: Dokumen atau kalimat yang dianalisis.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Tambahkan Identifikasi Kalimat</strong>:</p>
+<ul class="simple">
+<li><p>Menambahkan kolom <strong><code class="docutils literal notranslate"><span class="pre">kalimat</span> <span class="pre">ke</span> <span class="pre">n</span></code></strong> untuk menunjukkan kalimat mana yang diwakili oleh setiap baris.</p></li>
+</ul>
+</li>
+<li><p><strong>Output</strong>:</p>
+<ul class="simple">
+<li><p>Menampilkan DataFrame hasil TF-IDF, berisi skor relevansi setiap kata (fitur) untuk masing-masing kalimat.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Tujuan</strong>: Mengukur pentingnya setiap kata dalam konteks setiap kalimat (dokumen) untuk analisis lebih lanjut seperti peringkat relevansi, pencarian, atau klasifikasi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Gabungkan semua kalimat hasil stemming menjadi dokumen untuk tiap kalimat</span>
@@ -2457,6 +2652,35 @@ Successfully installed Sastrawi-1.0.1
   </div>
 </div></div>
 </div>
+<p>Menghitung tingkat kesamaan antar kalimat berdasarkan representasi <strong>TF-IDF</strong> menggunakan <strong>cosine similarity</strong>:</p>
+<ol class="arabic simple">
+<li><p><strong>Hitung Cosine Similarity</strong>:</p>
+<ul class="simple">
+<li><p><strong>Cosine similarity</strong> mengukur kemiripan antar vektor berdasarkan sudut antar vektor.</p></li>
+<li><p>Di sini, setiap kalimat diwakili oleh vektor TF-IDF, lalu dihitung kemiripannya dengan kalimat lain.</p></li>
+</ul>
+</li>
+<li><p><strong>Buat DataFrame untuk Hasil</strong>:</p>
+<ul class="simple">
+<li><p>Hasil cosine similarity disimpan dalam bentuk <strong>matriks</strong>:</p>
+<ul>
+<li><p><strong>Baris dan Kolom</strong>: Mewakili setiap kalimat.</p></li>
+<li><p><strong>Nilai Matriks</strong>: Nilai cosine similarity antara dua kalimat, dengan rentang 0 (tidak mirip) hingga 1 (sangat mirip).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Output</strong>:</p>
+<ul class="simple">
+<li><p>Matriks <strong>cosine similarity</strong> ditampilkan dalam bentuk DataFrame, di mana:</p>
+<ul>
+<li><p>Setiap nilai memperlihatkan tingkat kemiripan antara dua kalimat tertentu.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>Tujuan</strong>: Matriks ini berguna untuk analisis hubungan antar kalimat, seperti menemukan kalimat yang mirip, clustering, atau membuat rangkuman teks.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Menghitung cosine similarity antar kalimat berdasarkan TF-IDF</span>
@@ -3313,6 +3537,71 @@ Successfully installed Sastrawi-1.0.1
   </div>
 </div></div>
 </div>
+<p>Gambar tersebut adalah <strong>matriks cosine similarity</strong> yang menunjukkan tingkat kesamaan antar kalimat dalam dokumen. Berikut penjelasannya:</p>
+<ol class="arabic simple">
+<li><p><strong>Baris dan Kolom</strong>:</p>
+<ul class="simple">
+<li><p>Setiap baris dan kolom merepresentasikan kalimat tertentu, yang diberi label seperti “Kalimat ke 16”, “Kalimat ke 17”, dan seterusnya.</p></li>
+</ul>
+</li>
+<li><p><strong>Nilai Matriks</strong>:</p>
+<ul class="simple">
+<li><p>Nilai pada posisi ((i, j)) menunjukkan tingkat kemiripan antara <strong>Kalimat ke-i</strong> dan <strong>Kalimat ke-j</strong>.</p></li>
+<li><p>Nilai berkisar antara 0 hingga 1:</p>
+<ul>
+<li><p><strong>0</strong>: Tidak ada kemiripan sama sekali.</p></li>
+<li><p><strong>1</strong>: Kalimat identik atau sangat mirip.</p></li>
+</ul>
+</li>
+<li><p>Misalnya, nilai 0.254505 di baris “Kalimat ke 19” dan kolom “Kalimat ke 16” berarti <strong>Kalimat ke 19</strong> memiliki kemiripan 25.45% dengan <strong>Kalimat ke 16</strong>.</p></li>
+</ul>
+</li>
+<li><p><strong>Diagonal Matriks</strong>:</p>
+<ul class="simple">
+<li><p>Nilai diagonal (misalnya, “Kalimat ke 16” dengan “Kalimat ke 16”) selalu 1 karena kalimat tersebut dibandingkan dengan dirinya sendiri.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Tujuan</strong>:</p>
+<ul class="simple">
+<li><p>Matriks ini berguna untuk menganalisis kemiripan antar kalimat, misalnya:</p>
+<ul>
+<li><p>Mencari kalimat yang paling mirip.</p></li>
+<li><p>Menentukan keterkaitan antar kalimat untuk membuat rangkuman atau membangun struktur teks.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>matriks adjacency</strong> berdasarkan matriks cosine similarity untuk menentukan hubungan antar kalimat dengan ambang batas (<strong>threshold</strong>) tertentu. Berikut penjelasannya:</p>
+<ol class="arabic simple">
+<li><p><strong>Threshold (Ambang Batas)</strong>:</p>
+<ul class="simple">
+<li><p>Ditentukan nilai ambang batas ( \text{threshold} = 0.5 ).</p></li>
+<li><p>Jika nilai cosine similarity antara dua kalimat ( \geq 0.5 ), maka dianggap <strong>berhubungan</strong> (ditandai dengan nilai 1 di matriks adjacency).</p></li>
+<li><p>Jika ( &lt; 0.5 ), maka dianggap <strong>tidak berhubungan</strong> (ditandai dengan nilai 0).</p></li>
+</ul>
+</li>
+<li><p><strong>Adjacency Matrix</strong>:</p>
+<ul class="simple">
+<li><p>Matriks yang menunjukkan hubungan antar kalimat berdasarkan cosine similarity.</p></li>
+<li><p>Baris dan kolom mewakili kalimat, dan setiap nilai menunjukkan hubungan:</p>
+<ul>
+<li><p><strong>1</strong>: Kalimat saling berhubungan.</p></li>
+<li><p><strong>0</strong>: Kalimat tidak berhubungan.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Hasil</strong>:</p>
+<ul class="simple">
+<li><p>Matriks adjacency disimpan dalam <strong>DataFrame</strong> (<code class="docutils literal notranslate"><span class="pre">adjacency_df</span></code>) untuk mempermudah interpretasi dan menampilkan hubungan antar kalimat.</p></li>
+<li><p>Matriks ini dapat digunakan untuk analisis graf atau menemukan kelompok kalimat yang saling terkait (clustering).</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Contoh Interpretasi</strong>:</p>
+<ul class="simple">
+<li><p>Jika pada baris “Kalimat ke 16” dan kolom “Kalimat ke 19” terdapat nilai <strong>1</strong>, berarti <strong>Kalimat ke 16</strong> dan <strong>Kalimat ke 19</strong> memiliki cosine similarity ( \geq 0.5 ), sehingga dianggap berhubungan.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tetapkan ambang batas (threshold) 0.7</span>
@@ -4172,6 +4461,36 @@ Successfully installed Sastrawi-1.0.1
   </div>
 </div></div>
 </div>
+<p>membuat dan menampilkan graf berdasarkan matriks adjacency yang telah dibuat sebelumnya. Berikut penjelasan singkatnya:</p>
+<ol class="arabic simple">
+<li><p><strong>Membuat Graf dari Matriks Adjacency</strong>:</p>
+<ul class="simple">
+<li><p>Matriks adjacency yang berisi 1 (hubungan) dan 0 (tidak ada hubungan) digunakan untuk membangun graf. Setiap kalimat dianggap sebagai <strong>node</strong> dan hubungan antar kalimat menjadi <strong>edge</strong>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nx.from_numpy_array(adjacency_matrix)</span></code> digunakan untuk mengonversi matriks adjacency menjadi graf menggunakan NetworkX.</p></li>
+</ul>
+</li>
+<li><p><strong>Menyesuaikan Label</strong>:</p>
+<ul class="simple">
+<li><p>Setiap <strong>node</strong> diberi label berupa “Kalimat ke n” (misalnya, “Kalimat ke 1”, “Kalimat ke 2”, dll) agar lebih mudah dipahami, menggunakan <code class="docutils literal notranslate"><span class="pre">nx.relabel_nodes()</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Menggambar Graf</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nx.spring_layout(G)</span></code> digunakan untuk mengatur posisi node dalam graf agar tampil lebih jelas dan teratur.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nx.draw()</span></code> menggambar graf dengan pengaturan visual seperti warna node, ukuran node, ukuran font label, dan warna edge.</p></li>
+</ul>
+</li>
+<li><p><strong>Menampilkan Graf</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">plt.show()</span></code> menampilkan graf yang sudah digambar.</p></li>
+<li><p>Judul graf menunjukkan bahwa ini adalah <strong>graf berdasarkan matriks adjacency dengan cosine similarity &gt;= 0.5</strong>.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Tujuan</strong>:</p>
+<ul class="simple">
+<li><p>Visualisasi ini menunjukkan bagaimana kalimat-kalimat dalam berita saling berhubungan berdasarkan similarity mereka. Kalimat yang lebih mirip akan lebih dekat satu sama lain dalam graf ini.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Buat graf dari matriks adjacency</span>
@@ -4196,6 +4515,34 @@ Successfully installed Sastrawi-1.0.1
 <img alt="../_images/08b6ae176c18ce46a7fb376db4ff418287ffb0bc16c7b610c0b468761a5880a5.png" src="../_images/08b6ae176c18ce46a7fb376db4ff418287ffb0bc16c7b610c0b468761a5880a5.png" />
 </div>
 </div>
+<p>menghitung tiga jenis <strong>centrality</strong> pada graf yang dibangun sebelumnya untuk menganalisis seberapa penting atau berpengaruh setiap kalimat dalam struktur graf tersebut. Berikut penjelasan singkatnya:</p>
+<ol class="arabic simple">
+<li><p><strong>Betweenness Centrality</strong>:</p>
+<ul class="simple">
+<li><p>Mengukur seberapa sering sebuah node (kalimat) berada di jalur terpendek antara dua node lainnya. Node dengan nilai betweenness tinggi memiliki pengaruh besar dalam menghubungkan bagian-bagian graf lainnya.</p></li>
+</ul>
+</li>
+<li><p><strong>Degree Centrality</strong>:</p>
+<ul class="simple">
+<li><p>Mengukur jumlah hubungan langsung (edge) yang dimiliki oleh setiap node. Semakin banyak koneksi yang dimiliki suatu node (kalimat), semakin tinggi nilai degree centrality-nya.</p></li>
+</ul>
+</li>
+<li><p><strong>Closeness Centrality</strong>:</p>
+<ul class="simple">
+<li><p>Mengukur seberapa dekat sebuah node dengan semua node lainnya dalam graf. Semakin rendah jarak rata-rata ke semua node lain, semakin tinggi nilai closeness centrality-nya.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Langkah-langkah kode</strong>:</p>
+<ul class="simple">
+<li><p>Menghitung <strong>betweenness</strong>, <strong>degree</strong>, dan <strong>closeness</strong> centrality menggunakan fungsi dari <strong>NetworkX</strong>.</p></li>
+<li><p>Menyimpan hasilnya dalam dataframe untuk memudahkan analisis dan visualisasi.</p></li>
+<li><p>Dataframe <code class="docutils literal notranslate"><span class="pre">centrality_df</span></code> menampilkan kalimat bersama dengan nilai centrality untuk ketiga jenis tersebut.</p></li>
+</ul>
+<p><strong>Tujuan</strong>:</p>
+<ul class="simple">
+<li><p>Menganalisis kalimat mana yang memiliki pengaruh lebih besar dalam graf berdasarkan hubungan dan kedekatannya dengan kalimat lain.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Menghitung betweenness centrality</span>
@@ -4667,6 +5014,42 @@ Successfully installed Sastrawi-1.0.1
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="pengujian">
 <h1>Pengujian<a class="headerlink" href="#pengujian" title="Link to this heading">#</a></h1>
+<p>Memproses teks berita yang dimasukkan oleh pengguna dan menganalisisnya menggunakan berbagai teknik analisis teks. Berikut adalah penjelasan singkat dari setiap bagian kode:</p>
+<section id="fungsi-process-news-input">
+<h2>1. <strong>Fungsi <code class="docutils literal notranslate"><span class="pre">process_news_input()</span></code></strong><a class="headerlink" href="#fungsi-process-news-input" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Fungsi ini menerima input teks berita dari pengguna.</p></li>
+<li><p><strong>Pemisahan Kalimat</strong>: Memecah berita menjadi kalimat-kalimat terpisah.</p></li>
+<li><p><strong>Preprocessing</strong>: Membersihkan teks dari URL, HTML, emoji, angka, simbol, dan melakukan proses case folding, tokenisasi, penghapusan stopwords, serta stemming.</p></li>
+<li><p><strong>TF-IDF dan Cosine Similarity</strong>: Menghitung representasi vektor TF-IDF untuk setiap kalimat, kemudian menghitung kemiripan antar kalimat menggunakan <strong>cosine similarity</strong>.</p></li>
+<li><p><strong>Matriks Adjacency</strong>: Menyusun matriks adjacency untuk menunjukkan hubungan antara kalimat jika cosine similarity lebih dari ambang batas tertentu.</p></li>
+<li><p><strong>Graf dan Centrality</strong>: Membuat graf berdasarkan matriks adjacency dan menghitung tiga jenis <strong>centrality</strong> (Betweenness, Degree, dan Closeness) untuk mengetahui kalimat yang paling berpengaruh.</p></li>
+</ul>
+</section>
+<section id="interaksi-dengan-pengguna">
+<h2>2. <strong>Interaksi dengan Pengguna</strong><a class="headerlink" href="#interaksi-dengan-pengguna" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Pengguna diminta untuk memasukkan berita sebagai teks.</p></li>
+<li><p>Setelah itu, sistem memproses berita dan menghitung nilai centrality untuk setiap kalimat.</p></li>
+<li><p>Pengguna dapat memilih jenis centrality yang ingin dihitung (Betweenness, Degree, atau Closeness).</p></li>
+</ul>
+</section>
+<section id="output">
+<h2>3. <strong>Output</strong><a class="headerlink" href="#output" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Pemisahan Kalimat</strong>: Menampilkan kalimat-kalimat yang telah dipisahkan dari teks.</p></li>
+<li><p><strong>Cosine Similarity Matrix</strong>: Menampilkan matriks kemiripan antara kalimat.</p></li>
+<li><p><strong>Adjacency Matrix</strong>: Menampilkan matriks yang menunjukkan hubungan antar kalimat.</p></li>
+<li><p><strong>Graf</strong>: Menampilkan graf berdasarkan hubungan antar kalimat.</p></li>
+<li><p><strong>Centrality Values</strong>: Menampilkan nilai centrality untuk setiap kalimat berdasarkan pilihan pengguna.</p></li>
+<li><p><strong>Top 3 Kalimat</strong>: Menampilkan tiga kalimat teratas berdasarkan nilai centrality yang dipilih oleh pengguna.</p></li>
+</ul>
+</section>
+<section id="tujuan">
+<h2>Tujuan<a class="headerlink" href="#tujuan" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Analisis Teks</strong>: Untuk membantu pengguna menganalisis berita dan menemukan kalimat-kalimat yang memiliki pengaruh atau keterkaitan tinggi dalam teks berdasarkan berbagai ukuran centrality dalam graf.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fungsi untuk memisahkan dan memproses berita</span>
@@ -4857,6 +5240,7 @@ Ringkasan (3 Kalimat Teratas Berdasarkan Degree Centrality):
 </div>
 </div>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -4924,7 +5308,13 @@ Ringkasan (3 Kalimat Teratas Berdasarkan Degree Centrality):
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tugas 4 - Graph</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pengujian">Pengujian</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pengujian">Pengujian</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-process-news-input">1. <strong>Fungsi <code class="docutils literal notranslate"><span class="pre">process_news_input()</span></code></strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interaksi-dengan-pengguna">2. <strong>Interaksi dengan Pengguna</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output">3. <strong>Output</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">Tujuan</a></li>
+</ul>
+</li>
 </ul>
 
   </nav></div>

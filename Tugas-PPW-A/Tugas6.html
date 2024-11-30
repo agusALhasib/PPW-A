@@ -63,6 +63,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Tugas-PPW-A/Tugas6';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tugas 7 : Clustering Web dengan Fuzzy C-Means" href="Tugas7.html" />
     <link rel="prev" title="Tugas 5 : Query dengan kalimat" href="Tugas5.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -170,7 +171,12 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Tugas1.html"><strong>Tugas Pertemuan 1 - Crawling berita online</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="Tugas2.html">Tugas Pertemuan 2 - Pre-Processing Data dengan TF-IDF</a></li>
+
+
+
+
 <li class="toctree-l1"><a class="reference internal" href="Tugas3.html">Tugas Pertemuan 3 - Logistic Regression</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="Skip-Gram.html">Word Embedding</a></li>
 
 
@@ -187,6 +193,7 @@
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Tugas 6 : Klasifikasi Berita Metode Logistic Regression dengan reduksi dimensi SVD</a></li>
 
 
+<li class="toctree-l1"><a class="reference internal" href="Tugas7.html">Tugas 7 : Clustering Web dengan Fuzzy C-Means</a></li>
 </ul>
 
     </div>
@@ -406,8 +413,15 @@
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tugas 6 : Klasifikasi Berita Metode Logistic Regression dengan reduksi dimensi SVD</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-klasifikasi-berita">Deployment Klasifikasi Berita</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#https-huggingface-co-spaces-alhasibb-klasifikasi-berita">https://huggingface.co/spaces/AlHasibb/klasifikasi_berita</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#label-encoder">Label Encoder</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan">Penjelasan:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">Tujuan:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Penjelasan:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Penjelasan:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Tujuan:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pengujian">Pengujian</a></li>
 </ul>
 
             </nav>
@@ -422,12 +436,6 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="tugas-6-klasifikasi-berita-metode-logistic-regression-dengan-reduksi-dimensi-svd">
 <h1>Tugas 6 : Klasifikasi Berita Metode Logistic Regression dengan reduksi dimensi SVD<a class="headerlink" href="#tugas-6-klasifikasi-berita-metode-logistic-regression-dengan-reduksi-dimensi-svd" title="Link to this heading">#</a></h1>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="deployment-klasifikasi-berita">
-<h1>Deployment Klasifikasi Berita<a class="headerlink" href="#deployment-klasifikasi-berita" title="Link to this heading">#</a></h1>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="https-huggingface-co-spaces-alhasibb-klasifikasi-berita">
-<h1><a class="reference external" href="https://huggingface.co/spaces/AlHasibb/klasifikasi_berita">https://huggingface.co/spaces/AlHasibb/klasifikasi_berita</a><a class="headerlink" href="#https-huggingface-co-spaces-alhasibb-klasifikasi-berita" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
@@ -452,7 +460,7 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-bed02004-f40e-4d59-88a5-1add23d4157d" class="colab-df-container">
+  <div id="df-15651551-ec33-463a-9f7d-b1fadf7161f6" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -473,69 +481,69 @@
       <th></th>
       <th>judul</th>
       <th>tanggal</th>
-      <th>isi</th>
+      <th>isi_berita</th>
       <th>kategori</th>
-      <th>cleansing</th>
+      <th>berita_clean</th>
       <th>case_folding</th>
       <th>tokenize</th>
-      <th>Filtering/stopword removal</th>
+      <th>stopword_removal</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>Kualifikasi F1 GP Las Vegas: Russell Pole, Ver...</td>
-      <td>Sabtu, 23 Nov 2024 15:05 WIB</td>
-      <td>Las Vegas - Pebalap Mercedes George Russell me...</td>
+      <td>Marc Marquez Kini di Ducati, Harusnya Mudah Be...</td>
+      <td>Sabtu, 30 Nov 2024 17:30 WIB</td>
+      <td>Marc Marquez mengaku bakal banyak tantangan di...</td>
       <td>Olahraga</td>
-      <td>Las Vegas  Pebalap Mercedes George Russell mer...</td>
-      <td>las vegas  pebalap mercedes george russell mer...</td>
-      <td>['las', 'vegas', 'pebalap', 'mercedes', 'georg...</td>
-      <td>las vegas pebalap mercedes george russell mera...</td>
+      <td>Marc Marquez mengaku bakal banyak tantangan di...</td>
+      <td>marc marquez mengaku bakal banyak tantangan di...</td>
+      <td>['marc', 'marquez', 'mengaku', 'bakal', 'banya...</td>
+      <td>marc marquez mengaku tantangan motogp tim baru...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Triple Kill Jonatan Chrisite di China Masters:...</td>
-      <td>Sabtu, 23 Nov 2024 15:04 WIB</td>
-      <td>Shenzhen - Jonatan Christie sukses menembus pa...</td>
+      <td>Usai Balapan 1.000 KM di Sepang, Avila Bahar T...</td>
+      <td>Sabtu, 30 Nov 2024 02:15 WIB</td>
+      <td>Avila Bahar baru saja tampil balapan 1.000 KM ...</td>
       <td>Olahraga</td>
-      <td>Shenzhen  Jonatan Christie sukses menembus par...</td>
-      <td>shenzhen  jonatan christie sukses menembus par...</td>
-      <td>['shenzhen', 'jonatan', 'christie', 'sukses', ...</td>
-      <td>shenzhen jonatan christie sukses menembus part...</td>
+      <td>Avila Bahar baru saja tampil balapan  KM yang ...</td>
+      <td>avila bahar baru saja tampil balapan  km yang ...</td>
+      <td>['avila', 'bahar', 'baru', 'saja', 'tampil', '...</td>
+      <td>avila bahar tampil balapan km digelar sepang m...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>China Masters 2024: Singkirkan Shi Yu Qi, Jona...</td>
-      <td>Sabtu, 23 Nov 2024 14:04 WIB</td>
-      <td>Jakarta - China Masters 2024 jalani babak semi...</td>
+      <td>Video: Maarten Paes Bakal Sharing di It's His/...</td>
+      <td>2,167 Views  |  Jumat, 29 Nov 2024 21:30 WIB</td>
+      <td>Kiper Timnas Indonesia, Maarten Paes, akan men...</td>
       <td>Olahraga</td>
-      <td>Jakarta  China Masters  jalani babak semifinal...</td>
-      <td>jakarta  china masters  jalani babak semifinal...</td>
-      <td>['jakarta', 'china', 'masters', 'jalani', 'bab...</td>
-      <td>jakarta china masters jalani babak semifinal j...</td>
+      <td>Kiper Timnas Indonesia Maarten Paes akan mengi...</td>
+      <td>kiper timnas indonesia maarten paes akan mengi...</td>
+      <td>['kiper', 'timnas', 'indonesia', 'maarten', 'p...</td>
+      <td>kiper timnas indonesia maarten paes mengisi ac...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Tangkal Judol, Menpora Mau Perbanyak Gelar Kej...</td>
-      <td>Sabtu, 23 Nov 2024 11:50 WIB</td>
-      <td>Jakarta - Kejuaraan Antarkampung (Tarkam) biki...</td>
+      <td>Klaim Marini: Hasil MotoGP 2025 Sudah Ditentuk...</td>
+      <td>Jumat, 29 Nov 2024 21:30 WIB</td>
+      <td>Rider Honda Luca Marini melontarkan klaim bera...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Kejuaraan Antarkampung Tarkam bikinan...</td>
-      <td>jakarta  kejuaraan antarkampung tarkam bikinan...</td>
-      <td>['jakarta', 'kejuaraan', 'antarkampung', 'tark...</td>
-      <td>jakarta kejuaraan antarkampung tarkam bikinan ...</td>
+      <td>Rider Honda Luca Marini melontarkan klaim bera...</td>
+      <td>rider honda luca marini melontarkan klaim bera...</td>
+      <td>['rider', 'honda', 'luca', 'marini', 'melontar...</td>
+      <td>rider honda luca marini melontarkan klaim bera...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Vinales Bidik Rekor Ini Bersama Tech3</td>
-      <td>Sabtu, 23 Nov 2024 10:50 WIB</td>
-      <td>Montmelo - Pebalap Tech3 KTM Maverick Vinales ...</td>
+      <td>Marc Marquez Mau Santai Dulu, Bulan Januari Ba...</td>
+      <td>Jumat, 29 Nov 2024 17:50 WIB</td>
+      <td>Setelah MotoGP 2024 tuntas, termasuk tes usai ...</td>
       <td>Olahraga</td>
-      <td>Montmelo  Pebalap Tech KTM Maverick Vinales op...</td>
-      <td>montmelo  pebalap tech ktm maverick vinales op...</td>
-      <td>['montmelo', 'pebalap', 'tech', 'ktm', 'maveri...</td>
-      <td>montmelo pebalap tech ktm maverick vinales opt...</td>
+      <td>Setelah MotoGP  tuntas termasuk tes usai seri ...</td>
+      <td>setelah motogp  tuntas termasuk tes usai seri ...</td>
+      <td>['setelah', 'motogp', 'tuntas', 'termasuk', 't...</td>
+      <td>motogp tuntas tes seri pamungkas marc marquez ...</td>
     </tr>
   </tbody>
 </table>
@@ -543,7 +551,7 @@
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-bed02004-f40e-4d59-88a5-1add23d4157d')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-15651551-ec33-463a-9f7d-b1fadf7161f6')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -595,12 +603,12 @@
 
     <script>
       const buttonEl =
-        document.querySelector('#df-bed02004-f40e-4d59-88a5-1add23d4157d button.colab-df-convert');
+        document.querySelector('#df-15651551-ec33-463a-9f7d-b1fadf7161f6 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-bed02004-f40e-4d59-88a5-1add23d4157d');
+        const element = document.querySelector('#df-15651551-ec33-463a-9f7d-b1fadf7161f6');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -623,7 +631,40 @@
   </div>
   </div></div>
 </div>
-<p>Label Encoder</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="label-encoder">
+<h1>Label Encoder<a class="headerlink" href="#label-encoder" title="Link to this heading">#</a></h1>
+<p>Mengonversi data kategorikal (teks) menjadi angka menggunakan <strong>Label Encoding</strong>. Berikut penjelasan langkah-langkahnya:</p>
+<ol class="arabic simple">
+<li><p><strong>Inisialisasi LabelEncoder</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">label_encoder</span> <span class="pre">=</span> <span class="pre">LabelEncoder()</span></code> membuat objek <code class="docutils literal notranslate"><span class="pre">LabelEncoder</span></code> untuk mengubah data teks menjadi representasi numerik.</p></li>
+</ul>
+</li>
+<li><p><strong>Proses Transformasi</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">label_encoder.fit_transform(df['kategori'])</span></code>:</p>
+<ul>
+<li><p>Mengambil kolom <code class="docutils literal notranslate"><span class="pre">kategori</span></code> dalam DataFrame <code class="docutils literal notranslate"><span class="pre">df</span></code>.</p></li>
+<li><p>Mengubah setiap kategori unik (seperti “olahraga”, “makanan”) menjadi angka yang sesuai (seperti 0, 1, 2, dll.).</p></li>
+</ul>
+</li>
+<li><p>Hasil encoding disimpan ke kolom baru bernama <code class="docutils literal notranslate"><span class="pre">kategori_encoded</span></code> di DataFrame <code class="docutils literal notranslate"><span class="pre">df</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Menampilkan Nilai Sebelum dan Sesudah Konversi</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">label_encoder.classes_</span></code>: Menampilkan semua kategori unik di kolom <code class="docutils literal notranslate"><span class="pre">kategori</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">label_encoder.transform(label_encoder.classes_)</span></code>: Menampilkan angka hasil encoding untuk setiap kategori.</p></li>
+<li><p>Hasilnya ditampilkan sebagai pasangan key-value (kategori asli -&gt; angka).</p></li>
+</ul>
+</li>
+<li><p><strong>Menampilkan DataFrame Hasil Encoding</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">df.head()</span></code> menampilkan lima baris pertama dari DataFrame <code class="docutils literal notranslate"><span class="pre">df</span></code>, dengan kolom tambahan <code class="docutils literal notranslate"><span class="pre">kategori_encoded</span></code> yang berisi hasil encoding.</p></li>
+</ul>
+</li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
@@ -649,7 +690,7 @@ DataFrame setelah Label Encoding:
 </pre></div>
 </div>
 <div class="output text_html">
-  <div id="df-03736d8a-ff7e-432f-9dfd-a6afece31faf" class="colab-df-container">
+  <div id="df-4b0bb287-3adf-4511-8670-4ee62bfa7e47" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -670,74 +711,74 @@ DataFrame setelah Label Encoding:
       <th></th>
       <th>judul</th>
       <th>tanggal</th>
-      <th>isi</th>
+      <th>isi_berita</th>
       <th>kategori</th>
-      <th>cleansing</th>
+      <th>berita_clean</th>
       <th>case_folding</th>
       <th>tokenize</th>
-      <th>Filtering/stopword removal</th>
+      <th>stopword_removal</th>
       <th>kategori_encoded</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>Kualifikasi F1 GP Las Vegas: Russell Pole, Ver...</td>
-      <td>Sabtu, 23 Nov 2024 15:05 WIB</td>
-      <td>Las Vegas - Pebalap Mercedes George Russell me...</td>
+      <td>Marc Marquez Kini di Ducati, Harusnya Mudah Be...</td>
+      <td>Sabtu, 30 Nov 2024 17:30 WIB</td>
+      <td>Marc Marquez mengaku bakal banyak tantangan di...</td>
       <td>Olahraga</td>
-      <td>Las Vegas  Pebalap Mercedes George Russell mer...</td>
-      <td>las vegas  pebalap mercedes george russell mer...</td>
-      <td>['las', 'vegas', 'pebalap', 'mercedes', 'georg...</td>
-      <td>las vegas pebalap mercedes george russell mera...</td>
+      <td>Marc Marquez mengaku bakal banyak tantangan di...</td>
+      <td>marc marquez mengaku bakal banyak tantangan di...</td>
+      <td>['marc', 'marquez', 'mengaku', 'bakal', 'banya...</td>
+      <td>marc marquez mengaku tantangan motogp tim baru...</td>
       <td>1</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Triple Kill Jonatan Chrisite di China Masters:...</td>
-      <td>Sabtu, 23 Nov 2024 15:04 WIB</td>
-      <td>Shenzhen - Jonatan Christie sukses menembus pa...</td>
+      <td>Usai Balapan 1.000 KM di Sepang, Avila Bahar T...</td>
+      <td>Sabtu, 30 Nov 2024 02:15 WIB</td>
+      <td>Avila Bahar baru saja tampil balapan 1.000 KM ...</td>
       <td>Olahraga</td>
-      <td>Shenzhen  Jonatan Christie sukses menembus par...</td>
-      <td>shenzhen  jonatan christie sukses menembus par...</td>
-      <td>['shenzhen', 'jonatan', 'christie', 'sukses', ...</td>
-      <td>shenzhen jonatan christie sukses menembus part...</td>
+      <td>Avila Bahar baru saja tampil balapan  KM yang ...</td>
+      <td>avila bahar baru saja tampil balapan  km yang ...</td>
+      <td>['avila', 'bahar', 'baru', 'saja', 'tampil', '...</td>
+      <td>avila bahar tampil balapan km digelar sepang m...</td>
       <td>1</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>China Masters 2024: Singkirkan Shi Yu Qi, Jona...</td>
-      <td>Sabtu, 23 Nov 2024 14:04 WIB</td>
-      <td>Jakarta - China Masters 2024 jalani babak semi...</td>
+      <td>Video: Maarten Paes Bakal Sharing di It's His/...</td>
+      <td>2,167 Views  |  Jumat, 29 Nov 2024 21:30 WIB</td>
+      <td>Kiper Timnas Indonesia, Maarten Paes, akan men...</td>
       <td>Olahraga</td>
-      <td>Jakarta  China Masters  jalani babak semifinal...</td>
-      <td>jakarta  china masters  jalani babak semifinal...</td>
-      <td>['jakarta', 'china', 'masters', 'jalani', 'bab...</td>
-      <td>jakarta china masters jalani babak semifinal j...</td>
+      <td>Kiper Timnas Indonesia Maarten Paes akan mengi...</td>
+      <td>kiper timnas indonesia maarten paes akan mengi...</td>
+      <td>['kiper', 'timnas', 'indonesia', 'maarten', 'p...</td>
+      <td>kiper timnas indonesia maarten paes mengisi ac...</td>
       <td>1</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Tangkal Judol, Menpora Mau Perbanyak Gelar Kej...</td>
-      <td>Sabtu, 23 Nov 2024 11:50 WIB</td>
-      <td>Jakarta - Kejuaraan Antarkampung (Tarkam) biki...</td>
+      <td>Klaim Marini: Hasil MotoGP 2025 Sudah Ditentuk...</td>
+      <td>Jumat, 29 Nov 2024 21:30 WIB</td>
+      <td>Rider Honda Luca Marini melontarkan klaim bera...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Kejuaraan Antarkampung Tarkam bikinan...</td>
-      <td>jakarta  kejuaraan antarkampung tarkam bikinan...</td>
-      <td>['jakarta', 'kejuaraan', 'antarkampung', 'tark...</td>
-      <td>jakarta kejuaraan antarkampung tarkam bikinan ...</td>
+      <td>Rider Honda Luca Marini melontarkan klaim bera...</td>
+      <td>rider honda luca marini melontarkan klaim bera...</td>
+      <td>['rider', 'honda', 'luca', 'marini', 'melontar...</td>
+      <td>rider honda luca marini melontarkan klaim bera...</td>
       <td>1</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Vinales Bidik Rekor Ini Bersama Tech3</td>
-      <td>Sabtu, 23 Nov 2024 10:50 WIB</td>
-      <td>Montmelo - Pebalap Tech3 KTM Maverick Vinales ...</td>
+      <td>Marc Marquez Mau Santai Dulu, Bulan Januari Ba...</td>
+      <td>Jumat, 29 Nov 2024 17:50 WIB</td>
+      <td>Setelah MotoGP 2024 tuntas, termasuk tes usai ...</td>
       <td>Olahraga</td>
-      <td>Montmelo  Pebalap Tech KTM Maverick Vinales op...</td>
-      <td>montmelo  pebalap tech ktm maverick vinales op...</td>
-      <td>['montmelo', 'pebalap', 'tech', 'ktm', 'maveri...</td>
-      <td>montmelo pebalap tech ktm maverick vinales opt...</td>
+      <td>Setelah MotoGP  tuntas termasuk tes usai seri ...</td>
+      <td>setelah motogp  tuntas termasuk tes usai seri ...</td>
+      <td>['setelah', 'motogp', 'tuntas', 'termasuk', 't...</td>
+      <td>motogp tuntas tes seri pamungkas marc marquez ...</td>
       <td>1</td>
     </tr>
   </tbody>
@@ -746,7 +787,7 @@ DataFrame setelah Label Encoding:
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-03736d8a-ff7e-432f-9dfd-a6afece31faf')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-4b0bb287-3adf-4511-8670-4ee62bfa7e47')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -798,12 +839,12 @@ DataFrame setelah Label Encoding:
 
     <script>
       const buttonEl =
-        document.querySelector('#df-03736d8a-ff7e-432f-9dfd-a6afece31faf button.colab-df-convert');
+        document.querySelector('#df-4b0bb287-3adf-4511-8670-4ee62bfa7e47 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-03736d8a-ff7e-432f-9dfd-a6afece31faf');
+        const element = document.querySelector('#df-4b0bb287-3adf-4511-8670-4ee62bfa7e47');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -826,6 +867,16 @@ DataFrame setelah Label Encoding:
   </div>
   </div></div>
 </div>
+<p>Berikut pustaka Python untuk memproses data teks, membangun model klasifikasi, dan mengevaluasi kinerjanya:</p>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">pandas</span></code></strong>: Untuk membaca dan mengelola data dalam format tabel (DataFrame).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">train_test_split</span></code></strong>: Membagi data menjadi data latih (untuk melatih model) dan data uji (untuk menguji model).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">TfidfVectorizer</span></code></strong>: Mengubah teks menjadi angka dengan teknik TF-IDF (mengukur pentingnya kata dalam dokumen).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">TruncatedSVD</span></code></strong>: Mengurangi jumlah fitur dari data teks agar lebih sederhana.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code></strong>: Model klasifikasi yang memprediksi kategori berdasarkan data.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">classification_report</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">accuracy_score</span></code></strong>: Mengevaluasi performa model dengan metrik seperti akurasi dan F1-score.</p></li>
+</ol>
+<p>Kode ini adalah bagian dari proses pembelajaran mesin untuk analisis teks dan klasifikasi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -838,15 +889,34 @@ DataFrame setelah Label Encoding:
 </div>
 </div>
 </div>
+<p>memisahkan <strong>fitur</strong> dan <strong>label</strong> dari dataset:</p>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">x</span></code></strong>: Berisi data teks yang sudah melalui proses <em>stopword removal</em> (penghapusan kata-kata umum yang tidak memiliki makna penting), digunakan sebagai <strong>fitur/input</strong> untuk model.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">y</span></code></strong>: Berisi label numerik hasil encoding dari kolom <strong><code class="docutils literal notranslate"><span class="pre">kategori</span></code></strong>, digunakan sebagai <strong>output/target</strong> yang ingin diprediksi oleh model.</p></li>
+</ol>
+<p>Dengan pemisahan ini, data teks (<code class="docutils literal notranslate"><span class="pre">x</span></code>) akan diproses lebih lanjut untuk melatih model agar dapat memprediksi label (<code class="docutils literal notranslate"><span class="pre">y</span></code>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Memisahkan fitur dan label</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Filtering/stopword removal&#39;</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;stopword_removal&#39;</span><span class="p">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;kategori_encoded&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>Membagi dataset menjadi dua bagian: <strong>data latih</strong> dan <strong>data uji</strong>, dengan rincian:</p>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">x_train</span></code></strong>: Fitur (teks) untuk melatih model.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">x_test</span></code></strong>: Fitur (teks) untuk menguji kinerja model.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">y_train</span></code></strong>: Label target untuk melatih model.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">y_test</span></code></strong>: Label target untuk mengukur akurasi prediksi pada data uji.</p></li>
+</ol>
+<p><strong>Parameter:</strong></p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">test_size=0.2</span></code></strong>: 20% dari data digunakan sebagai data uji, sedangkan 80% untuk data latih.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">random_state=42</span></code></strong>: Menjamin pembagian data yang konsisten (reproducible) setiap kali kode dijalankan.</p></li>
+</ul>
+<p><strong>Tujuan</strong>: Memastikan model dilatih pada sebagian data (latih) dan diuji pada data terpisah (uji) untuk mengevaluasi performanya.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Membagi data menjadi data latih dan data uji</span>
@@ -855,6 +925,38 @@ DataFrame setelah Label Encoding:
 </div>
 </div>
 </div>
+<p><strong>representasi teks ke dalam vektor TF-IDF</strong> dan mengonversinya menjadi bentuk DataFrame agar lebih mudah dipahami.</p>
+<section id="penjelasan">
+<h2>Penjelasan:<a class="headerlink" href="#penjelasan" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>TF-IDF (Term Frequency-Inverse Document Frequency)</strong>:</p>
+<ul class="simple">
+<li><p>Mengubah teks menjadi representasi numerik berdasarkan seberapa sering suatu kata muncul dalam dokumen dibandingkan dengan seluruh koleksi dokumen.</p></li>
+</ul>
+</li>
+<li><p><strong>Langkah-langkah:</strong></p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">fit_transform(x_train)</span></code></strong>: Menghitung nilai TF-IDF untuk teks dalam <strong>data latih</strong> dan mengubahnya menjadi matriks.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">transform(x_test)</span></code></strong>: Menggunakan model TF-IDF yang sama untuk menerapkan transformasi pada <strong>data uji</strong>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">get_feature_names_out()</span></code></strong>: Mendapatkan daftar kata (fitur) yang digunakan untuk representasi TF-IDF.</p></li>
+</ul>
+</li>
+<li><p><strong>Konversi ke DataFrame:</strong></p>
+<ul class="simple">
+<li><p>Mengubah hasil TF-IDF (yang berbentuk matriks sparse) menjadi DataFrame untuk <strong>data latih (<code class="docutils literal notranslate"><span class="pre">df_train_tfidf</span></code>)</strong> dan <strong>data uji (<code class="docutils literal notranslate"><span class="pre">df_test_tfidf</span></code>)</strong>.</p></li>
+<li><p>Kolom DataFrame merepresentasikan kata-kata unik dari teks.</p></li>
+</ul>
+</li>
+<li><p><strong>Output:</strong></p>
+<ul class="simple">
+<li><p>Menampilkan <strong>DataFrame TF-IDF untuk data latih</strong>, dengan baris merepresentasikan dokumen dan kolom menunjukkan nilai TF-IDF untuk setiap kata.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="tujuan">
+<h2>Tujuan:<a class="headerlink" href="#tujuan" title="Link to this heading">#</a></h2>
+<p>Mengubah teks menjadi bentuk numerik untuk digunakan dalam tahap selanjutnya, seperti klasifikasi atau analisis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tahap 1: TF-IDF</span>
@@ -875,7 +977,7 @@ DataFrame setelah Label Encoding:
 </pre></div>
 </div>
 <div class="output text_html">
-  <div id="df-e05ce765-d065-47fa-b74d-3449519c698d" class="colab-df-container">
+  <div id="df-fe207ec2-e388-4ee7-a10b-f42510f64fe6" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -894,27 +996,27 @@ DataFrame setelah Label Encoding:
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>abad</th>
-      <th>abbas</th>
-      <th>abdul</th>
-      <th>abiyu</th>
-      <th>abu</th>
-      <th>abuabu</th>
+      <th>abhiram</th>
+      <th>abirezki</th>
+      <th>abraham</th>
+      <th>absen</th>
       <th>academy</th>
+      <th>acang</th>
       <th>acar</th>
       <th>acara</th>
-      <th>accident</th>
+      <th>aceh</th>
+      <th>aci</th>
       <th>...</th>
-      <th>yus</th>
-      <th>yusuf</th>
-      <th>yuyang</th>
-      <th>zaman</th>
+      <th>yunyu</th>
+      <th>zaitun</th>
       <th>zat</th>
+      <th>zatzat</th>
+      <th>zeaxanthinnya</th>
       <th>zero</th>
-      <th>zhang</th>
+      <th>zheng</th>
+      <th>zita</th>
       <th>zomato</th>
-      <th>zona</th>
-      <th>zu</th>
+      <th>zoom</th>
     </tr>
   </thead>
   <tbody>
@@ -925,22 +1027,22 @@ DataFrame setelah Label Encoding:
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0196</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1</th>
@@ -949,22 +1051,22 @@ DataFrame setelah Label Encoding:
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.087188</td>
       <td>0.0</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>2</th>
@@ -973,22 +1075,22 @@ DataFrame setelah Label Encoding:
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.19611</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>3</th>
@@ -997,22 +1099,22 @@ DataFrame setelah Label Encoding:
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>4</th>
@@ -1021,22 +1123,22 @@ DataFrame setelah Label Encoding:
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
+      <td>0.040054</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1069,22 +1171,22 @@ DataFrame setelah Label Encoding:
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.530218</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>76</th>
@@ -1093,22 +1195,22 @@ DataFrame setelah Label Encoding:
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>77</th>
@@ -1117,22 +1219,22 @@ DataFrame setelah Label Encoding:
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>78</th>
@@ -1141,22 +1243,22 @@ DataFrame setelah Label Encoding:
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>79</th>
@@ -1165,31 +1267,31 @@ DataFrame setelah Label Encoding:
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
   </tbody>
 </table>
-<p>80 rows × 4055 columns</p>
+<p>80 rows × 4300 columns</p>
 </div>
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-e05ce765-d065-47fa-b74d-3449519c698d')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-fe207ec2-e388-4ee7-a10b-f42510f64fe6')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -1241,12 +1343,12 @@ DataFrame setelah Label Encoding:
 
     <script>
       const buttonEl =
-        document.querySelector('#df-e05ce765-d065-47fa-b74d-3449519c698d button.colab-df-convert');
+        document.querySelector('#df-fe207ec2-e388-4ee7-a10b-f42510f64fe6 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-e05ce765-d065-47fa-b74d-3449519c698d');
+        const element = document.querySelector('#df-fe207ec2-e388-4ee7-a10b-f42510f64fe6');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1269,6 +1371,42 @@ DataFrame setelah Label Encoding:
   </div>
   </div></div>
 </div>
+<p><em>menggunakan metode SVD (Singular Value Decomposition)</em>* untuk mereduksi dimensi data yang dihasilkan dari proses TF-IDF, lalu mengubah hasilnya menjadi DataFrame agar lebih mudah dianalisis.</p>
+</section>
+<section id="id1">
+<h2>Penjelasan:<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Reduksi Dimensi dengan SVD</strong>:</p>
+<ul class="simple">
+<li><p><strong>TruncatedSVD</strong> adalah algoritma yang digunakan untuk mereduksi dimensi data matriks TF-IDF.</p></li>
+<li><p>Tujuannya adalah mempertahankan informasi penting dari data dalam jumlah dimensi yang lebih kecil, sehingga analisis lebih efisien.</p></li>
+</ul>
+</li>
+<li><p><strong>Parameter Penting</strong>:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">n_components=100</span></code></strong>: Mengatur jumlah dimensi baru menjadi 100 (dari ribuan kata sebelumnya).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">random_state=42</span></code></strong>: Menjamin hasil pengacakan konsisten untuk eksperimen yang dapat direproduksi.</p></li>
+</ul>
+</li>
+<li><p><strong>Proses:</strong></p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">fit_transform(x_train_tfidf)</span></code></strong>: Menyesuaikan model SVD dengan data latih TF-IDF dan mengubahnya menjadi representasi berdimensi lebih kecil.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">transform(x_test_tfidf)</span></code></strong>: Menerapkan model SVD yang sama pada data uji TF-IDF.</p></li>
+</ul>
+</li>
+<li><p><strong>Konversi ke DataFrame</strong>:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">df_train_svd</span></code></strong>: DataFrame hasil reduksi dimensi untuk data latih.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">df_test_svd</span></code></strong>: DataFrame hasil reduksi dimensi untuk data uji.</p></li>
+<li><p>Setiap kolom dalam DataFrame adalah fitur baru yang telah diringkas, dan setiap baris adalah representasi dokumen.</p></li>
+</ul>
+</li>
+<li><p><strong>Output:</strong></p>
+<ul class="simple">
+<li><p>Menampilkan hasil SVD untuk data latih dalam bentuk DataFrame, dengan 100 kolom (fitur baru yang diringkas).</p></li>
+</ul>
+</li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tahap 2: SVD (Reduksi Dimensi)</span>
@@ -1289,7 +1427,7 @@ DataFrame setelah Label Encoding:
 </pre></div>
 </div>
 <div class="output text_html">
-  <div id="df-d885b4ce-1b0f-4689-a4b3-0979d0de13d8" class="colab-df-container">
+  <div id="df-52815626-e5dc-45b8-bfb8-ee6a2d8c1c01" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1334,123 +1472,123 @@ DataFrame setelah Label Encoding:
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.042829</td>
-      <td>0.713299</td>
-      <td>-0.278924</td>
-      <td>-0.049605</td>
-      <td>-0.000567</td>
-      <td>0.275388</td>
-      <td>0.103060</td>
-      <td>-0.140977</td>
-      <td>0.281815</td>
-      <td>0.040553</td>
+      <td>0.173603</td>
+      <td>0.411230</td>
+      <td>-0.011211</td>
+      <td>-0.192005</td>
+      <td>-0.059284</td>
+      <td>0.100689</td>
+      <td>0.421321</td>
+      <td>0.003501</td>
+      <td>0.059595</td>
+      <td>-0.007488</td>
       <td>...</td>
-      <td>-0.010986</td>
-      <td>0.055185</td>
-      <td>0.003811</td>
-      <td>0.007112</td>
-      <td>0.000798</td>
-      <td>0.006356</td>
-      <td>-0.040636</td>
-      <td>0.016689</td>
-      <td>0.390049</td>
-      <td>9.486769e-19</td>
+      <td>0.031831</td>
+      <td>-0.082539</td>
+      <td>0.452468</td>
+      <td>0.067195</td>
+      <td>0.004878</td>
+      <td>0.029069</td>
+      <td>0.030038</td>
+      <td>0.092511</td>
+      <td>-0.011160</td>
+      <td>0.003320</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.021000</td>
-      <td>0.106658</td>
-      <td>0.317868</td>
-      <td>0.103952</td>
-      <td>0.001225</td>
-      <td>-0.232742</td>
-      <td>0.031622</td>
-      <td>-0.342104</td>
-      <td>0.283407</td>
-      <td>-0.025612</td>
+      <td>0.043570</td>
+      <td>0.065025</td>
+      <td>0.006371</td>
+      <td>-0.081263</td>
+      <td>0.011689</td>
+      <td>0.079341</td>
+      <td>-0.075383</td>
+      <td>-0.065706</td>
+      <td>0.016205</td>
+      <td>-0.009385</td>
       <td>...</td>
-      <td>0.002289</td>
-      <td>0.012008</td>
-      <td>-0.001308</td>
-      <td>0.011088</td>
-      <td>0.028551</td>
-      <td>-0.005420</td>
-      <td>-0.006225</td>
-      <td>-0.000396</td>
-      <td>0.006350</td>
-      <td>1.330181e-17</td>
+      <td>-0.010802</td>
+      <td>-0.009490</td>
+      <td>0.022738</td>
+      <td>-0.014970</td>
+      <td>0.004629</td>
+      <td>-0.003256</td>
+      <td>-0.000093</td>
+      <td>-0.010683</td>
+      <td>0.003549</td>
+      <td>-0.001400</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.501997</td>
-      <td>-0.023863</td>
-      <td>-0.079671</td>
-      <td>0.251146</td>
-      <td>0.010428</td>
-      <td>-0.032451</td>
-      <td>0.026181</td>
-      <td>0.004312</td>
-      <td>-0.003020</td>
-      <td>0.212518</td>
+      <td>0.413724</td>
+      <td>-0.167518</td>
+      <td>-0.080819</td>
+      <td>0.004763</td>
+      <td>0.107286</td>
+      <td>-0.069519</td>
+      <td>0.002404</td>
+      <td>-0.039889</td>
+      <td>0.137473</td>
+      <td>-0.086054</td>
       <td>...</td>
-      <td>0.058019</td>
-      <td>-0.030654</td>
-      <td>0.204508</td>
-      <td>0.166282</td>
-      <td>-0.023546</td>
-      <td>-0.188474</td>
-      <td>-0.010457</td>
-      <td>-0.083994</td>
-      <td>0.001712</td>
-      <td>-1.576159e-16</td>
+      <td>0.020864</td>
+      <td>-0.112376</td>
+      <td>0.003226</td>
+      <td>-0.045375</td>
+      <td>-0.112802</td>
+      <td>0.095869</td>
+      <td>-0.024311</td>
+      <td>-0.008265</td>
+      <td>0.003136</td>
+      <td>-0.002757</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.313373</td>
-      <td>-0.024749</td>
-      <td>0.030284</td>
-      <td>-0.249711</td>
-      <td>-0.010537</td>
-      <td>0.038728</td>
-      <td>-0.124920</td>
-      <td>-0.048782</td>
-      <td>0.027572</td>
-      <td>-0.297673</td>
+      <td>0.346782</td>
+      <td>-0.154387</td>
+      <td>-0.062886</td>
+      <td>0.031857</td>
+      <td>-0.233166</td>
+      <td>0.095509</td>
+      <td>-0.017665</td>
+      <td>0.021758</td>
+      <td>-0.264945</td>
+      <td>-0.280577</td>
       <td>...</td>
-      <td>-0.028781</td>
-      <td>-0.004317</td>
-      <td>0.008096</td>
-      <td>0.084841</td>
-      <td>-0.019592</td>
-      <td>0.084024</td>
-      <td>0.001514</td>
-      <td>-0.011520</td>
-      <td>-0.002409</td>
-      <td>-6.454391e-18</td>
+      <td>-0.070932</td>
+      <td>0.016547</td>
+      <td>-0.002593</td>
+      <td>0.014801</td>
+      <td>-0.008369</td>
+      <td>-0.001202</td>
+      <td>-0.040218</td>
+      <td>-0.003086</td>
+      <td>-0.016609</td>
+      <td>0.001442</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.022133</td>
-      <td>0.083148</td>
-      <td>0.267518</td>
-      <td>0.099449</td>
-      <td>0.001747</td>
-      <td>0.073888</td>
-      <td>-0.035795</td>
-      <td>-0.170394</td>
-      <td>0.060249</td>
-      <td>0.012805</td>
+      <td>0.066772</td>
+      <td>0.087989</td>
+      <td>0.012618</td>
+      <td>-0.155965</td>
+      <td>0.016357</td>
+      <td>0.110882</td>
+      <td>-0.262681</td>
+      <td>-0.153211</td>
+      <td>0.038615</td>
+      <td>0.027254</td>
       <td>...</td>
-      <td>0.006835</td>
-      <td>-0.003048</td>
-      <td>0.001379</td>
-      <td>0.000213</td>
-      <td>-0.010569</td>
-      <td>0.004606</td>
-      <td>0.001881</td>
-      <td>-0.002953</td>
-      <td>-0.007011</td>
-      <td>-6.998525e-17</td>
+      <td>-0.019708</td>
+      <td>-0.020354</td>
+      <td>0.048920</td>
+      <td>-0.125404</td>
+      <td>-0.000877</td>
+      <td>-0.026888</td>
+      <td>0.007149</td>
+      <td>-0.025101</td>
+      <td>0.000328</td>
+      <td>-0.000217</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1478,123 +1616,123 @@ DataFrame setelah Label Encoding:
     </tr>
     <tr>
       <th>75</th>
-      <td>0.008962</td>
-      <td>0.070418</td>
-      <td>0.170442</td>
-      <td>0.051639</td>
-      <td>0.000329</td>
-      <td>-0.108490</td>
-      <td>-0.250685</td>
-      <td>0.623903</td>
-      <td>0.465430</td>
-      <td>0.015846</td>
+      <td>0.236104</td>
+      <td>0.590674</td>
+      <td>-0.028129</td>
+      <td>0.547961</td>
+      <td>-0.016634</td>
+      <td>-0.176919</td>
+      <td>-0.216940</td>
+      <td>0.068429</td>
+      <td>-0.005695</td>
+      <td>-0.026432</td>
       <td>...</td>
-      <td>0.002462</td>
-      <td>-0.075046</td>
-      <td>-0.008632</td>
-      <td>-0.085787</td>
-      <td>-0.415466</td>
-      <td>-0.022202</td>
-      <td>-0.001633</td>
-      <td>0.002684</td>
-      <td>-0.001075</td>
-      <td>6.093216e-17</td>
+      <td>-0.008399</td>
+      <td>0.024360</td>
+      <td>-0.087951</td>
+      <td>-0.047572</td>
+      <td>-0.030315</td>
+      <td>0.024182</td>
+      <td>0.072300</td>
+      <td>0.193917</td>
+      <td>-0.017715</td>
+      <td>-0.244522</td>
     </tr>
     <tr>
       <th>76</th>
-      <td>0.040156</td>
-      <td>0.127024</td>
-      <td>0.356183</td>
-      <td>0.101958</td>
-      <td>0.000708</td>
-      <td>-0.278616</td>
-      <td>0.030381</td>
-      <td>-0.410917</td>
-      <td>0.295682</td>
-      <td>-0.048316</td>
+      <td>0.024498</td>
+      <td>0.027344</td>
+      <td>-0.004207</td>
+      <td>0.005874</td>
+      <td>0.014940</td>
+      <td>0.020915</td>
+      <td>0.021709</td>
+      <td>-0.008574</td>
+      <td>-0.028615</td>
+      <td>0.012081</td>
       <td>...</td>
-      <td>-0.029372</td>
-      <td>0.001798</td>
-      <td>0.016184</td>
-      <td>-0.015759</td>
-      <td>-0.012766</td>
-      <td>-0.005946</td>
-      <td>0.005559</td>
-      <td>0.002843</td>
-      <td>-0.007850</td>
-      <td>1.479936e-17</td>
+      <td>-0.001287</td>
+      <td>0.009975</td>
+      <td>-0.002784</td>
+      <td>0.000869</td>
+      <td>-0.011226</td>
+      <td>-0.003759</td>
+      <td>0.004414</td>
+      <td>0.005283</td>
+      <td>0.000310</td>
+      <td>0.002204</td>
     </tr>
     <tr>
       <th>77</th>
-      <td>0.220159</td>
-      <td>0.018825</td>
-      <td>0.126580</td>
-      <td>-0.186659</td>
-      <td>-0.006813</td>
-      <td>0.053633</td>
-      <td>0.363584</td>
-      <td>0.137262</td>
-      <td>-0.025916</td>
-      <td>-0.274229</td>
+      <td>0.443803</td>
+      <td>-0.228410</td>
+      <td>-0.165546</td>
+      <td>0.042767</td>
+      <td>-0.293278</td>
+      <td>-0.026195</td>
+      <td>0.022089</td>
+      <td>-0.023787</td>
+      <td>-0.095719</td>
+      <td>0.456001</td>
       <td>...</td>
-      <td>-0.299944</td>
-      <td>-0.017404</td>
-      <td>0.043027</td>
-      <td>0.124485</td>
-      <td>-0.028166</td>
-      <td>0.038670</td>
-      <td>-0.006625</td>
-      <td>0.019934</td>
-      <td>-0.004361</td>
-      <td>1.509752e-17</td>
+      <td>-0.106336</td>
+      <td>0.282885</td>
+      <td>0.065101</td>
+      <td>-0.052332</td>
+      <td>-0.297424</td>
+      <td>0.228746</td>
+      <td>-0.144872</td>
+      <td>-0.039909</td>
+      <td>-0.000043</td>
+      <td>-0.000469</td>
     </tr>
     <tr>
       <th>78</th>
-      <td>0.011329</td>
-      <td>0.061153</td>
-      <td>0.127476</td>
-      <td>0.032259</td>
-      <td>0.000207</td>
-      <td>-0.048224</td>
-      <td>-0.124304</td>
-      <td>0.306278</td>
-      <td>0.240051</td>
-      <td>-0.015094</td>
+      <td>0.123563</td>
+      <td>0.133511</td>
+      <td>-0.001338</td>
+      <td>-0.059677</td>
+      <td>0.036234</td>
+      <td>0.066334</td>
+      <td>0.034396</td>
+      <td>-0.018615</td>
+      <td>0.003993</td>
+      <td>-0.003536</td>
       <td>...</td>
-      <td>-0.014523</td>
-      <td>0.021082</td>
-      <td>-0.002943</td>
-      <td>0.017975</td>
-      <td>0.054553</td>
-      <td>0.004759</td>
-      <td>0.008949</td>
-      <td>-0.000740</td>
-      <td>0.006356</td>
-      <td>1.097213e-16</td>
+      <td>-0.002935</td>
+      <td>-0.006218</td>
+      <td>-0.008438</td>
+      <td>0.007180</td>
+      <td>-0.009432</td>
+      <td>-0.006386</td>
+      <td>-0.003999</td>
+      <td>-0.009919</td>
+      <td>0.000371</td>
+      <td>0.005038</td>
     </tr>
     <tr>
       <th>79</th>
-      <td>0.000268</td>
-      <td>0.000406</td>
-      <td>0.006445</td>
-      <td>-0.037237</td>
-      <td>0.999075</td>
-      <td>0.001539</td>
-      <td>-0.006046</td>
-      <td>-0.002117</td>
-      <td>0.000873</td>
-      <td>-0.001402</td>
+      <td>0.068113</td>
+      <td>0.076888</td>
+      <td>-0.000757</td>
+      <td>-0.058901</td>
+      <td>0.021983</td>
+      <td>0.088274</td>
+      <td>0.058604</td>
+      <td>-0.024342</td>
+      <td>0.010103</td>
+      <td>-0.008576</td>
       <td>...</td>
-      <td>0.000086</td>
-      <td>0.000011</td>
-      <td>-0.000009</td>
-      <td>0.000009</td>
-      <td>0.000013</td>
-      <td>-0.000054</td>
-      <td>0.000021</td>
-      <td>-0.000034</td>
-      <td>-0.000012</td>
-      <td>0.000000e+00</td>
+      <td>-0.003009</td>
+      <td>-0.005039</td>
+      <td>0.018462</td>
+      <td>-0.002867</td>
+      <td>-0.001048</td>
+      <td>-0.002460</td>
+      <td>0.001008</td>
+      <td>-0.011039</td>
+      <td>-0.000702</td>
+      <td>-0.000082</td>
     </tr>
   </tbody>
 </table>
@@ -1603,7 +1741,7 @@ DataFrame setelah Label Encoding:
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-d885b4ce-1b0f-4689-a4b3-0979d0de13d8')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-52815626-e5dc-45b8-bfb8-ee6a2d8c1c01')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -1655,12 +1793,12 @@ DataFrame setelah Label Encoding:
 
     <script>
       const buttonEl =
-        document.querySelector('#df-d885b4ce-1b0f-4689-a4b3-0979d0de13d8 button.colab-df-convert');
+        document.querySelector('#df-52815626-e5dc-45b8-bfb8-ee6a2d8c1c01 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-d885b4ce-1b0f-4689-a4b3-0979d0de13d8');
+        const element = document.querySelector('#df-52815626-e5dc-45b8-bfb8-ee6a2d8c1c01');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1683,6 +1821,49 @@ DataFrame setelah Label Encoding:
   </div>
   </div></div>
 </div>
+<p><strong>menggunakan Logistic Regression</strong> sebagai model untuk mengklasifikasikan data setelah proses reduksi dimensi dengan SVD. Berikut penjelasan singkatnya:</p>
+</section>
+<section id="id2">
+<h2>Penjelasan:<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Membuat Model Logistic Regression</strong>:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">LogisticRegression(C=0.2,</span> <span class="pre">random_state=42)</span></code></strong>:</p>
+<ul>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">C=0.2</span></code></strong>: Mengatur regularisasi untuk menghindari overfitting. Nilai kecil seperti 0.2 menambah penalti pada model agar tidak terlalu kompleks.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">random_state=42</span></code></strong>: Menjamin hasil konsisten saat pelatihan model untuk eksperimen yang dapat direproduksi.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Melatih Model dengan Data Latih</strong>:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">clf.fit(x_train_svd,</span> <span class="pre">y_train)</span></code></strong>:</p>
+<ul>
+<li><p>Menggunakan fitur hasil reduksi dimensi dari data latih (<code class="docutils literal notranslate"><span class="pre">x_train_svd</span></code>).</p></li>
+<li><p>Melibatkan label target (<code class="docutils literal notranslate"><span class="pre">y_train</span></code>) untuk membangun model klasifikasi.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Prediksi pada Data Uji</strong>:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">y_pred</span> <span class="pre">=</span> <span class="pre">clf.predict(x_test_svd)</span></code></strong>:</p>
+<ul>
+<li><p>Model yang telah dilatih digunakan untuk memprediksi kelas target dari data uji (<code class="docutils literal notranslate"><span class="pre">x_test_svd</span></code>).</p></li>
+<li><p>Hasil prediksi disimpan di variabel <strong><code class="docutils literal notranslate"><span class="pre">y_pred</span></code></strong>.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="id3">
+<h2>Tujuan:<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Membuat klasifikasi otomatis</strong> berdasarkan fitur dokumen.</p></li>
+<li><p>Model Logistic Regression bertindak sebagai <strong>pengklasifikasi</strong>, menggunakan data latih untuk mempelajari hubungan antara fitur dokumen (dari SVD) dan label kategori.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tahap 3: Klasifikasi dengan Logistic Regression</span>
@@ -1702,20 +1883,30 @@ DataFrame setelah Label Encoding:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 0.65
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 0.9
               precision    recall  f1-score   support
 
-           0       0.53      1.00      0.70         8
-           1       1.00      0.42      0.59        12
+           0       0.80      1.00      0.89         8
+           1       1.00      0.83      0.91        12
 
-    accuracy                           0.65        20
-   macro avg       0.77      0.71      0.64        20
-weighted avg       0.81      0.65      0.63        20
+    accuracy                           0.90        20
+   macro avg       0.90      0.92      0.90        20
+weighted avg       0.92      0.90      0.90        20
 </pre></div>
 </div>
 </div>
 </div>
-<p>Pengujian</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="pengujian">
+<h1>Pengujian<a class="headerlink" href="#pengujian" title="Link to this heading">#</a></h1>
+<p>Kode ini membuat dan menyimpan <strong>pipeline</strong> untuk proses machine learning yang terdiri dari tiga langkah:</p>
+<ol class="arabic simple">
+<li><p><strong>TF-IDF Vectorization</strong>: Mengubah teks menjadi representasi numerik.</p></li>
+<li><p><strong>SVD (Reduksi Dimensi)</strong>: Mengurangi jumlah fitur dari data teks.</p></li>
+<li><p><strong>Logistic Regression</strong>: Melakukan klasifikasi untuk memprediksi kategori teks.</p></li>
+</ol>
+<p>Setelah pipeline dilatih dengan data latih, pipeline disimpan dalam file <code class="docutils literal notranslate"><span class="pre">.pkl</span></code> menggunakan <code class="docutils literal notranslate"><span class="pre">joblib</span></code>. Ini memungkinkan penggunaan kembali pipeline yang sudah dilatih untuk prediksi tanpa perlu pelatihan ulang.</p>
 <hr class="docutils" />
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1743,6 +1934,14 @@ weighted avg       0.81      0.65      0.63        20
 </div>
 </div>
 </div>
+<p><strong>pipeline</strong> yang sudah disimpan sebelumnya (yang mencakup TF-IDF, SVD, dan klasifikasi dengan Logistic Regression). Kemudian, kode ini melakukan prediksi terhadap dua teks baru (<code class="docutils literal notranslate"><span class="pre">new_text_1</span></code> dan <code class="docutils literal notranslate"><span class="pre">new_text_2</span></code>) untuk menentukan kategori mereka, apakah <strong>Makanan</strong> atau <strong>Olahraga</strong>.</p>
+<p>Langkah-langkah yang dilakukan:</p>
+<ol class="arabic simple">
+<li><p><strong>Memuat pipeline</strong> yang sudah dilatih dan disimpan.</p></li>
+<li><p><strong>Menyiapkan dua teks baru</strong> yang akan diprediksi kategorinya.</p></li>
+<li><p><strong>Melakukan prediksi</strong> terhadap kedua teks menggunakan pipeline yang telah dimuat.</p></li>
+<li><p><strong>Menampilkan kategori prediksi</strong> untuk setiap teks, dengan hasil “Makanan” jika prediksi menunjukkan nilai 0, atau “Olahraga” jika nilai prediksi 1.</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">joblib</span>
@@ -1820,6 +2019,15 @@ Prediksi untuk teks 2: Makanan
         <p class="prev-next-title">Tugas 5 : Query dengan kalimat</p>
       </div>
     </a>
+    <a class="right-next"
+       href="Tugas7.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tugas 7 : Clustering Web dengan Fuzzy C-Means</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -1838,8 +2046,15 @@ Prediksi untuk teks 2: Makanan
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tugas 6 : Klasifikasi Berita Metode Logistic Regression dengan reduksi dimensi SVD</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-klasifikasi-berita">Deployment Klasifikasi Berita</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#https-huggingface-co-spaces-alhasibb-klasifikasi-berita">https://huggingface.co/spaces/AlHasibb/klasifikasi_berita</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#label-encoder">Label Encoder</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan">Penjelasan:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">Tujuan:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Penjelasan:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Penjelasan:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Tujuan:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pengujian">Pengujian</a></li>
 </ul>
 
   </nav></div>

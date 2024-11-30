@@ -171,7 +171,12 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Tugas1.html"><strong>Tugas Pertemuan 1 - Crawling berita online</strong></a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Tugas Pertemuan 2 - Pre-Processing Data dengan TF-IDF</a></li>
+
+
+
+
 <li class="toctree-l1"><a class="reference internal" href="Tugas3.html">Tugas Pertemuan 3 - Logistic Regression</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="Skip-Gram.html">Word Embedding</a></li>
 
 
@@ -188,6 +193,7 @@
 <li class="toctree-l1"><a class="reference internal" href="Tugas6.html">Tugas 6 : Klasifikasi Berita Metode Logistic Regression dengan reduksi dimensi SVD</a></li>
 
 
+<li class="toctree-l1"><a class="reference internal" href="Tugas7.html">Tugas 7 : Clustering Web dengan Fuzzy C-Means</a></li>
 </ul>
 
     </div>
@@ -383,7 +389,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -399,6 +407,19 @@
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tugas Pertemuan 2 - Pre-Processing Data dengan TF-IDF</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mengakses-file-di-google-drive">Mengakses file di Google Drive</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#membaca-dataset">Membaca dataset</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf">TF-IDF</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-implementasi">Kode Implementasi</a></li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -410,6 +431,9 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="tugas-pertemuan-2-pre-processing-data-dengan-tf-idf">
 <h1>Tugas Pertemuan 2 - Pre-Processing Data dengan TF-IDF<a class="headerlink" href="#tugas-pertemuan-2-pre-processing-data-dengan-tf-idf" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="mengakses-file-di-google-drive">
+<h1>Mengakses file di Google Drive<a class="headerlink" href="#mengakses-file-di-google-drive" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
@@ -423,6 +447,13 @@
 </div>
 </div>
 </div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="membaca-dataset">
+<h1>Membaca dataset<a class="headerlink" href="#membaca-dataset" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>pandas digunakan untuk membaca file CSV ke dalam DataFrame.</p></li>
+<li><p>df.head(6) menampilkan enam baris pertama dataset.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -434,7 +465,7 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-a24b2186-d6d4-4dc6-8e62-ee6eeac8db11" class="colab-df-container">
+  <div id="df-02e46ed9-fdb4-4ef7-aa68-196314839c8d" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -455,51 +486,51 @@
       <th></th>
       <th>judul</th>
       <th>tanggal</th>
-      <th>isi</th>
+      <th>isi_berita</th>
       <th>kategori</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>Kualifikasi F1 GP Las Vegas: Russell Pole, Ver...</td>
-      <td>Sabtu, 23 Nov 2024 15:05 WIB</td>
-      <td>Las Vegas - Pebalap Mercedes George Russell me...</td>
+      <td>Marc Marquez Kini di Ducati, Harusnya Mudah Be...</td>
+      <td>Sabtu, 30 Nov 2024 17:30 WIB</td>
+      <td>Marc Marquez mengaku bakal banyak tantangan di...</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Triple Kill Jonatan Chrisite di China Masters:...</td>
-      <td>Sabtu, 23 Nov 2024 15:04 WIB</td>
-      <td>Shenzhen - Jonatan Christie sukses menembus pa...</td>
+      <td>Usai Balapan 1.000 KM di Sepang, Avila Bahar T...</td>
+      <td>Sabtu, 30 Nov 2024 02:15 WIB</td>
+      <td>Avila Bahar baru saja tampil balapan 1.000 KM ...</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>China Masters 2024: Singkirkan Shi Yu Qi, Jona...</td>
-      <td>Sabtu, 23 Nov 2024 14:04 WIB</td>
-      <td>Jakarta - China Masters 2024 jalani babak semi...</td>
+      <td>Video: Maarten Paes Bakal Sharing di It's His/...</td>
+      <td>2,167 Views  |  Jumat, 29 Nov 2024 21:30 WIB</td>
+      <td>Kiper Timnas Indonesia, Maarten Paes, akan men...</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Tangkal Judol, Menpora Mau Perbanyak Gelar Kej...</td>
-      <td>Sabtu, 23 Nov 2024 11:50 WIB</td>
-      <td>Jakarta - Kejuaraan Antarkampung (Tarkam) biki...</td>
+      <td>Klaim Marini: Hasil MotoGP 2025 Sudah Ditentuk...</td>
+      <td>Jumat, 29 Nov 2024 21:30 WIB</td>
+      <td>Rider Honda Luca Marini melontarkan klaim bera...</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Vinales Bidik Rekor Ini Bersama Tech3</td>
-      <td>Sabtu, 23 Nov 2024 10:50 WIB</td>
-      <td>Montmelo - Pebalap Tech3 KTM Maverick Vinales ...</td>
+      <td>Marc Marquez Mau Santai Dulu, Bulan Januari Ba...</td>
+      <td>Jumat, 29 Nov 2024 17:50 WIB</td>
+      <td>Setelah MotoGP 2024 tuntas, termasuk tes usai ...</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>Gymnastics Indonesia Gelar Pelatnas di Tokyo d...</td>
-      <td>Sabtu, 23 Nov 2024 09:45 WIB</td>
-      <td>Jakarta - Pengurus Besar Persatuan Senam Indon...</td>
+      <td>Zheng Siwei Gantung Raket, Ingin Fokus Urus Ke...</td>
+      <td>Jumat, 29 Nov 2024 16:50 WIB</td>
+      <td>Atlet bulutangkis ganda campuran China Zheng S...</td>
       <td>Olahraga</td>
     </tr>
   </tbody>
@@ -508,7 +539,7 @@
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-a24b2186-d6d4-4dc6-8e62-ee6eeac8db11')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-02e46ed9-fdb4-4ef7-aa68-196314839c8d')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -560,12 +591,12 @@
 
     <script>
       const buttonEl =
-        document.querySelector('#df-a24b2186-d6d4-4dc6-8e62-ee6eeac8db11 button.colab-df-convert');
+        document.querySelector('#df-02e46ed9-fdb4-4ef7-aa68-196314839c8d button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-a24b2186-d6d4-4dc6-8e62-ee6eeac8db11');
+        const element = document.querySelector('#df-02e46ed9-fdb4-4ef7-aa68-196314839c8d');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -606,14 +637,17 @@
 <span class="kn">import</span> <span class="nn">string</span>
 <span class="kn">import</span> <span class="nn">nltk</span>
 
+<span class="c1">#Menghapus URL menggunakan ekspresi reguler (re). URL diganti dengan string kosong (&#39;&#39;).</span>
 <span class="k">def</span> <span class="nf">remove_url</span><span class="p">(</span><span class="n">ulasan</span><span class="p">):</span>
   <span class="n">url</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;https?://\S+|www\.S+&#39;</span><span class="p">)</span>
   <span class="k">return</span> <span class="n">url</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ulasan</span><span class="p">)</span>
 
+<span class="c1">#Menghapus elemen HTML menggunakan ekspresi reguler.</span>
 <span class="k">def</span> <span class="nf">remove_html</span><span class="p">(</span><span class="n">ulasan</span><span class="p">):</span>
   <span class="n">html</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&lt;.#?&gt;&#39;</span><span class="p">)</span>
   <span class="k">return</span> <span class="n">html</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ulasan</span><span class="p">)</span>
 
+<span class="c1">#Menghapus emoji dari teks menggunakan rentang Unicode.</span>
 <span class="k">def</span> <span class="nf">remove_emoji</span><span class="p">(</span><span class="n">ulasan</span><span class="p">):</span>
   <span class="n">emoji_pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;[&quot;</span>
       <span class="sa">u</span><span class="s2">&quot;</span><span class="se">\U0001F600</span><span class="s2">-</span><span class="se">\U0001F64F</span><span class="s2">&quot;</span>
@@ -622,19 +656,22 @@
       <span class="sa">u</span><span class="s2">&quot;</span><span class="se">\U0001F1E0</span><span class="s2">-</span><span class="se">\U0001F1FF</span><span class="s2">&quot;&quot;]+&quot;</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">UNICODE</span><span class="p">)</span>
   <span class="k">return</span> <span class="n">emoji_pattern</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ulasan</span><span class="p">)</span>
 
+<span class="c1">#Menghapus angka dari teks.</span>
 <span class="k">def</span> <span class="nf">remove_numbers</span><span class="p">(</span><span class="n">ulasan</span><span class="p">):</span>
   <span class="n">ulasan</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d+&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ulasan</span><span class="p">)</span>
   <span class="k">return</span> <span class="n">ulasan</span>
 
+<span class="c1">#Menghapus simbol dan karakter non-alfanumerik lainnya.</span>
 <span class="k">def</span> <span class="nf">remove_symbols</span><span class="p">(</span><span class="n">ulasan</span><span class="p">):</span>
   <span class="n">ulasan</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^a-zA-Z0-9\s]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ulasan</span><span class="p">)</span> <span class="c1">#menghapus semua simbol</span>
   <span class="k">return</span> <span class="n">ulasan</span>
 
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;cleansing&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;isi&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">remove_url</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;cleansing&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;cleansing&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">remove_html</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;cleansing&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;cleansing&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">remove_emoji</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;cleansing&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;cleansing&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">remove_symbols</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;cleansing&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;cleansing&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">remove_numbers</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="c1">#Menggabungkan Semua Langkah</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;berita_clean&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;isi_berita&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">remove_url</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;berita_clean&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;berita_clean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">remove_html</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;berita_clean&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;berita_clean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">remove_emoji</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;berita_clean&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;berita_clean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">remove_symbols</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;berita_clean&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;berita_clean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">remove_numbers</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
 </pre></div>
@@ -642,7 +679,7 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-4b40725c-b3b6-4a07-8961-739c71a020d9" class="colab-df-container">
+  <div id="df-315885b0-ff2c-4e1f-b01e-73224b5289ae" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -663,59 +700,59 @@
       <th></th>
       <th>judul</th>
       <th>tanggal</th>
-      <th>isi</th>
+      <th>isi_berita</th>
       <th>kategori</th>
-      <th>cleansing</th>
+      <th>berita_clean</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>Kualifikasi F1 GP Las Vegas: Russell Pole, Ver...</td>
-      <td>Sabtu, 23 Nov 2024 15:05 WIB</td>
-      <td>Las Vegas - Pebalap Mercedes George Russell me...</td>
+      <td>Marc Marquez Kini di Ducati, Harusnya Mudah Be...</td>
+      <td>Sabtu, 30 Nov 2024 17:30 WIB</td>
+      <td>Marc Marquez mengaku bakal banyak tantangan di...</td>
       <td>Olahraga</td>
-      <td>Las Vegas  Pebalap Mercedes George Russell mer...</td>
+      <td>Marc Marquez mengaku bakal banyak tantangan di...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Triple Kill Jonatan Chrisite di China Masters:...</td>
-      <td>Sabtu, 23 Nov 2024 15:04 WIB</td>
-      <td>Shenzhen - Jonatan Christie sukses menembus pa...</td>
+      <td>Usai Balapan 1.000 KM di Sepang, Avila Bahar T...</td>
+      <td>Sabtu, 30 Nov 2024 02:15 WIB</td>
+      <td>Avila Bahar baru saja tampil balapan 1.000 KM ...</td>
       <td>Olahraga</td>
-      <td>Shenzhen  Jonatan Christie sukses menembus par...</td>
+      <td>Avila Bahar baru saja tampil balapan  KM yang ...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>China Masters 2024: Singkirkan Shi Yu Qi, Jona...</td>
-      <td>Sabtu, 23 Nov 2024 14:04 WIB</td>
-      <td>Jakarta - China Masters 2024 jalani babak semi...</td>
+      <td>Video: Maarten Paes Bakal Sharing di It's His/...</td>
+      <td>2,167 Views  |  Jumat, 29 Nov 2024 21:30 WIB</td>
+      <td>Kiper Timnas Indonesia, Maarten Paes, akan men...</td>
       <td>Olahraga</td>
-      <td>Jakarta  China Masters  jalani babak semifinal...</td>
+      <td>Kiper Timnas Indonesia Maarten Paes akan mengi...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Tangkal Judol, Menpora Mau Perbanyak Gelar Kej...</td>
-      <td>Sabtu, 23 Nov 2024 11:50 WIB</td>
-      <td>Jakarta - Kejuaraan Antarkampung (Tarkam) biki...</td>
+      <td>Klaim Marini: Hasil MotoGP 2025 Sudah Ditentuk...</td>
+      <td>Jumat, 29 Nov 2024 21:30 WIB</td>
+      <td>Rider Honda Luca Marini melontarkan klaim bera...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Kejuaraan Antarkampung Tarkam bikinan...</td>
+      <td>Rider Honda Luca Marini melontarkan klaim bera...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Vinales Bidik Rekor Ini Bersama Tech3</td>
-      <td>Sabtu, 23 Nov 2024 10:50 WIB</td>
-      <td>Montmelo - Pebalap Tech3 KTM Maverick Vinales ...</td>
+      <td>Marc Marquez Mau Santai Dulu, Bulan Januari Ba...</td>
+      <td>Jumat, 29 Nov 2024 17:50 WIB</td>
+      <td>Setelah MotoGP 2024 tuntas, termasuk tes usai ...</td>
       <td>Olahraga</td>
-      <td>Montmelo  Pebalap Tech KTM Maverick Vinales op...</td>
+      <td>Setelah MotoGP  tuntas termasuk tes usai seri ...</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>Gymnastics Indonesia Gelar Pelatnas di Tokyo d...</td>
-      <td>Sabtu, 23 Nov 2024 09:45 WIB</td>
-      <td>Jakarta - Pengurus Besar Persatuan Senam Indon...</td>
+      <td>Zheng Siwei Gantung Raket, Ingin Fokus Urus Ke...</td>
+      <td>Jumat, 29 Nov 2024 16:50 WIB</td>
+      <td>Atlet bulutangkis ganda campuran China Zheng S...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Pengurus Besar Persatuan Senam Indone...</td>
+      <td>Atlet bulutangkis ganda campuran China Zheng S...</td>
     </tr>
   </tbody>
 </table>
@@ -723,7 +760,7 @@
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-4b40725c-b3b6-4a07-8961-739c71a020d9')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-315885b0-ff2c-4e1f-b01e-73224b5289ae')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -775,12 +812,12 @@
 
     <script>
       const buttonEl =
-        document.querySelector('#df-4b40725c-b3b6-4a07-8961-739c71a020d9 button.colab-df-convert');
+        document.querySelector('#df-315885b0-ff2c-4e1f-b01e-73224b5289ae button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-4b40725c-b3b6-4a07-8961-739c71a020d9');
+        const element = document.querySelector('#df-315885b0-ff2c-4e1f-b01e-73224b5289ae');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -810,14 +847,15 @@ adalah  untuk menghilangkan ambiguitas yang mungkin timbul akibat perbedaan huru
 Misalnya, kata yang sama tetapi ditulis dengan huruf besar atau kecil akan  dianggap sebagai entitas yang berbeda.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">case_folding</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Mengubah semua huruf menjadi huruf kecil untuk menyamakan bentuk kata.</span>
+<span class="k">def</span> <span class="nf">case_folding</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
       <span class="n">lowercase_text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
       <span class="k">return</span> <span class="n">lowercase_text</span>
     <span class="k">else</span> <span class="p">:</span>
       <span class="k">return</span> <span class="n">text</span>
 
-<span class="n">df</span> <span class="p">[</span><span class="s1">&#39;case_folding&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;cleansing&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">case_folding</span><span class="p">)</span>
+<span class="n">df</span> <span class="p">[</span><span class="s1">&#39;case_folding&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;berita_clean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">case_folding</span><span class="p">)</span>
 
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
 </pre></div>
@@ -825,7 +863,7 @@ Misalnya, kata yang sama tetapi ditulis dengan huruf besar atau kecil akan  dian
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-683447bf-6e5b-4db8-b190-1d3837e72740" class="colab-df-container">
+  <div id="df-7b20194b-ae80-4e15-9d3c-510a6c5eef97" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -846,66 +884,66 @@ Misalnya, kata yang sama tetapi ditulis dengan huruf besar atau kecil akan  dian
       <th></th>
       <th>judul</th>
       <th>tanggal</th>
-      <th>isi</th>
+      <th>isi_berita</th>
       <th>kategori</th>
-      <th>cleansing</th>
+      <th>berita_clean</th>
       <th>case_folding</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>Kualifikasi F1 GP Las Vegas: Russell Pole, Ver...</td>
-      <td>Sabtu, 23 Nov 2024 15:05 WIB</td>
-      <td>Las Vegas - Pebalap Mercedes George Russell me...</td>
+      <td>Marc Marquez Kini di Ducati, Harusnya Mudah Be...</td>
+      <td>Sabtu, 30 Nov 2024 17:30 WIB</td>
+      <td>Marc Marquez mengaku bakal banyak tantangan di...</td>
       <td>Olahraga</td>
-      <td>Las Vegas  Pebalap Mercedes George Russell mer...</td>
-      <td>las vegas  pebalap mercedes george russell mer...</td>
+      <td>Marc Marquez mengaku bakal banyak tantangan di...</td>
+      <td>marc marquez mengaku bakal banyak tantangan di...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Triple Kill Jonatan Chrisite di China Masters:...</td>
-      <td>Sabtu, 23 Nov 2024 15:04 WIB</td>
-      <td>Shenzhen - Jonatan Christie sukses menembus pa...</td>
+      <td>Usai Balapan 1.000 KM di Sepang, Avila Bahar T...</td>
+      <td>Sabtu, 30 Nov 2024 02:15 WIB</td>
+      <td>Avila Bahar baru saja tampil balapan 1.000 KM ...</td>
       <td>Olahraga</td>
-      <td>Shenzhen  Jonatan Christie sukses menembus par...</td>
-      <td>shenzhen  jonatan christie sukses menembus par...</td>
+      <td>Avila Bahar baru saja tampil balapan  KM yang ...</td>
+      <td>avila bahar baru saja tampil balapan  km yang ...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>China Masters 2024: Singkirkan Shi Yu Qi, Jona...</td>
-      <td>Sabtu, 23 Nov 2024 14:04 WIB</td>
-      <td>Jakarta - China Masters 2024 jalani babak semi...</td>
+      <td>Video: Maarten Paes Bakal Sharing di It's His/...</td>
+      <td>2,167 Views  |  Jumat, 29 Nov 2024 21:30 WIB</td>
+      <td>Kiper Timnas Indonesia, Maarten Paes, akan men...</td>
       <td>Olahraga</td>
-      <td>Jakarta  China Masters  jalani babak semifinal...</td>
-      <td>jakarta  china masters  jalani babak semifinal...</td>
+      <td>Kiper Timnas Indonesia Maarten Paes akan mengi...</td>
+      <td>kiper timnas indonesia maarten paes akan mengi...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Tangkal Judol, Menpora Mau Perbanyak Gelar Kej...</td>
-      <td>Sabtu, 23 Nov 2024 11:50 WIB</td>
-      <td>Jakarta - Kejuaraan Antarkampung (Tarkam) biki...</td>
+      <td>Klaim Marini: Hasil MotoGP 2025 Sudah Ditentuk...</td>
+      <td>Jumat, 29 Nov 2024 21:30 WIB</td>
+      <td>Rider Honda Luca Marini melontarkan klaim bera...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Kejuaraan Antarkampung Tarkam bikinan...</td>
-      <td>jakarta  kejuaraan antarkampung tarkam bikinan...</td>
+      <td>Rider Honda Luca Marini melontarkan klaim bera...</td>
+      <td>rider honda luca marini melontarkan klaim bera...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Vinales Bidik Rekor Ini Bersama Tech3</td>
-      <td>Sabtu, 23 Nov 2024 10:50 WIB</td>
-      <td>Montmelo - Pebalap Tech3 KTM Maverick Vinales ...</td>
+      <td>Marc Marquez Mau Santai Dulu, Bulan Januari Ba...</td>
+      <td>Jumat, 29 Nov 2024 17:50 WIB</td>
+      <td>Setelah MotoGP 2024 tuntas, termasuk tes usai ...</td>
       <td>Olahraga</td>
-      <td>Montmelo  Pebalap Tech KTM Maverick Vinales op...</td>
-      <td>montmelo  pebalap tech ktm maverick vinales op...</td>
+      <td>Setelah MotoGP  tuntas termasuk tes usai seri ...</td>
+      <td>setelah motogp  tuntas termasuk tes usai seri ...</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>Gymnastics Indonesia Gelar Pelatnas di Tokyo d...</td>
-      <td>Sabtu, 23 Nov 2024 09:45 WIB</td>
-      <td>Jakarta - Pengurus Besar Persatuan Senam Indon...</td>
+      <td>Zheng Siwei Gantung Raket, Ingin Fokus Urus Ke...</td>
+      <td>Jumat, 29 Nov 2024 16:50 WIB</td>
+      <td>Atlet bulutangkis ganda campuran China Zheng S...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Pengurus Besar Persatuan Senam Indone...</td>
-      <td>jakarta  pengurus besar persatuan senam indone...</td>
+      <td>Atlet bulutangkis ganda campuran China Zheng S...</td>
+      <td>atlet bulutangkis ganda campuran china zheng s...</td>
     </tr>
   </tbody>
 </table>
@@ -913,7 +951,7 @@ Misalnya, kata yang sama tetapi ditulis dengan huruf besar atau kecil akan  dian
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-683447bf-6e5b-4db8-b190-1d3837e72740')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-7b20194b-ae80-4e15-9d3c-510a6c5eef97')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -965,12 +1003,12 @@ Misalnya, kata yang sama tetapi ditulis dengan huruf besar atau kecil akan  dian
 
     <script>
       const buttonEl =
-        document.querySelector('#df-683447bf-6e5b-4db8-b190-1d3837e72740 button.colab-df-convert');
+        document.querySelector('#df-7b20194b-ae80-4e15-9d3c-510a6c5eef97 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-683447bf-6e5b-4db8-b190-1d3837e72740');
+        const element = document.querySelector('#df-7b20194b-ae80-4e15-9d3c-510a6c5eef97');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1000,7 +1038,8 @@ Lebih jelasnya untuk memecah teks menjadi unit terkecil yang dapat
 berupa kata,frasa atau karakter terpisah.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Memecah teks menjadi kata-kata individu (token)</span>
+<span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
 <span class="k">def</span> <span class="nf">tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
     <span class="n">tokens</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">tokens</span>
@@ -1013,7 +1052,7 @@ berupa kata,frasa atau karakter terpisah.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-951451b4-70c3-43e7-9030-b64bc2649464" class="colab-df-container">
+  <div id="df-9b902401-e9e6-4a52-a4f8-6fb804539b31" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1034,9 +1073,9 @@ berupa kata,frasa atau karakter terpisah.</p>
       <th></th>
       <th>judul</th>
       <th>tanggal</th>
-      <th>isi</th>
+      <th>isi_berita</th>
       <th>kategori</th>
-      <th>cleansing</th>
+      <th>berita_clean</th>
       <th>case_folding</th>
       <th>tokenize</th>
     </tr>
@@ -1044,63 +1083,63 @@ berupa kata,frasa atau karakter terpisah.</p>
   <tbody>
     <tr>
       <th>0</th>
-      <td>Kualifikasi F1 GP Las Vegas: Russell Pole, Ver...</td>
-      <td>Sabtu, 23 Nov 2024 15:05 WIB</td>
-      <td>Las Vegas - Pebalap Mercedes George Russell me...</td>
+      <td>Marc Marquez Kini di Ducati, Harusnya Mudah Be...</td>
+      <td>Sabtu, 30 Nov 2024 17:30 WIB</td>
+      <td>Marc Marquez mengaku bakal banyak tantangan di...</td>
       <td>Olahraga</td>
-      <td>Las Vegas  Pebalap Mercedes George Russell mer...</td>
-      <td>las vegas  pebalap mercedes george russell mer...</td>
-      <td>[las, vegas, pebalap, mercedes, george, russel...</td>
+      <td>Marc Marquez mengaku bakal banyak tantangan di...</td>
+      <td>marc marquez mengaku bakal banyak tantangan di...</td>
+      <td>[marc, marquez, mengaku, bakal, banyak, tantan...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Triple Kill Jonatan Chrisite di China Masters:...</td>
-      <td>Sabtu, 23 Nov 2024 15:04 WIB</td>
-      <td>Shenzhen - Jonatan Christie sukses menembus pa...</td>
+      <td>Usai Balapan 1.000 KM di Sepang, Avila Bahar T...</td>
+      <td>Sabtu, 30 Nov 2024 02:15 WIB</td>
+      <td>Avila Bahar baru saja tampil balapan 1.000 KM ...</td>
       <td>Olahraga</td>
-      <td>Shenzhen  Jonatan Christie sukses menembus par...</td>
-      <td>shenzhen  jonatan christie sukses menembus par...</td>
-      <td>[shenzhen, jonatan, christie, sukses, menembus...</td>
+      <td>Avila Bahar baru saja tampil balapan  KM yang ...</td>
+      <td>avila bahar baru saja tampil balapan  km yang ...</td>
+      <td>[avila, bahar, baru, saja, tampil, balapan, km...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>China Masters 2024: Singkirkan Shi Yu Qi, Jona...</td>
-      <td>Sabtu, 23 Nov 2024 14:04 WIB</td>
-      <td>Jakarta - China Masters 2024 jalani babak semi...</td>
+      <td>Video: Maarten Paes Bakal Sharing di It's His/...</td>
+      <td>2,167 Views  |  Jumat, 29 Nov 2024 21:30 WIB</td>
+      <td>Kiper Timnas Indonesia, Maarten Paes, akan men...</td>
       <td>Olahraga</td>
-      <td>Jakarta  China Masters  jalani babak semifinal...</td>
-      <td>jakarta  china masters  jalani babak semifinal...</td>
-      <td>[jakarta, china, masters, jalani, babak, semif...</td>
+      <td>Kiper Timnas Indonesia Maarten Paes akan mengi...</td>
+      <td>kiper timnas indonesia maarten paes akan mengi...</td>
+      <td>[kiper, timnas, indonesia, maarten, paes, akan...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Tangkal Judol, Menpora Mau Perbanyak Gelar Kej...</td>
-      <td>Sabtu, 23 Nov 2024 11:50 WIB</td>
-      <td>Jakarta - Kejuaraan Antarkampung (Tarkam) biki...</td>
+      <td>Klaim Marini: Hasil MotoGP 2025 Sudah Ditentuk...</td>
+      <td>Jumat, 29 Nov 2024 21:30 WIB</td>
+      <td>Rider Honda Luca Marini melontarkan klaim bera...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Kejuaraan Antarkampung Tarkam bikinan...</td>
-      <td>jakarta  kejuaraan antarkampung tarkam bikinan...</td>
-      <td>[jakarta, kejuaraan, antarkampung, tarkam, bik...</td>
+      <td>Rider Honda Luca Marini melontarkan klaim bera...</td>
+      <td>rider honda luca marini melontarkan klaim bera...</td>
+      <td>[rider, honda, luca, marini, melontarkan, klai...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Vinales Bidik Rekor Ini Bersama Tech3</td>
-      <td>Sabtu, 23 Nov 2024 10:50 WIB</td>
-      <td>Montmelo - Pebalap Tech3 KTM Maverick Vinales ...</td>
+      <td>Marc Marquez Mau Santai Dulu, Bulan Januari Ba...</td>
+      <td>Jumat, 29 Nov 2024 17:50 WIB</td>
+      <td>Setelah MotoGP 2024 tuntas, termasuk tes usai ...</td>
       <td>Olahraga</td>
-      <td>Montmelo  Pebalap Tech KTM Maverick Vinales op...</td>
-      <td>montmelo  pebalap tech ktm maverick vinales op...</td>
-      <td>[montmelo, pebalap, tech, ktm, maverick, vinal...</td>
+      <td>Setelah MotoGP  tuntas termasuk tes usai seri ...</td>
+      <td>setelah motogp  tuntas termasuk tes usai seri ...</td>
+      <td>[setelah, motogp, tuntas, termasuk, tes, usai,...</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>Gymnastics Indonesia Gelar Pelatnas di Tokyo d...</td>
-      <td>Sabtu, 23 Nov 2024 09:45 WIB</td>
-      <td>Jakarta - Pengurus Besar Persatuan Senam Indon...</td>
+      <td>Zheng Siwei Gantung Raket, Ingin Fokus Urus Ke...</td>
+      <td>Jumat, 29 Nov 2024 16:50 WIB</td>
+      <td>Atlet bulutangkis ganda campuran China Zheng S...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Pengurus Besar Persatuan Senam Indone...</td>
-      <td>jakarta  pengurus besar persatuan senam indone...</td>
-      <td>[jakarta, pengurus, besar, persatuan, senam, i...</td>
+      <td>Atlet bulutangkis ganda campuran China Zheng S...</td>
+      <td>atlet bulutangkis ganda campuran china zheng s...</td>
+      <td>[atlet, bulutangkis, ganda, campuran, china, z...</td>
     </tr>
   </tbody>
 </table>
@@ -1108,7 +1147,7 @@ berupa kata,frasa atau karakter terpisah.</p>
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-951451b4-70c3-43e7-9030-b64bc2649464')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-9b902401-e9e6-4a52-a4f8-6fb804539b31')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -1160,12 +1199,12 @@ berupa kata,frasa atau karakter terpisah.</p>
 
     <script>
       const buttonEl =
-        document.querySelector('#df-951451b4-70c3-43e7-9030-b64bc2649464 button.colab-df-convert');
+        document.querySelector('#df-9b902401-e9e6-4a52-a4f8-6fb804539b31 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-951451b4-70c3-43e7-9030-b64bc2649464');
+        const element = document.querySelector('#df-9b902401-e9e6-4a52-a4f8-6fb804539b31');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1193,7 +1232,8 @@ berupa kata,frasa atau karakter terpisah.</p>
 <p>Tahap <strong>Stopword Removal</strong> yaitu langkah untuk memilih kata-kata yang  dianggap tidak penting atau  tidak relevan, untuk mengetahui kata-kata mana yang tidak relevan berdasarkan daftar stopword removal yang digunakan.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Menghapus kata-kata tidak penting (stopwords) berdasarkan daftar stopwords bahasa Indonesia dari pustaka NLTK.</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
 <span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stopwords&#39;</span><span class="p">)</span>
 <span class="n">stop_words</span> <span class="o">=</span> <span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;indonesian&#39;</span><span class="p">)</span>
 </pre></div>
@@ -1206,13 +1246,17 @@ berupa kata,frasa atau karakter terpisah.</p>
 </div>
 </div>
 </div>
-<p>Pada tahap ini menggunakan library <strong>NLTK stopword removal bahasa indonesia</strong>.Contoh stopwords dalam bahasa Indonesia adalah “yang” , “bahwa”, “itu”, ”ini”, “dengan” dan sebagainya.</p>
+<ul class="simple">
+<li><p>Pada tahap ini menggunakan library
+NLTK stopword removal bahasa indonesia.Contoh stopwords dalam bahasa Indonesia adalah “yang” , “bahwa”, “itu”, ”ini”, “dengan” dan sebagainya.</p></li>
+<li><p>Menghapus kata-kata tidak penting (stopwords)</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">remove_stopwords</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
   <span class="k">return</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">text</span> <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">]</span>
 
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Filtering/stopword removal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;tokenize&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">remove_stopwords</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;stopword_removal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;tokenize&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">remove_stopwords</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
 
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
 </pre></div>
@@ -1220,7 +1264,7 @@ berupa kata,frasa atau karakter terpisah.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-625d8aad-87d7-4b20-a678-d0e890aa6487" class="colab-df-container">
+  <div id="df-920fc249-343f-482d-a3f0-17d66c80fc70" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1241,80 +1285,80 @@ berupa kata,frasa atau karakter terpisah.</p>
       <th></th>
       <th>judul</th>
       <th>tanggal</th>
-      <th>isi</th>
+      <th>isi_berita</th>
       <th>kategori</th>
-      <th>cleansing</th>
+      <th>berita_clean</th>
       <th>case_folding</th>
       <th>tokenize</th>
-      <th>Filtering/stopword removal</th>
+      <th>stopword_removal</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>Kualifikasi F1 GP Las Vegas: Russell Pole, Ver...</td>
-      <td>Sabtu, 23 Nov 2024 15:05 WIB</td>
-      <td>Las Vegas - Pebalap Mercedes George Russell me...</td>
+      <td>Marc Marquez Kini di Ducati, Harusnya Mudah Be...</td>
+      <td>Sabtu, 30 Nov 2024 17:30 WIB</td>
+      <td>Marc Marquez mengaku bakal banyak tantangan di...</td>
       <td>Olahraga</td>
-      <td>Las Vegas  Pebalap Mercedes George Russell mer...</td>
-      <td>las vegas  pebalap mercedes george russell mer...</td>
-      <td>[las, vegas, pebalap, mercedes, george, russel...</td>
-      <td>las vegas pebalap mercedes george russell mera...</td>
+      <td>Marc Marquez mengaku bakal banyak tantangan di...</td>
+      <td>marc marquez mengaku bakal banyak tantangan di...</td>
+      <td>[marc, marquez, mengaku, bakal, banyak, tantan...</td>
+      <td>marc marquez mengaku tantangan motogp tim baru...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Triple Kill Jonatan Chrisite di China Masters:...</td>
-      <td>Sabtu, 23 Nov 2024 15:04 WIB</td>
-      <td>Shenzhen - Jonatan Christie sukses menembus pa...</td>
+      <td>Usai Balapan 1.000 KM di Sepang, Avila Bahar T...</td>
+      <td>Sabtu, 30 Nov 2024 02:15 WIB</td>
+      <td>Avila Bahar baru saja tampil balapan 1.000 KM ...</td>
       <td>Olahraga</td>
-      <td>Shenzhen  Jonatan Christie sukses menembus par...</td>
-      <td>shenzhen  jonatan christie sukses menembus par...</td>
-      <td>[shenzhen, jonatan, christie, sukses, menembus...</td>
-      <td>shenzhen jonatan christie sukses menembus part...</td>
+      <td>Avila Bahar baru saja tampil balapan  KM yang ...</td>
+      <td>avila bahar baru saja tampil balapan  km yang ...</td>
+      <td>[avila, bahar, baru, saja, tampil, balapan, km...</td>
+      <td>avila bahar tampil balapan km digelar sepang m...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>China Masters 2024: Singkirkan Shi Yu Qi, Jona...</td>
-      <td>Sabtu, 23 Nov 2024 14:04 WIB</td>
-      <td>Jakarta - China Masters 2024 jalani babak semi...</td>
+      <td>Video: Maarten Paes Bakal Sharing di It's His/...</td>
+      <td>2,167 Views  |  Jumat, 29 Nov 2024 21:30 WIB</td>
+      <td>Kiper Timnas Indonesia, Maarten Paes, akan men...</td>
       <td>Olahraga</td>
-      <td>Jakarta  China Masters  jalani babak semifinal...</td>
-      <td>jakarta  china masters  jalani babak semifinal...</td>
-      <td>[jakarta, china, masters, jalani, babak, semif...</td>
-      <td>jakarta china masters jalani babak semifinal j...</td>
+      <td>Kiper Timnas Indonesia Maarten Paes akan mengi...</td>
+      <td>kiper timnas indonesia maarten paes akan mengi...</td>
+      <td>[kiper, timnas, indonesia, maarten, paes, akan...</td>
+      <td>kiper timnas indonesia maarten paes mengisi ac...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Tangkal Judol, Menpora Mau Perbanyak Gelar Kej...</td>
-      <td>Sabtu, 23 Nov 2024 11:50 WIB</td>
-      <td>Jakarta - Kejuaraan Antarkampung (Tarkam) biki...</td>
+      <td>Klaim Marini: Hasil MotoGP 2025 Sudah Ditentuk...</td>
+      <td>Jumat, 29 Nov 2024 21:30 WIB</td>
+      <td>Rider Honda Luca Marini melontarkan klaim bera...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Kejuaraan Antarkampung Tarkam bikinan...</td>
-      <td>jakarta  kejuaraan antarkampung tarkam bikinan...</td>
-      <td>[jakarta, kejuaraan, antarkampung, tarkam, bik...</td>
-      <td>jakarta kejuaraan antarkampung tarkam bikinan ...</td>
+      <td>Rider Honda Luca Marini melontarkan klaim bera...</td>
+      <td>rider honda luca marini melontarkan klaim bera...</td>
+      <td>[rider, honda, luca, marini, melontarkan, klai...</td>
+      <td>rider honda luca marini melontarkan klaim bera...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Vinales Bidik Rekor Ini Bersama Tech3</td>
-      <td>Sabtu, 23 Nov 2024 10:50 WIB</td>
-      <td>Montmelo - Pebalap Tech3 KTM Maverick Vinales ...</td>
+      <td>Marc Marquez Mau Santai Dulu, Bulan Januari Ba...</td>
+      <td>Jumat, 29 Nov 2024 17:50 WIB</td>
+      <td>Setelah MotoGP 2024 tuntas, termasuk tes usai ...</td>
       <td>Olahraga</td>
-      <td>Montmelo  Pebalap Tech KTM Maverick Vinales op...</td>
-      <td>montmelo  pebalap tech ktm maverick vinales op...</td>
-      <td>[montmelo, pebalap, tech, ktm, maverick, vinal...</td>
-      <td>montmelo pebalap tech ktm maverick vinales opt...</td>
+      <td>Setelah MotoGP  tuntas termasuk tes usai seri ...</td>
+      <td>setelah motogp  tuntas termasuk tes usai seri ...</td>
+      <td>[setelah, motogp, tuntas, termasuk, tes, usai,...</td>
+      <td>motogp tuntas tes seri pamungkas marc marquez ...</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>Gymnastics Indonesia Gelar Pelatnas di Tokyo d...</td>
-      <td>Sabtu, 23 Nov 2024 09:45 WIB</td>
-      <td>Jakarta - Pengurus Besar Persatuan Senam Indon...</td>
+      <td>Zheng Siwei Gantung Raket, Ingin Fokus Urus Ke...</td>
+      <td>Jumat, 29 Nov 2024 16:50 WIB</td>
+      <td>Atlet bulutangkis ganda campuran China Zheng S...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Pengurus Besar Persatuan Senam Indone...</td>
-      <td>jakarta  pengurus besar persatuan senam indone...</td>
-      <td>[jakarta, pengurus, besar, persatuan, senam, i...</td>
-      <td>jakarta pengurus persatuan senam indonesia gym...</td>
+      <td>Atlet bulutangkis ganda campuran China Zheng S...</td>
+      <td>atlet bulutangkis ganda campuran china zheng s...</td>
+      <td>[atlet, bulutangkis, ganda, campuran, china, z...</td>
+      <td>atlet bulutangkis ganda campuran china zheng s...</td>
     </tr>
   </tbody>
 </table>
@@ -1322,7 +1366,7 @@ berupa kata,frasa atau karakter terpisah.</p>
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-625d8aad-87d7-4b20-a678-d0e890aa6487')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-920fc249-343f-482d-a3f0-17d66c80fc70')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -1374,12 +1418,12 @@ berupa kata,frasa atau karakter terpisah.</p>
 
     <script>
       const buttonEl =
-        document.querySelector('#df-625d8aad-87d7-4b20-a678-d0e890aa6487 button.colab-df-convert');
+        document.querySelector('#df-920fc249-343f-482d-a3f0-17d66c80fc70 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-625d8aad-87d7-4b20-a678-d0e890aa6487');
+        const element = document.querySelector('#df-920fc249-343f-482d-a3f0-17d66c80fc70');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1411,12 +1455,15 @@ berupa kata,frasa atau karakter terpisah.</p>
 </div>
 <hr class="docutils" />
 <p><strong>TERM FREQUENCY AND INVERSE DOCUMENT FREQUNENCY (TF-IDF)</strong></p>
+</section>
 <hr class="docutils" />
-<p><strong>Count Vectorizer</strong> Ubah dokumen teks apa pun menjadi vektor yang berisi  frekuensi  setiap kata dalam dokumen. Pembobotan TF-IDF menghitung nilai bobot untuk setiap kata di setiap dokumen. Ini dibagi menjadi dua proses</p>
-<p>yaitu <strong>TF</strong> dan <strong>IDF</strong>.</p>
-<p><strong>TF (Term Frequency)</strong> menghitung  kemunculan setiap kata dalam dokumen,  dan jika sebuah kata memiliki kemunculan  terbanyak,  kata tersebut memiliki nilai tertinggi.</p>
-<p><strong>IDF (Inverse Document Frequency)</strong> Hitung jumlah dokumen untuk setiap kata dengan nilai tertinggi yang  jarang muncul dalam dokumen.
-Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
+<section class="tex2jax_ignore mathjax_ignore" id="tf-idf">
+<h1>TF-IDF<a class="headerlink" href="#tf-idf" title="Link to this heading">#</a></h1>
+<p>Konsep</p>
+<ul class="simple">
+<li><p>TF (Term Frequency): Mengukur frekuensi sebuah kata dalam dokumen.</p></li>
+<li><p>IDF (Inverse Document Frequency): Mengukur seberapa jarang sebuah kata muncul dalam semua dokumen.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1432,6 +1479,14 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
 <li><p>𝑓𝑖 : jumlah dokumen yang mengandung I</p></li>
 <li><p>N : total seluruh dokumen.</p></li>
 </ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="kode-implementasi">
+<h1>Kode Implementasi<a class="headerlink" href="#kode-implementasi" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>TfidfVectorizer menghitung nilai TF-IDF untuk setiap kata dalam dokumen.</p></li>
+<li><p>fit_transform mengubah teks menjadi matriks TF-IDF.</p></li>
+<li><p>Matriks hasil diubah menjadi DataFrame dengan kolom sesuai kata-kata unik.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
@@ -1440,7 +1495,7 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
 <span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
 
 <span class="c1"># Menghitung TF-IDF untuk kolom &#39;isi&#39; dari dataframe</span>
-<span class="n">tfidf_matrix</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Filtering/stopword removal&#39;</span><span class="p">])</span>
+<span class="n">tfidf_matrix</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;stopword_removal&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1455,7 +1510,7 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-1df2f08f-f50a-4259-8d37-29b1c3f08327" class="colab-df-container">
+  <div id="df-abd5b85b-6b42-43cf-b270-46df56aac5da" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1474,27 +1529,27 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>abad</th>
-      <th>abah</th>
-      <th>abbas</th>
-      <th>abdillah</th>
-      <th>abdul</th>
-      <th>abiyu</th>
-      <th>abu</th>
-      <th>abuabu</th>
+      <th>aaron</th>
+      <th>abc</th>
+      <th>abhiram</th>
+      <th>abirezki</th>
+      <th>abis</th>
+      <th>abraham</th>
+      <th>absen</th>
       <th>academy</th>
+      <th>acang</th>
       <th>acar</th>
       <th>...</th>
-      <th>yusuf</th>
-      <th>yuyang</th>
-      <th>zaman</th>
+      <th>zaitun</th>
       <th>zat</th>
+      <th>zatzat</th>
+      <th>zeaxanthinnya</th>
       <th>zero</th>
-      <th>zhang</th>
-      <th>zhou</th>
+      <th>zheng</th>
+      <th>zip</th>
+      <th>zita</th>
       <th>zomato</th>
-      <th>zona</th>
-      <th>zu</th>
+      <th>zoom</th>
     </tr>
   </thead>
   <tbody>
@@ -1503,11 +1558,11 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
@@ -1515,11 +1570,11 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.040936</td>
       <td>0.0</td>
       <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -1527,11 +1582,11 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.037785</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
@@ -1539,11 +1594,11 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -1551,11 +1606,11 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
@@ -1563,11 +1618,11 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -1575,11 +1630,11 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
@@ -1587,11 +1642,11 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -1599,11 +1654,11 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
@@ -1611,11 +1666,11 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -1623,11 +1678,11 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.073511</td>
-      <td>0.110267</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
@@ -1635,11 +1690,11 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.447992</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -1647,11 +1702,11 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
@@ -1659,11 +1714,11 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.035317</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.070633</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -1671,11 +1726,11 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
@@ -1683,11 +1738,11 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -1695,11 +1750,11 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.091758</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
@@ -1707,11 +1762,11 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -1719,11 +1774,11 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
@@ -1731,21 +1786,21 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
   </tbody>
 </table>
-<p>10 rows × 4860 columns</p>
+<p>10 rows × 4982 columns</p>
 </div>
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-1df2f08f-f50a-4259-8d37-29b1c3f08327')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-abd5b85b-6b42-43cf-b270-46df56aac5da')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -1797,12 +1852,12 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
 
     <script>
       const buttonEl =
-        document.querySelector('#df-1df2f08f-f50a-4259-8d37-29b1c3f08327 button.colab-df-convert');
+        document.querySelector('#df-abd5b85b-6b42-43cf-b270-46df56aac5da button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-1df2f08f-f50a-4259-8d37-29b1c3f08327');
+        const element = document.querySelector('#df-abd5b85b-6b42-43cf-b270-46df56aac5da');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1825,6 +1880,33 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
   </div>
   </div></div>
 </div>
+<ul class="simple">
+<li><p>Output akhir tfidf_df menampilkan representasi dokumen berupa vektor dengan nilai TF-IDF masing-masing kata.</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Baris (rows)</p></li>
+</ol>
+<ul class="simple">
+<li><p>Setiap baris merepresentasikan satu dokumen (atau artikel) dalam dataset Anda.</p></li>
+<li><p>Misalnya, baris ke-0 adalah dokumen pertama, baris ke-1 adalah dokumen kedua, dan seterusnya.</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>Kolom (Columns):</p></li>
+</ol>
+<ul class="simple">
+<li><p>Setiap kolom adalah kata unik (term) yang muncul dalam keseluruhan dataset setelah proses preprocessing (seperti stopword removal dan tokenization).</p></li>
+<li><p>Contoh kata di kolom adalah aaron, abraham, absen, dll.</p></li>
+</ul>
+<p>Ukuran matriks <strong>TF-IDF</strong> ditentukan oleh:</p>
+<ol class="arabic simple">
+<li><p><strong>Jumlah Berita</strong>: Setelah diproses menjadi matriks TF-IDF, jumlah berita sama dengan jumlah baris dalam matriks. Pada gambar, terdapat <strong>10 berita</strong> (baris).</p></li>
+<li><p><strong>Jumlah Fitur</strong>: Fitur adalah jumlah kata unik (vocabulary) yang digunakan sebagai kolom dalam matriks TF-IDF. Pada gambar, terdapat <strong>4458 fitur</strong> (kolom).</p></li>
+</ol>
+<p>Jadi, setelah diproses menjadi TF-IDF:</p>
+<ul class="simple">
+<li><p><strong>Berita (Dokumen)</strong>: 10</p></li>
+<li><p><strong>Fitur (Kata Unik)</strong>: 4458</p></li>
+</ul>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1881,6 +1963,27 @@ Jika kata  sering muncul di dokumen, hasilnya akan bernilai kecil.</p>
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tugas Pertemuan 2 - Pre-Processing Data dengan TF-IDF</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mengakses-file-di-google-drive">Mengakses file di Google Drive</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#membaca-dataset">Membaca dataset</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf">TF-IDF</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-implementasi">Kode Implementasi</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>

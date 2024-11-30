@@ -15,19 +15,19 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-
 def preprocess_text(text):
     # Cleaning: Menghapus angka dan tanda baca
     text = re.sub(r'\d+', '', text)
     text = text.translate(str.maketrans('', '', string.punctuation))
     text = text.lower()
-    words = word_tokenize(text)
+    words = word_tokenize(text)  # Menggunakan word_tokenize yang benar
 
     # Stopword removal
     stop_words = set(stopwords.words("indonesian"))
     words = [word for word in words if word not in stop_words]
 
     return ' '.join(words)
+
 
 def search_similar_documents(query_text, top_k=5):
     query_text = preprocess_text(query_text)
@@ -63,12 +63,12 @@ for idx, distance in zip(indices, distances):
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mStdinNotImplementedError[0m                  Traceback (most recent call last)
-[0;32m<ipython-input-9-3dcb2071dff5>[0m in [0;36m<cell line: 31>[0;34m()[0m
-[1;32m     29[0m [0;34m[0m[0m
-[1;32m     30[0m [0;31m# Input teks dan preprocessing[0m[0;34m[0m[0;34m[0m[0m
-[0;32m---> 31[0;31m [0mquery_text[0m [0;34m=[0m [0minput[0m[0;34m([0m[0;34m"Masukkan teks: "[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m     32[0m [0mprocessed_query_text[0m [0;34m=[0m [0mpreprocess_text[0m[0;34m([0m[0mquery_text[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m     33[0m [0;34m[0m[0m
+[0;32m<ipython-input-10-5e493a27d32e>[0m in [0;36m<cell line: 32>[0;34m()[0m
+[1;32m     30[0m [0;34m[0m[0m
+[1;32m     31[0m [0;31m# Input teks dan preprocessing[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 32[0;31m [0mquery_text[0m [0;34m=[0m [0minput[0m[0;34m([0m[0;34m"Masukkan teks: "[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     33[0m [0mprocessed_query_text[0m [0;34m=[0m [0mpreprocess_text[0m[0;34m([0m[0mquery_text[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     34[0m [0;34m[0m[0m
 
 [0;32m/usr/local/lib/python3.10/dist-packages/ipykernel/kernelbase.py[0m in [0;36mraw_input[0;34m(self, prompt)[0m
 [1;32m    846[0m         """

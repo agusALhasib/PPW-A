@@ -171,7 +171,12 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Tugas Pertemuan 1 - Crawling berita online</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="Tugas2.html">Tugas Pertemuan 2 - Pre-Processing Data dengan TF-IDF</a></li>
+
+
+
+
 <li class="toctree-l1"><a class="reference internal" href="Tugas3.html">Tugas Pertemuan 3 - Logistic Regression</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="Skip-Gram.html">Word Embedding</a></li>
 
 
@@ -188,6 +193,7 @@
 <li class="toctree-l1"><a class="reference internal" href="Tugas6.html">Tugas 6 : Klasifikasi Berita Metode Logistic Regression dengan reduksi dimensi SVD</a></li>
 
 
+<li class="toctree-l1"><a class="reference internal" href="Tugas7.html">Tugas 7 : Clustering Web dengan Fuzzy C-Means</a></li>
 </ul>
 
     </div>
@@ -461,8 +467,20 @@ Terdapat berbagai macam library yang dapat digunakan untuk crawling data. Librar
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fungsi untuk mengambil data dari halaman web Detik.com</span>
-<span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">kategori</span><span class="p">,</span> <span class="n">min_articles_per_category</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Fungsi untuk membersihkan konten berita</span>
+<span class="k">def</span> <span class="nf">clean_content</span><span class="p">(</span><span class="n">content_element</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">content_element</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Content Not Found&quot;</span>
+    <span class="n">paragraphs</span> <span class="o">=</span> <span class="n">content_element</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">paragraphs</span><span class="p">)</span>
+
+<span class="c1"># Fungsi untuk mengambil data dari halaman web Detik.com</span>
+<span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">min_articles_per_category</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
         <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
@@ -474,7 +492,8 @@ Terdapat berbagai macam library yang dapat digunakan untuk crawling data. Librar
     <span class="n">articles</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;article&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;list-content__item&quot;</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">article</span> <span class="ow">in</span> <span class="n">articles</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">([</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">kategori_list</span> <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="n">kategori</span><span class="p">])</span> <span class="o">&gt;=</span> <span class="n">min_articles_per_category</span><span class="p">:</span>
+        <span class="c1"># Cek apakah jumlah artikel untuk kategori sudah mencukupi</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">([</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">kategori_list</span> <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="n">category</span><span class="p">])</span> <span class="o">&gt;=</span> <span class="n">min_articles_per_category</span><span class="p">:</span>
             <span class="k">return</span>  <span class="c1"># Menghentikan proses jika jumlah artikel sudah mencapai minimum yang diinginkan</span>
 
         <span class="k">try</span><span class="p">:</span>
@@ -491,23 +510,21 @@ Terdapat berbagai macam library yang dapat digunakan untuk crawling data. Librar
         <span class="n">date_element</span> <span class="o">=</span> <span class="n">article_soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;detail__date&quot;</span><span class="p">)</span>
         <span class="n">date</span> <span class="o">=</span> <span class="n">date_element</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">if</span> <span class="n">date_element</span> <span class="k">else</span> <span class="s2">&quot;Date Not Found&quot;</span>
         <span class="n">content_element</span> <span class="o">=</span> <span class="n">article_soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;detail__body-text&quot;</span><span class="p">)</span>
-        <span class="n">content</span> <span class="o">=</span> <span class="n">content_element</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">if</span> <span class="n">content_element</span> <span class="k">else</span> <span class="s2">&quot;Content Not Found&quot;</span>
-
-        <span class="c1"># Bersihkan konten menggunakan fungsi clean_content</span>
         <span class="n">content</span> <span class="o">=</span> <span class="n">clean_content</span><span class="p">(</span><span class="n">content_element</span><span class="p">)</span>
 
-
+        <span class="c1"># Simpan data ke dalam list global</span>
         <span class="n">judul</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
         <span class="n">tanggal</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">date</span><span class="p">)</span>
-        <span class="n">isi</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
-        <span class="c1"># url_list.append(link)</span>
-        <span class="n">kategori_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kategori</span><span class="p">)</span>
+        <span class="n">isi_berita</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+        <span class="n">kategori_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">category</span><span class="p">)</span>
 
+        <span class="c1"># Debug: Tampilkan judul artikel untuk verifikasi</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">judul</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">:</span>
-          <span class="nb">print</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Menambahkan jeda waktu 1 detik antara permintaan artikel</span>
 
-<span class="c1"># Membuat list url dan kategori yang akan di-crawl</span>
+<span class="c1"># Membuat list URL dan kategori yang akan di-crawl</span>
 <span class="n">base_urls</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;https://sport.detik.com/indeks&quot;</span><span class="p">,</span>
     <span class="s2">&quot;https://food.detik.com/indeks&quot;</span><span class="p">,</span>
@@ -519,14 +536,14 @@ Terdapat berbagai macam library yang dapat digunakan untuk crawling data. Librar
 
 <span class="c1"># Inisialisasi list untuk menyimpan data</span>
 <span class="n">judul</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">isi_berita</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">tanggal</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">isi</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">kategori_list</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="c1"># Batas minimal artikel per kategori</span>
 <span class="n">min_articles_per_category</span> <span class="o">=</span> <span class="mi">50</span>
 
-<span class="c1"># Melakukan iterasi untuk setiap url dan kategori</span>
+<span class="c1"># Melakukan iterasi untuk setiap URL dan kategori</span>
 <span class="k">for</span> <span class="n">base_url</span><span class="p">,</span> <span class="n">category</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">base_urls</span><span class="p">,</span> <span class="n">categories</span><span class="p">):</span>
     <span class="n">page</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="k">while</span> <span class="nb">len</span><span class="p">([</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">kategori_list</span> <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="n">category</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">min_articles_per_category</span><span class="p">:</span>
@@ -535,46 +552,93 @@ Terdapat berbagai macam library yang dapat digunakan untuk crawling data. Librar
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Menambahkan jeda waktu 2 detik antara permintaan halaman</span>
         <span class="n">page</span> <span class="o">+=</span> <span class="mi">1</span>
 
-<span class="c1"># Membuat dataframe dari list data</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;judul&quot;</span><span class="p">:</span> <span class="n">judul</span><span class="p">,</span> <span class="s2">&quot;tanggal&quot;</span><span class="p">:</span> <span class="n">tanggal</span><span class="p">,</span> <span class="s2">&quot;isi&quot;</span><span class="p">:</span> <span class="n">isi</span><span class="p">,</span> <span class="s2">&quot;kategori&quot;</span><span class="p">:</span> <span class="n">kategori_list</span><span class="p">})</span>
+<span class="c1"># Membuat DataFrame dari list data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;judul&quot;</span><span class="p">:</span> <span class="n">judul</span><span class="p">,</span>
+    <span class="s2">&quot;tanggal&quot;</span><span class="p">:</span> <span class="n">tanggal</span><span class="p">,</span>
+    <span class="s2">&quot;isi_berita&quot;</span><span class="p">:</span> <span class="n">isi_berita</span><span class="p">,</span>
+    <span class="s2">&quot;kategori&quot;</span><span class="p">:</span> <span class="n">kategori_list</span><span class="p">,</span>
+<span class="p">})</span>
 
-<span class="c1"># Menyimpan dataframe ke file csv</span>
+<span class="c1"># Menyimpan DataFrame ke file CSV</span>
 <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;data_berita_detik.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="c1"># Menampilkan dataframe</span>
-<span class="c1"># print(df)</span>
+<span class="c1"># Menampilkan DataFrame</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Kualifikasi F1 GP Las Vegas: Russell Pole, Verstappen Kelima
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Marc Marquez Kini di Ducati, Harusnya Mudah Beradaptasi
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Triple Kill Jonatan Chrisite di China Masters: Depak 3 Wakil Tuan Rumah!
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Usai Balapan 1.000 KM di Sepang, Avila Bahar Tatap ISSOM Akhir Pekan Ini
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>China Masters 2024: Singkirkan Shi Yu Qi, Jonatan Christie ke Final
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Video: Maarten Paes Bakal Sharing di It&#39;s His/Her Day 2024
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tangkal Judol, Menpora Mau Perbanyak Gelar Kejuaraan Lokal
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Klaim Marini: Hasil MotoGP 2025 Sudah Ditentukan, Marc Marquez Juara
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Vinales Bidik Rekor Ini Bersama Tech3
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Marc Marquez Mau Santai Dulu, Bulan Januari Baru Geber Lagi
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gymnastics Indonesia Gelar Pelatnas di Tokyo dan Jakarta
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Zheng Siwei Gantung Raket, Ingin Fokus Urus Keluarga
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Informasi Jadwal Persiapan Peserta Lari Pertamina Eco RunFest 2024
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Kata Jorge Martin, Ducati kayaknya Menyesal nih
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Melihat Pusat Latihan Polo Satu-satunya di Indonesia
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Lebih dari 1.000 Atlet Ramaikan Kejuaraan Nasional Karate 2024
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jadwal China Masters 2024 Hari Ini: Jonatan Vs Shi Yu Qi
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Misi KOI Sebarkan Semangat Olympism sampai ke Anak-anak Muda
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>China Masters 2024: Sabar/Reza Depak Unggulan Tujuh, Maju ke Semifinal
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rifda Irfanaluthfi Belum Pasti Tampil di Kejuaraan Dunia Senam 2025
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                judul  \
+0   Marc Marquez Kini di Ducati, Harusnya Mudah Be...   
+1   Usai Balapan 1.000 KM di Sepang, Avila Bahar T...   
+2   Video: Maarten Paes Bakal Sharing di It&#39;s His/...   
+3   Klaim Marini: Hasil MotoGP 2025 Sudah Ditentuk...   
+4   Marc Marquez Mau Santai Dulu, Bulan Januari Ba...   
+..                                                ...   
+95  Beda Lada, Merica, dan Ketumbar, Mana yang Leb...   
+96  Minum Kopi Campur Kunyit Efektif Turunkan BB, ...   
+97  3 Resep Nasi Goreng Bumbu Rempah yang Sedap Ar...   
+98  Minum Teh Hijau Saat Perut Kosong, Ini Saran A...   
+99  Konsumsi 5 Buah Kaya Vitamin B12 Ini Bantu Tur...   
+
+                                         tanggal  \
+0                   Sabtu, 30 Nov 2024 17:30 WIB   
+1                   Sabtu, 30 Nov 2024 02:15 WIB   
+2   2,167 Views  |  Jumat, 29 Nov 2024 21:30 WIB   
+3                   Jumat, 29 Nov 2024 21:30 WIB   
+4                   Jumat, 29 Nov 2024 17:50 WIB   
+..                                           ...   
+95                  Jumat, 29 Nov 2024 08:00 WIB   
+96                  Jumat, 29 Nov 2024 07:30 WIB   
+97                  Jumat, 29 Nov 2024 07:00 WIB   
+98                  Jumat, 29 Nov 2024 06:00 WIB   
+99                  Jumat, 29 Nov 2024 05:00 WIB   
+
+                                           isi_berita  kategori  
+0   Marc Marquez mengaku bakal banyak tantangan di...  Olahraga  
+1   Avila Bahar baru saja tampil balapan 1.000 KM ...  Olahraga  
+2   Kiper Timnas Indonesia, Maarten Paes, akan men...  Olahraga  
+3   Rider Honda Luca Marini melontarkan klaim bera...  Olahraga  
+4   Setelah MotoGP 2024 tuntas, termasuk tes usai ...  Olahraga  
+..                                                ...       ...  
+95  Lada, merica, dan ketumbar adalah rempah khas ...   Makanan  
+96  Campuran kopi dengan kunyit menawarkan banyak ...   Makanan  
+97  Nasi goreng juga bisa diracik dengan bumbu rem...   Makanan  
+98  Teh hijau banyak dikonsumsi saat pagi hari. Na...   Makanan  
+99  Kolesterol jahat yang jumlahnya terlalu tinggi...   Makanan  
+
+[100 rows x 4 columns]
 </pre></div>
 </div>
 </div>
@@ -588,7 +652,7 @@ Terdapat berbagai macam library yang dapat digunakan untuk crawling data. Librar
 </ul>
 <p>Pada tahap ini menampilkan data tersebut dan diambil berdasarkan kategori
 <em><strong>Kesehatan</strong></em> dan <em><strong>Kuliner</strong></em> dan hanya mengambil 100 sampel data crawl</p>
-<p>Berikut untuk 5 sampel data berdasarkan kategori <em><strong>Kesehatan</strong></em></p>
+<p>Berikut untuk 5 sampel data berdasarkan kategori <em><strong>Olahraga</strong></em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data_berita_detik.csv&quot;</span><span class="p">)</span>
@@ -598,7 +662,7 @@ Terdapat berbagai macam library yang dapat digunakan untuk crawling data. Librar
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-89d8caef-faa9-46ff-820a-5edc674a35ce" class="colab-df-container">
+  <div id="df-b669767f-1b5b-406f-b1bd-c3d6e9b7f657" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -619,44 +683,44 @@ Terdapat berbagai macam library yang dapat digunakan untuk crawling data. Librar
       <th></th>
       <th>judul</th>
       <th>tanggal</th>
-      <th>isi</th>
+      <th>isi_berita</th>
       <th>kategori</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>Kualifikasi F1 GP Las Vegas: Russell Pole, Ver...</td>
-      <td>Sabtu, 23 Nov 2024 15:05 WIB</td>
-      <td>Las Vegas - Pebalap Mercedes George Russell me...</td>
+      <td>Marc Marquez Kini di Ducati, Harusnya Mudah Be...</td>
+      <td>Sabtu, 30 Nov 2024 17:30 WIB</td>
+      <td>Marc Marquez mengaku bakal banyak tantangan di...</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Triple Kill Jonatan Chrisite di China Masters:...</td>
-      <td>Sabtu, 23 Nov 2024 15:04 WIB</td>
-      <td>Shenzhen - Jonatan Christie sukses menembus pa...</td>
+      <td>Usai Balapan 1.000 KM di Sepang, Avila Bahar T...</td>
+      <td>Sabtu, 30 Nov 2024 02:15 WIB</td>
+      <td>Avila Bahar baru saja tampil balapan 1.000 KM ...</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>China Masters 2024: Singkirkan Shi Yu Qi, Jona...</td>
-      <td>Sabtu, 23 Nov 2024 14:04 WIB</td>
-      <td>Jakarta - China Masters 2024 jalani babak semi...</td>
+      <td>Video: Maarten Paes Bakal Sharing di It's His/...</td>
+      <td>2,167 Views  |  Jumat, 29 Nov 2024 21:30 WIB</td>
+      <td>Kiper Timnas Indonesia, Maarten Paes, akan men...</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Tangkal Judol, Menpora Mau Perbanyak Gelar Kej...</td>
-      <td>Sabtu, 23 Nov 2024 11:50 WIB</td>
-      <td>Jakarta - Kejuaraan Antarkampung (Tarkam) biki...</td>
+      <td>Klaim Marini: Hasil MotoGP 2025 Sudah Ditentuk...</td>
+      <td>Jumat, 29 Nov 2024 21:30 WIB</td>
+      <td>Rider Honda Luca Marini melontarkan klaim bera...</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Vinales Bidik Rekor Ini Bersama Tech3</td>
-      <td>Sabtu, 23 Nov 2024 10:50 WIB</td>
-      <td>Montmelo - Pebalap Tech3 KTM Maverick Vinales ...</td>
+      <td>Marc Marquez Mau Santai Dulu, Bulan Januari Ba...</td>
+      <td>Jumat, 29 Nov 2024 17:50 WIB</td>
+      <td>Setelah MotoGP 2024 tuntas, termasuk tes usai ...</td>
       <td>Olahraga</td>
     </tr>
   </tbody>
@@ -665,7 +729,7 @@ Terdapat berbagai macam library yang dapat digunakan untuk crawling data. Librar
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-89d8caef-faa9-46ff-820a-5edc674a35ce')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-b669767f-1b5b-406f-b1bd-c3d6e9b7f657')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -717,12 +781,12 @@ Terdapat berbagai macam library yang dapat digunakan untuk crawling data. Librar
 
     <script>
       const buttonEl =
-        document.querySelector('#df-89d8caef-faa9-46ff-820a-5edc674a35ce button.colab-df-convert');
+        document.querySelector('#df-b669767f-1b5b-406f-b1bd-c3d6e9b7f657 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-89d8caef-faa9-46ff-820a-5edc674a35ce');
+        const element = document.querySelector('#df-b669767f-1b5b-406f-b1bd-c3d6e9b7f657');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -745,7 +809,7 @@ Terdapat berbagai macam library yang dapat digunakan untuk crawling data. Librar
   </div>
   </div></div>
 </div>
-<p>Berikut untuk 5 sampel data berdasarkan kategori <em><strong>Kuliner</strong></em></p>
+<p>Berikut untuk 5 sampel data berdasarkan kategori <em><strong>Makanan</strong></em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
@@ -754,7 +818,7 @@ Terdapat berbagai macam library yang dapat digunakan untuk crawling data. Librar
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-00eed242-5929-477c-8e8a-921b722dd2f2" class="colab-df-container">
+  <div id="df-d50fd90e-a0f6-40b7-9211-a4e115f6d639" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -775,44 +839,44 @@ Terdapat berbagai macam library yang dapat digunakan untuk crawling data. Librar
       <th></th>
       <th>judul</th>
       <th>tanggal</th>
-      <th>isi</th>
+      <th>isi_berita</th>
       <th>kategori</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>95</th>
-      <td>Anti Rugi! Hindari 7 Kesalahan Ini Saat Makan ...</td>
-      <td>Jumat, 22 Nov 2024 07:00 WIB</td>
-      <td>Jakarta - Makan di restoran buffet atau All Yo...</td>
+      <td>Beda Lada, Merica, dan Ketumbar, Mana yang Leb...</td>
+      <td>Jumat, 29 Nov 2024 08:00 WIB</td>
+      <td>Lada, merica, dan ketumbar adalah rempah khas ...</td>
       <td>Makanan</td>
     </tr>
     <tr>
       <th>96</th>
-      <td>Rutin Konsumsi Lemon dan Kunyit Untuk Perkuat ...</td>
-      <td>Jumat, 22 Nov 2024 06:00 WIB</td>
-      <td>Jakarta - Saat musim hujan biasanya imunitas t...</td>
+      <td>Minum Kopi Campur Kunyit Efektif Turunkan BB, ...</td>
+      <td>Jumat, 29 Nov 2024 07:30 WIB</td>
+      <td>Campuran kopi dengan kunyit menawarkan banyak ...</td>
       <td>Makanan</td>
     </tr>
     <tr>
       <th>97</th>
-      <td>5 Makanan Tinggi Vitamin D, Bagus untuk Imunit...</td>
-      <td>Jumat, 22 Nov 2024 05:00 WIB</td>
-      <td>Jakarta - Vitamin D dapat menunjang kesehatan ...</td>
+      <td>3 Resep Nasi Goreng Bumbu Rempah yang Sedap Ar...</td>
+      <td>Jumat, 29 Nov 2024 07:00 WIB</td>
+      <td>Nasi goreng juga bisa diracik dengan bumbu rem...</td>
       <td>Makanan</td>
     </tr>
     <tr>
       <th>98</th>
-      <td>Seru! Ini Momen Randy Martin Kulineran Bareng ...</td>
-      <td>Kamis, 21 Nov 2024 22:00 WIB</td>
-      <td>Jakarta - Randy Martin mencuri perhatian karen...</td>
+      <td>Minum Teh Hijau Saat Perut Kosong, Ini Saran A...</td>
+      <td>Jumat, 29 Nov 2024 06:00 WIB</td>
+      <td>Teh hijau banyak dikonsumsi saat pagi hari. Na...</td>
       <td>Makanan</td>
     </tr>
     <tr>
       <th>99</th>
-      <td>Cantiknya Gaya Nissa Sabyan saat Ngopi dan Mak...</td>
-      <td>Kamis, 21 Nov 2024 21:00 WIB</td>
-      <td>Jakarta - Nissa Sabyan sering kulineran seru b...</td>
+      <td>Konsumsi 5 Buah Kaya Vitamin B12 Ini Bantu Tur...</td>
+      <td>Jumat, 29 Nov 2024 05:00 WIB</td>
+      <td>Kolesterol jahat yang jumlahnya terlalu tinggi...</td>
       <td>Makanan</td>
     </tr>
   </tbody>
@@ -821,7 +885,7 @@ Terdapat berbagai macam library yang dapat digunakan untuk crawling data. Librar
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-00eed242-5929-477c-8e8a-921b722dd2f2')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-d50fd90e-a0f6-40b7-9211-a4e115f6d639')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -873,12 +937,12 @@ Terdapat berbagai macam library yang dapat digunakan untuk crawling data. Librar
 
     <script>
       const buttonEl =
-        document.querySelector('#df-00eed242-5929-477c-8e8a-921b722dd2f2 button.colab-df-convert');
+        document.querySelector('#df-d50fd90e-a0f6-40b7-9211-a4e115f6d639 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-00eed242-5929-477c-8e8a-921b722dd2f2');
+        const element = document.querySelector('#df-d50fd90e-a0f6-40b7-9211-a4e115f6d639');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});

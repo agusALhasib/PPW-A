@@ -171,7 +171,12 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Tugas1.html"><strong>Tugas Pertemuan 1 - Crawling berita online</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="Tugas2.html">Tugas Pertemuan 2 - Pre-Processing Data dengan TF-IDF</a></li>
+
+
+
+
 <li class="toctree-l1"><a class="reference internal" href="Tugas3.html">Tugas Pertemuan 3 - Logistic Regression</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="Skip-Gram.html">Word Embedding</a></li>
 
 
@@ -188,6 +193,7 @@
 <li class="toctree-l1"><a class="reference internal" href="Tugas6.html">Tugas 6 : Klasifikasi Berita Metode Logistic Regression dengan reduksi dimensi SVD</a></li>
 
 
+<li class="toctree-l1"><a class="reference internal" href="Tugas7.html">Tugas 7 : Clustering Web dengan Fuzzy C-Means</a></li>
 </ul>
 
     </div>
@@ -408,7 +414,22 @@
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tugas 5 : Query dengan kalimat</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-ringkasan-berita">Deployment Ringkasan Berita</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#https-huggingface-co-spaces-alhasibb-ppwringkasanberita">https://huggingface.co/spaces/AlHasibb/ppwringkasanberita</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#https-huggingface-co-spaces-alhasibb-ppwringkasanberita">https://huggingface.co/spaces/AlHasibb/ppwringkasanberita</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduksi-dimensi-dengan-svd">1. <strong>Reduksi Dimensi dengan SVD:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-dataframe-untuk-fitur">2. <strong>Membuat DataFrame untuk Fitur:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menyiapkan-data-untuk-klasifikasi">3. <strong>Menyiapkan Data untuk Klasifikasi:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membagi-data-untuk-latih-dan-uji">4. <strong>Membagi Data untuk Latih dan Uji:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#melatih-model-logistic-regression">5. <strong>Melatih Model Logistic Regression:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-prediksi">6. <strong>Membuat Prediksi:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-model">7. <strong>Evaluasi Model:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-kode">Tujuan Kode:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">Tujuan:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-preprocess-text-text">Fungsi <code class="docutils literal notranslate"><span class="pre">preprocess_text(text)</span></code>:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-search-similar-documents-query-text-top-k-5">Fungsi <code class="docutils literal notranslate"><span class="pre">search_similar_documents(query_text,</span> <span class="pre">top_k=5)</span></code>:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bagian-program">Bagian Program:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output">Output:</a></li>
+</ul>
+</li>
 </ul>
 
             </nav>
@@ -451,6 +472,12 @@
 </div>
 </div>
 </div>
+<p>Membaca file CSV yang berisi data berita yang sudah diproses dan memuatnya ke dalam tabel (DataFrame) menggunakan <strong>pandas</strong>.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">data_path</span></code> berisi lokasi file CSV di Google Drive.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pd.read_csv(data_path)</span></code> digunakan untuk membaca file tersebut.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">news_data</span></code> menyimpan data dari file CSV dalam bentuk tabel, yang kemudian bisa digunakan untuk analisis lebih lanjut.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -464,7 +491,7 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-53423cb0-e5b2-4bca-96a1-af34dc042178" class="colab-df-container">
+  <div id="df-9b978007-5521-46b2-982a-4d868464972a" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -485,69 +512,69 @@
       <th></th>
       <th>judul</th>
       <th>tanggal</th>
-      <th>isi</th>
+      <th>isi_berita</th>
       <th>kategori</th>
-      <th>cleansing</th>
+      <th>berita_clean</th>
       <th>case_folding</th>
       <th>tokenize</th>
-      <th>Filtering/stopword removal</th>
+      <th>stopword_removal</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>Kualifikasi F1 GP Las Vegas: Russell Pole, Ver...</td>
-      <td>Sabtu, 23 Nov 2024 15:05 WIB</td>
-      <td>Las Vegas - Pebalap Mercedes George Russell me...</td>
+      <td>Marc Marquez Kini di Ducati, Harusnya Mudah Be...</td>
+      <td>Sabtu, 30 Nov 2024 17:30 WIB</td>
+      <td>Marc Marquez mengaku bakal banyak tantangan di...</td>
       <td>Olahraga</td>
-      <td>Las Vegas  Pebalap Mercedes George Russell mer...</td>
-      <td>las vegas  pebalap mercedes george russell mer...</td>
-      <td>['las', 'vegas', 'pebalap', 'mercedes', 'georg...</td>
-      <td>las vegas pebalap mercedes george russell mera...</td>
+      <td>Marc Marquez mengaku bakal banyak tantangan di...</td>
+      <td>marc marquez mengaku bakal banyak tantangan di...</td>
+      <td>['marc', 'marquez', 'mengaku', 'bakal', 'banya...</td>
+      <td>marc marquez mengaku tantangan motogp tim baru...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Triple Kill Jonatan Chrisite di China Masters:...</td>
-      <td>Sabtu, 23 Nov 2024 15:04 WIB</td>
-      <td>Shenzhen - Jonatan Christie sukses menembus pa...</td>
+      <td>Usai Balapan 1.000 KM di Sepang, Avila Bahar T...</td>
+      <td>Sabtu, 30 Nov 2024 02:15 WIB</td>
+      <td>Avila Bahar baru saja tampil balapan 1.000 KM ...</td>
       <td>Olahraga</td>
-      <td>Shenzhen  Jonatan Christie sukses menembus par...</td>
-      <td>shenzhen  jonatan christie sukses menembus par...</td>
-      <td>['shenzhen', 'jonatan', 'christie', 'sukses', ...</td>
-      <td>shenzhen jonatan christie sukses menembus part...</td>
+      <td>Avila Bahar baru saja tampil balapan  KM yang ...</td>
+      <td>avila bahar baru saja tampil balapan  km yang ...</td>
+      <td>['avila', 'bahar', 'baru', 'saja', 'tampil', '...</td>
+      <td>avila bahar tampil balapan km digelar sepang m...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>China Masters 2024: Singkirkan Shi Yu Qi, Jona...</td>
-      <td>Sabtu, 23 Nov 2024 14:04 WIB</td>
-      <td>Jakarta - China Masters 2024 jalani babak semi...</td>
+      <td>Video: Maarten Paes Bakal Sharing di It's His/...</td>
+      <td>2,167 Views  |  Jumat, 29 Nov 2024 21:30 WIB</td>
+      <td>Kiper Timnas Indonesia, Maarten Paes, akan men...</td>
       <td>Olahraga</td>
-      <td>Jakarta  China Masters  jalani babak semifinal...</td>
-      <td>jakarta  china masters  jalani babak semifinal...</td>
-      <td>['jakarta', 'china', 'masters', 'jalani', 'bab...</td>
-      <td>jakarta china masters jalani babak semifinal j...</td>
+      <td>Kiper Timnas Indonesia Maarten Paes akan mengi...</td>
+      <td>kiper timnas indonesia maarten paes akan mengi...</td>
+      <td>['kiper', 'timnas', 'indonesia', 'maarten', 'p...</td>
+      <td>kiper timnas indonesia maarten paes mengisi ac...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Tangkal Judol, Menpora Mau Perbanyak Gelar Kej...</td>
-      <td>Sabtu, 23 Nov 2024 11:50 WIB</td>
-      <td>Jakarta - Kejuaraan Antarkampung (Tarkam) biki...</td>
+      <td>Klaim Marini: Hasil MotoGP 2025 Sudah Ditentuk...</td>
+      <td>Jumat, 29 Nov 2024 21:30 WIB</td>
+      <td>Rider Honda Luca Marini melontarkan klaim bera...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Kejuaraan Antarkampung Tarkam bikinan...</td>
-      <td>jakarta  kejuaraan antarkampung tarkam bikinan...</td>
-      <td>['jakarta', 'kejuaraan', 'antarkampung', 'tark...</td>
-      <td>jakarta kejuaraan antarkampung tarkam bikinan ...</td>
+      <td>Rider Honda Luca Marini melontarkan klaim bera...</td>
+      <td>rider honda luca marini melontarkan klaim bera...</td>
+      <td>['rider', 'honda', 'luca', 'marini', 'melontar...</td>
+      <td>rider honda luca marini melontarkan klaim bera...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Vinales Bidik Rekor Ini Bersama Tech3</td>
-      <td>Sabtu, 23 Nov 2024 10:50 WIB</td>
-      <td>Montmelo - Pebalap Tech3 KTM Maverick Vinales ...</td>
+      <td>Marc Marquez Mau Santai Dulu, Bulan Januari Ba...</td>
+      <td>Jumat, 29 Nov 2024 17:50 WIB</td>
+      <td>Setelah MotoGP 2024 tuntas, termasuk tes usai ...</td>
       <td>Olahraga</td>
-      <td>Montmelo  Pebalap Tech KTM Maverick Vinales op...</td>
-      <td>montmelo  pebalap tech ktm maverick vinales op...</td>
-      <td>['montmelo', 'pebalap', 'tech', 'ktm', 'maveri...</td>
-      <td>montmelo pebalap tech ktm maverick vinales opt...</td>
+      <td>Setelah MotoGP  tuntas termasuk tes usai seri ...</td>
+      <td>setelah motogp  tuntas termasuk tes usai seri ...</td>
+      <td>['setelah', 'motogp', 'tuntas', 'termasuk', 't...</td>
+      <td>motogp tuntas tes seri pamungkas marc marquez ...</td>
     </tr>
     <tr>
       <th>...</th>
@@ -562,58 +589,58 @@
     </tr>
     <tr>
       <th>95</th>
-      <td>Anti Rugi! Hindari 7 Kesalahan Ini Saat Makan ...</td>
-      <td>Jumat, 22 Nov 2024 07:00 WIB</td>
-      <td>Jakarta - Makan di restoran buffet atau All Yo...</td>
+      <td>Beda Lada, Merica, dan Ketumbar, Mana yang Leb...</td>
+      <td>Jumat, 29 Nov 2024 08:00 WIB</td>
+      <td>Lada, merica, dan ketumbar adalah rempah khas ...</td>
       <td>Makanan</td>
-      <td>Jakarta  Makan di restoran buffet atau All You...</td>
-      <td>jakarta  makan di restoran buffet atau all you...</td>
-      <td>['jakarta', 'makan', 'di', 'restoran', 'buffet...</td>
-      <td>jakarta makan restoran buffet all you can eat ...</td>
+      <td>Lada merica dan ketumbar adalah rempah khas ma...</td>
+      <td>lada merica dan ketumbar adalah rempah khas ma...</td>
+      <td>['lada', 'merica', 'dan', 'ketumbar', 'adalah'...</td>
+      <td>lada merica ketumbar rempah khas masakan indon...</td>
     </tr>
     <tr>
       <th>96</th>
-      <td>Rutin Konsumsi Lemon dan Kunyit Untuk Perkuat ...</td>
-      <td>Jumat, 22 Nov 2024 06:00 WIB</td>
-      <td>Jakarta - Saat musim hujan biasanya imunitas t...</td>
+      <td>Minum Kopi Campur Kunyit Efektif Turunkan BB, ...</td>
+      <td>Jumat, 29 Nov 2024 07:30 WIB</td>
+      <td>Campuran kopi dengan kunyit menawarkan banyak ...</td>
       <td>Makanan</td>
-      <td>Jakarta  Saat musim hujan biasanya imunitas tu...</td>
-      <td>jakarta  saat musim hujan biasanya imunitas tu...</td>
-      <td>['jakarta', 'saat', 'musim', 'hujan', 'biasany...</td>
-      <td>jakarta musim hujan imunitas tubuh menurun men...</td>
+      <td>Campuran kopi dengan kunyit menawarkan banyak ...</td>
+      <td>campuran kopi dengan kunyit menawarkan banyak ...</td>
+      <td>['campuran', 'kopi', 'dengan', 'kunyit', 'mena...</td>
+      <td>campuran kopi kunyit menawarkan manfaat tubuh ...</td>
     </tr>
     <tr>
       <th>97</th>
-      <td>5 Makanan Tinggi Vitamin D, Bagus untuk Imunit...</td>
-      <td>Jumat, 22 Nov 2024 05:00 WIB</td>
-      <td>Jakarta - Vitamin D dapat menunjang kesehatan ...</td>
+      <td>3 Resep Nasi Goreng Bumbu Rempah yang Sedap Ar...</td>
+      <td>Jumat, 29 Nov 2024 07:00 WIB</td>
+      <td>Nasi goreng juga bisa diracik dengan bumbu rem...</td>
       <td>Makanan</td>
-      <td>Jakarta  Vitamin D dapat menunjang kesehatan t...</td>
-      <td>jakarta  vitamin d dapat menunjang kesehatan t...</td>
-      <td>['jakarta', 'vitamin', 'd', 'dapat', 'menunjan...</td>
-      <td>jakarta vitamin d menunjang kesehatan tubuh si...</td>
+      <td>Nasi goreng juga bisa diracik dengan bumbu rem...</td>
+      <td>nasi goreng juga bisa diracik dengan bumbu rem...</td>
+      <td>['nasi', 'goreng', 'juga', 'bisa', 'diracik', ...</td>
+      <td>nasi goreng diracik bumbu rempahrempah segar n...</td>
     </tr>
     <tr>
       <th>98</th>
-      <td>Seru! Ini Momen Randy Martin Kulineran Bareng ...</td>
-      <td>Kamis, 21 Nov 2024 22:00 WIB</td>
-      <td>Jakarta - Randy Martin mencuri perhatian karen...</td>
+      <td>Minum Teh Hijau Saat Perut Kosong, Ini Saran A...</td>
+      <td>Jumat, 29 Nov 2024 06:00 WIB</td>
+      <td>Teh hijau banyak dikonsumsi saat pagi hari. Na...</td>
       <td>Makanan</td>
-      <td>Jakarta  Randy Martin mencuri perhatian karena...</td>
-      <td>jakarta  randy martin mencuri perhatian karena...</td>
-      <td>['jakarta', 'randy', 'martin', 'mencuri', 'per...</td>
-      <td>jakarta randy martin mencuri perhatian dikabar...</td>
+      <td>Teh hijau banyak dikonsumsi saat pagi hari Nam...</td>
+      <td>teh hijau banyak dikonsumsi saat pagi hari nam...</td>
+      <td>['teh', 'hijau', 'banyak', 'dikonsumsi', 'saat...</td>
+      <td>teh hijau dikonsumsi pagi minum teh hijau peru...</td>
     </tr>
     <tr>
       <th>99</th>
-      <td>Cantiknya Gaya Nissa Sabyan saat Ngopi dan Mak...</td>
-      <td>Kamis, 21 Nov 2024 21:00 WIB</td>
-      <td>Jakarta - Nissa Sabyan sering kulineran seru b...</td>
+      <td>Konsumsi 5 Buah Kaya Vitamin B12 Ini Bantu Tur...</td>
+      <td>Jumat, 29 Nov 2024 05:00 WIB</td>
+      <td>Kolesterol jahat yang jumlahnya terlalu tinggi...</td>
       <td>Makanan</td>
-      <td>Jakarta  Nissa Sabyan sering kulineran seru ba...</td>
-      <td>jakarta  nissa sabyan sering kulineran seru ba...</td>
-      <td>['jakarta', 'nissa', 'sabyan', 'sering', 'kuli...</td>
-      <td>jakarta nissa sabyan kulineran seru bareng tem...</td>
+      <td>Kolesterol jahat yang jumlahnya terlalu tinggi...</td>
+      <td>kolesterol jahat yang jumlahnya terlalu tinggi...</td>
+      <td>['kolesterol', 'jahat', 'yang', 'jumlahnya', '...</td>
+      <td>kolesterol jahat membahayakan kesehatan mengur...</td>
     </tr>
   </tbody>
 </table>
@@ -622,7 +649,7 @@
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-53423cb0-e5b2-4bca-96a1-af34dc042178')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-9b978007-5521-46b2-982a-4d868464972a')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -674,12 +701,12 @@
 
     <script>
       const buttonEl =
-        document.querySelector('#df-53423cb0-e5b2-4bca-96a1-af34dc042178 button.colab-df-convert');
+        document.querySelector('#df-9b978007-5521-46b2-982a-4d868464972a button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-53423cb0-e5b2-4bca-96a1-af34dc042178');
+        const element = document.querySelector('#df-9b978007-5521-46b2-982a-4d868464972a');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -702,15 +729,42 @@
   </div>
   </div></div>
 </div>
+<p>Hasil Gambar diatas menunjukkan sebuah tabel yang berisi data berita yang sudah diproses (preprocessed). Berikut adalah penjelasan singkat tentang kolom-kolom dalam tabel tersebut:</p>
+<ol class="arabic simple">
+<li><p><strong>judul</strong>: Judul dari berita.</p></li>
+<li><p><strong>tanggal</strong>: Tanggal dan waktu berita dipublikasikan.</p></li>
+<li><p><strong>isi</strong>: Isi berita yang disertakan dalam tabel.</p></li>
+<li><p><strong>kategori</strong>: Kategori berita, apakah itu tentang olahraga, makanan, atau kategori lainnya.</p></li>
+<li><p><strong>cleaning</strong>: Data yang sudah diproses untuk menghapus URL, karakter khusus, atau elemen yang tidak relevan.</p></li>
+<li><p><strong>case_folding</strong>: Semua teks yang sudah diformat menjadi huruf kecil (lowercase).</p></li>
+<li><p><strong>tokenize</strong>: Proses pemecahan teks menjadi kata-kata atau token.</p></li>
+<li><p><strong>filtering/stopword removal</strong>: Proses penghapusan kata-kata umum yang tidak memberikan informasi penting (stopwords), seperti “dan”, “atau”, “dengan”, dll.</p></li>
+</ol>
+<p>Tabel ini menunjukkan bagaimana teks berita diproses melalui beberapa tahap, dari raw text hingga tokenisasi dan pembersihan untuk analisis lebih lanjut.</p>
+<p>langkah-langkah:</p>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">news_data['Filtering/stopword</span> <span class="pre">removal']</span></code></strong>: Bagian ini mengambil kolom <strong>‘Filtering/stopword removal’</strong> dari DataFrame <code class="docutils literal notranslate"><span class="pre">news_data</span></code>. Kolom ini berisi teks yang telah melalui proses pembersihan dan penghapusan stopwords (kata yang tidak bermakna penting dalam analisis teks, seperti “dan”, “atau”, dll).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">.tolist()</span></code></strong>: Fungsi ini mengubah kolom yang diambil dari DataFrame menjadi sebuah list (daftar) Python. Jadi, setiap elemen dalam kolom tersebut akan menjadi item dalam list.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">documents</span> <span class="pre">=</span> <span class="pre">...</span></code></strong>: Hasil dari konversi kolom menjadi list disimpan dalam variabel <code class="docutils literal notranslate"><span class="pre">documents</span></code>. Variabel ini kini berisi daftar teks berita yang sudah diproses sebelumnya (stopwords dihapus).</p></li>
+</ol>
+<p>Secara singkat, code ini mengambil kolom “Filtering/stopword removal” dari DataFrame <code class="docutils literal notranslate"><span class="pre">news_data</span></code> dan mengubahnya menjadi list yang berisi teks-teks berita yang telah diproses.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ambil kolom dokumen berita</span>
-<span class="n">documents</span> <span class="o">=</span> <span class="n">news_data</span><span class="p">[</span><span class="s1">&#39;Filtering/stopword removal&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">documents</span> <span class="o">=</span> <span class="n">news_data</span><span class="p">[</span><span class="s1">&#39;stopword_removal&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p><strong>TF-IDF (Term Frequency-Inverse Document Frequency)</strong></p>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">sklearn.feature_extraction.text</span> <span class="pre">import</span> <span class="pre">TfidfVectorizer</span></code></strong>: Mengimpor <code class="docutils literal notranslate"><span class="pre">TfidfVectorizer</span></code> dari pustaka <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>. Fungsi ini digunakan untuk mengubah kumpulan teks menjadi matriks fitur dengan menghitung <strong>TF-IDF (Term Frequency-Inverse Document Frequency)</strong>, yang mengukur seberapa penting sebuah kata dalam dokumen relatif terhadap seluruh kumpulan dokumen.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">sklearn.decomposition</span> <span class="pre">import</span> <span class="pre">TruncatedSVD</span></code></strong>: Mengimpor <code class="docutils literal notranslate"><span class="pre">TruncatedSVD</span></code> yang digunakan untuk <strong>reduced dimensionality</strong> atau mereduksi dimensi data teks menggunakan teknik <strong>Singular Value Decomposition (SVD)</strong>. Ini sering digunakan dalam teknik pengolahan teks seperti <strong>Latent Semantic Analysis (LSA)</strong> untuk menemukan pola tersembunyi dalam teks.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">sklearn.metrics.pairwise</span> <span class="pre">import</span> <span class="pre">euclidean_distances</span></code></strong>: Mengimpor fungsi untuk menghitung <strong>jarak Euclidean</strong> antar titik dalam ruang fitur. Ini digunakan untuk mengukur seberapa mirip atau berbeda dua vektor data (misalnya, dokumen dalam vektor ruang).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">pandas</span> <span class="pre">as</span> <span class="pre">pd</span></code></strong>: Mengimpor pustaka <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, yang digunakan untuk manipulasi dan analisis data, seperti mengelola data dalam bentuk DataFrame.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">numpy</span> <span class="pre">as</span> <span class="pre">np</span></code></strong>: Mengimpor pustaka <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, yang digunakan untuk operasi numerik dan manipulasi array.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">joblib</span></code></strong>: Mengimpor pustaka <code class="docutils literal notranslate"><span class="pre">joblib</span></code> untuk menyimpan dan memuat objek Python, seperti model yang sudah dilatih, ke dalam file untuk digunakan di masa depan tanpa perlu melatih ulang.</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
@@ -723,6 +777,16 @@
 </div>
 </div>
 </div>
+<p>Proses untuk mengonversi kumpulan teks (dokumen) menjadi representasi numerik menggunakan <strong>TF-IDF (Term Frequency-Inverse Document Frequency)</strong>, dan kemudian menampilkan hasilnya dalam bentuk DataFrame, sebagai berikut:</p>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">tfidf_vectorizer</span> <span class="pre">=</span> <span class="pre">TfidfVectorizer()</span></code></strong>: Membuat objek <code class="docutils literal notranslate"><span class="pre">TfidfVectorizer</span></code>, yang akan digunakan untuk menghitung nilai TF-IDF dari kumpulan dokumen.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">tfidf_matrix</span> <span class="pre">=</span> <span class="pre">tfidf_vectorizer.fit_transform(documents)</span></code></strong>: Menghitung TF-IDF untuk setiap kata dalam setiap dokumen pada daftar <code class="docutils literal notranslate"><span class="pre">documents</span></code>. Fungsi <code class="docutils literal notranslate"><span class="pre">fit_transform()</span></code> menghasilkan matriks sparse yang mewakili nilai TF-IDF setiap kata di setiap dokumen.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">tfidf_features</span> <span class="pre">=</span> <span class="pre">tfidf_vectorizer.get_feature_names_out()</span></code></strong>: Mengambil daftar semua kata yang terdapat di dalam dokumen yang diproses, yang digunakan sebagai fitur (kolom) dalam matriks TF-IDF.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">tfidf_df</span> <span class="pre">=</span> <span class="pre">pd.DataFrame(tfidf_matrix.toarray(),</span> <span class="pre">columns=tfidf_features)</span></code></strong>: Mengubah matriks sparse yang berisi nilai TF-IDF menjadi array dan kemudian mengonversinya ke dalam bentuk DataFrame, dengan kolom yang berisi kata-kata (fitur) dan baris yang mewakili dokumen. Setiap elemen dalam DataFrame menunjukkan nilai TF-IDF untuk kata tertentu di dokumen tertentu.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">print(&quot;\nHasil</span> <span class="pre">TF-IDF</span> <span class="pre">dalam</span> <span class="pre">bentuk</span> <span class="pre">DataFrame:&quot;)</span></code></strong>: Menampilkan teks yang menunjukkan bahwa hasil TF-IDF akan ditampilkan.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">tfidf_df</span></code></strong>: Menampilkan DataFrame yang berisi hasil TF-IDF untuk setiap dokumen dan kata yang ada dalam koleksi dokumen.</p></li>
+</ol>
+<p>Dengan demikian, DataFrame yang ditampilkan memberikan gambaran seberapa penting setiap kata dalam setiap dokumen berdasarkan nilai TF-IDF.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tfidf_vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
@@ -745,7 +809,7 @@
 </pre></div>
 </div>
 <div class="output text_html">
-  <div id="df-a3d134b6-25b6-4c37-a950-ca6fa1732d0f" class="colab-df-container">
+  <div id="df-2e000e45-b2fa-4468-aba9-7358cdb688ca" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -764,27 +828,27 @@
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>abad</th>
-      <th>abah</th>
-      <th>abbas</th>
-      <th>abdillah</th>
-      <th>abdul</th>
-      <th>abiyu</th>
-      <th>abu</th>
-      <th>abuabu</th>
+      <th>aaron</th>
+      <th>abc</th>
+      <th>abhiram</th>
+      <th>abirezki</th>
+      <th>abis</th>
+      <th>abraham</th>
+      <th>absen</th>
       <th>academy</th>
+      <th>acang</th>
       <th>acar</th>
       <th>...</th>
-      <th>yusuf</th>
-      <th>yuyang</th>
-      <th>zaman</th>
+      <th>zaitun</th>
       <th>zat</th>
+      <th>zatzat</th>
+      <th>zeaxanthinnya</th>
       <th>zero</th>
-      <th>zhang</th>
-      <th>zhou</th>
+      <th>zheng</th>
+      <th>zip</th>
+      <th>zita</th>
       <th>zomato</th>
-      <th>zona</th>
-      <th>zu</th>
+      <th>zoom</th>
     </tr>
   </thead>
   <tbody>
@@ -793,7 +857,7 @@
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -802,12 +866,12 @@
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.040936</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -817,7 +881,7 @@
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.037785</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -826,12 +890,12 @@
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -841,7 +905,7 @@
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -850,12 +914,12 @@
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -865,7 +929,7 @@
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -874,12 +938,12 @@
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -889,7 +953,7 @@
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -898,12 +962,12 @@
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -937,7 +1001,7 @@
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -946,12 +1010,12 @@
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -961,7 +1025,7 @@
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -970,12 +1034,12 @@
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.029335</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -985,7 +1049,7 @@
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -994,12 +1058,12 @@
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1009,7 +1073,7 @@
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1018,12 +1082,12 @@
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
+      <td>0.033212</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1033,7 +1097,7 @@
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1042,24 +1106,24 @@
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
+      <td>0.037313</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
   </tbody>
 </table>
-<p>100 rows × 4860 columns</p>
+<p>100 rows × 4982 columns</p>
 </div>
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-a3d134b6-25b6-4c37-a950-ca6fa1732d0f')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-2e000e45-b2fa-4468-aba9-7358cdb688ca')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -1111,12 +1175,12 @@
 
     <script>
       const buttonEl =
-        document.querySelector('#df-a3d134b6-25b6-4c37-a950-ca6fa1732d0f button.colab-df-convert');
+        document.querySelector('#df-2e000e45-b2fa-4468-aba9-7358cdb688ca button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-a3d134b6-25b6-4c37-a950-ca6fa1732d0f');
+        const element = document.querySelector('#df-2e000e45-b2fa-4468-aba9-7358cdb688ca');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1139,7 +1203,18 @@
   </div>
   </div></div>
 </div>
-<p><strong>Singular Value Decomposition (SVD)</strong></p>
+<p>100 tabel x 5242 kolom</p>
+<p><strong>Singular Value Decomposition (SVD)</strong>
+untuk mereduksi dimensi dari matriks TF-IDF, yang bertujuan untuk menyederhanakan data dan mengurangi kompleksitasnya, sekaligus mempertahankan informasi penting. Berikut penjelasan singkat dari tiap langkah:</p>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">n_components</span> <span class="pre">=</span> <span class="pre">100</span></code></strong>: Menentukan jumlah komponen (fitur baru) yang ingin dihasilkan setelah reduksi dimensi. Dalam hal ini, 100 fitur akan dipilih.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">svd</span> <span class="pre">=</span> <span class="pre">TruncatedSVD(n_components=n_components)</span></code></strong>: Membuat objek SVD dengan parameter <code class="docutils literal notranslate"><span class="pre">n_components=100</span></code>. <code class="docutils literal notranslate"><span class="pre">TruncatedSVD</span></code> digunakan untuk mengurangi dimensi matriks secara efisien tanpa kehilangan banyak informasi penting.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">svd_matrix</span> <span class="pre">=</span> <span class="pre">svd.fit_transform(tfidf_matrix)</span></code></strong>: Mengaplikasikan SVD pada matriks TF-IDF untuk mengurangi dimensi. Hasilnya adalah matriks dengan jumlah kolom lebih sedikit (100 kolom, sesuai dengan <code class="docutils literal notranslate"><span class="pre">n_components</span></code>), namun tetap mewakili informasi utama dari data.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">svd_df</span> <span class="pre">=</span> <span class="pre">pd.DataFrame(svd_matrix,</span> <span class="pre">columns=[f'feature</span> <span class="pre">{i+1}'</span> <span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">range(n_components)])</span></code></strong>: Mengonversi matriks hasil SVD menjadi DataFrame, dengan nama kolom seperti “feature 1”, “feature 2”, …, sesuai dengan jumlah komponen yang dipilih.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">print(&quot;Hasil</span> <span class="pre">reduksi</span> <span class="pre">dimensi</span> <span class="pre">dengan</span> <span class="pre">SVD:&quot;)</span></code></strong>: Menampilkan teks yang menunjukkan bahwa hasil reduksi dimensi dengan SVD akan ditampilkan.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">svd_df</span></code></strong>: Menampilkan DataFrame yang berisi hasil reduksi dimensi, di mana setiap baris mewakili dokumen dan setiap kolom mewakili fitur hasil dari SVD.</p></li>
+</ol>
+<p>Dengan demikian, tujuan dari kode ini adalah untuk mengurangi dimensi data teks yang sangat besar (setelah proses TF-IDF), menjadi lebih sederhana tanpa mengurangi informasi yang penting.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Menggunakan SVD untuk reduksi dimensi</span>
@@ -1161,7 +1236,7 @@
 </pre></div>
 </div>
 <div class="output text_html">
-  <div id="df-50fcbd82-9e75-4b28-88b4-45650f4cc581" class="colab-df-container">
+  <div id="df-f2bfc5b0-22d9-4f59-957b-b597e231e863" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1206,123 +1281,123 @@
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.070208</td>
-      <td>0.008926</td>
-      <td>0.088033</td>
-      <td>-0.115512</td>
-      <td>0.014441</td>
-      <td>0.148354</td>
-      <td>-0.025158</td>
-      <td>0.316508</td>
-      <td>0.112554</td>
-      <td>0.102976</td>
+      <td>0.333313</td>
+      <td>0.516831</td>
+      <td>0.005614</td>
+      <td>0.018371</td>
+      <td>-0.029293</td>
+      <td>-0.001691</td>
+      <td>-0.001742</td>
+      <td>-0.094632</td>
+      <td>-0.088117</td>
+      <td>-0.036707</td>
       <td>...</td>
-      <td>0.016093</td>
-      <td>0.007635</td>
-      <td>-0.004728</td>
-      <td>0.006689</td>
-      <td>0.006640</td>
-      <td>0.003235</td>
-      <td>0.001828</td>
-      <td>0.015822</td>
-      <td>-0.008979</td>
-      <td>-1.558541e-17</td>
+      <td>-0.133628</td>
+      <td>0.014589</td>
+      <td>0.014665</td>
+      <td>-0.009421</td>
+      <td>0.067847</td>
+      <td>0.001144</td>
+      <td>-0.014178</td>
+      <td>-0.058842</td>
+      <td>0.001704</td>
+      <td>-1.477225e-18</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.570249</td>
-      <td>-0.051053</td>
-      <td>-0.148401</td>
-      <td>0.471844</td>
-      <td>0.017531</td>
-      <td>0.184541</td>
-      <td>-0.036963</td>
-      <td>0.055997</td>
-      <td>0.018153</td>
-      <td>-0.039775</td>
+      <td>0.109642</td>
+      <td>0.022927</td>
+      <td>0.005132</td>
+      <td>-0.019125</td>
+      <td>0.036270</td>
+      <td>0.000374</td>
+      <td>0.017487</td>
+      <td>0.046617</td>
+      <td>0.007394</td>
+      <td>0.011993</td>
       <td>...</td>
-      <td>0.335511</td>
-      <td>-0.047534</td>
-      <td>-0.177085</td>
-      <td>0.246708</td>
-      <td>0.115753</td>
-      <td>-0.081828</td>
-      <td>-0.006074</td>
-      <td>0.005774</td>
-      <td>0.000158</td>
-      <td>-3.084555e-17</td>
+      <td>0.031034</td>
+      <td>-0.001332</td>
+      <td>-0.004717</td>
+      <td>0.001753</td>
+      <td>0.013487</td>
+      <td>-0.003072</td>
+      <td>-0.016789</td>
+      <td>0.000496</td>
+      <td>0.000132</td>
+      <td>7.950421e-17</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.424865</td>
-      <td>-0.041981</td>
-      <td>-0.154413</td>
-      <td>0.504569</td>
-      <td>0.020061</td>
-      <td>0.217146</td>
-      <td>-0.017601</td>
-      <td>0.045272</td>
-      <td>0.011096</td>
-      <td>0.156093</td>
+      <td>0.056237</td>
+      <td>-0.003866</td>
+      <td>-0.001327</td>
+      <td>-0.030445</td>
+      <td>0.066611</td>
+      <td>-0.000614</td>
+      <td>-0.000431</td>
+      <td>0.062931</td>
+      <td>0.023525</td>
+      <td>0.011263</td>
       <td>...</td>
-      <td>0.069946</td>
-      <td>0.010022</td>
-      <td>0.128517</td>
-      <td>-0.211606</td>
-      <td>-0.065295</td>
-      <td>0.142286</td>
-      <td>-0.005158</td>
-      <td>-0.087636</td>
-      <td>0.047603</td>
-      <td>1.219727e-17</td>
+      <td>0.000496</td>
+      <td>-0.003126</td>
+      <td>0.002386</td>
+      <td>-0.001611</td>
+      <td>-0.002422</td>
+      <td>-0.002346</td>
+      <td>0.001027</td>
+      <td>0.007013</td>
+      <td>0.001691</td>
+      <td>1.131907e-16</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.034535</td>
-      <td>0.031661</td>
-      <td>0.140299</td>
-      <td>-0.063677</td>
-      <td>0.009764</td>
-      <td>0.223660</td>
-      <td>0.032508</td>
-      <td>-0.112528</td>
-      <td>-0.066919</td>
-      <td>0.026695</td>
+      <td>0.359587</td>
+      <td>0.512692</td>
+      <td>-0.011499</td>
+      <td>0.017944</td>
+      <td>-0.015990</td>
+      <td>-0.002726</td>
+      <td>-0.009684</td>
+      <td>-0.025994</td>
+      <td>0.000256</td>
+      <td>-0.007406</td>
       <td>...</td>
-      <td>0.001477</td>
-      <td>-0.004386</td>
-      <td>-0.002670</td>
-      <td>0.002658</td>
-      <td>0.000427</td>
-      <td>-0.004828</td>
-      <td>0.004134</td>
-      <td>-0.000827</td>
-      <td>0.001713</td>
-      <td>5.637851e-18</td>
+      <td>-0.008683</td>
+      <td>0.027217</td>
+      <td>-0.052814</td>
+      <td>0.007474</td>
+      <td>0.062579</td>
+      <td>-0.008826</td>
+      <td>-0.179791</td>
+      <td>0.050726</td>
+      <td>0.000620</td>
+      <td>3.389487e-17</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.021024</td>
-      <td>0.010335</td>
-      <td>0.067736</td>
-      <td>-0.063452</td>
-      <td>0.008971</td>
-      <td>0.110914</td>
-      <td>-0.026970</td>
-      <td>0.269987</td>
-      <td>0.090229</td>
-      <td>0.017159</td>
+      <td>0.323082</td>
+      <td>0.409880</td>
+      <td>-0.000571</td>
+      <td>-0.016383</td>
+      <td>0.015156</td>
+      <td>-0.002777</td>
+      <td>0.003644</td>
+      <td>-0.100720</td>
+      <td>-0.047864</td>
+      <td>-0.063136</td>
       <td>...</td>
-      <td>0.001723</td>
-      <td>-0.000384</td>
-      <td>-0.004198</td>
-      <td>0.000248</td>
-      <td>-0.000541</td>
-      <td>0.001468</td>
-      <td>0.000939</td>
-      <td>-0.001166</td>
-      <td>0.000963</td>
-      <td>-8.345646e-17</td>
+      <td>-0.134961</td>
+      <td>-0.031834</td>
+      <td>0.053151</td>
+      <td>-0.055771</td>
+      <td>0.021627</td>
+      <td>-0.006640</td>
+      <td>-0.063106</td>
+      <td>0.015004</td>
+      <td>0.000640</td>
+      <td>-2.753874e-17</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1350,123 +1425,123 @@
     </tr>
     <tr>
       <th>95</th>
-      <td>0.038224</td>
-      <td>0.164370</td>
-      <td>0.399131</td>
-      <td>0.182528</td>
-      <td>-0.009864</td>
-      <td>-0.192159</td>
-      <td>-0.236833</td>
-      <td>0.098721</td>
-      <td>-0.305893</td>
-      <td>0.054225</td>
+      <td>0.042533</td>
+      <td>-0.021544</td>
+      <td>0.119076</td>
+      <td>-0.146967</td>
+      <td>-0.052113</td>
+      <td>-0.008560</td>
+      <td>0.000820</td>
+      <td>-0.078318</td>
+      <td>0.061889</td>
+      <td>0.127423</td>
       <td>...</td>
-      <td>-0.016798</td>
-      <td>0.004503</td>
-      <td>-0.012641</td>
-      <td>0.009208</td>
-      <td>-0.002801</td>
-      <td>-0.002120</td>
-      <td>-0.010426</td>
-      <td>-0.004569</td>
-      <td>-0.001163</td>
-      <td>3.611748e-17</td>
+      <td>-0.000624</td>
+      <td>-0.000302</td>
+      <td>0.000362</td>
+      <td>-0.005504</td>
+      <td>0.003081</td>
+      <td>0.004116</td>
+      <td>-0.002524</td>
+      <td>0.002521</td>
+      <td>0.001037</td>
+      <td>-8.738670e-17</td>
     </tr>
     <tr>
       <th>96</th>
-      <td>0.015075</td>
-      <td>0.063238</td>
-      <td>0.142135</td>
-      <td>0.040664</td>
-      <td>-0.001388</td>
-      <td>-0.030946</td>
-      <td>-0.129535</td>
-      <td>-0.004457</td>
-      <td>0.031247</td>
-      <td>0.039996</td>
+      <td>0.044425</td>
+      <td>-0.014771</td>
+      <td>0.105953</td>
+      <td>-0.154897</td>
+      <td>-0.032374</td>
+      <td>-0.006927</td>
+      <td>0.174811</td>
+      <td>-0.060250</td>
+      <td>0.046559</td>
+      <td>0.106982</td>
       <td>...</td>
-      <td>-0.003599</td>
-      <td>-0.000597</td>
-      <td>0.006542</td>
-      <td>0.001820</td>
-      <td>-0.000377</td>
-      <td>0.001227</td>
-      <td>0.001100</td>
-      <td>-0.001393</td>
-      <td>-0.005262</td>
-      <td>6.028842e-17</td>
+      <td>-0.001984</td>
+      <td>-0.005110</td>
+      <td>0.008916</td>
+      <td>0.008688</td>
+      <td>-0.001995</td>
+      <td>-0.007484</td>
+      <td>-0.006330</td>
+      <td>-0.004720</td>
+      <td>-0.001200</td>
+      <td>-5.258381e-18</td>
     </tr>
     <tr>
       <th>97</th>
-      <td>0.013072</td>
-      <td>0.077869</td>
-      <td>0.109487</td>
-      <td>0.044468</td>
-      <td>-0.002377</td>
-      <td>-0.047859</td>
-      <td>-0.112561</td>
-      <td>-0.018377</td>
-      <td>0.055896</td>
-      <td>0.017615</td>
+      <td>0.058683</td>
+      <td>-0.032946</td>
+      <td>0.324055</td>
+      <td>-0.216812</td>
+      <td>-0.169497</td>
+      <td>-0.019054</td>
+      <td>-0.250382</td>
+      <td>-0.002274</td>
+      <td>-0.013682</td>
+      <td>-0.160395</td>
       <td>...</td>
-      <td>-0.003365</td>
-      <td>-0.013751</td>
-      <td>-0.004471</td>
-      <td>0.000190</td>
-      <td>0.000667</td>
-      <td>-0.000168</td>
-      <td>0.006618</td>
-      <td>-0.003897</td>
-      <td>-0.004075</td>
-      <td>-2.486889e-17</td>
+      <td>0.007707</td>
+      <td>0.007988</td>
+      <td>-0.052931</td>
+      <td>-0.058858</td>
+      <td>-0.002186</td>
+      <td>-0.001711</td>
+      <td>0.009466</td>
+      <td>0.002928</td>
+      <td>0.002480</td>
+      <td>9.106621e-17</td>
     </tr>
     <tr>
       <th>98</th>
-      <td>0.007268</td>
-      <td>0.023555</td>
-      <td>0.050663</td>
-      <td>0.004965</td>
-      <td>0.000822</td>
-      <td>0.008869</td>
-      <td>-0.015311</td>
-      <td>0.042622</td>
-      <td>0.023767</td>
-      <td>0.014630</td>
+      <td>0.053056</td>
+      <td>-0.024674</td>
+      <td>0.111448</td>
+      <td>-0.247935</td>
+      <td>-0.007178</td>
+      <td>-0.009078</td>
+      <td>0.641062</td>
+      <td>-0.184958</td>
+      <td>0.048510</td>
+      <td>0.092952</td>
       <td>...</td>
-      <td>0.003610</td>
-      <td>-0.006590</td>
-      <td>0.022805</td>
-      <td>0.012455</td>
-      <td>-0.000208</td>
-      <td>0.000190</td>
-      <td>-0.000897</td>
-      <td>0.002226</td>
-      <td>0.003883</td>
-      <td>-3.252607e-18</td>
+      <td>0.074254</td>
+      <td>-0.016421</td>
+      <td>0.062030</td>
+      <td>0.008965</td>
+      <td>-0.023875</td>
+      <td>0.001780</td>
+      <td>-0.007853</td>
+      <td>0.011213</td>
+      <td>0.000221</td>
+      <td>2.545165e-17</td>
     </tr>
     <tr>
       <th>99</th>
-      <td>0.009692</td>
-      <td>0.044040</td>
-      <td>0.111656</td>
-      <td>0.055594</td>
-      <td>-0.002489</td>
-      <td>-0.047263</td>
-      <td>0.011154</td>
-      <td>0.036953</td>
-      <td>-0.061006</td>
-      <td>0.004695</td>
+      <td>0.037633</td>
+      <td>-0.014619</td>
+      <td>0.105675</td>
+      <td>-0.120243</td>
+      <td>-0.030795</td>
+      <td>-0.004407</td>
+      <td>0.110080</td>
+      <td>-0.043864</td>
+      <td>0.039595</td>
+      <td>0.101999</td>
       <td>...</td>
-      <td>0.000073</td>
-      <td>0.003620</td>
-      <td>0.002435</td>
-      <td>0.006096</td>
-      <td>0.001052</td>
-      <td>-0.001118</td>
-      <td>-0.003213</td>
-      <td>0.003857</td>
-      <td>0.001882</td>
-      <td>7.860466e-17</td>
+      <td>0.001119</td>
+      <td>-0.007072</td>
+      <td>0.011576</td>
+      <td>0.014741</td>
+      <td>0.002323</td>
+      <td>0.003104</td>
+      <td>0.002006</td>
+      <td>-0.000085</td>
+      <td>-0.001715</td>
+      <td>3.913292e-17</td>
     </tr>
   </tbody>
 </table>
@@ -1475,7 +1550,7 @@
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-50fcbd82-9e75-4b28-88b4-45650f4cc581')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-f2bfc5b0-22d9-4f59-957b-b597e231e863')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -1527,12 +1602,12 @@
 
     <script>
       const buttonEl =
-        document.querySelector('#df-50fcbd82-9e75-4b28-88b4-45650f4cc581 button.colab-df-convert');
+        document.querySelector('#df-f2bfc5b0-22d9-4f59-957b-b597e231e863 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-50fcbd82-9e75-4b28-88b4-45650f4cc581');
+        const element = document.querySelector('#df-f2bfc5b0-22d9-4f59-957b-b597e231e863');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1555,6 +1630,56 @@
   </div>
   </div></div>
 </div>
+<p><strong>klasifikasi teks</strong> menggunakan <strong>Logistic Regression</strong> setelah mengurangi dimensi data dengan <strong>SVD (Singular Value Decomposition)</strong>. Berikut penjelasan singkat dari tiap bagian kode:</p>
+<section id="reduksi-dimensi-dengan-svd">
+<h2>1. <strong>Reduksi Dimensi dengan SVD:</strong><a class="headerlink" href="#reduksi-dimensi-dengan-svd" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">svd</span> <span class="pre">=</span> <span class="pre">TruncatedSVD(n_components=n_components)</span></code></strong>: Membuat objek SVD dengan jumlah komponen yang diinginkan (100 dalam hal ini).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">svd_matrix</span> <span class="pre">=</span> <span class="pre">svd.fit_transform(tfidf_matrix)</span></code></strong>: Menerapkan SVD pada matriks TF-IDF untuk mengurangi dimensi, menghasilkan matriks dengan 100 komponen.</p></li>
+</ul>
+</section>
+<section id="membuat-dataframe-untuk-fitur">
+<h2>2. <strong>Membuat DataFrame untuk Fitur:</strong><a class="headerlink" href="#membuat-dataframe-untuk-fitur" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">svd_df</span> <span class="pre">=</span> <span class="pre">pd.DataFrame(svd_matrix,</span> <span class="pre">columns=[f'feature</span> <span class="pre">{i+1}'</span> <span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">range(n_components)])</span></code></strong>: Mengonversi matriks hasil SVD menjadi DataFrame, dengan nama kolom yang sesuai seperti “feature 1”, “feature 2”, dan seterusnya.</p></li>
+</ul>
+</section>
+<section id="menyiapkan-data-untuk-klasifikasi">
+<h2>3. <strong>Menyiapkan Data untuk Klasifikasi:</strong><a class="headerlink" href="#menyiapkan-data-untuk-klasifikasi" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">=</span> <span class="pre">svd_df</span></code></strong>: Matriks fitur dari hasil SVD digunakan sebagai data input untuk model klasifikasi.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">news_data['kategori']</span></code></strong>: Kolom <code class="docutils literal notranslate"><span class="pre">kategori</span></code> dari dataset digunakan sebagai label kelas untuk masing-masing data (kategori berita dalam hal ini).</p></li>
+</ul>
+</section>
+<section id="membagi-data-untuk-latih-dan-uji">
+<h2>4. <strong>Membagi Data untuk Latih dan Uji:</strong><a class="headerlink" href="#membagi-data-untuk-latih-dan-uji" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">X_train,</span> <span class="pre">X_test,</span> <span class="pre">y_train,</span> <span class="pre">y_test</span> <span class="pre">=</span> <span class="pre">train_test_split(X,</span> <span class="pre">y,</span> <span class="pre">test_size=0.3,</span> <span class="pre">random_state=42)</span></code></strong>: Data dibagi menjadi dua bagian, yaitu 70% untuk pelatihan (<code class="docutils literal notranslate"><span class="pre">X_train</span></code>, <code class="docutils literal notranslate"><span class="pre">y_train</span></code>) dan 30% untuk pengujian (<code class="docutils literal notranslate"><span class="pre">X_test</span></code>, <code class="docutils literal notranslate"><span class="pre">y_test</span></code>).</p></li>
+</ul>
+</section>
+<section id="melatih-model-logistic-regression">
+<h2>5. <strong>Melatih Model Logistic Regression:</strong><a class="headerlink" href="#melatih-model-logistic-regression" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">logreg</span> <span class="pre">=</span> <span class="pre">LogisticRegression(max_iter=1000)</span></code></strong>: Membuat model Logistic Regression dengan iterasi maksimum 1000.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">logreg.fit(X_train,</span> <span class="pre">y_train)</span></code></strong>: Melatih model menggunakan data latih.</p></li>
+</ul>
+</section>
+<section id="membuat-prediksi">
+<h2>6. <strong>Membuat Prediksi:</strong><a class="headerlink" href="#membuat-prediksi" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">y_pred</span> <span class="pre">=</span> <span class="pre">logreg.predict(X_test)</span></code></strong>: Menggunakan model yang sudah dilatih untuk memprediksi kategori pada data uji (<code class="docutils literal notranslate"><span class="pre">X_test</span></code>).</p></li>
+</ul>
+</section>
+<section id="evaluasi-model">
+<h2>7. <strong>Evaluasi Model:</strong><a class="headerlink" href="#evaluasi-model" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">accuracy_score(y_test,</span> <span class="pre">y_pred)</span></code></strong>: Menghitung akurasi model dengan membandingkan prediksi dan label yang sebenarnya (<code class="docutils literal notranslate"><span class="pre">y_test</span></code>).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">classification_report(y_test,</span> <span class="pre">y_pred)</span></code></strong>: Menampilkan laporan klasifikasi yang mencakup metrik seperti precision, recall, dan f1-score untuk tiap kategori.</p></li>
+</ul>
+</section>
+<section id="tujuan-kode">
+<h2>Tujuan Kode:<a class="headerlink" href="#tujuan-kode" title="Link to this heading">#</a></h2>
+<p>Kode ini digunakan untuk melakukan <strong>klasifikasi berita</strong> berdasarkan kategori (misalnya, olahraga atau makanan) menggunakan model <strong>Logistic Regression</strong>, setelah terlebih dahulu mengurangi dimensi data teks menggunakan <strong>SVD</strong>. Setelah model dilatih, model akan diuji dengan data yang belum terlihat dan hasilnya dievaluasi menggunakan metrik klasifikasi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">TruncatedSVD</span>
@@ -1594,21 +1719,45 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 0.9
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 0.9333333333333333
 Classification Report:
                precision    recall  f1-score   support
 
-     Makanan       0.81      1.00      0.90        13
-    Olahraga       1.00      0.82      0.90        17
+     Makanan       0.87      1.00      0.93        13
+    Olahraga       1.00      0.88      0.94        17
 
-    accuracy                           0.90        30
-   macro avg       0.91      0.91      0.90        30
-weighted avg       0.92      0.90      0.90        30
+    accuracy                           0.93        30
+   macro avg       0.93      0.94      0.93        30
+weighted avg       0.94      0.93      0.93        30
 </pre></div>
 </div>
 </div>
 </div>
-<p><strong>Implementasi</strong></p>
+<p><strong>Implementasi</strong>
+<strong>pra-pemrosesan teks</strong> (text preprocessing) sebelum digunakan dalam analisis atau model pembelajaran mesin. Berikut penjelasan singkat tentang fungsinya:</p>
+<ol class="arabic simple">
+<li><p><strong>Mengimpor Modul:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">re</span></code>: Modul untuk operasi pencocokan dan penggantian teks menggunakan ekspresi reguler (regex).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">string</span></code>: Modul yang berisi karakter string untuk manipulasi teks.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stopwords</span></code>: Modul dari NLTK (Natural Language Toolkit) untuk mengambil daftar kata umum yang tidak memiliki makna penting, seperti “dan”, “atau”, yang biasanya dihilangkan dalam analisis teks.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">word_tokenize</span></code>: Fungsi dari NLTK yang digunakan untuk memecah teks menjadi kata-kata (token).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nltk</span></code>: Library untuk pemrosesan bahasa alami yang menyediakan berbagai tools dan dataset.</p></li>
+</ul>
+</li>
+<li><p><strong>Mendownload Data NLTK:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nltk.download('stopwords')</span></code>: Mendownload kumpulan kata-kata berhenti (stopwords) dari NLTK.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nltk.download('punkt')</span></code>: Mendownload tokenizer model yang digunakan untuk memecah teks menjadi kata-kata atau kalimat.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="tujuan">
+<h2>Tujuan:<a class="headerlink" href="#tujuan" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Kode ini digunakan untuk mengunduh dan menyiapkan tools yang diperlukan untuk <strong>pembersihan teks</strong> dan <strong>tokenisasi</strong>, serta menghapus kata-kata yang tidak penting (stopwords) yang biasanya tidak membawa informasi yang berguna dalam analisis teks.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
@@ -1633,6 +1782,75 @@ weighted avg       0.92      0.90      0.90        30
 </div>
 </div>
 </div>
+</section>
+<section id="fungsi-preprocess-text-text">
+<h2>Fungsi <code class="docutils literal notranslate"><span class="pre">preprocess_text(text)</span></code>:<a class="headerlink" href="#fungsi-preprocess-text-text" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Tujuan</strong>: Membersihkan teks untuk mempersiapkan analisis lebih lanjut.</p></li>
+<li><p><strong>Langkah-langkah</strong>:</p>
+<ul>
+<li><p>Menghapus angka menggunakan regex (<code class="docutils literal notranslate"><span class="pre">re.sub(r'\d+',</span> <span class="pre">'',</span> <span class="pre">text)</span></code>).</p></li>
+<li><p>Menghapus tanda baca dengan <code class="docutils literal notranslate"><span class="pre">text.translate(str.maketrans('',</span> <span class="pre">'',</span> <span class="pre">string.punctuation))</span></code>.</p></li>
+<li><p>Mengubah semua teks menjadi huruf kecil untuk konsistensi.</p></li>
+<li><p>Tokenisasi (memecah teks menjadi kata-kata) menggunakan <code class="docutils literal notranslate"><span class="pre">word_tokenize</span></code>.</p></li>
+<li><p>Menghapus kata-kata yang dianggap tidak penting (stopwords) seperti “yang”, “dan”, dsb. dengan menggunakan stopwords dari NLTK.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="fungsi-search-similar-documents-query-text-top-k-5">
+<h2>Fungsi <code class="docutils literal notranslate"><span class="pre">search_similar_documents(query_text,</span> <span class="pre">top_k=5)</span></code>:<a class="headerlink" href="#fungsi-search-similar-documents-query-text-top-k-5" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Tujuan</strong>: Mencari dokumen yang paling mirip dengan teks kueri yang dimasukkan oleh pengguna.</p></li>
+<li><p><strong>Langkah-langkah</strong>:</p>
+<ul>
+<li><p>Teks kueri diproses dengan memanggil <code class="docutils literal notranslate"><span class="pre">preprocess_text</span></code>.</p></li>
+<li><p>Mengubah teks kueri menjadi representasi TF-IDF (<code class="docutils literal notranslate"><span class="pre">tfidf_vectorizer.transform([query_text])</span></code>) dan kemudian direduksi dimensinya dengan SVD (<code class="docutils literal notranslate"><span class="pre">svd.transform(query_tfidf)</span></code>).</p></li>
+<li><p>Menghitung jarak Euclidean antara kueri dan dokumen dalam matriks SVD untuk mengukur kemiripan.</p></li>
+<li><p>Menyaring hasil pencarian dan mengambil dokumen yang paling mirip berdasarkan jarak Euclidean terkecil.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="bagian-program">
+<h2>Bagian Program:<a class="headerlink" href="#bagian-program" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Input Teks</strong>: Pengguna diminta untuk memasukkan teks kueri.</p></li>
+<li><p><strong>Proses Pencarian</strong>:</p>
+<ul class="simple">
+<li><p>Teks kueri diproses dan dibandingkan dengan dokumen yang ada.</p></li>
+<li><p>Mengambil 5 dokumen paling mirip berdasarkan jarak Euclidean terdekat.</p></li>
+</ul>
+</li>
+<li><p><strong>Hasil Pencarian</strong>:</p>
+<ul class="simple">
+<li><p>Menampilkan hasil pencarian dengan dokumen terdekat beserta jarak Euclidean untuk setiap dokumen.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="output">
+<h2>Output:<a class="headerlink" href="#output" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Program akan menampilkan dokumen yang paling mirip dengan teks yang dimasukkan oleh pengguna dan jaraknya (semakin kecil jarak, semakin mirip dokumennya).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package punkt to /root/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">preprocess_text</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
@@ -1640,13 +1858,14 @@ weighted avg       0.92      0.90      0.90        30
     <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d+&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
     <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">string</span><span class="o">.</span><span class="n">punctuation</span><span class="p">))</span>
     <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-    <span class="n">words</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>  <span class="c1"># Menggunakan word_tokenize yang benar</span>
 
     <span class="c1"># Stopword removal</span>
     <span class="n">stop_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s2">&quot;indonesian&quot;</span><span class="p">))</span>
     <span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span> <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">]</span>
 
     <span class="k">return</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+
 
 <span class="k">def</span> <span class="nf">search_similar_documents</span><span class="p">(</span><span class="n">query_text</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
     <span class="n">query_text</span> <span class="o">=</span> <span class="n">preprocess_text</span><span class="p">(</span><span class="n">query_text</span><span class="p">)</span>
@@ -1683,12 +1902,12 @@ weighted avg       0.92      0.90      0.90        30
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">StdinNotImplementedError</span><span class="g g-Whitespace">                  </span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-9-3dcb2071dff5&gt;</span> in <span class="ni">&lt;cell line: 31&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">29</span> 
-<span class="g g-Whitespace">     </span><span class="mi">30</span> <span class="c1"># Input teks dan preprocessing</span>
-<span class="ne">---&gt; </span><span class="mi">31</span> <span class="n">query_text</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Masukkan teks: &quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">32</span> <span class="n">processed_query_text</span> <span class="o">=</span> <span class="n">preprocess_text</span><span class="p">(</span><span class="n">query_text</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">33</span> 
+<span class="nn">&lt;ipython-input-10-5e493a27d32e&gt;</span> in <span class="ni">&lt;cell line: 32&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">30</span> 
+<span class="g g-Whitespace">     </span><span class="mi">31</span> <span class="c1"># Input teks dan preprocessing</span>
+<span class="ne">---&gt; </span><span class="mi">32</span> <span class="n">query_text</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Masukkan teks: &quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">33</span> <span class="n">processed_query_text</span> <span class="o">=</span> <span class="n">preprocess_text</span><span class="p">(</span><span class="n">query_text</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">34</span> 
 
 <span class="nn">/usr/local/lib/python3.10/dist-packages/ipykernel/kernelbase.py</span> in <span class="ni">raw_input</span><span class="nt">(self, prompt)</span>
 <span class="g g-Whitespace">    </span><span class="mi">846</span>         <span class="s2">&quot;&quot;&quot;</span>
@@ -1702,6 +1921,7 @@ weighted avg       0.92      0.90      0.90        30
 </div>
 </div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1771,7 +1991,22 @@ weighted avg       0.92      0.90      0.90        30
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tugas 5 : Query dengan kalimat</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-ringkasan-berita">Deployment Ringkasan Berita</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#https-huggingface-co-spaces-alhasibb-ppwringkasanberita">https://huggingface.co/spaces/AlHasibb/ppwringkasanberita</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#https-huggingface-co-spaces-alhasibb-ppwringkasanberita">https://huggingface.co/spaces/AlHasibb/ppwringkasanberita</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduksi-dimensi-dengan-svd">1. <strong>Reduksi Dimensi dengan SVD:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-dataframe-untuk-fitur">2. <strong>Membuat DataFrame untuk Fitur:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menyiapkan-data-untuk-klasifikasi">3. <strong>Menyiapkan Data untuk Klasifikasi:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membagi-data-untuk-latih-dan-uji">4. <strong>Membagi Data untuk Latih dan Uji:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#melatih-model-logistic-regression">5. <strong>Melatih Model Logistic Regression:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-prediksi">6. <strong>Membuat Prediksi:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-model">7. <strong>Evaluasi Model:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-kode">Tujuan Kode:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">Tujuan:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-preprocess-text-text">Fungsi <code class="docutils literal notranslate"><span class="pre">preprocess_text(text)</span></code>:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-search-similar-documents-query-text-top-k-5">Fungsi <code class="docutils literal notranslate"><span class="pre">search_similar_documents(query_text,</span> <span class="pre">top_k=5)</span></code>:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bagian-program">Bagian Program:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output">Output:</a></li>
+</ul>
+</li>
 </ul>
 
   </nav></div>

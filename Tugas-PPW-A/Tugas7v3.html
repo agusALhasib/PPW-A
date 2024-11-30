@@ -171,7 +171,12 @@
         <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Tugas1.html"><strong>Tugas Pertemuan 1 - Crawling berita online</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="Tugas2.html">Tugas Pertemuan 2 - Pre-Processing Data dengan TF-IDF</a></li>
+
+
+
+
 <li class="toctree-l1"><a class="reference internal" href="Tugas3.html">Tugas Pertemuan 3 - Logistic Regression</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="Skip-Gram.html">Word Embedding</a></li>
 
 
@@ -188,6 +193,7 @@
 <li class="toctree-l1"><a class="reference internal" href="Tugas6.html">Tugas 6 : Klasifikasi Berita Metode Logistic Regression dengan reduksi dimensi SVD</a></li>
 
 
+<li class="toctree-l1"><a class="reference internal" href="Tugas7.html">Tugas 7 : Clustering Web dengan Fuzzy C-Means</a></li>
 </ul>
 
     </div>
@@ -418,7 +424,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mounted at /content/drive
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Drive already mounted at /content/drive; to attempt to forcibly remount, call drive.mount(&quot;/content/drive&quot;, force_remount=True).
 </pre></div>
 </div>
 </div>
@@ -434,7 +440,7 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-6401a041-91f4-45a4-b830-ae5b70835b72" class="colab-df-container">
+  <div id="df-8d2f73dc-f847-4382-b608-9435f4053e0e" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -466,58 +472,58 @@
   <tbody>
     <tr>
       <th>0</th>
-      <td>Jakarta Cycling Challenge 2024: Ajang Cari Bib...</td>
-      <td>Rabu, 30 Okt 2024 18:55 WIB</td>
-      <td>Jakarta - Pagelaran Jakarta Cycling Challenge ...</td>
+      <td>Kualifikasi F1 GP Las Vegas: Russell Pole, Ver...</td>
+      <td>Sabtu, 23 Nov 2024 15:05 WIB</td>
+      <td>Las Vegas - Pebalap Mercedes George Russell me...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Pagelaran Jakarta Cycling Challenge  ...</td>
-      <td>jakarta  pagelaran jakarta cycling challenge  ...</td>
-      <td>['jakarta', 'pagelaran', 'jakarta', 'cycling',...</td>
-      <td>jakarta pagelaran jakarta cycling challenge aj...</td>
+      <td>Las Vegas  Pebalap Mercedes George Russell mer...</td>
+      <td>las vegas  pebalap mercedes george russell mer...</td>
+      <td>['las', 'vegas', 'pebalap', 'mercedes', 'georg...</td>
+      <td>las vegas pebalap mercedes george russell mera...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Soal Cabor yang Dualisme, Wamenpora Taufik: Ka...</td>
-      <td>Rabu, 30 Okt 2024 14:30 WIB</td>
-      <td>Jakarta - Wakil Menpora Taufik Hidayat segera ...</td>
+      <td>Triple Kill Jonatan Chrisite di China Masters:...</td>
+      <td>Sabtu, 23 Nov 2024 15:04 WIB</td>
+      <td>Shenzhen - Jonatan Christie sukses menembus pa...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Wakil Menpora Taufik Hidayat segera m...</td>
-      <td>jakarta  wakil menpora taufik hidayat segera m...</td>
-      <td>['jakarta', 'wakil', 'menpora', 'taufik', 'hid...</td>
-      <td>jakarta wakil menpora taufik hidayat memanggil...</td>
+      <td>Shenzhen  Jonatan Christie sukses menembus par...</td>
+      <td>shenzhen  jonatan christie sukses menembus par...</td>
+      <td>['shenzhen', 'jonatan', 'christie', 'sukses', ...</td>
+      <td>shenzhen jonatan christie sukses menembus part...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Wamenpora Taufik Bakal Prioritaskan Cabor Olim...</td>
-      <td>Rabu, 30 Okt 2024 13:30 WIB</td>
-      <td>Jakarta - Wakil Menpora Taufik Hidayat mengata...</td>
+      <td>China Masters 2024: Singkirkan Shi Yu Qi, Jona...</td>
+      <td>Sabtu, 23 Nov 2024 14:04 WIB</td>
+      <td>Jakarta - China Masters 2024 jalani babak semi...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Wakil Menpora Taufik Hidayat mengatak...</td>
-      <td>jakarta  wakil menpora taufik hidayat mengatak...</td>
-      <td>['jakarta', 'wakil', 'menpora', 'taufik', 'hid...</td>
-      <td>jakarta wakil menpora taufik hidayat memperhat...</td>
+      <td>Jakarta  China Masters  jalani babak semifinal...</td>
+      <td>jakarta  china masters  jalani babak semifinal...</td>
+      <td>['jakarta', 'china', 'masters', 'jalani', 'bab...</td>
+      <td>jakarta china masters jalani babak semifinal j...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Budisatrio Ingin Lebih Banyak Perempuan dalam ...</td>
-      <td>Rabu, 30 Okt 2024 12:50 WIB</td>
-      <td>Jakarta - Budisatrio Djiwandono terpilih menja...</td>
+      <td>Tangkal Judol, Menpora Mau Perbanyak Gelar Kej...</td>
+      <td>Sabtu, 23 Nov 2024 11:50 WIB</td>
+      <td>Jakarta - Kejuaraan Antarkampung (Tarkam) biki...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Budisatrio Djiwandono terpilih menjad...</td>
-      <td>jakarta  budisatrio djiwandono terpilih menjad...</td>
-      <td>['jakarta', 'budisatrio', 'djiwandono', 'terpi...</td>
-      <td>jakarta budisatrio djiwandono terpilih ketua p...</td>
+      <td>Jakarta  Kejuaraan Antarkampung Tarkam bikinan...</td>
+      <td>jakarta  kejuaraan antarkampung tarkam bikinan...</td>
+      <td>['jakarta', 'kejuaraan', 'antarkampung', 'tark...</td>
+      <td>jakarta kejuaraan antarkampung tarkam bikinan ...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Liga Taekwondo DKI Jakarta: Demi Pembinaan Atl...</td>
-      <td>Selasa, 29 Okt 2024 23:15 WIB</td>
-      <td>Jakarta - Liga Taekwondo DKI Jakarta baru saja...</td>
+      <td>Vinales Bidik Rekor Ini Bersama Tech3</td>
+      <td>Sabtu, 23 Nov 2024 10:50 WIB</td>
+      <td>Montmelo - Pebalap Tech3 KTM Maverick Vinales ...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Liga Taekwondo DKI Jakarta baru saja ...</td>
-      <td>jakarta  liga taekwondo dki jakarta baru saja ...</td>
-      <td>['jakarta', 'liga', 'taekwondo', 'dki', 'jakar...</td>
-      <td>jakarta liga taekwondo dki jakarta menuntaskan...</td>
+      <td>Montmelo  Pebalap Tech KTM Maverick Vinales op...</td>
+      <td>montmelo  pebalap tech ktm maverick vinales op...</td>
+      <td>['montmelo', 'pebalap', 'tech', 'ktm', 'maveri...</td>
+      <td>montmelo pebalap tech ktm maverick vinales opt...</td>
     </tr>
   </tbody>
 </table>
@@ -525,7 +531,7 @@
     <div class="colab-df-buttons">
 
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-6401a041-91f4-45a4-b830-ae5b70835b72')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-8d2f73dc-f847-4382-b608-9435f4053e0e')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
 
@@ -577,12 +583,12 @@
 
     <script>
       const buttonEl =
-        document.querySelector('#df-6401a041-91f4-45a4-b830-ae5b70835b72 button.colab-df-convert');
+        document.querySelector('#df-8d2f73dc-f847-4382-b608-9435f4053e0e button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-6401a041-91f4-45a4-b830-ae5b70835b72');
+        const element = document.querySelector('#df-8d2f73dc-f847-4382-b608-9435f4053e0e');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -602,8 +608,8 @@
   </div>
 
 
-<div id="df-25ac7744-65f6-483c-858b-593445c0c9b7">
-  <button class="colab-df-quickchart" onclick="quickchart('df-25ac7744-65f6-483c-858b-593445c0c9b7')"
+<div id="df-202fffa6-6b48-4945-a5a5-7e2928125001">
+  <button class="colab-df-quickchart" onclick="quickchart('df-202fffa6-6b48-4945-a5a5-7e2928125001')"
             title="Suggest charts"
             style="display:none;">
 
@@ -722,7 +728,7 @@
     }
     (() => {
       let quickchartButtonEl =
-        document.querySelector('#df-25ac7744-65f6-483c-858b-593445c0c9b7 button');
+        document.querySelector('#df-202fffa6-6b48-4945-a5a5-7e2928125001 button');
       quickchartButtonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
     })();
@@ -732,6 +738,996 @@
     </div>
   </div>
 </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">Sastrawi</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: Sastrawi in /usr/local/lib/python3.10/dist-packages (1.0.1)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pip in /usr/local/lib/python3.10/dist-packages (24.1.2)
+Collecting pip
+  Downloading pip-24.3.1-py3-none-any.whl.metadata (3.7 kB)
+Downloading pip-24.3.1-py3-none-any.whl (1.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.8/1.8 MB</span> <span class=" -Color -Color-Red">19.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hInstalling collected packages: pip
+  Attempting uninstall: pip
+    Found existing installation: pip 24.1.2
+    Uninstalling pip-24.1.2:
+      Successfully uninstalled pip-24.1.2
+Successfully installed pip-24.3.1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">fcmeans</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">ERROR: Could not find a version that satisfies the requirement fcmeans (from versions: none)</span>
+<span class=" -Color -Color-Red">ERROR: No matching distribution found for fcmeans</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">omadson</span><span class="o">/</span><span class="n">fuzzy</span><span class="o">-</span><span class="n">c</span><span class="o">-</span><span class="n">means</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting git+https://github.com/omadson/fuzzy-c-means.git
+  Cloning https://github.com/omadson/fuzzy-c-means.git to /tmp/pip-req-build-l5bzc9rs
+  Running command git clone --filter=blob:none --quiet https://github.com/omadson/fuzzy-c-means.git /tmp/pip-req-build-l5bzc9rs
+  Resolved https://github.com/omadson/fuzzy-c-means.git to commit c119596941d41d92dd2866ab3733af4d7b2d60c4
+  Installing build dependencies ... ?25l?25hdone
+  Getting requirements to build wheel ... ?25l?25hdone
+  Preparing metadata (pyproject.toml) ... ?25l?25hdone
+Requirement already satisfied: joblib&lt;2.0.0,&gt;=1.2.0 in /usr/local/lib/python3.10/dist-packages (from fuzzy-c-means==1.7.2) (1.4.2)
+Requirement already satisfied: numpy&lt;2.0.0,&gt;=1.21.1 in /usr/local/lib/python3.10/dist-packages (from fuzzy-c-means==1.7.2) (1.26.4)
+Requirement already satisfied: pydantic&lt;3.0.0,&gt;=2.6.4 in /usr/local/lib/python3.10/dist-packages (from fuzzy-c-means==1.7.2) (2.9.2)
+Collecting tabulate&lt;0.9.0,&gt;=0.8.9 (from fuzzy-c-means==1.7.2)
+  Downloading tabulate-0.8.10-py3-none-any.whl.metadata (25 kB)
+Requirement already satisfied: tqdm&lt;5.0.0,&gt;=4.64.1 in /usr/local/lib/python3.10/dist-packages (from fuzzy-c-means==1.7.2) (4.66.6)
+Collecting typer&lt;0.10.0,&gt;=0.9.0 (from fuzzy-c-means==1.7.2)
+  Downloading typer-0.9.4-py3-none-any.whl.metadata (14 kB)
+Requirement already satisfied: annotated-types&gt;=0.6.0 in /usr/local/lib/python3.10/dist-packages (from pydantic&lt;3.0.0,&gt;=2.6.4-&gt;fuzzy-c-means==1.7.2) (0.7.0)
+Requirement already satisfied: pydantic-core==2.23.4 in /usr/local/lib/python3.10/dist-packages (from pydantic&lt;3.0.0,&gt;=2.6.4-&gt;fuzzy-c-means==1.7.2) (2.23.4)
+Requirement already satisfied: typing-extensions&gt;=4.6.1 in /usr/local/lib/python3.10/dist-packages (from pydantic&lt;3.0.0,&gt;=2.6.4-&gt;fuzzy-c-means==1.7.2) (4.12.2)
+Requirement already satisfied: click&lt;9.0.0,&gt;=7.1.1 in /usr/local/lib/python3.10/dist-packages (from typer&lt;0.10.0,&gt;=0.9.0-&gt;fuzzy-c-means==1.7.2) (8.1.7)
+Downloading tabulate-0.8.10-py3-none-any.whl (29 kB)
+Downloading typer-0.9.4-py3-none-any.whl (45 kB)
+Building wheels for collected packages: fuzzy-c-means
+  Building wheel for fuzzy-c-means (pyproject.toml) ... ?25l?25hdone
+  Created wheel for fuzzy-c-means: filename=fuzzy_c_means-1.7.2-py3-none-any.whl size=9135 sha256=7ec50eb413d2b12601d08eb49e60df97cfa828e802a5e661b1f784b6ae2c071a
+  Stored in directory: /tmp/pip-ephem-wheel-cache-cp59cg4o/wheels/60/c6/7e/4a7e67d476917eee0cbffb44f022ecc3ccd6e83d312b2dc329
+Successfully built fuzzy-c-means
+Installing collected packages: typer, tabulate, fuzzy-c-means
+  Attempting uninstall: typer
+    Found existing installation: typer 0.13.0
+    Uninstalling typer-0.13.0:
+      Successfully uninstalled typer-0.13.0
+  Attempting uninstall: tabulate
+    Found existing installation: tabulate 0.9.0
+    Uninstalling tabulate-0.9.0:
+      Successfully uninstalled tabulate-0.9.0
+<span class=" -Color -Color-Red">ERROR: pip&#39;s dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.</span>
+<span class=" -Color -Color-Red">bigframes 1.27.0 requires tabulate&gt;=0.9, but you have tabulate 0.8.10 which is incompatible.</span>
+Successfully installed fuzzy-c-means-1.7.2 tabulate-0.8.10 typer-0.9.4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">tabulate</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: tabulate in /usr/local/lib/python3.10/dist-packages (0.8.10)
+Collecting tabulate
+  Downloading tabulate-0.9.0-py3-none-any.whl.metadata (34 kB)
+Downloading tabulate-0.9.0-py3-none-any.whl (35 kB)
+Installing collected packages: tabulate
+  Attempting uninstall: tabulate
+    Found existing installation: tabulate 0.8.10
+    Uninstalling tabulate-0.8.10:
+      Successfully uninstalled tabulate-0.8.10
+<span class=" -Color -Color-Red">ERROR: pip&#39;s dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.</span>
+<span class=" -Color -Color-Red">fuzzy-c-means 1.7.2 requires tabulate&lt;0.9.0,&gt;=0.8.9, but you have tabulate 0.9.0 which is incompatible.</span>
+Successfully installed tabulate-0.9.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">force</span><span class="o">-</span><span class="n">reinstall</span> <span class="n">bigframes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting bigframes
+  Downloading bigframes-1.27.0-py2.py3-none-any.whl.metadata (5.0 kB)
+Collecting cloudpickle&gt;=2.0.0 (from bigframes)
+  Downloading cloudpickle-3.1.0-py3-none-any.whl.metadata (7.0 kB)
+Collecting fsspec&gt;=2023.3.0 (from bigframes)
+  Downloading fsspec-2024.10.0-py3-none-any.whl.metadata (11 kB)
+Collecting gcsfs&gt;=2023.3.0 (from bigframes)
+  Downloading gcsfs-2024.10.0-py2.py3-none-any.whl.metadata (1.6 kB)
+Collecting geopandas&gt;=0.12.2 (from bigframes)
+  Downloading geopandas-1.0.1-py3-none-any.whl.metadata (2.2 kB)
+Collecting google-auth&lt;3.0dev,&gt;=2.15.0 (from bigframes)
+  Downloading google_auth-2.36.0-py2.py3-none-any.whl.metadata (4.7 kB)
+Collecting google-cloud-bigtable&gt;=2.24.0 (from bigframes)
+  Downloading google_cloud_bigtable-2.27.0-py2.py3-none-any.whl.metadata (5.4 kB)
+Collecting google-cloud-pubsub&gt;=2.21.4 (from bigframes)
+  Downloading google_cloud_pubsub-2.27.1-py2.py3-none-any.whl.metadata (9.7 kB)
+Collecting google-cloud-bigquery&gt;=3.16.0 (from google-cloud-bigquery[bqstorage,pandas]&gt;=3.16.0-&gt;bigframes)
+  Downloading google_cloud_bigquery-3.27.0-py2.py3-none-any.whl.metadata (8.6 kB)
+Collecting google-cloud-functions&gt;=1.12.0 (from bigframes)
+  Downloading google_cloud_functions-1.18.1-py2.py3-none-any.whl.metadata (5.3 kB)
+Collecting google-cloud-bigquery-connection&gt;=1.12.0 (from bigframes)
+  Downloading google_cloud_bigquery_connection-1.16.1-py2.py3-none-any.whl.metadata (5.5 kB)
+Collecting google-cloud-iam&gt;=2.12.1 (from bigframes)
+  Downloading google_cloud_iam-2.16.1-py2.py3-none-any.whl.metadata (5.5 kB)
+Collecting google-cloud-resource-manager&gt;=1.10.3 (from bigframes)
+  Downloading google_cloud_resource_manager-1.13.1-py2.py3-none-any.whl.metadata (5.4 kB)
+Collecting google-cloud-storage&gt;=2.0.0 (from bigframes)
+  Downloading google_cloud_storage-2.18.2-py2.py3-none-any.whl.metadata (9.1 kB)
+Collecting ibis-framework&lt;=9.2.0,&gt;=9.0.0 (from ibis-framework[bigquery]&lt;=9.2.0,&gt;=9.0.0-&gt;bigframes)
+  Downloading ibis_framework-9.2.0-py3-none-any.whl.metadata (16 kB)
+Collecting jellyfish&gt;=0.8.9 (from bigframes)
+  Downloading jellyfish-1.1.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (2.6 kB)
+Collecting numpy&gt;=1.24.0 (from bigframes)
+  Downloading numpy-2.1.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (62 kB)
+Collecting pandas&gt;=1.5.3 (from bigframes)
+  Downloading pandas-2.2.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (89 kB)
+Collecting pyarrow&gt;=10.0.1 (from bigframes)
+  Downloading pyarrow-18.1.0-cp310-cp310-manylinux_2_28_x86_64.whl.metadata (3.3 kB)
+Collecting pydata-google-auth&gt;=1.8.2 (from bigframes)
+  Downloading pydata_google_auth-1.9.0-py2.py3-none-any.whl.metadata (2.8 kB)
+Collecting requests&gt;=2.27.1 (from bigframes)
+  Downloading requests-2.32.3-py3-none-any.whl.metadata (4.6 kB)
+Collecting scikit-learn&gt;=1.2.2 (from bigframes)
+  Downloading scikit_learn-1.5.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (13 kB)
+Collecting sqlalchemy&lt;3.0dev,&gt;=1.4 (from bigframes)
+  Downloading SQLAlchemy-2.0.36-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (9.7 kB)
+Collecting sqlglot&lt;25.2,&gt;=23.6.3 (from bigframes)
+  Downloading sqlglot-25.1.0-py3-none-any.whl.metadata (19 kB)
+Collecting tabulate&gt;=0.9 (from bigframes)
+  Using cached tabulate-0.9.0-py3-none-any.whl.metadata (34 kB)
+Collecting ipywidgets&gt;=7.7.1 (from bigframes)
+  Downloading ipywidgets-8.1.5-py3-none-any.whl.metadata (2.3 kB)
+Collecting humanize&gt;=4.6.0 (from bigframes)
+  Downloading humanize-4.11.0-py3-none-any.whl.metadata (7.8 kB)
+Collecting matplotlib&gt;=3.7.1 (from bigframes)
+  Downloading matplotlib-3.9.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (11 kB)
+Collecting aiohttp!=4.0.0a0,!=4.0.0a1 (from gcsfs&gt;=2023.3.0-&gt;bigframes)
+  Downloading aiohttp-3.11.8-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (7.7 kB)
+Collecting decorator&gt;4.1.2 (from gcsfs&gt;=2023.3.0-&gt;bigframes)
+  Downloading decorator-5.1.1-py3-none-any.whl.metadata (4.0 kB)
+Collecting google-auth-oauthlib (from gcsfs&gt;=2023.3.0-&gt;bigframes)
+  Downloading google_auth_oauthlib-1.2.1-py2.py3-none-any.whl.metadata (2.7 kB)
+Collecting pyogrio&gt;=0.7.2 (from geopandas&gt;=0.12.2-&gt;bigframes)
+  Downloading pyogrio-0.10.0-cp310-cp310-manylinux_2_28_x86_64.whl.metadata (5.5 kB)
+Collecting packaging (from geopandas&gt;=0.12.2-&gt;bigframes)
+  Downloading packaging-24.2-py3-none-any.whl.metadata (3.2 kB)
+Collecting pyproj&gt;=3.3.0 (from geopandas&gt;=0.12.2-&gt;bigframes)
+  Downloading pyproj-3.7.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (31 kB)
+Collecting shapely&gt;=2.0.0 (from geopandas&gt;=0.12.2-&gt;bigframes)
+  Downloading shapely-2.0.6-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (7.0 kB)
+Collecting cachetools&lt;6.0,&gt;=2.0.0 (from google-auth&lt;3.0dev,&gt;=2.15.0-&gt;bigframes)
+  Downloading cachetools-5.5.0-py3-none-any.whl.metadata (5.3 kB)
+Collecting pyasn1-modules&gt;=0.2.1 (from google-auth&lt;3.0dev,&gt;=2.15.0-&gt;bigframes)
+  Downloading pyasn1_modules-0.4.1-py3-none-any.whl.metadata (3.5 kB)
+Collecting rsa&lt;5,&gt;=3.1.4 (from google-auth&lt;3.0dev,&gt;=2.15.0-&gt;bigframes)
+  Downloading rsa-4.9-py3-none-any.whl.metadata (4.2 kB)
+Collecting google-api-core&lt;3.0.0dev,&gt;=2.11.1 (from google-api-core[grpc]&lt;3.0.0dev,&gt;=2.11.1-&gt;google-cloud-bigquery&gt;=3.16.0-&gt;google-cloud-bigquery[bqstorage,pandas]&gt;=3.16.0-&gt;bigframes)
+  Downloading google_api_core-2.23.0-py3-none-any.whl.metadata (3.0 kB)
+Collecting google-cloud-core&lt;3.0.0dev,&gt;=2.4.1 (from google-cloud-bigquery&gt;=3.16.0-&gt;google-cloud-bigquery[bqstorage,pandas]&gt;=3.16.0-&gt;bigframes)
+  Downloading google_cloud_core-2.4.1-py2.py3-none-any.whl.metadata (2.7 kB)
+Collecting google-resumable-media&lt;3.0dev,&gt;=2.0.0 (from google-cloud-bigquery&gt;=3.16.0-&gt;google-cloud-bigquery[bqstorage,pandas]&gt;=3.16.0-&gt;bigframes)
+  Downloading google_resumable_media-2.7.2-py2.py3-none-any.whl.metadata (2.2 kB)
+Collecting python-dateutil&lt;3.0dev,&gt;=2.7.3 (from google-cloud-bigquery&gt;=3.16.0-&gt;google-cloud-bigquery[bqstorage,pandas]&gt;=3.16.0-&gt;bigframes)
+  Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Collecting proto-plus&lt;2.0.0dev,&gt;=1.22.3 (from google-cloud-bigquery-connection&gt;=1.12.0-&gt;bigframes)
+  Downloading proto_plus-1.25.0-py3-none-any.whl.metadata (2.2 kB)
+Collecting protobuf!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,&lt;6.0.0dev,&gt;=3.20.2 (from google-cloud-bigquery-connection&gt;=1.12.0-&gt;bigframes)
+  Downloading protobuf-5.29.0-cp38-abi3-manylinux2014_x86_64.whl.metadata (592 bytes)
+Collecting grpc-google-iam-v1&lt;1.0.0dev,&gt;=0.12.4 (from google-cloud-bigquery-connection&gt;=1.12.0-&gt;bigframes)
+  Downloading grpc_google_iam_v1-0.13.1-py2.py3-none-any.whl.metadata (3.3 kB)
+Collecting google-cloud-bigquery-storage&lt;3.0.0dev,&gt;=2.6.0 (from google-cloud-bigquery[bqstorage,pandas]&gt;=3.16.0-&gt;bigframes)
+  Downloading google_cloud_bigquery_storage-2.27.0-py2.py3-none-any.whl.metadata (5.6 kB)
+Collecting grpcio&lt;2.0dev,&gt;=1.47.0 (from google-cloud-bigquery[bqstorage,pandas]&gt;=3.16.0-&gt;bigframes)
+  Downloading grpcio-1.68.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (3.9 kB)
+Collecting db-dtypes&lt;2.0.0dev,&gt;=0.3.0 (from google-cloud-bigquery[bqstorage,pandas]&gt;=3.16.0-&gt;bigframes)
+  Downloading db_dtypes-1.3.1-py2.py3-none-any.whl.metadata (3.0 kB)
+Collecting grpcio-status&gt;=1.33.2 (from google-cloud-pubsub&gt;=2.21.4-&gt;bigframes)
+  Downloading grpcio_status-1.68.0-py3-none-any.whl.metadata (1.1 kB)
+Collecting opentelemetry-api&gt;=1.27.0 (from google-cloud-pubsub&gt;=2.21.4-&gt;bigframes)
+  Downloading opentelemetry_api-1.28.2-py3-none-any.whl.metadata (1.4 kB)
+Collecting opentelemetry-sdk&gt;=1.27.0 (from google-cloud-pubsub&gt;=2.21.4-&gt;bigframes)
+  Downloading opentelemetry_sdk-1.28.2-py3-none-any.whl.metadata (1.5 kB)
+Collecting google-crc32c&lt;2.0dev,&gt;=1.0 (from google-cloud-storage&gt;=2.0.0-&gt;bigframes)
+  Downloading google_crc32c-1.6.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (2.3 kB)
+Collecting atpublic&lt;5,&gt;=2.3 (from ibis-framework&lt;=9.2.0,&gt;=9.0.0-&gt;ibis-framework[bigquery]&lt;=9.2.0,&gt;=9.0.0-&gt;bigframes)
+  Downloading atpublic-4.1.0-py3-none-any.whl.metadata (1.8 kB)
+Collecting parsy&lt;3,&gt;=2 (from ibis-framework&lt;=9.2.0,&gt;=9.0.0-&gt;ibis-framework[bigquery]&lt;=9.2.0,&gt;=9.0.0-&gt;bigframes)
+  Downloading parsy-2.1-py3-none-any.whl.metadata (3.3 kB)
+Collecting pytz&gt;=2022.7 (from ibis-framework&lt;=9.2.0,&gt;=9.0.0-&gt;ibis-framework[bigquery]&lt;=9.2.0,&gt;=9.0.0-&gt;bigframes)
+  Downloading pytz-2024.2-py2.py3-none-any.whl.metadata (22 kB)
+Collecting rich&lt;14,&gt;=12.4.4 (from ibis-framework&lt;=9.2.0,&gt;=9.0.0-&gt;ibis-framework[bigquery]&lt;=9.2.0,&gt;=9.0.0-&gt;bigframes)
+  Downloading rich-13.9.4-py3-none-any.whl.metadata (18 kB)
+Collecting toolz&lt;1,&gt;=0.11 (from ibis-framework&lt;=9.2.0,&gt;=9.0.0-&gt;ibis-framework[bigquery]&lt;=9.2.0,&gt;=9.0.0-&gt;bigframes)
+  Downloading toolz-0.12.1-py3-none-any.whl.metadata (5.1 kB)
+Collecting typing-extensions&lt;5,&gt;=4.3.0 (from ibis-framework&lt;=9.2.0,&gt;=9.0.0-&gt;ibis-framework[bigquery]&lt;=9.2.0,&gt;=9.0.0-&gt;bigframes)
+  Downloading typing_extensions-4.12.2-py3-none-any.whl.metadata (3.0 kB)
+Collecting pyarrow&gt;=10.0.1 (from bigframes)
+  Downloading pyarrow-17.0.0-cp310-cp310-manylinux_2_28_x86_64.whl.metadata (3.3 kB)
+Collecting pyarrow-hotfix&lt;1,&gt;=0.4 (from ibis-framework[bigquery]&lt;=9.2.0,&gt;=9.0.0-&gt;bigframes)
+  Downloading pyarrow_hotfix-0.6-py3-none-any.whl.metadata (3.6 kB)
+Collecting comm&gt;=0.1.3 (from ipywidgets&gt;=7.7.1-&gt;bigframes)
+  Downloading comm-0.2.2-py3-none-any.whl.metadata (3.7 kB)
+Collecting ipython&gt;=6.1.0 (from ipywidgets&gt;=7.7.1-&gt;bigframes)
+  Downloading ipython-8.29.0-py3-none-any.whl.metadata (5.0 kB)
+Collecting traitlets&gt;=4.3.1 (from ipywidgets&gt;=7.7.1-&gt;bigframes)
+  Downloading traitlets-5.14.3-py3-none-any.whl.metadata (10 kB)
+Collecting widgetsnbextension~=4.0.12 (from ipywidgets&gt;=7.7.1-&gt;bigframes)
+  Downloading widgetsnbextension-4.0.13-py3-none-any.whl.metadata (1.6 kB)
+Collecting jupyterlab-widgets~=3.0.12 (from ipywidgets&gt;=7.7.1-&gt;bigframes)
+  Downloading jupyterlab_widgets-3.0.13-py3-none-any.whl.metadata (4.1 kB)
+Collecting contourpy&gt;=1.0.1 (from matplotlib&gt;=3.7.1-&gt;bigframes)
+  Downloading contourpy-1.3.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.4 kB)
+Collecting cycler&gt;=0.10 (from matplotlib&gt;=3.7.1-&gt;bigframes)
+  Downloading cycler-0.12.1-py3-none-any.whl.metadata (3.8 kB)
+Collecting fonttools&gt;=4.22.0 (from matplotlib&gt;=3.7.1-&gt;bigframes)
+  Downloading fonttools-4.55.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (164 kB)
+Collecting kiwisolver&gt;=1.3.1 (from matplotlib&gt;=3.7.1-&gt;bigframes)
+  Downloading kiwisolver-1.4.7-cp310-cp310-manylinux_2_12_x86_64.manylinux2010_x86_64.whl.metadata (6.3 kB)
+Collecting pillow&gt;=8 (from matplotlib&gt;=3.7.1-&gt;bigframes)
+  Downloading pillow-11.0.0-cp310-cp310-manylinux_2_28_x86_64.whl.metadata (9.1 kB)
+Collecting pyparsing&gt;=2.3.1 (from matplotlib&gt;=3.7.1-&gt;bigframes)
+  Downloading pyparsing-3.2.0-py3-none-any.whl.metadata (5.0 kB)
+Collecting tzdata&gt;=2022.7 (from pandas&gt;=1.5.3-&gt;bigframes)
+  Downloading tzdata-2024.2-py2.py3-none-any.whl.metadata (1.4 kB)
+Collecting setuptools (from pydata-google-auth&gt;=1.8.2-&gt;bigframes)
+  Downloading setuptools-75.6.0-py3-none-any.whl.metadata (6.7 kB)
+Collecting charset-normalizer&lt;4,&gt;=2 (from requests&gt;=2.27.1-&gt;bigframes)
+  Downloading charset_normalizer-3.4.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (34 kB)
+Collecting idna&lt;4,&gt;=2.5 (from requests&gt;=2.27.1-&gt;bigframes)
+  Downloading idna-3.10-py3-none-any.whl.metadata (10 kB)
+Collecting urllib3&lt;3,&gt;=1.21.1 (from requests&gt;=2.27.1-&gt;bigframes)
+  Downloading urllib3-2.2.3-py3-none-any.whl.metadata (6.5 kB)
+Collecting certifi&gt;=2017.4.17 (from requests&gt;=2.27.1-&gt;bigframes)
+  Downloading certifi-2024.8.30-py3-none-any.whl.metadata (2.2 kB)
+Collecting scipy&gt;=1.6.0 (from scikit-learn&gt;=1.2.2-&gt;bigframes)
+  Downloading scipy-1.14.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (60 kB)
+Collecting joblib&gt;=1.2.0 (from scikit-learn&gt;=1.2.2-&gt;bigframes)
+  Downloading joblib-1.4.2-py3-none-any.whl.metadata (5.4 kB)
+Collecting threadpoolctl&gt;=3.1.0 (from scikit-learn&gt;=1.2.2-&gt;bigframes)
+  Downloading threadpoolctl-3.5.0-py3-none-any.whl.metadata (13 kB)
+Collecting greenlet!=0.4.17 (from sqlalchemy&lt;3.0dev,&gt;=1.4-&gt;bigframes)
+  Downloading greenlet-3.1.1-cp310-cp310-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (3.8 kB)
+Collecting aiohappyeyeballs&gt;=2.3.0 (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;gcsfs&gt;=2023.3.0-&gt;bigframes)
+  Downloading aiohappyeyeballs-2.4.3-py3-none-any.whl.metadata (6.1 kB)
+Collecting aiosignal&gt;=1.1.2 (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;gcsfs&gt;=2023.3.0-&gt;bigframes)
+  Downloading aiosignal-1.3.1-py3-none-any.whl.metadata (4.0 kB)
+Collecting async-timeout&lt;6.0,&gt;=4.0 (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;gcsfs&gt;=2023.3.0-&gt;bigframes)
+  Downloading async_timeout-5.0.1-py3-none-any.whl.metadata (5.1 kB)
+Collecting attrs&gt;=17.3.0 (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;gcsfs&gt;=2023.3.0-&gt;bigframes)
+  Downloading attrs-24.2.0-py3-none-any.whl.metadata (11 kB)
+Collecting frozenlist&gt;=1.1.1 (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;gcsfs&gt;=2023.3.0-&gt;bigframes)
+  Downloading frozenlist-1.5.0-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (13 kB)
+Collecting multidict&lt;7.0,&gt;=4.5 (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;gcsfs&gt;=2023.3.0-&gt;bigframes)
+  Downloading multidict-6.1.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.0 kB)
+Collecting propcache&gt;=0.2.0 (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;gcsfs&gt;=2023.3.0-&gt;bigframes)
+  Downloading propcache-0.2.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (7.7 kB)
+Collecting yarl&lt;2.0,&gt;=1.17.0 (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;gcsfs&gt;=2023.3.0-&gt;bigframes)
+  Downloading yarl-1.18.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (67 kB)
+Collecting googleapis-common-protos&lt;2.0.dev0,&gt;=1.56.2 (from google-api-core&lt;3.0.0dev,&gt;=2.11.1-&gt;google-api-core[grpc]&lt;3.0.0dev,&gt;=2.11.1-&gt;google-cloud-bigquery&gt;=3.16.0-&gt;google-cloud-bigquery[bqstorage,pandas]&gt;=3.16.0-&gt;bigframes)
+  Downloading googleapis_common_protos-1.66.0-py2.py3-none-any.whl.metadata (1.5 kB)
+Collecting requests-oauthlib&gt;=0.7.0 (from google-auth-oauthlib-&gt;gcsfs&gt;=2023.3.0-&gt;bigframes)
+  Downloading requests_oauthlib-2.0.0-py2.py3-none-any.whl.metadata (11 kB)
+Collecting jedi&gt;=0.16 (from ipython&gt;=6.1.0-&gt;ipywidgets&gt;=7.7.1-&gt;bigframes)
+  Downloading jedi-0.19.2-py2.py3-none-any.whl.metadata (22 kB)
+Collecting matplotlib-inline (from ipython&gt;=6.1.0-&gt;ipywidgets&gt;=7.7.1-&gt;bigframes)
+  Downloading matplotlib_inline-0.1.7-py3-none-any.whl.metadata (3.9 kB)
+Collecting prompt-toolkit&lt;3.1.0,&gt;=3.0.41 (from ipython&gt;=6.1.0-&gt;ipywidgets&gt;=7.7.1-&gt;bigframes)
+  Downloading prompt_toolkit-3.0.48-py3-none-any.whl.metadata (6.4 kB)
+Collecting pygments&gt;=2.4.0 (from ipython&gt;=6.1.0-&gt;ipywidgets&gt;=7.7.1-&gt;bigframes)
+  Downloading pygments-2.18.0-py3-none-any.whl.metadata (2.5 kB)
+Collecting stack-data (from ipython&gt;=6.1.0-&gt;ipywidgets&gt;=7.7.1-&gt;bigframes)
+  Downloading stack_data-0.6.3-py3-none-any.whl.metadata (18 kB)
+Collecting exceptiongroup (from ipython&gt;=6.1.0-&gt;ipywidgets&gt;=7.7.1-&gt;bigframes)
+  Downloading exceptiongroup-1.2.2-py3-none-any.whl.metadata (6.6 kB)
+Collecting pexpect&gt;4.3 (from ipython&gt;=6.1.0-&gt;ipywidgets&gt;=7.7.1-&gt;bigframes)
+  Downloading pexpect-4.9.0-py2.py3-none-any.whl.metadata (2.5 kB)
+Collecting deprecated&gt;=1.2.6 (from opentelemetry-api&gt;=1.27.0-&gt;google-cloud-pubsub&gt;=2.21.4-&gt;bigframes)
+  Downloading Deprecated-1.2.15-py2.py3-none-any.whl.metadata (5.5 kB)
+Collecting importlib-metadata&lt;=8.5.0,&gt;=6.0 (from opentelemetry-api&gt;=1.27.0-&gt;google-cloud-pubsub&gt;=2.21.4-&gt;bigframes)
+  Downloading importlib_metadata-8.5.0-py3-none-any.whl.metadata (4.8 kB)
+Collecting opentelemetry-semantic-conventions==0.49b2 (from opentelemetry-sdk&gt;=1.27.0-&gt;google-cloud-pubsub&gt;=2.21.4-&gt;bigframes)
+  Downloading opentelemetry_semantic_conventions-0.49b2-py3-none-any.whl.metadata (2.3 kB)
+Collecting pyasn1&lt;0.7.0,&gt;=0.4.6 (from pyasn1-modules&gt;=0.2.1-&gt;google-auth&lt;3.0dev,&gt;=2.15.0-&gt;bigframes)
+  Downloading pyasn1-0.6.1-py3-none-any.whl.metadata (8.4 kB)
+Collecting six&gt;=1.5 (from python-dateutil&lt;3.0dev,&gt;=2.7.3-&gt;google-cloud-bigquery&gt;=3.16.0-&gt;google-cloud-bigquery[bqstorage,pandas]&gt;=3.16.0-&gt;bigframes)
+  Downloading six-1.16.0-py2.py3-none-any.whl.metadata (1.8 kB)
+Collecting markdown-it-py&gt;=2.2.0 (from rich&lt;14,&gt;=12.4.4-&gt;ibis-framework&lt;=9.2.0,&gt;=9.0.0-&gt;ibis-framework[bigquery]&lt;=9.2.0,&gt;=9.0.0-&gt;bigframes)
+  Downloading markdown_it_py-3.0.0-py3-none-any.whl.metadata (6.9 kB)
+Collecting wrapt&lt;2,&gt;=1.10 (from deprecated&gt;=1.2.6-&gt;opentelemetry-api&gt;=1.27.0-&gt;google-cloud-pubsub&gt;=2.21.4-&gt;bigframes)
+  Downloading wrapt-1.17.0-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.4 kB)
+Collecting zipp&gt;=3.20 (from importlib-metadata&lt;=8.5.0,&gt;=6.0-&gt;opentelemetry-api&gt;=1.27.0-&gt;google-cloud-pubsub&gt;=2.21.4-&gt;bigframes)
+  Downloading zipp-3.21.0-py3-none-any.whl.metadata (3.7 kB)
+Collecting parso&lt;0.9.0,&gt;=0.8.4 (from jedi&gt;=0.16-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&gt;=7.7.1-&gt;bigframes)
+  Downloading parso-0.8.4-py2.py3-none-any.whl.metadata (7.7 kB)
+Collecting mdurl~=0.1 (from markdown-it-py&gt;=2.2.0-&gt;rich&lt;14,&gt;=12.4.4-&gt;ibis-framework&lt;=9.2.0,&gt;=9.0.0-&gt;ibis-framework[bigquery]&lt;=9.2.0,&gt;=9.0.0-&gt;bigframes)
+  Downloading mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+Collecting ptyprocess&gt;=0.5 (from pexpect&gt;4.3-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&gt;=7.7.1-&gt;bigframes)
+  Downloading ptyprocess-0.7.0-py2.py3-none-any.whl.metadata (1.3 kB)
+Collecting wcwidth (from prompt-toolkit&lt;3.1.0,&gt;=3.0.41-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&gt;=7.7.1-&gt;bigframes)
+  Downloading wcwidth-0.2.13-py2.py3-none-any.whl.metadata (14 kB)
+Collecting oauthlib&gt;=3.0.0 (from requests-oauthlib&gt;=0.7.0-&gt;google-auth-oauthlib-&gt;gcsfs&gt;=2023.3.0-&gt;bigframes)
+  Downloading oauthlib-3.2.2-py3-none-any.whl.metadata (7.5 kB)
+Collecting executing&gt;=1.2.0 (from stack-data-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&gt;=7.7.1-&gt;bigframes)
+  Downloading executing-2.1.0-py2.py3-none-any.whl.metadata (8.9 kB)
+Collecting asttokens&gt;=2.1.0 (from stack-data-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&gt;=7.7.1-&gt;bigframes)
+  Downloading asttokens-2.4.1-py2.py3-none-any.whl.metadata (5.2 kB)
+Collecting pure-eval (from stack-data-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&gt;=7.7.1-&gt;bigframes)
+  Downloading pure_eval-0.2.3-py3-none-any.whl.metadata (6.3 kB)
+Downloading bigframes-1.27.0-py2.py3-none-any.whl (755 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">755.1/755.1 kB</span> <span class=" -Color -Color-Red">15.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading cloudpickle-3.1.0-py3-none-any.whl (22 kB)
+Downloading fsspec-2024.10.0-py3-none-any.whl (179 kB)
+Downloading gcsfs-2024.10.0-py2.py3-none-any.whl (34 kB)
+Downloading geopandas-1.0.1-py3-none-any.whl (323 kB)
+Downloading google_auth-2.36.0-py2.py3-none-any.whl (209 kB)
+Downloading google_cloud_bigquery-3.27.0-py2.py3-none-any.whl (240 kB)
+Downloading google_cloud_bigquery_connection-1.16.1-py2.py3-none-any.whl (61 kB)
+Downloading google_cloud_bigtable-2.27.0-py2.py3-none-any.whl (418 kB)
+Downloading google_cloud_functions-1.18.1-py2.py3-none-any.whl (141 kB)
+Downloading google_cloud_iam-2.16.1-py2.py3-none-any.whl (213 kB)
+Downloading google_cloud_pubsub-2.27.1-py2.py3-none-any.whl (289 kB)
+Downloading google_cloud_resource_manager-1.13.1-py2.py3-none-any.whl (358 kB)
+Downloading google_cloud_storage-2.18.2-py2.py3-none-any.whl (130 kB)
+Downloading humanize-4.11.0-py3-none-any.whl (128 kB)
+Downloading ibis_framework-9.2.0-py3-none-any.whl (1.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.9/1.9 MB</span> <span class=" -Color -Color-Red">45.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading ipywidgets-8.1.5-py3-none-any.whl (139 kB)
+Downloading jellyfish-1.1.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (335 kB)
+Downloading matplotlib-3.9.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (8.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">8.3/8.3 MB</span> <span class=" -Color -Color-Red">69.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading numpy-2.1.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (16.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">16.3/16.3 MB</span> <span class=" -Color -Color-Red">92.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading pandas-2.2.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (13.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">13.1/13.1 MB</span> <span class=" -Color -Color-Red">101.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading pyarrow-17.0.0-cp310-cp310-manylinux_2_28_x86_64.whl (39.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">39.9/39.9 MB</span> <span class=" -Color -Color-Red">41.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading pydata_google_auth-1.9.0-py2.py3-none-any.whl (15 kB)
+Downloading requests-2.32.3-py3-none-any.whl (64 kB)
+Downloading scikit_learn-1.5.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (13.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">13.3/13.3 MB</span> <span class=" -Color -Color-Red">114.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading SQLAlchemy-2.0.36-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">3.1/3.1 MB</span> <span class=" -Color -Color-Red">76.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading sqlglot-25.1.0-py3-none-any.whl (384 kB)
+Using cached tabulate-0.9.0-py3-none-any.whl (35 kB)
+Downloading aiohttp-3.11.8-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.6/1.6 MB</span> <span class=" -Color -Color-Red">57.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading atpublic-4.1.0-py3-none-any.whl (5.0 kB)
+Downloading cachetools-5.5.0-py3-none-any.whl (9.5 kB)
+Downloading certifi-2024.8.30-py3-none-any.whl (167 kB)
+Downloading charset_normalizer-3.4.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (144 kB)
+Downloading comm-0.2.2-py3-none-any.whl (7.2 kB)
+Downloading contourpy-1.3.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (324 kB)
+Downloading cycler-0.12.1-py3-none-any.whl (8.3 kB)
+Downloading db_dtypes-1.3.1-py2.py3-none-any.whl (18 kB)
+Downloading decorator-5.1.1-py3-none-any.whl (9.1 kB)
+Downloading fonttools-4.55.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (4.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">4.6/4.6 MB</span> <span class=" -Color -Color-Red">96.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading google_api_core-2.23.0-py3-none-any.whl (156 kB)
+Downloading google_auth_oauthlib-1.2.1-py2.py3-none-any.whl (24 kB)
+Downloading google_cloud_bigquery_storage-2.27.0-py2.py3-none-any.whl (240 kB)
+Downloading google_cloud_core-2.4.1-py2.py3-none-any.whl (29 kB)
+Downloading google_crc32c-1.6.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (37 kB)
+Downloading google_resumable_media-2.7.2-py2.py3-none-any.whl (81 kB)
+Downloading greenlet-3.1.1-cp310-cp310-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (599 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">599.5/599.5 kB</span> <span class=" -Color -Color-Red">21.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading grpc_google_iam_v1-0.13.1-py2.py3-none-any.whl (24 kB)
+Downloading grpcio-1.68.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (5.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">5.9/5.9 MB</span> <span class=" -Color -Color-Red">99.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading grpcio_status-1.68.0-py3-none-any.whl (14 kB)
+Downloading idna-3.10-py3-none-any.whl (70 kB)
+Downloading ipython-8.29.0-py3-none-any.whl (819 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">819.9/819.9 kB</span> <span class=" -Color -Color-Red">33.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading joblib-1.4.2-py3-none-any.whl (301 kB)
+Downloading jupyterlab_widgets-3.0.13-py3-none-any.whl (214 kB)
+Downloading kiwisolver-1.4.7-cp310-cp310-manylinux_2_12_x86_64.manylinux2010_x86_64.whl (1.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.6/1.6 MB</span> <span class=" -Color -Color-Red">58.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading opentelemetry_api-1.28.2-py3-none-any.whl (64 kB)
+Downloading opentelemetry_sdk-1.28.2-py3-none-any.whl (118 kB)
+Downloading opentelemetry_semantic_conventions-0.49b2-py3-none-any.whl (159 kB)
+Downloading packaging-24.2-py3-none-any.whl (65 kB)
+Downloading parsy-2.1-py3-none-any.whl (9.1 kB)
+Downloading pillow-11.0.0-cp310-cp310-manylinux_2_28_x86_64.whl (4.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">4.4/4.4 MB</span> <span class=" -Color -Color-Red">97.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading proto_plus-1.25.0-py3-none-any.whl (50 kB)
+Downloading protobuf-5.29.0-cp38-abi3-manylinux2014_x86_64.whl (319 kB)
+Downloading pyarrow_hotfix-0.6-py3-none-any.whl (7.9 kB)
+Downloading pyasn1_modules-0.4.1-py3-none-any.whl (181 kB)
+Downloading pyogrio-0.10.0-cp310-cp310-manylinux_2_28_x86_64.whl (23.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">23.9/23.9 MB</span> <span class=" -Color -Color-Red">130.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading pyparsing-3.2.0-py3-none-any.whl (106 kB)
+Downloading pyproj-3.7.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (9.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">9.2/9.2 MB</span> <span class=" -Color -Color-Red">116.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Downloading pytz-2024.2-py2.py3-none-any.whl (508 kB)
+Downloading rich-13.9.4-py3-none-any.whl (242 kB)
+Downloading rsa-4.9-py3-none-any.whl (34 kB)
+Downloading scipy-1.14.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (41.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">41.2/41.2 MB</span> <span class=" -Color -Color-Red">43.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading shapely-2.0.6-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">2.5/2.5 MB</span> <span class=" -Color -Color-Red">75.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading threadpoolctl-3.5.0-py3-none-any.whl (18 kB)
+Downloading toolz-0.12.1-py3-none-any.whl (56 kB)
+Downloading traitlets-5.14.3-py3-none-any.whl (85 kB)
+Downloading typing_extensions-4.12.2-py3-none-any.whl (37 kB)
+Downloading tzdata-2024.2-py2.py3-none-any.whl (346 kB)
+Downloading urllib3-2.2.3-py3-none-any.whl (126 kB)
+Downloading widgetsnbextension-4.0.13-py3-none-any.whl (2.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">2.3/2.3 MB</span> <span class=" -Color -Color-Red">68.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading setuptools-75.6.0-py3-none-any.whl (1.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.2/1.2 MB</span> <span class=" -Color -Color-Red">47.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading aiohappyeyeballs-2.4.3-py3-none-any.whl (14 kB)
+Downloading aiosignal-1.3.1-py3-none-any.whl (7.6 kB)
+Downloading async_timeout-5.0.1-py3-none-any.whl (6.2 kB)
+Downloading attrs-24.2.0-py3-none-any.whl (63 kB)
+Downloading Deprecated-1.2.15-py2.py3-none-any.whl (9.9 kB)
+Downloading frozenlist-1.5.0-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (241 kB)
+Downloading googleapis_common_protos-1.66.0-py2.py3-none-any.whl (221 kB)
+Downloading importlib_metadata-8.5.0-py3-none-any.whl (26 kB)
+Downloading jedi-0.19.2-py2.py3-none-any.whl (1.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.6/1.6 MB</span> <span class=" -Color -Color-Red">54.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading markdown_it_py-3.0.0-py3-none-any.whl (87 kB)
+Downloading multidict-6.1.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (124 kB)
+Downloading pexpect-4.9.0-py2.py3-none-any.whl (63 kB)
+Downloading prompt_toolkit-3.0.48-py3-none-any.whl (386 kB)
+Downloading propcache-0.2.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (208 kB)
+Downloading pyasn1-0.6.1-py3-none-any.whl (83 kB)
+Downloading pygments-2.18.0-py3-none-any.whl (1.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.2/1.2 MB</span> <span class=" -Color -Color-Red">47.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading requests_oauthlib-2.0.0-py2.py3-none-any.whl (24 kB)
+Downloading six-1.16.0-py2.py3-none-any.whl (11 kB)
+Downloading yarl-1.18.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (319 kB)
+Downloading exceptiongroup-1.2.2-py3-none-any.whl (16 kB)
+Downloading matplotlib_inline-0.1.7-py3-none-any.whl (9.9 kB)
+Downloading stack_data-0.6.3-py3-none-any.whl (24 kB)
+Downloading asttokens-2.4.1-py2.py3-none-any.whl (27 kB)
+Downloading executing-2.1.0-py2.py3-none-any.whl (25 kB)
+Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Downloading oauthlib-3.2.2-py3-none-any.whl (151 kB)
+Downloading parso-0.8.4-py2.py3-none-any.whl (103 kB)
+Downloading ptyprocess-0.7.0-py2.py3-none-any.whl (13 kB)
+Downloading wrapt-1.17.0-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (82 kB)
+Downloading zipp-3.21.0-py3-none-any.whl (9.6 kB)
+Downloading pure_eval-0.2.3-py3-none-any.whl (11 kB)
+Downloading wcwidth-0.2.13-py2.py3-none-any.whl (34 kB)
+Installing collected packages: wcwidth, pytz, pure-eval, ptyprocess, zipp, wrapt, widgetsnbextension, urllib3, tzdata, typing-extensions, traitlets, toolz, threadpoolctl, tabulate, sqlglot, six, setuptools, pyparsing, pygments, pyasn1, pyarrow-hotfix, protobuf, propcache, prompt-toolkit, pillow, pexpect, parsy, parso, packaging, oauthlib, numpy, mdurl, kiwisolver, jupyterlab-widgets, joblib, jellyfish, idna, humanize, grpcio, greenlet, google-crc32c, fsspec, frozenlist, fonttools, executing, exceptiongroup, decorator, cycler, cloudpickle, charset-normalizer, certifi, cachetools, attrs, atpublic, async-timeout, aiohappyeyeballs, sqlalchemy, shapely, scipy, rsa, requests, python-dateutil, pyproj, pyogrio, pyasn1-modules, pyarrow, proto-plus, multidict, matplotlib-inline, markdown-it-py, jedi, importlib-metadata, googleapis-common-protos, google-resumable-media, deprecated, contourpy, comm, asttokens, aiosignal, yarl, stack-data, scikit-learn, rich, requests-oauthlib, pandas, opentelemetry-api, matplotlib, grpcio-status, google-auth, opentelemetry-semantic-conventions, ipython, ibis-framework, grpc-google-iam-v1, google-auth-oauthlib, google-api-core, geopandas, db-dtypes, aiohttp, pydata-google-auth, opentelemetry-sdk, ipywidgets, google-cloud-core, google-cloud-storage, google-cloud-resource-manager, google-cloud-pubsub, google-cloud-iam, google-cloud-functions, google-cloud-bigtable, google-cloud-bigquery-storage, google-cloud-bigquery-connection, google-cloud-bigquery, gcsfs, bigframes
+  Attempting uninstall: wcwidth
+    Found existing installation: wcwidth 0.2.13
+    Uninstalling wcwidth-0.2.13:
+      Successfully uninstalled wcwidth-0.2.13
+  Attempting uninstall: pytz
+    Found existing installation: pytz 2024.2
+    Uninstalling pytz-2024.2:
+      Successfully uninstalled pytz-2024.2
+  Attempting uninstall: ptyprocess
+    Found existing installation: ptyprocess 0.7.0
+    Uninstalling ptyprocess-0.7.0:
+      Successfully uninstalled ptyprocess-0.7.0
+  Attempting uninstall: zipp
+    Found existing installation: zipp 3.21.0
+    Uninstalling zipp-3.21.0:
+      Successfully uninstalled zipp-3.21.0
+  Attempting uninstall: wrapt
+    Found existing installation: wrapt 1.16.0
+    Uninstalling wrapt-1.16.0:
+      Successfully uninstalled wrapt-1.16.0
+  Attempting uninstall: widgetsnbextension
+    Found existing installation: widgetsnbextension 3.6.10
+    Uninstalling widgetsnbextension-3.6.10:
+      Successfully uninstalled widgetsnbextension-3.6.10
+  Attempting uninstall: urllib3
+    Found existing installation: urllib3 2.2.3
+    Uninstalling urllib3-2.2.3:
+      Successfully uninstalled urllib3-2.2.3
+  Attempting uninstall: tzdata
+    Found existing installation: tzdata 2024.2
+    Uninstalling tzdata-2024.2:
+      Successfully uninstalled tzdata-2024.2
+  Attempting uninstall: typing-extensions
+    Found existing installation: typing_extensions 4.12.2
+    Uninstalling typing_extensions-4.12.2:
+      Successfully uninstalled typing_extensions-4.12.2
+  Attempting uninstall: traitlets
+    Found existing installation: traitlets 5.7.1
+    Uninstalling traitlets-5.7.1:
+      Successfully uninstalled traitlets-5.7.1
+  Attempting uninstall: toolz
+    Found existing installation: toolz 0.12.1
+    Uninstalling toolz-0.12.1:
+      Successfully uninstalled toolz-0.12.1
+  Attempting uninstall: threadpoolctl
+    Found existing installation: threadpoolctl 3.5.0
+    Uninstalling threadpoolctl-3.5.0:
+      Successfully uninstalled threadpoolctl-3.5.0
+  Attempting uninstall: tabulate
+    Found existing installation: tabulate 0.9.0
+    Uninstalling tabulate-0.9.0:
+      Successfully uninstalled tabulate-0.9.0
+  Attempting uninstall: sqlglot
+    Found existing installation: sqlglot 25.1.0
+    Uninstalling sqlglot-25.1.0:
+      Successfully uninstalled sqlglot-25.1.0
+  Attempting uninstall: six
+    Found existing installation: six 1.16.0
+    Uninstalling six-1.16.0:
+      Successfully uninstalled six-1.16.0
+  Attempting uninstall: setuptools
+    Found existing installation: setuptools 75.1.0
+    Uninstalling setuptools-75.1.0:
+      Successfully uninstalled setuptools-75.1.0
+  Attempting uninstall: pyparsing
+    Found existing installation: pyparsing 3.2.0
+    Uninstalling pyparsing-3.2.0:
+      Successfully uninstalled pyparsing-3.2.0
+  Attempting uninstall: pygments
+    Found existing installation: Pygments 2.18.0
+    Uninstalling Pygments-2.18.0:
+      Successfully uninstalled Pygments-2.18.0
+  Attempting uninstall: pyasn1
+    Found existing installation: pyasn1 0.6.1
+    Uninstalling pyasn1-0.6.1:
+      Successfully uninstalled pyasn1-0.6.1
+  Attempting uninstall: pyarrow-hotfix
+    Found existing installation: pyarrow-hotfix 0.6
+    Uninstalling pyarrow-hotfix-0.6:
+      Successfully uninstalled pyarrow-hotfix-0.6
+  Attempting uninstall: protobuf
+    Found existing installation: protobuf 4.25.5
+    Uninstalling protobuf-4.25.5:
+      Successfully uninstalled protobuf-4.25.5
+  Attempting uninstall: propcache
+    Found existing installation: propcache 0.2.0
+    Uninstalling propcache-0.2.0:
+      Successfully uninstalled propcache-0.2.0
+  Attempting uninstall: prompt-toolkit
+    Found existing installation: prompt_toolkit 3.0.48
+    Uninstalling prompt_toolkit-3.0.48:
+      Successfully uninstalled prompt_toolkit-3.0.48
+  Attempting uninstall: pillow
+    Found existing installation: pillow 11.0.0
+    Uninstalling pillow-11.0.0:
+      Successfully uninstalled pillow-11.0.0
+  Attempting uninstall: pexpect
+    Found existing installation: pexpect 4.9.0
+    Uninstalling pexpect-4.9.0:
+      Successfully uninstalled pexpect-4.9.0
+  Attempting uninstall: parsy
+    Found existing installation: parsy 2.1
+    Uninstalling parsy-2.1:
+      Successfully uninstalled parsy-2.1
+  Attempting uninstall: parso
+    Found existing installation: parso 0.8.4
+    Uninstalling parso-0.8.4:
+      Successfully uninstalled parso-0.8.4
+  Attempting uninstall: packaging
+    Found existing installation: packaging 24.2
+    Uninstalling packaging-24.2:
+      Successfully uninstalled packaging-24.2
+  Attempting uninstall: oauthlib
+    Found existing installation: oauthlib 3.2.2
+    Uninstalling oauthlib-3.2.2:
+      Successfully uninstalled oauthlib-3.2.2
+  Attempting uninstall: numpy
+    Found existing installation: numpy 1.26.4
+    Uninstalling numpy-1.26.4:
+      Successfully uninstalled numpy-1.26.4
+  Attempting uninstall: mdurl
+    Found existing installation: mdurl 0.1.2
+    Uninstalling mdurl-0.1.2:
+      Successfully uninstalled mdurl-0.1.2
+  Attempting uninstall: kiwisolver
+    Found existing installation: kiwisolver 1.4.7
+    Uninstalling kiwisolver-1.4.7:
+      Successfully uninstalled kiwisolver-1.4.7
+  Attempting uninstall: jupyterlab-widgets
+    Found existing installation: jupyterlab_widgets 3.0.13
+    Uninstalling jupyterlab_widgets-3.0.13:
+      Successfully uninstalled jupyterlab_widgets-3.0.13
+  Attempting uninstall: joblib
+    Found existing installation: joblib 1.4.2
+    Uninstalling joblib-1.4.2:
+      Successfully uninstalled joblib-1.4.2
+  Attempting uninstall: jellyfish
+    Found existing installation: jellyfish 1.1.0
+    Uninstalling jellyfish-1.1.0:
+      Successfully uninstalled jellyfish-1.1.0
+  Attempting uninstall: idna
+    Found existing installation: idna 3.10
+    Uninstalling idna-3.10:
+      Successfully uninstalled idna-3.10
+  Attempting uninstall: humanize
+    Found existing installation: humanize 4.11.0
+    Uninstalling humanize-4.11.0:
+      Successfully uninstalled humanize-4.11.0
+  Attempting uninstall: grpcio
+    Found existing installation: grpcio 1.68.0
+    Uninstalling grpcio-1.68.0:
+      Successfully uninstalled grpcio-1.68.0
+  Attempting uninstall: greenlet
+    Found existing installation: greenlet 3.1.1
+    Uninstalling greenlet-3.1.1:
+      Successfully uninstalled greenlet-3.1.1
+  Attempting uninstall: google-crc32c
+    Found existing installation: google-crc32c 1.6.0
+    Uninstalling google-crc32c-1.6.0:
+      Successfully uninstalled google-crc32c-1.6.0
+  Attempting uninstall: fsspec
+    Found existing installation: fsspec 2024.10.0
+    Uninstalling fsspec-2024.10.0:
+      Successfully uninstalled fsspec-2024.10.0
+  Attempting uninstall: frozenlist
+    Found existing installation: frozenlist 1.5.0
+    Uninstalling frozenlist-1.5.0:
+      Successfully uninstalled frozenlist-1.5.0
+  Attempting uninstall: fonttools
+    Found existing installation: fonttools 4.55.0
+    Uninstalling fonttools-4.55.0:
+      Successfully uninstalled fonttools-4.55.0
+  Attempting uninstall: exceptiongroup
+    Found existing installation: exceptiongroup 1.2.2
+    Uninstalling exceptiongroup-1.2.2:
+      Successfully uninstalled exceptiongroup-1.2.2
+  Attempting uninstall: decorator
+    Found existing installation: decorator 4.4.2
+    Uninstalling decorator-4.4.2:
+      Successfully uninstalled decorator-4.4.2
+  Attempting uninstall: cycler
+    Found existing installation: cycler 0.12.1
+    Uninstalling cycler-0.12.1:
+      Successfully uninstalled cycler-0.12.1
+  Attempting uninstall: cloudpickle
+    Found existing installation: cloudpickle 3.1.0
+    Uninstalling cloudpickle-3.1.0:
+      Successfully uninstalled cloudpickle-3.1.0
+  Attempting uninstall: charset-normalizer
+    Found existing installation: charset-normalizer 3.4.0
+    Uninstalling charset-normalizer-3.4.0:
+      Successfully uninstalled charset-normalizer-3.4.0
+  Attempting uninstall: certifi
+    Found existing installation: certifi 2024.8.30
+    Uninstalling certifi-2024.8.30:
+      Successfully uninstalled certifi-2024.8.30
+  Attempting uninstall: cachetools
+    Found existing installation: cachetools 5.5.0
+    Uninstalling cachetools-5.5.0:
+      Successfully uninstalled cachetools-5.5.0
+  Attempting uninstall: attrs
+    Found existing installation: attrs 24.2.0
+    Uninstalling attrs-24.2.0:
+      Successfully uninstalled attrs-24.2.0
+  Attempting uninstall: atpublic
+    Found existing installation: atpublic 4.1.0
+    Uninstalling atpublic-4.1.0:
+      Successfully uninstalled atpublic-4.1.0
+  Attempting uninstall: async-timeout
+    Found existing installation: async-timeout 4.0.3
+    Uninstalling async-timeout-4.0.3:
+      Successfully uninstalled async-timeout-4.0.3
+  Attempting uninstall: aiohappyeyeballs
+    Found existing installation: aiohappyeyeballs 2.4.3
+    Uninstalling aiohappyeyeballs-2.4.3:
+      Successfully uninstalled aiohappyeyeballs-2.4.3
+  Attempting uninstall: sqlalchemy
+    Found existing installation: SQLAlchemy 2.0.36
+    Uninstalling SQLAlchemy-2.0.36:
+      Successfully uninstalled SQLAlchemy-2.0.36
+  Attempting uninstall: shapely
+    Found existing installation: shapely 2.0.6
+    Uninstalling shapely-2.0.6:
+      Successfully uninstalled shapely-2.0.6
+  Attempting uninstall: scipy
+    Found existing installation: scipy 1.13.1
+    Uninstalling scipy-1.13.1:
+      Successfully uninstalled scipy-1.13.1
+  Attempting uninstall: rsa
+    Found existing installation: rsa 4.9
+    Uninstalling rsa-4.9:
+      Successfully uninstalled rsa-4.9
+  Attempting uninstall: requests
+    Found existing installation: requests 2.32.3
+    Uninstalling requests-2.32.3:
+      Successfully uninstalled requests-2.32.3
+  Attempting uninstall: python-dateutil
+    Found existing installation: python-dateutil 2.8.2
+    Uninstalling python-dateutil-2.8.2:
+      Successfully uninstalled python-dateutil-2.8.2
+  Attempting uninstall: pyproj
+    Found existing installation: pyproj 3.7.0
+    Uninstalling pyproj-3.7.0:
+      Successfully uninstalled pyproj-3.7.0
+  Attempting uninstall: pyogrio
+    Found existing installation: pyogrio 0.10.0
+    Uninstalling pyogrio-0.10.0:
+      Successfully uninstalled pyogrio-0.10.0
+  Attempting uninstall: pyasn1-modules
+    Found existing installation: pyasn1_modules 0.4.1
+    Uninstalling pyasn1_modules-0.4.1:
+      Successfully uninstalled pyasn1_modules-0.4.1
+  Attempting uninstall: pyarrow
+    Found existing installation: pyarrow 17.0.0
+    Uninstalling pyarrow-17.0.0:
+      Successfully uninstalled pyarrow-17.0.0
+  Attempting uninstall: proto-plus
+    Found existing installation: proto-plus 1.25.0
+    Uninstalling proto-plus-1.25.0:
+      Successfully uninstalled proto-plus-1.25.0
+  Attempting uninstall: multidict
+    Found existing installation: multidict 6.1.0
+    Uninstalling multidict-6.1.0:
+      Successfully uninstalled multidict-6.1.0
+  Attempting uninstall: matplotlib-inline
+    Found existing installation: matplotlib-inline 0.1.7
+    Uninstalling matplotlib-inline-0.1.7:
+      Successfully uninstalled matplotlib-inline-0.1.7
+  Attempting uninstall: markdown-it-py
+    Found existing installation: markdown-it-py 3.0.0
+    Uninstalling markdown-it-py-3.0.0:
+      Successfully uninstalled markdown-it-py-3.0.0
+  Attempting uninstall: importlib-metadata
+    Found existing installation: importlib_metadata 8.5.0
+    Uninstalling importlib_metadata-8.5.0:
+      Successfully uninstalled importlib_metadata-8.5.0
+  Attempting uninstall: googleapis-common-protos
+    Found existing installation: googleapis-common-protos 1.66.0
+    Uninstalling googleapis-common-protos-1.66.0:
+      Successfully uninstalled googleapis-common-protos-1.66.0
+  Attempting uninstall: google-resumable-media
+    Found existing installation: google-resumable-media 2.7.2
+    Uninstalling google-resumable-media-2.7.2:
+      Successfully uninstalled google-resumable-media-2.7.2
+  Attempting uninstall: deprecated
+    Found existing installation: Deprecated 1.2.15
+    Uninstalling Deprecated-1.2.15:
+      Successfully uninstalled Deprecated-1.2.15
+  Attempting uninstall: contourpy
+    Found existing installation: contourpy 1.3.1
+    Uninstalling contourpy-1.3.1:
+      Successfully uninstalled contourpy-1.3.1
+  Attempting uninstall: aiosignal
+    Found existing installation: aiosignal 1.3.1
+    Uninstalling aiosignal-1.3.1:
+      Successfully uninstalled aiosignal-1.3.1
+  Attempting uninstall: yarl
+    Found existing installation: yarl 1.17.2
+    Uninstalling yarl-1.17.2:
+      Successfully uninstalled yarl-1.17.2
+  Attempting uninstall: scikit-learn
+    Found existing installation: scikit-learn 1.5.2
+    Uninstalling scikit-learn-1.5.2:
+      Successfully uninstalled scikit-learn-1.5.2
+  Attempting uninstall: rich
+    Found existing installation: rich 13.9.4
+    Uninstalling rich-13.9.4:
+      Successfully uninstalled rich-13.9.4
+  Attempting uninstall: requests-oauthlib
+    Found existing installation: requests-oauthlib 1.3.1
+    Uninstalling requests-oauthlib-1.3.1:
+      Successfully uninstalled requests-oauthlib-1.3.1
+  Attempting uninstall: pandas
+    Found existing installation: pandas 2.2.2
+    Uninstalling pandas-2.2.2:
+      Successfully uninstalled pandas-2.2.2
+  Attempting uninstall: opentelemetry-api
+    Found existing installation: opentelemetry-api 1.28.2
+    Uninstalling opentelemetry-api-1.28.2:
+      Successfully uninstalled opentelemetry-api-1.28.2
+  Attempting uninstall: matplotlib
+    Found existing installation: matplotlib 3.8.0
+    Uninstalling matplotlib-3.8.0:
+      Successfully uninstalled matplotlib-3.8.0
+  Attempting uninstall: grpcio-status
+    Found existing installation: grpcio-status 1.62.3
+    Uninstalling grpcio-status-1.62.3:
+      Successfully uninstalled grpcio-status-1.62.3
+  Attempting uninstall: google-auth
+    Found existing installation: google-auth 2.27.0
+    Uninstalling google-auth-2.27.0:
+      Successfully uninstalled google-auth-2.27.0
+  Attempting uninstall: opentelemetry-semantic-conventions
+    Found existing installation: opentelemetry-semantic-conventions 0.49b2
+    Uninstalling opentelemetry-semantic-conventions-0.49b2:
+      Successfully uninstalled opentelemetry-semantic-conventions-0.49b2
+  Attempting uninstall: ipython
+    Found existing installation: ipython 7.34.0
+    Uninstalling ipython-7.34.0:
+      Successfully uninstalled ipython-7.34.0
+  Attempting uninstall: ibis-framework
+    Found existing installation: ibis-framework 9.2.0
+    Uninstalling ibis-framework-9.2.0:
+      Successfully uninstalled ibis-framework-9.2.0
+  Attempting uninstall: grpc-google-iam-v1
+    Found existing installation: grpc-google-iam-v1 0.13.1
+    Uninstalling grpc-google-iam-v1-0.13.1:
+      Successfully uninstalled grpc-google-iam-v1-0.13.1
+  Attempting uninstall: google-auth-oauthlib
+    Found existing installation: google-auth-oauthlib 1.2.1
+    Uninstalling google-auth-oauthlib-1.2.1:
+      Successfully uninstalled google-auth-oauthlib-1.2.1
+  Attempting uninstall: google-api-core
+    Found existing installation: google-api-core 2.19.2
+    Uninstalling google-api-core-2.19.2:
+      Successfully uninstalled google-api-core-2.19.2
+  Attempting uninstall: geopandas
+    Found existing installation: geopandas 1.0.1
+    Uninstalling geopandas-1.0.1:
+      Successfully uninstalled geopandas-1.0.1
+  Attempting uninstall: db-dtypes
+    Found existing installation: db-dtypes 1.3.1
+    Uninstalling db-dtypes-1.3.1:
+      Successfully uninstalled db-dtypes-1.3.1
+  Attempting uninstall: aiohttp
+    Found existing installation: aiohttp 3.11.2
+    Uninstalling aiohttp-3.11.2:
+      Successfully uninstalled aiohttp-3.11.2
+  Attempting uninstall: pydata-google-auth
+    Found existing installation: pydata-google-auth 1.8.2
+    Uninstalling pydata-google-auth-1.8.2:
+      Successfully uninstalled pydata-google-auth-1.8.2
+  Attempting uninstall: opentelemetry-sdk
+    Found existing installation: opentelemetry-sdk 1.28.2
+    Uninstalling opentelemetry-sdk-1.28.2:
+      Successfully uninstalled opentelemetry-sdk-1.28.2
+  Attempting uninstall: ipywidgets
+    Found existing installation: ipywidgets 7.7.1
+    Uninstalling ipywidgets-7.7.1:
+      Successfully uninstalled ipywidgets-7.7.1
+  Attempting uninstall: google-cloud-core
+    Found existing installation: google-cloud-core 2.4.1
+    Uninstalling google-cloud-core-2.4.1:
+      Successfully uninstalled google-cloud-core-2.4.1
+  Attempting uninstall: google-cloud-storage
+    Found existing installation: google-cloud-storage 2.8.0
+    Uninstalling google-cloud-storage-2.8.0:
+      Successfully uninstalled google-cloud-storage-2.8.0
+  Attempting uninstall: google-cloud-resource-manager
+    Found existing installation: google-cloud-resource-manager 1.13.1
+    Uninstalling google-cloud-resource-manager-1.13.1:
+      Successfully uninstalled google-cloud-resource-manager-1.13.1
+  Attempting uninstall: google-cloud-pubsub
+    Found existing installation: google-cloud-pubsub 2.27.1
+    Uninstalling google-cloud-pubsub-2.27.1:
+      Successfully uninstalled google-cloud-pubsub-2.27.1
+  Attempting uninstall: google-cloud-iam
+    Found existing installation: google-cloud-iam 2.16.1
+    Uninstalling google-cloud-iam-2.16.1:
+      Successfully uninstalled google-cloud-iam-2.16.1
+  Attempting uninstall: google-cloud-functions
+    Found existing installation: google-cloud-functions 1.18.1
+    Uninstalling google-cloud-functions-1.18.1:
+      Successfully uninstalled google-cloud-functions-1.18.1
+  Attempting uninstall: google-cloud-bigtable
+    Found existing installation: google-cloud-bigtable 2.27.0
+    Uninstalling google-cloud-bigtable-2.27.0:
+      Successfully uninstalled google-cloud-bigtable-2.27.0
+  Attempting uninstall: google-cloud-bigquery-storage
+    Found existing installation: google-cloud-bigquery-storage 2.27.0
+    Uninstalling google-cloud-bigquery-storage-2.27.0:
+      Successfully uninstalled google-cloud-bigquery-storage-2.27.0
+  Attempting uninstall: google-cloud-bigquery-connection
+    Found existing installation: google-cloud-bigquery-connection 1.16.1
+    Uninstalling google-cloud-bigquery-connection-1.16.1:
+      Successfully uninstalled google-cloud-bigquery-connection-1.16.1
+  Attempting uninstall: google-cloud-bigquery
+    Found existing installation: google-cloud-bigquery 3.25.0
+    Uninstalling google-cloud-bigquery-3.25.0:
+      Successfully uninstalled google-cloud-bigquery-3.25.0
+  Attempting uninstall: gcsfs
+    Found existing installation: gcsfs 2024.10.0
+    Uninstalling gcsfs-2024.10.0:
+      Successfully uninstalled gcsfs-2024.10.0
+  Attempting uninstall: bigframes
+    Found existing installation: bigframes 1.27.0
+    Uninstalling bigframes-1.27.0:
+      Successfully uninstalled bigframes-1.27.0
+<span class=" -Color -Color-Red">ERROR: pip&#39;s dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.</span>
+<span class=" -Color -Color-Red">cudf-cu12 24.10.1 requires pandas&lt;2.2.3dev0,&gt;=2.0, but you have pandas 2.2.3 which is incompatible.</span>
+<span class=" -Color -Color-Red">cupy-cuda12x 12.2.0 requires numpy&lt;1.27,&gt;=1.20, but you have numpy 2.1.3 which is incompatible.</span>
+<span class=" -Color -Color-Red">fuzzy-c-means 1.7.2 requires numpy&lt;2.0.0,&gt;=1.21.1, but you have numpy 2.1.3 which is incompatible.</span>
+<span class=" -Color -Color-Red">fuzzy-c-means 1.7.2 requires tabulate&lt;0.9.0,&gt;=0.8.9, but you have tabulate 0.9.0 which is incompatible.</span>
+<span class=" -Color -Color-Red">gensim 4.3.3 requires numpy&lt;2.0,&gt;=1.18.5, but you have numpy 2.1.3 which is incompatible.</span>
+<span class=" -Color -Color-Red">gensim 4.3.3 requires scipy&lt;1.14.0,&gt;=1.7.0, but you have scipy 1.14.1 which is incompatible.</span>
+<span class=" -Color -Color-Red">google-colab 1.0.0 requires google-auth==2.27.0, but you have google-auth 2.36.0 which is incompatible.</span>
+<span class=" -Color -Color-Red">google-colab 1.0.0 requires ipython==7.34.0, but you have ipython 8.29.0 which is incompatible.</span>
+<span class=" -Color -Color-Red">google-colab 1.0.0 requires pandas==2.2.2, but you have pandas 2.2.3 which is incompatible.</span>
+<span class=" -Color -Color-Red">langchain 0.3.7 requires async-timeout&lt;5.0.0,&gt;=4.0.0; python_version &lt; &quot;3.11&quot;, but you have async-timeout 5.0.1 which is incompatible.</span>
+<span class=" -Color -Color-Red">langchain 0.3.7 requires numpy&lt;2,&gt;=1; python_version &lt; &quot;3.12&quot;, but you have numpy 2.1.3 which is incompatible.</span>
+<span class=" -Color -Color-Red">moviepy 1.0.3 requires decorator&lt;5.0,&gt;=4.0.2, but you have decorator 5.1.1 which is incompatible.</span>
+<span class=" -Color -Color-Red">numba 0.60.0 requires numpy&lt;2.1,&gt;=1.22, but you have numpy 2.1.3 which is incompatible.</span>
+<span class=" -Color -Color-Red">pytensor 2.26.3 requires numpy&lt;2,&gt;=1.17.0, but you have numpy 2.1.3 which is incompatible.</span>
+<span class=" -Color -Color-Red">tensorflow 2.17.1 requires numpy&lt;2.0.0,&gt;=1.23.5; python_version &lt;= &quot;3.11&quot;, but you have numpy 2.1.3 which is incompatible.</span>
+<span class=" -Color -Color-Red">tensorflow 2.17.1 requires protobuf!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,&lt;5.0.0dev,&gt;=3.20.3, but you have protobuf 5.29.0 which is incompatible.</span>
+<span class=" -Color -Color-Red">tensorflow-metadata 1.13.1 requires protobuf&lt;5,&gt;=3.20.3, but you have protobuf 5.29.0 which is incompatible.</span>
+<span class=" -Color -Color-Red">thinc 8.2.5 requires numpy&lt;2.0.0,&gt;=1.19.0; python_version &gt;= &quot;3.9&quot;, but you have numpy 2.1.3 which is incompatible.</span>
+<span class=" -Color -Color-Red">tweepy 4.14.0 requires requests-oauthlib&lt;2,&gt;=1.2.0, but you have requests-oauthlib 2.0.0 which is incompatible.</span>
+Successfully installed aiohappyeyeballs-2.4.3 aiohttp-3.11.8 aiosignal-1.3.1 asttokens-2.4.1 async-timeout-5.0.1 atpublic-4.1.0 attrs-24.2.0 bigframes-1.27.0 cachetools-5.5.0 certifi-2024.8.30 charset-normalizer-3.4.0 cloudpickle-3.1.0 comm-0.2.2 contourpy-1.3.1 cycler-0.12.1 db-dtypes-1.3.1 decorator-5.1.1 deprecated-1.2.15 exceptiongroup-1.2.2 executing-2.1.0 fonttools-4.55.0 frozenlist-1.5.0 fsspec-2024.10.0 gcsfs-2024.10.0 geopandas-1.0.1 google-api-core-2.23.0 google-auth-2.36.0 google-auth-oauthlib-1.2.1 google-cloud-bigquery-3.27.0 google-cloud-bigquery-connection-1.16.1 google-cloud-bigquery-storage-2.27.0 google-cloud-bigtable-2.27.0 google-cloud-core-2.4.1 google-cloud-functions-1.18.1 google-cloud-iam-2.16.1 google-cloud-pubsub-2.27.1 google-cloud-resource-manager-1.13.1 google-cloud-storage-2.18.2 google-crc32c-1.6.0 google-resumable-media-2.7.2 googleapis-common-protos-1.66.0 greenlet-3.1.1 grpc-google-iam-v1-0.13.1 grpcio-1.68.0 grpcio-status-1.68.0 humanize-4.11.0 ibis-framework-9.2.0 idna-3.10 importlib-metadata-8.5.0 ipython-8.29.0 ipywidgets-8.1.5 jedi-0.19.2 jellyfish-1.1.0 joblib-1.4.2 jupyterlab-widgets-3.0.13 kiwisolver-1.4.7 markdown-it-py-3.0.0 matplotlib-3.9.2 matplotlib-inline-0.1.7 mdurl-0.1.2 multidict-6.1.0 numpy-2.1.3 oauthlib-3.2.2 opentelemetry-api-1.28.2 opentelemetry-sdk-1.28.2 opentelemetry-semantic-conventions-0.49b2 packaging-24.2 pandas-2.2.3 parso-0.8.4 parsy-2.1 pexpect-4.9.0 pillow-11.0.0 prompt-toolkit-3.0.48 propcache-0.2.0 proto-plus-1.25.0 protobuf-5.29.0 ptyprocess-0.7.0 pure-eval-0.2.3 pyarrow-17.0.0 pyarrow-hotfix-0.6 pyasn1-0.6.1 pyasn1-modules-0.4.1 pydata-google-auth-1.9.0 pygments-2.18.0 pyogrio-0.10.0 pyparsing-3.2.0 pyproj-3.7.0 python-dateutil-2.9.0.post0 pytz-2024.2 requests-2.32.3 requests-oauthlib-2.0.0 rich-13.9.4 rsa-4.9 scikit-learn-1.5.2 scipy-1.14.1 setuptools-75.6.0 shapely-2.0.6 six-1.16.0 sqlalchemy-2.0.36 sqlglot-25.1.0 stack-data-0.6.3 tabulate-0.9.0 threadpoolctl-3.5.0 toolz-0.12.1 traitlets-5.14.3 typing-extensions-4.12.2 tzdata-2024.2 urllib3-2.2.3 wcwidth-0.2.13 widgetsnbextension-4.0.13 wrapt-1.17.0 yarl-1.18.0 zipp-3.21.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">string</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+<span class="kn">from</span> <span class="nn">Sastrawi.Stemmer.StemmerFactory</span> <span class="kn">import</span> <span class="n">StemmerFactory</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">cosine_similarity</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">TruncatedSVD</span>
+<span class="kn">from</span> <span class="nn">fcmeans</span> <span class="kn">import</span> <span class="n">FCM</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-15-33c906567edb&gt;</span> in <span class="ni">&lt;cell line: 12&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">cosine_similarity</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">TruncatedSVD</span>
+<span class="ne">---&gt; </span><span class="mi">12</span> <span class="kn">from</span> <span class="nn">fcmeans</span> <span class="kn">import</span> <span class="n">FCM</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;fcmeans&#39;
+
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NOTE</span>: If your import is failing due to a missing package, you can
+<span class="n">manually</span> <span class="n">install</span> <span class="n">dependencies</span> <span class="n">using</span> <span class="n">either</span> <span class="o">!</span>pip<span class="w"> </span>or<span class="w"> </span>!apt.
+
+<span class="n">To</span> <span class="n">view</span> <span class="n">examples</span> <span class="n">of</span> <span class="n">installing</span> <span class="n">some</span> <span class="n">common</span> <span class="n">dependencies</span><span class="p">,</span> <span class="n">click</span> <span class="n">the</span>
+<span class="s2">&quot;Open Examples&quot;</span> <span class="n">button</span> <span class="n">below</span><span class="o">.</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 

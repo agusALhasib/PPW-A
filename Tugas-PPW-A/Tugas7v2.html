@@ -171,7 +171,12 @@
         <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Tugas1.html"><strong>Tugas Pertemuan 1 - Crawling berita online</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="Tugas2.html">Tugas Pertemuan 2 - Pre-Processing Data dengan TF-IDF</a></li>
+
+
+
+
 <li class="toctree-l1"><a class="reference internal" href="Tugas3.html">Tugas Pertemuan 3 - Logistic Regression</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="Skip-Gram.html">Word Embedding</a></li>
 
 
@@ -188,6 +193,7 @@
 <li class="toctree-l1"><a class="reference internal" href="Tugas6.html">Tugas 6 : Klasifikasi Berita Metode Logistic Regression dengan reduksi dimensi SVD</a></li>
 
 
+<li class="toctree-l1"><a class="reference internal" href="Tugas7.html">Tugas 7 : Clustering Web dengan Fuzzy C-Means</a></li>
 </ul>
 
     </div>
@@ -434,7 +440,7 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-7ac9a3b5-3c48-4f4b-b108-9a19b2269025" class="colab-df-container">
+  <div id="df-e2d7cbf0-4481-43c6-87bc-efa1ee02c420" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -455,69 +461,69 @@
       <th></th>
       <th>judul</th>
       <th>tanggal</th>
-      <th>isi</th>
+      <th>isi_berita</th>
       <th>kategori</th>
-      <th>cleansing</th>
+      <th>berita_clean</th>
       <th>case_folding</th>
       <th>tokenize</th>
-      <th>Filtering/stopword removal</th>
+      <th>stopword_removal</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>Kualifikasi F1 GP Las Vegas: Russell Pole, Ver...</td>
-      <td>Sabtu, 23 Nov 2024 15:05 WIB</td>
-      <td>Las Vegas - Pebalap Mercedes George Russell me...</td>
+      <td>Marc Marquez Kini di Ducati, Harusnya Mudah Be...</td>
+      <td>Sabtu, 30 Nov 2024 17:30 WIB</td>
+      <td>Marc Marquez mengaku bakal banyak tantangan di...</td>
       <td>Olahraga</td>
-      <td>Las Vegas  Pebalap Mercedes George Russell mer...</td>
-      <td>las vegas  pebalap mercedes george russell mer...</td>
-      <td>['las', 'vegas', 'pebalap', 'mercedes', 'georg...</td>
-      <td>las vegas pebalap mercedes george russell mera...</td>
+      <td>Marc Marquez mengaku bakal banyak tantangan di...</td>
+      <td>marc marquez mengaku bakal banyak tantangan di...</td>
+      <td>['marc', 'marquez', 'mengaku', 'bakal', 'banya...</td>
+      <td>marc marquez mengaku tantangan motogp tim baru...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Triple Kill Jonatan Chrisite di China Masters:...</td>
-      <td>Sabtu, 23 Nov 2024 15:04 WIB</td>
-      <td>Shenzhen - Jonatan Christie sukses menembus pa...</td>
+      <td>Usai Balapan 1.000 KM di Sepang, Avila Bahar T...</td>
+      <td>Sabtu, 30 Nov 2024 02:15 WIB</td>
+      <td>Avila Bahar baru saja tampil balapan 1.000 KM ...</td>
       <td>Olahraga</td>
-      <td>Shenzhen  Jonatan Christie sukses menembus par...</td>
-      <td>shenzhen  jonatan christie sukses menembus par...</td>
-      <td>['shenzhen', 'jonatan', 'christie', 'sukses', ...</td>
-      <td>shenzhen jonatan christie sukses menembus part...</td>
+      <td>Avila Bahar baru saja tampil balapan  KM yang ...</td>
+      <td>avila bahar baru saja tampil balapan  km yang ...</td>
+      <td>['avila', 'bahar', 'baru', 'saja', 'tampil', '...</td>
+      <td>avila bahar tampil balapan km digelar sepang m...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>China Masters 2024: Singkirkan Shi Yu Qi, Jona...</td>
-      <td>Sabtu, 23 Nov 2024 14:04 WIB</td>
-      <td>Jakarta - China Masters 2024 jalani babak semi...</td>
+      <td>Video: Maarten Paes Bakal Sharing di It's His/...</td>
+      <td>2,167 Views  |  Jumat, 29 Nov 2024 21:30 WIB</td>
+      <td>Kiper Timnas Indonesia, Maarten Paes, akan men...</td>
       <td>Olahraga</td>
-      <td>Jakarta  China Masters  jalani babak semifinal...</td>
-      <td>jakarta  china masters  jalani babak semifinal...</td>
-      <td>['jakarta', 'china', 'masters', 'jalani', 'bab...</td>
-      <td>jakarta china masters jalani babak semifinal j...</td>
+      <td>Kiper Timnas Indonesia Maarten Paes akan mengi...</td>
+      <td>kiper timnas indonesia maarten paes akan mengi...</td>
+      <td>['kiper', 'timnas', 'indonesia', 'maarten', 'p...</td>
+      <td>kiper timnas indonesia maarten paes mengisi ac...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Tangkal Judol, Menpora Mau Perbanyak Gelar Kej...</td>
-      <td>Sabtu, 23 Nov 2024 11:50 WIB</td>
-      <td>Jakarta - Kejuaraan Antarkampung (Tarkam) biki...</td>
+      <td>Klaim Marini: Hasil MotoGP 2025 Sudah Ditentuk...</td>
+      <td>Jumat, 29 Nov 2024 21:30 WIB</td>
+      <td>Rider Honda Luca Marini melontarkan klaim bera...</td>
       <td>Olahraga</td>
-      <td>Jakarta  Kejuaraan Antarkampung Tarkam bikinan...</td>
-      <td>jakarta  kejuaraan antarkampung tarkam bikinan...</td>
-      <td>['jakarta', 'kejuaraan', 'antarkampung', 'tark...</td>
-      <td>jakarta kejuaraan antarkampung tarkam bikinan ...</td>
+      <td>Rider Honda Luca Marini melontarkan klaim bera...</td>
+      <td>rider honda luca marini melontarkan klaim bera...</td>
+      <td>['rider', 'honda', 'luca', 'marini', 'melontar...</td>
+      <td>rider honda luca marini melontarkan klaim bera...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Vinales Bidik Rekor Ini Bersama Tech3</td>
-      <td>Sabtu, 23 Nov 2024 10:50 WIB</td>
-      <td>Montmelo - Pebalap Tech3 KTM Maverick Vinales ...</td>
+      <td>Marc Marquez Mau Santai Dulu, Bulan Januari Ba...</td>
+      <td>Jumat, 29 Nov 2024 17:50 WIB</td>
+      <td>Setelah MotoGP 2024 tuntas, termasuk tes usai ...</td>
       <td>Olahraga</td>
-      <td>Montmelo  Pebalap Tech KTM Maverick Vinales op...</td>
-      <td>montmelo  pebalap tech ktm maverick vinales op...</td>
-      <td>['montmelo', 'pebalap', 'tech', 'ktm', 'maveri...</td>
-      <td>montmelo pebalap tech ktm maverick vinales opt...</td>
+      <td>Setelah MotoGP  tuntas termasuk tes usai seri ...</td>
+      <td>setelah motogp  tuntas termasuk tes usai seri ...</td>
+      <td>['setelah', 'motogp', 'tuntas', 'termasuk', 't...</td>
+      <td>motogp tuntas tes seri pamungkas marc marquez ...</td>
     </tr>
   </tbody>
 </table>
@@ -525,7 +531,7 @@
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-7ac9a3b5-3c48-4f4b-b108-9a19b2269025')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-e2d7cbf0-4481-43c6-87bc-efa1ee02c420')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -577,12 +583,12 @@
 
     <script>
       const buttonEl =
-        document.querySelector('#df-7ac9a3b5-3c48-4f4b-b108-9a19b2269025 button.colab-df-convert');
+        document.querySelector('#df-e2d7cbf0-4481-43c6-87bc-efa1ee02c420 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-7ac9a3b5-3c48-4f4b-b108-9a19b2269025');
+        const element = document.querySelector('#df-e2d7cbf0-4481-43c6-87bc-efa1ee02c420');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -615,6 +621,50 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="nn">/usr/local/lib/python3.10/dist-packages/pandas/core/indexes/base.py</span> in <span class="ni">get_loc</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3804</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">3805</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">casted_key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3806</span>         <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+
+<span class="nn">index.pyx</span> in <span class="ni">pandas._libs.index.IndexEngine.get_loc</span><span class="nt">()</span>
+
+<span class="nn">index.pyx</span> in <span class="ni">pandas._libs.index.IndexEngine.get_loc</span><span class="nt">()</span>
+
+<span class="nn">pandas/_libs/hashtable_class_helper.pxi</span> in <span class="ni">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="nt">()</span>
+
+<span class="nn">pandas/_libs/hashtable_class_helper.pxi</span> in <span class="ni">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="nt">()</span>
+
+<span class="ne">KeyError</span>: &#39;Filtering/stopword removal&#39;
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-3-c9674cdb80af&gt;</span> in <span class="ni">&lt;cell line: 5&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Menghitung TF-IDF</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">tfidf_matrix</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Filtering/stopword removal&#39;</span><span class="p">])</span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/pandas/core/frame.py</span> in <span class="ni">__getitem__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4100</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">nlevels</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">4101</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitem_multilevel</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">4102</span>             <span class="n">indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4103</span>             <span class="k">if</span> <span class="n">is_integer</span><span class="p">(</span><span class="n">indexer</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">4104</span>                 <span class="n">indexer</span> <span class="o">=</span> <span class="p">[</span><span class="n">indexer</span><span class="p">]</span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/pandas/core/indexes/base.py</span> in <span class="ni">get_loc</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3810</span>             <span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">3811</span>                 <span class="k">raise</span> <span class="n">InvalidIndexError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">3812</span>             <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">err</span>
+<span class="g g-Whitespace">   </span><span class="mi">3813</span>         <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">3814</span>             <span class="c1"># If we have a listlike key, _check_indexing_error will raise</span>
+
+<span class="ne">KeyError</span>: &#39;Filtering/stopword removal&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -626,7 +676,7 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-45c73eb0-1620-406f-a0ae-7982de123d3c" class="colab-df-container">
+  <div id="df-47e929a8-6968-4056-977a-3c65032a7d69" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -914,17 +964,17 @@
 <p>10 rows × 4860 columns</p>
 </div>
     <div class="colab-df-buttons">
-      
+
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-45c73eb0-1620-406f-a0ae-7982de123d3c')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-47e929a8-6968-4056-977a-3c65032a7d69')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
-      
+
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
     <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
   </svg>
     </button>
-    
+
   <style>
     .colab-df-container {
       display:flex;
@@ -968,12 +1018,12 @@
 
     <script>
       const buttonEl =
-        document.querySelector('#df-45c73eb0-1620-406f-a0ae-7982de123d3c button.colab-df-convert');
+        document.querySelector('#df-47e929a8-6968-4056-977a-3c65032a7d69 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-45c73eb0-1620-406f-a0ae-7982de123d3c');
+        const element = document.querySelector('#df-47e929a8-6968-4056-977a-3c65032a7d69');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -991,10 +1041,138 @@
       }
     </script>
   </div>
-  
+
+
+<div id="df-c133c7de-5cc2-4eb1-9307-0bb673c4ee0b">
+  <button class="colab-df-quickchart" onclick="quickchart('df-c133c7de-5cc2-4eb1-9307-0bb673c4ee0b')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-c133c7de-5cc2-4eb1-9307-0bb673c4ee0b button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+
     </div>
   </div>
-  </div></div>
+</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1011,7 +1189,7 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-bb2ef2f8-0d84-4144-b5d5-b405be8501f3" class="colab-df-container">
+  <div id="df-3444ee89-2888-4c4b-95d3-e31b2f900123" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1323,17 +1501,17 @@
 <p>100 rows × 100 columns</p>
 </div>
     <div class="colab-df-buttons">
-      
+
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-bb2ef2f8-0d84-4144-b5d5-b405be8501f3')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-3444ee89-2888-4c4b-95d3-e31b2f900123')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
-      
+
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
     <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
   </svg>
     </button>
-    
+
   <style>
     .colab-df-container {
       display:flex;
@@ -1377,12 +1555,12 @@
 
     <script>
       const buttonEl =
-        document.querySelector('#df-bb2ef2f8-0d84-4144-b5d5-b405be8501f3 button.colab-df-convert');
+        document.querySelector('#df-3444ee89-2888-4c4b-95d3-e31b2f900123 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-bb2ef2f8-0d84-4144-b5d5-b405be8501f3');
+        const element = document.querySelector('#df-3444ee89-2888-4c4b-95d3-e31b2f900123');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1400,10 +1578,138 @@
       }
     </script>
   </div>
-  
+
+
+<div id="df-04dabf2f-336c-4991-ba33-fc33fc2bf825">
+  <button class="colab-df-quickchart" onclick="quickchart('df-04dabf2f-336c-4991-ba33-fc33fc2bf825')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-04dabf2f-336c-4991-ba33-fc33fc2bf825 button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+
     </div>
   </div>
-  </div></div>
+</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1412,7 +1718,14 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: scikit-fuzzy in /usr/local/lib/python3.10/dist-packages (0.5.0)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting scikit-fuzzy
+  Downloading scikit_fuzzy-0.5.0-py2.py3-none-any.whl.metadata (2.6 kB)
+Downloading scikit_fuzzy-0.5.0-py2.py3-none-any.whl (920 kB)
+?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/920.8 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+   ━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">337.9/920.8 kB</span> <span class=" -Color -Color-Red">10.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">920.8/920.8 kB</span> <span class=" -Color -Color-Red">16.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hInstalling collected packages: scikit-fuzzy
+Successfully installed scikit-fuzzy-0.5.0
 </pre></div>
 </div>
 </div>
@@ -1465,7 +1778,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9fe15596f7d43ab5fd1082bc31ca35566f9231151b72a67036fd41cc1cfa23de.png" src="../_images/9fe15596f7d43ab5fd1082bc31ca35566f9231151b72a67036fd41cc1cfa23de.png" />
+<img alt="../_images/1256077af244fd3c8053c221ea973d9cc5dcdc4feea3a59fef725d99cf16d023.png" src="../_images/1256077af244fd3c8053c221ea973d9cc5dcdc4feea3a59fef725d99cf16d023.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1484,6 +1797,48 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Isi Cluster 1:
+           0         1         2         3         4         5         6  \
+0   0.070208  0.008926  0.088033 -0.115512  0.014441  0.148354 -0.025158   
+3   0.034535  0.031661  0.140299 -0.063677  0.009764  0.223660  0.032508   
+4   0.021024  0.010335  0.067736 -0.063452  0.008971  0.110914 -0.026970   
+5   0.065943  0.024497  0.123437 -0.096275  0.010080  0.245215  0.016094   
+6   0.040535  0.031907  0.084158 -0.022568  0.004535  0.097628  0.020756   
+..       ...       ...       ...       ...       ...       ...       ...   
+95  0.038224  0.164370  0.399131  0.182528 -0.009864 -0.192159 -0.236833   
+96  0.015075  0.063238  0.142135  0.040664 -0.001388 -0.030946 -0.129535   
+97  0.013072  0.077869  0.109487  0.044468 -0.002377 -0.047859 -0.112561   
+98  0.007268  0.023555  0.050663  0.004965  0.000822  0.008869 -0.015311   
+99  0.009692  0.044040  0.111656  0.055594 -0.002489 -0.047263  0.011154   
+
+           7         8         9  ...        91        92        93        94  \
+0   0.316508  0.112554  0.102976  ...  0.007635 -0.004728  0.006689  0.006640   
+3  -0.112528 -0.066919  0.026695  ... -0.004386 -0.002670  0.002658  0.000427   
+4   0.269987  0.090229  0.017159  ... -0.000384 -0.004198  0.000248 -0.000541   
+5  -0.161821 -0.075389  0.030535  ...  0.003661  0.002646 -0.004659 -0.003235   
+6  -0.045959 -0.017865  0.027693  ... -0.005147  0.003784 -0.012952 -0.003648   
+..       ...       ...       ...  ...       ...       ...       ...       ...   
+95  0.098721 -0.305893  0.054225  ...  0.004503 -0.012641  0.009208 -0.002801   
+96 -0.004457  0.031247  0.039996  ... -0.000597  0.006542  0.001820 -0.000377   
+97 -0.018377  0.055896  0.017615  ... -0.013751 -0.004471  0.000190  0.000667   
+98  0.042622  0.023767  0.014630  ... -0.006590  0.022805  0.012455 -0.000208   
+99  0.036953 -0.061006  0.004695  ...  0.003620  0.002435  0.006096  0.001052   
+
+          95        96        97        98            99  cluster  
+0   0.003235  0.001828  0.015822 -0.008979  6.149459e-18        0  
+3  -0.004828  0.004134 -0.000827  0.001713  5.584996e-17        0  
+4   0.001468  0.000939 -0.001166  0.000963  7.166576e-17        0  
+5  -0.002542  0.002952 -0.001229  0.003683 -9.730714e-18        0  
+6   0.004964  0.002530  0.004973 -0.002509 -3.130634e-17        0  
+..       ...       ...       ...       ...           ...      ...  
+95 -0.002120 -0.010426 -0.004569 -0.001163 -2.295798e-17        0  
+96  0.001227  0.001100 -0.001393 -0.005262 -4.621412e-17        0  
+97 -0.000168  0.006618 -0.003897 -0.004075  3.186877e-17        0  
+98  0.000190 -0.000897  0.002226  0.003883  2.081668e-17        0  
+99 -0.001118 -0.003213  0.003857  0.001882 -5.789640e-17        0  
+
+[73 rows x 101 columns]
+
+Isi Cluster 2:
            0         1         2         3         4         5         6  \
 1   0.570249 -0.051053 -0.148401  0.471844  0.017531  0.184541 -0.036963   
 2   0.424865 -0.041981 -0.154413  0.504569  0.020061  0.217146 -0.017601   
@@ -1543,77 +1898,35 @@
 48  0.036735  0.018529 -0.227913  ...  0.002740  0.017253  0.014315 -0.133995   
 
           95        96        97        98            99  cluster  
-1  -0.081828 -0.006074  0.005774  0.000158  1.173649e-17        0  
-2   0.142286 -0.005158 -0.087636  0.047603 -2.526191e-17        0  
-8  -0.024233  0.004055  0.004370 -0.003755  1.314595e-18        0  
-9  -0.095291 -0.003611 -0.029489  0.019150 -4.523834e-17        0  
-10  0.195826  0.002430  0.040719 -0.020526 -1.107377e-16        0  
-11  0.019370  0.004698  0.009896 -0.007289 -1.029992e-18        0  
-13  0.000529  0.002020 -0.006755  0.004531 -1.111849e-16        0  
-14 -0.001378 -0.002576  0.000744  0.001576 -7.087972e-18        0  
-15 -0.027454 -0.000166  0.007688 -0.004396 -3.512815e-17        0  
-23  0.002331  0.004397 -0.004602  0.001930 -3.469447e-18        0  
-24 -0.042261  0.005055  0.014167 -0.010680  1.276648e-17        0  
-25 -0.263380 -0.003577 -0.065272  0.034469 -5.068645e-17        0  
-26  0.080366 -0.000417  0.004789 -0.004368  2.710505e-18        0  
-27  0.006745  0.003842  0.004589 -0.001381 -1.981379e-17        0  
-32 -0.078449 -0.000329  0.006492 -0.002243  5.219078e-17        0  
-34  0.062275 -0.000910  0.033739 -0.020620  1.530080e-17        0  
-35 -0.099769 -0.005258  0.018838 -0.007264 -2.406929e-17        0  
-36  0.268895  0.004985  0.043383 -0.028499  9.215718e-19        0  
-37  0.031312 -0.014410 -0.100587  0.061203 -3.422013e-17        0  
-38 -0.133104  0.034557  0.273383 -0.160484 -2.444876e-17        0  
-39 -0.044825 -0.029139 -0.247358  0.146733  2.596664e-17        0  
-40  0.018203 -0.004194  0.027172 -0.015019  6.147426e-17        0  
-42  0.037247 -0.002443  0.005109 -0.001469  4.208060e-18        0  
-43  0.022963 -0.000557  0.015011 -0.008015  1.655102e-16        0  
-45  0.005736  0.010011  0.040998 -0.025384  5.187907e-17        0  
-46 -0.009848  0.000186 -0.023935  0.013995 -2.307995e-17        0  
-48 -0.007275 -0.003253 -0.030853  0.019415  3.659182e-17        0  
+1  -0.081828 -0.006074  0.005774  0.000158  1.173649e-17        1  
+2   0.142286 -0.005158 -0.087636  0.047603 -2.526191e-17        1  
+8  -0.024233  0.004055  0.004370 -0.003755  1.314595e-18        1  
+9  -0.095291 -0.003611 -0.029489  0.019150 -4.523834e-17        1  
+10  0.195826  0.002430  0.040719 -0.020526 -1.107377e-16        1  
+11  0.019370  0.004698  0.009896 -0.007289 -1.029992e-18        1  
+13  0.000529  0.002020 -0.006755  0.004531 -1.111849e-16        1  
+14 -0.001378 -0.002576  0.000744  0.001576 -7.087972e-18        1  
+15 -0.027454 -0.000166  0.007688 -0.004396 -3.512815e-17        1  
+23  0.002331  0.004397 -0.004602  0.001930 -3.469447e-18        1  
+24 -0.042261  0.005055  0.014167 -0.010680  1.276648e-17        1  
+25 -0.263380 -0.003577 -0.065272  0.034469 -5.068645e-17        1  
+26  0.080366 -0.000417  0.004789 -0.004368  2.710505e-18        1  
+27  0.006745  0.003842  0.004589 -0.001381 -1.981379e-17        1  
+32 -0.078449 -0.000329  0.006492 -0.002243  5.219078e-17        1  
+34  0.062275 -0.000910  0.033739 -0.020620  1.530080e-17        1  
+35 -0.099769 -0.005258  0.018838 -0.007264 -2.406929e-17        1  
+36  0.268895  0.004985  0.043383 -0.028499  9.215718e-19        1  
+37  0.031312 -0.014410 -0.100587  0.061203 -3.422013e-17        1  
+38 -0.133104  0.034557  0.273383 -0.160484 -2.444876e-17        1  
+39 -0.044825 -0.029139 -0.247358  0.146733  2.596664e-17        1  
+40  0.018203 -0.004194  0.027172 -0.015019  6.147426e-17        1  
+42  0.037247 -0.002443  0.005109 -0.001469  4.208060e-18        1  
+43  0.022963 -0.000557  0.015011 -0.008015  1.655102e-16        1  
+45  0.005736  0.010011  0.040998 -0.025384  5.187907e-17        1  
+46 -0.009848  0.000186 -0.023935  0.013995 -2.307995e-17        1  
+48 -0.007275 -0.003253 -0.030853  0.019415  3.659182e-17        1  
 
 [27 rows x 101 columns]
-
-Isi Cluster 2:
-           0         1         2         3         4         5         6  \
-0   0.070208  0.008926  0.088033 -0.115512  0.014441  0.148354 -0.025158   
-3   0.034535  0.031661  0.140299 -0.063677  0.009764  0.223660  0.032508   
-4   0.021024  0.010335  0.067736 -0.063452  0.008971  0.110914 -0.026970   
-5   0.065943  0.024497  0.123437 -0.096275  0.010080  0.245215  0.016094   
-6   0.040535  0.031907  0.084158 -0.022568  0.004535  0.097628  0.020756   
-..       ...       ...       ...       ...       ...       ...       ...   
-95  0.038224  0.164370  0.399131  0.182528 -0.009864 -0.192159 -0.236833   
-96  0.015075  0.063238  0.142135  0.040664 -0.001388 -0.030946 -0.129535   
-97  0.013072  0.077869  0.109487  0.044468 -0.002377 -0.047859 -0.112561   
-98  0.007268  0.023555  0.050663  0.004965  0.000822  0.008869 -0.015311   
-99  0.009692  0.044040  0.111656  0.055594 -0.002489 -0.047263  0.011154   
-
-           7         8         9  ...        91        92        93        94  \
-0   0.316508  0.112554  0.102976  ...  0.007635 -0.004728  0.006689  0.006640   
-3  -0.112528 -0.066919  0.026695  ... -0.004386 -0.002670  0.002658  0.000427   
-4   0.269987  0.090229  0.017159  ... -0.000384 -0.004198  0.000248 -0.000541   
-5  -0.161821 -0.075389  0.030535  ...  0.003661  0.002646 -0.004659 -0.003235   
-6  -0.045959 -0.017865  0.027693  ... -0.005147  0.003784 -0.012952 -0.003648   
-..       ...       ...       ...  ...       ...       ...       ...       ...   
-95  0.098721 -0.305893  0.054225  ...  0.004503 -0.012641  0.009208 -0.002801   
-96 -0.004457  0.031247  0.039996  ... -0.000597  0.006542  0.001820 -0.000377   
-97 -0.018377  0.055896  0.017615  ... -0.013751 -0.004471  0.000190  0.000667   
-98  0.042622  0.023767  0.014630  ... -0.006590  0.022805  0.012455 -0.000208   
-99  0.036953 -0.061006  0.004695  ...  0.003620  0.002435  0.006096  0.001052   
-
-          95        96        97        98            99  cluster  
-0   0.003235  0.001828  0.015822 -0.008979  6.149459e-18        1  
-3  -0.004828  0.004134 -0.000827  0.001713  5.584996e-17        1  
-4   0.001468  0.000939 -0.001166  0.000963  7.166576e-17        1  
-5  -0.002542  0.002952 -0.001229  0.003683 -9.730714e-18        1  
-6   0.004964  0.002530  0.004973 -0.002509 -3.130634e-17        1  
-..       ...       ...       ...       ...           ...      ...  
-95 -0.002120 -0.010426 -0.004569 -0.001163 -2.295798e-17        1  
-96  0.001227  0.001100 -0.001393 -0.005262 -4.621412e-17        1  
-97 -0.000168  0.006618 -0.003897 -0.004075  3.186877e-17        1  
-98  0.000190 -0.000897  0.002226  0.003883  2.081668e-17        1  
-99 -0.001118 -0.003213  0.003857  0.001882 -5.789640e-17        1  
-
-[73 rows x 101 columns]
 </pre></div>
 </div>
 </div>
@@ -1634,16 +1947,48 @@ Isi Cluster 2:
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Distribusi Kategori dalam Cluster 1:
 kategori
-Olahraga    27
+Makanan     50
+Olahraga    23
 Name: count, dtype: int64
 
 Distribusi Kategori dalam Cluster 2:
 kategori
-Makanan     50
-Olahraga    23
+Olahraga    27
 Name: count, dtype: int64
 </pre></div>
 </div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Hitung jumlah dokumen per cluster</span>
+<span class="n">cluster_counts</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+
+<span class="c1"># Menentukan kategori dominan per cluster</span>
+<span class="n">cluster_0_description</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">][</span><span class="s1">&#39;kategori&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Kategori dominan untuk cluster 0</span>
+<span class="n">cluster_1_description</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">][</span><span class="s1">&#39;kategori&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Kategori dominan untuk cluster 1</span>
+
+<span class="c1"># Visualisasi distribusi dokumen per cluster</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">cluster_counts</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+
+<span class="c1"># Menambahkan label dan judul</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Document Distribution Across Clusters&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Cluster&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Documents&#39;</span><span class="p">)</span>
+
+<span class="c1"># Menambahkan keterangan untuk setiap cluster</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;Cluster 0: </span><span class="si">{</span><span class="n">cluster_0_description</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;Cluster 1: </span><span class="si">{</span><span class="n">cluster_1_description</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">],</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Menampilkan plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1458714f690f41e0cb5016e8ac7a5a9a9eefe7a93dc70795a5a43fa9400d7526.png" src="../_images/1458714f690f41e0cb5016e8ac7a5a9a9eefe7a93dc70795a5a43fa9400d7526.png" />
 </div>
 </div>
 </section>

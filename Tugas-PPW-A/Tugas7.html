@@ -1,0 +1,3559 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Tugas 7 : Clustering Web dengan Fuzzy C-Means &#8212; Penambangan web</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Tugas-PPW-A/Tugas7';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Tugas 6 : Klasifikasi Berita Metode Logistic Regression dengan reduksi dimensi SVD" href="Tugas6.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Penambangan web - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Penambangan web - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to my profile
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Tugas1.html"><strong>Tugas Pertemuan 1 - Crawling berita online</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tugas2.html">Tugas Pertemuan 2 - Pre-Processing Data dengan TF-IDF</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Tugas3.html">Tugas Pertemuan 3 - Logistic Regression</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Skip-Gram.html">Word Embedding</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Tugas4.html">Tugas 4 - Graph</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Tugas5.html">Tugas 5 : Query dengan kalimat</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="Tugas6.html">Tugas 6 : Klasifikasi Berita Metode Logistic Regression dengan reduksi dimensi SVD</a></li>
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Tugas 7 : Clustering Web dengan Fuzzy C-Means</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/agusALhasib/PPW-A/blob/gh-pages/_sources/Tugas-PPW-A/Tugas7.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/agusALhasib/PPW-A" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/agusALhasib/PPW-A/issues/new?title=Issue%20on%20page%20%2FTugas-PPW-A/Tugas7.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Tugas-PPW-A/Tugas7.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tugas 7 : Clustering Web dengan Fuzzy C-Means</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membaca-dataset">1. <strong>Membaca Dataset</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf-vectorizer">2. <strong>TF-IDF Vectorizer</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inisialisasi-akurasi-untuk-plot">3. <strong>Inisialisasi Akurasi untuk Plot</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perulangan-untuk-mengurangi-komponen">4. <strong>Perulangan untuk Mengurangi Komponen</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuzzy-c-means-clustering">5. <strong>Fuzzy C-Means Clustering</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mengukur-akurasi">6. <strong>Mengukur Akurasi</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-akurasi-berdasarkan-jumlah-komponen-svd">7. <strong>Plot Akurasi Berdasarkan Jumlah Komponen SVD</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-dari-kode">Tujuan dari kode:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-clean-data-matrix">1. <strong>Fungsi <code class="docutils literal notranslate"><span class="pre">clean_data(matrix)</span></code></strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-evaluate-clustering-data-features-true-labels-n-clusters-2">2. <strong>Fungsi <code class="docutils literal notranslate"><span class="pre">evaluate_clustering(data_features,</span> <span class="pre">true_labels,</span> <span class="pre">n_clusters=2)</span></code></strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-reduce-features-and-evaluate-tfidf-matrix-true-labels">3. <strong>Fungsi <code class="docutils literal notranslate"><span class="pre">reduce_features_and_evaluate(tfidf_matrix,</span> <span class="pre">true_labels,</span> <span class="pre">...)</span></code></strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persiapan-data">4. <strong>Persiapan Data</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduksi-dimensi-dan-evaluasi">5. <strong>Reduksi Dimensi dan Evaluasi</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-hasil">6. <strong>Visualisasi Hasil</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-hasil-terbaik">7. <strong>Menampilkan Hasil Terbaik</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">Tujuan:</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="tugas-7-clustering-web-dengan-fuzzy-c-means">
+<h1>Tugas 7 : Clustering Web dengan Fuzzy C-Means<a class="headerlink" href="#tugas-7-clustering-web-dengan-fuzzy-c-means" title="Link to this heading">#</a></h1>
+<p>Perintah <code class="docutils literal notranslate"><span class="pre">!pip</span> <span class="pre">install</span> <span class="pre">scikit-fuzzy</span></code> digunakan untuk menginstal pustaka <strong>scikit-fuzzy</strong> dalam lingkungan Python.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>scikit-fuzzy
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: scikit-fuzzy in /usr/local/lib/python3.10/dist-packages (0.5.0)
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">pandas</span></code></strong>: Digunakan untuk manipulasi dan analisis data, seperti memproses tabel dan data berbentuk DataFrame.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">TfidfVectorizer</span></code></strong> (dari <code class="docutils literal notranslate"><span class="pre">sklearn.feature_extraction.text</span></code>): Mengonversi teks menjadi representasi numerik menggunakan metode <strong>TF-IDF (Term Frequency-Inverse Document Frequency)</strong>. Ini digunakan untuk mengukur pentingnya kata-kata dalam dokumen.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">TruncatedSVD</span></code></strong> (dari <code class="docutils literal notranslate"><span class="pre">sklearn.decomposition</span></code>): Digunakan untuk <strong>reduksi dimensi</strong> menggunakan teknik <strong>Singular Value Decomposition</strong> (SVD), yang mengurangi jumlah fitur dalam data tanpa kehilangan informasi penting.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">cosine_similarity</span></code></strong> (dari <code class="docutils literal notranslate"><span class="pre">sklearn.metrics.pairwise</span></code>): Menghitung <strong>kemiripan kosinus</strong> antara vektor-vektor fitur, sering digunakan untuk mengukur kemiripan antara dokumen dalam ruang vektor.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">re</span></code></strong>: Pustaka untuk operasi pada <strong>regular expressions</strong> yang berguna untuk pencocokan pola dalam string (misalnya menghapus karakter tertentu).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">numpy</span></code></strong>: Pustaka untuk operasi matematika dan array multidimensi, sering digunakan dalam pemrograman numerik.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">IPython.display</span></code></strong>: Digunakan untuk menampilkan output secara lebih fleksibel dalam Jupyter Notebook, seperti menampilkan teks dengan format Markdown.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">skfuzzy</span></code></strong>: Pustaka untuk menerapkan <strong>fuzzy logic</strong>, yang memungkinkan penanganan ketidakpastian dalam pengolahan data dan pengambilan keputusan berbasis data.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">accuracy_score</span></code></strong> (dari <code class="docutils literal notranslate"><span class="pre">sklearn.metrics</span></code>): Digunakan untuk menghitung akurasi model klasifikasi, yaitu persentase prediksi yang benar.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">LabelEncoder</span></code></strong> (dari <code class="docutils literal notranslate"><span class="pre">sklearn.preprocessing</span></code>): Mengubah label kategorikal menjadi format numerik agar dapat diproses oleh algoritma pembelajaran mesin.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">TruncatedSVD</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">cosine_similarity</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span>
+<span class="kn">import</span> <span class="nn">skfuzzy</span> <span class="k">as</span> <span class="nn">fuzz</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Drive already mounted at /content/drive; to attempt to forcibly remount, call drive.mount(&quot;/content/drive&quot;, force_remount=True).
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;/content/drive/My Drive/PPW-A/report/Tugas-PPW-A/hasil_preprocesing.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-82c7f19e-3502-4420-a4ad-42e97a23646f" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>judul</th>
+      <th>tanggal</th>
+      <th>isi_berita</th>
+      <th>kategori</th>
+      <th>berita_clean</th>
+      <th>case_folding</th>
+      <th>tokenize</th>
+      <th>stopword_removal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Marc Marquez Kini di Ducati, Harusnya Mudah Be...</td>
+      <td>Sabtu, 30 Nov 2024 17:30 WIB</td>
+      <td>Marc Marquez mengaku bakal banyak tantangan di...</td>
+      <td>Olahraga</td>
+      <td>Marc Marquez mengaku bakal banyak tantangan di...</td>
+      <td>marc marquez mengaku bakal banyak tantangan di...</td>
+      <td>['marc', 'marquez', 'mengaku', 'bakal', 'banya...</td>
+      <td>marc marquez mengaku tantangan motogp tim baru...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Usai Balapan 1.000 KM di Sepang, Avila Bahar T...</td>
+      <td>Sabtu, 30 Nov 2024 02:15 WIB</td>
+      <td>Avila Bahar baru saja tampil balapan 1.000 KM ...</td>
+      <td>Olahraga</td>
+      <td>Avila Bahar baru saja tampil balapan  KM yang ...</td>
+      <td>avila bahar baru saja tampil balapan  km yang ...</td>
+      <td>['avila', 'bahar', 'baru', 'saja', 'tampil', '...</td>
+      <td>avila bahar tampil balapan km digelar sepang m...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Video: Maarten Paes Bakal Sharing di It's His/...</td>
+      <td>2,167 Views  |  Jumat, 29 Nov 2024 21:30 WIB</td>
+      <td>Kiper Timnas Indonesia, Maarten Paes, akan men...</td>
+      <td>Olahraga</td>
+      <td>Kiper Timnas Indonesia Maarten Paes akan mengi...</td>
+      <td>kiper timnas indonesia maarten paes akan mengi...</td>
+      <td>['kiper', 'timnas', 'indonesia', 'maarten', 'p...</td>
+      <td>kiper timnas indonesia maarten paes mengisi ac...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Klaim Marini: Hasil MotoGP 2025 Sudah Ditentuk...</td>
+      <td>Jumat, 29 Nov 2024 21:30 WIB</td>
+      <td>Rider Honda Luca Marini melontarkan klaim bera...</td>
+      <td>Olahraga</td>
+      <td>Rider Honda Luca Marini melontarkan klaim bera...</td>
+      <td>rider honda luca marini melontarkan klaim bera...</td>
+      <td>['rider', 'honda', 'luca', 'marini', 'melontar...</td>
+      <td>rider honda luca marini melontarkan klaim bera...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Marc Marquez Mau Santai Dulu, Bulan Januari Ba...</td>
+      <td>Jumat, 29 Nov 2024 17:50 WIB</td>
+      <td>Setelah MotoGP 2024 tuntas, termasuk tes usai ...</td>
+      <td>Olahraga</td>
+      <td>Setelah MotoGP  tuntas termasuk tes usai seri ...</td>
+      <td>setelah motogp  tuntas termasuk tes usai seri ...</td>
+      <td>['setelah', 'motogp', 'tuntas', 'termasuk', 't...</td>
+      <td>motogp tuntas tes seri pamungkas marc marquez ...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+      
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-82c7f19e-3502-4420-a4ad-42e97a23646f')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+      
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+    
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-82c7f19e-3502-4420-a4ad-42e97a23646f button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-82c7f19e-3502-4420-a4ad-42e97a23646f');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+  
+    </div>
+  </div>
+  </div></div>
+</div>
+<ol class="arabic simple">
+<li><p><strong>Mengonversi Data Teks ke TF-IDF</strong>:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">TfidfVectorizer(norm='l2')</span></code></strong>: Inisialisasi objek <code class="docutils literal notranslate"><span class="pre">TfidfVectorizer</span></code> yang digunakan untuk mengonversi teks menjadi representasi numerik. Normalisasi <code class="docutils literal notranslate"><span class="pre">l2</span></code> memastikan bahwa panjang vektor fitur untuk setiap dokumen disesuaikan, sehingga menghindari dominasi kata-kata dengan frekuensi tinggi.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">fit_transform(df['stopword_removal'])</span></code></strong>: Menghitung nilai <strong>TF-IDF</strong> untuk setiap kata dalam dokumen yang ada di kolom <code class="docutils literal notranslate"><span class="pre">'stopword_removal'</span></code> pada DataFrame <code class="docutils literal notranslate"><span class="pre">df</span></code>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">pd.DataFrame(tfidf_matrix.toarray())</span></code></strong>: Mengonversi hasil TF-IDF, yang berupa matriks sparse, menjadi DataFrame agar lebih mudah diakses dan dianalisis. Kolomnya adalah kata-kata yang terdapat dalam dokumen.</p></li>
+</ul>
+</li>
+<li><p><strong>Reduksi Dimensi dengan Truncated SVD</strong>:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">TruncatedSVD(n_components=100)</span></code></strong>: Inisialisasi objek <code class="docutils literal notranslate"><span class="pre">TruncatedSVD</span></code> untuk mereduksi dimensi dari hasil TF-IDF menjadi hanya 100 komponen utama, yang membantu mengurangi kompleksitas data.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">fit_transform(tfidf_matrix)</span></code></strong>: Menerapkan <strong>SVD</strong> pada matriks TF-IDF untuk menghasilkan matriks dengan dimensi yang lebih rendah, mempertahankan informasi utama namun mengurangi noise dan dimensi yang tidak perlu.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">pd.DataFrame(svd_matrix)</span></code></strong>: Mengonversi hasil reduksi dimensi (matriks SVD) ke dalam DataFrame, sehingga hasilnya mudah dianalisis dan digunakan dalam langkah-langkah berikutnya.</p></li>
+</ul>
+</li>
+<li><p><strong>Menampilkan Hasil</strong>:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">svd_df.head(100)</span></code></strong>: Menampilkan 100 baris pertama dari hasil matriks yang telah direduksi menggunakan SVD. Ini berguna untuk mengevaluasi dan memahami bagaimana representasi data telah berubah setelah reduksi dimensi.</p></li>
+</ul>
+</li>
+</ol>
+<p>kode ini mengubah teks menjadi representasi numerik yang lebih kompak dan terstruktur menggunakan TF-IDF dan SVD, seperti perhitungan kemiripan antar dokumen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2. Mengonversi Data Teks ke TF-IDF</span>
+<span class="c1"># Menginisialisasi TfidfVectorizer dengan normalisasi L2</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">norm</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">)</span>
+
+<span class="c1"># Menghitung nilai TF-IDF untuk setiap dokumen</span>
+<span class="n">tfidf_matrix</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;stopword_removal&#39;</span><span class="p">])</span>
+
+<span class="c1"># Mengubah hasil TF-IDF menjadi DataFrame untuk kemudahan akses</span>
+<span class="n">tfidf_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tfidf_matrix</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">())</span>
+
+<span class="c1"># 3. Reduksi Dimensi dengan Truncated SVD</span>
+<span class="c1"># Menginisialisasi TruncatedSVD untuk mereduksi dimensi menjadi 100 komponen (atau sesuai kebutuhan)</span>
+<span class="n">svd</span> <span class="o">=</span> <span class="n">TruncatedSVD</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Mengaplikasikan SVD pada matriks TF-IDF untuk menghasilkan matriks dengan dimensi yang lebih rendah</span>
+<span class="n">svd_matrix</span> <span class="o">=</span> <span class="n">svd</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">tfidf_matrix</span><span class="p">)</span>
+
+<span class="c1"># Menyimpan hasil SVD dalam DataFrame untuk digunakan dalam perhitungan kemiripan</span>
+<span class="n">svd_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">svd_matrix</span><span class="p">)</span>
+
+<span class="c1"># Menampilkan 10 baris pertama dari DataFrame hasil SVD</span>
+<span class="n">svd_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-2d3e351a-9941-4bdc-94da-88e23d1cc649" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>...</th>
+      <th>90</th>
+      <th>91</th>
+      <th>92</th>
+      <th>93</th>
+      <th>94</th>
+      <th>95</th>
+      <th>96</th>
+      <th>97</th>
+      <th>98</th>
+      <th>99</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.333313</td>
+      <td>0.516831</td>
+      <td>0.005614</td>
+      <td>0.018371</td>
+      <td>-0.029293</td>
+      <td>-0.001691</td>
+      <td>-0.001742</td>
+      <td>-0.094632</td>
+      <td>-0.088117</td>
+      <td>-0.036707</td>
+      <td>...</td>
+      <td>-0.133628</td>
+      <td>0.014589</td>
+      <td>0.014665</td>
+      <td>-0.009421</td>
+      <td>0.067847</td>
+      <td>0.001144</td>
+      <td>-0.014178</td>
+      <td>-0.058842</td>
+      <td>0.001704</td>
+      <td>-1.198043e-17</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.109642</td>
+      <td>0.022927</td>
+      <td>0.005132</td>
+      <td>-0.019125</td>
+      <td>0.036270</td>
+      <td>0.000374</td>
+      <td>0.017487</td>
+      <td>0.046617</td>
+      <td>0.007394</td>
+      <td>0.011993</td>
+      <td>...</td>
+      <td>0.031034</td>
+      <td>-0.001332</td>
+      <td>-0.004717</td>
+      <td>0.001753</td>
+      <td>0.013487</td>
+      <td>-0.003072</td>
+      <td>-0.016789</td>
+      <td>0.000496</td>
+      <td>0.000132</td>
+      <td>-9.864207e-17</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.056237</td>
+      <td>-0.003866</td>
+      <td>-0.001327</td>
+      <td>-0.030445</td>
+      <td>0.066611</td>
+      <td>-0.000614</td>
+      <td>-0.000431</td>
+      <td>0.062931</td>
+      <td>0.023525</td>
+      <td>0.011263</td>
+      <td>...</td>
+      <td>0.000496</td>
+      <td>-0.003126</td>
+      <td>0.002386</td>
+      <td>-0.001611</td>
+      <td>-0.002422</td>
+      <td>-0.002346</td>
+      <td>0.001027</td>
+      <td>0.007013</td>
+      <td>0.001691</td>
+      <td>-1.639314e-16</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.359587</td>
+      <td>0.512692</td>
+      <td>-0.011499</td>
+      <td>0.017944</td>
+      <td>-0.015990</td>
+      <td>-0.002726</td>
+      <td>-0.009684</td>
+      <td>-0.025994</td>
+      <td>0.000256</td>
+      <td>-0.007406</td>
+      <td>...</td>
+      <td>-0.008683</td>
+      <td>0.027217</td>
+      <td>-0.052814</td>
+      <td>0.007474</td>
+      <td>0.062579</td>
+      <td>-0.008826</td>
+      <td>-0.179791</td>
+      <td>0.050726</td>
+      <td>0.000620</td>
+      <td>-1.287490e-18</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.323082</td>
+      <td>0.409880</td>
+      <td>-0.000571</td>
+      <td>-0.016383</td>
+      <td>0.015156</td>
+      <td>-0.002777</td>
+      <td>0.003644</td>
+      <td>-0.100720</td>
+      <td>-0.047864</td>
+      <td>-0.063136</td>
+      <td>...</td>
+      <td>-0.134961</td>
+      <td>-0.031834</td>
+      <td>0.053151</td>
+      <td>-0.055771</td>
+      <td>0.021627</td>
+      <td>-0.006640</td>
+      <td>-0.063106</td>
+      <td>0.015004</td>
+      <td>0.000640</td>
+      <td>4.109126e-17</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>0.042533</td>
+      <td>-0.021544</td>
+      <td>0.119076</td>
+      <td>-0.146967</td>
+      <td>-0.052113</td>
+      <td>-0.008560</td>
+      <td>0.000820</td>
+      <td>-0.078318</td>
+      <td>0.061889</td>
+      <td>0.127423</td>
+      <td>...</td>
+      <td>-0.000624</td>
+      <td>-0.000302</td>
+      <td>0.000362</td>
+      <td>-0.005504</td>
+      <td>0.003081</td>
+      <td>0.004116</td>
+      <td>-0.002524</td>
+      <td>0.002521</td>
+      <td>0.001037</td>
+      <td>8.726811e-17</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>0.044425</td>
+      <td>-0.014771</td>
+      <td>0.105953</td>
+      <td>-0.154897</td>
+      <td>-0.032374</td>
+      <td>-0.006927</td>
+      <td>0.174811</td>
+      <td>-0.060250</td>
+      <td>0.046559</td>
+      <td>0.106982</td>
+      <td>...</td>
+      <td>-0.001984</td>
+      <td>-0.005110</td>
+      <td>0.008916</td>
+      <td>0.008688</td>
+      <td>-0.001995</td>
+      <td>-0.007484</td>
+      <td>-0.006330</td>
+      <td>-0.004720</td>
+      <td>-0.001200</td>
+      <td>8.288726e-17</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>0.058683</td>
+      <td>-0.032946</td>
+      <td>0.324055</td>
+      <td>-0.216812</td>
+      <td>-0.169497</td>
+      <td>-0.019054</td>
+      <td>-0.250382</td>
+      <td>-0.002274</td>
+      <td>-0.013682</td>
+      <td>-0.160395</td>
+      <td>...</td>
+      <td>0.007707</td>
+      <td>0.007988</td>
+      <td>-0.052931</td>
+      <td>-0.058858</td>
+      <td>-0.002186</td>
+      <td>-0.001711</td>
+      <td>0.009466</td>
+      <td>0.002928</td>
+      <td>0.002480</td>
+      <td>-5.342406e-17</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>0.053056</td>
+      <td>-0.024674</td>
+      <td>0.111448</td>
+      <td>-0.247935</td>
+      <td>-0.007178</td>
+      <td>-0.009078</td>
+      <td>0.641062</td>
+      <td>-0.184958</td>
+      <td>0.048510</td>
+      <td>0.092952</td>
+      <td>...</td>
+      <td>0.074254</td>
+      <td>-0.016421</td>
+      <td>0.062030</td>
+      <td>0.008965</td>
+      <td>-0.023875</td>
+      <td>0.001780</td>
+      <td>-0.007853</td>
+      <td>0.011213</td>
+      <td>0.000221</td>
+      <td>-9.595189e-18</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>0.037633</td>
+      <td>-0.014619</td>
+      <td>0.105675</td>
+      <td>-0.120243</td>
+      <td>-0.030795</td>
+      <td>-0.004407</td>
+      <td>0.110080</td>
+      <td>-0.043864</td>
+      <td>0.039595</td>
+      <td>0.101999</td>
+      <td>...</td>
+      <td>0.001119</td>
+      <td>-0.007072</td>
+      <td>0.011576</td>
+      <td>0.014741</td>
+      <td>0.002323</td>
+      <td>0.003104</td>
+      <td>0.002006</td>
+      <td>-0.000085</td>
+      <td>-0.001715</td>
+      <td>-4.328677e-17</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 100 columns</p>
+</div>
+    <div class="colab-df-buttons">
+      
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-2d3e351a-9941-4bdc-94da-88e23d1cc649')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+      
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+    
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-2d3e351a-9941-4bdc-94da-88e23d1cc649 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-2d3e351a-9941-4bdc-94da-88e23d1cc649');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+  
+    </div>
+  </div>
+  </div></div>
+</div>
+<p>Perintah <code class="docutils literal notranslate"><span class="pre">tfidf_df.head(100)</span></code> digunakan untuk menampilkan <strong>100 baris pertama</strong> dari DataFrame <code class="docutils literal notranslate"><span class="pre">tfidf_df</span></code>, yang berisi hasil perhitungan <strong>TF-IDF</strong> dari dokumen yang ada.</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">tfidf_df</span></code></strong>: Ini adalah DataFrame yang berisi representasi numerik dari dokumen-dokumen setelah proses TF-IDF, di mana setiap kolom mewakili satu kata unik yang ada dalam seluruh dokumen.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">head(100)</span></code></strong>: Menampilkan 100 baris pertama dari DataFrame tersebut, yang berfungsi untuk melihat sebagian kecil data dan memeriksa hasil perhitungan TF-IDF.</p></li>
+</ul>
+<p>Tujuannya adalah untuk memeriksa fitur-fitur (kata-kata) yang memiliki nilai TF-IDF tinggi pada dokumen tertentu, serta untuk mendapatkan gambaran tentang bagaimana representasi numerik dari teks tersebut.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tfidf_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-5e8c9de0-ac5d-4195-a0e8-7dd25fb06f55" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>aaron</th>
+      <th>abc</th>
+      <th>abhiram</th>
+      <th>abirezki</th>
+      <th>abis</th>
+      <th>abraham</th>
+      <th>absen</th>
+      <th>academy</th>
+      <th>acang</th>
+      <th>acar</th>
+      <th>...</th>
+      <th>zaitun</th>
+      <th>zat</th>
+      <th>zatzat</th>
+      <th>zeaxanthinnya</th>
+      <th>zero</th>
+      <th>zheng</th>
+      <th>zip</th>
+      <th>zita</th>
+      <th>zomato</th>
+      <th>zoom</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.037785</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.033212</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.037313</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 4982 columns</p>
+</div>
+    <div class="colab-df-buttons">
+      
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-5e8c9de0-ac5d-4195-a0e8-7dd25fb06f55')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+      
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+    
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-5e8c9de0-ac5d-4195-a0e8-7dd25fb06f55 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-5e8c9de0-ac5d-4195-a0e8-7dd25fb06f55');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+  
+    </div>
+  </div>
+  </div></div>
+</div>
+<ol class="arabic simple">
+<li><p><strong>Menghapus Label Kategori</strong>:</p>
+<ul class="simple">
+<li><p>Kolom <code class="docutils literal notranslate"><span class="pre">kategori</span></code> yang berisi label asli dikosongkan untuk memastikan hanya fitur yang digunakan dalam proses <strong>clustering</strong> (pengelompokan data).</p></li>
+</ul>
+</li>
+<li><p><strong>Fuzzy C-Means Clustering</strong>:</p>
+<ul class="simple">
+<li><p><strong>Fuzzy C-Means</strong> adalah algoritma clustering di mana setiap data dapat memiliki derajat keanggotaan pada lebih dari satu kluster.</p></li>
+<li><p>Pada kode ini, jumlah kluster (<code class="docutils literal notranslate"><span class="pre">n_clusters</span></code>) ditentukan sebanyak 2.</p></li>
+<li><p>Proses ini menghasilkan beberapa nilai seperti pusat kluster (<code class="docutils literal notranslate"><span class="pre">cntr</span></code>), derajat keanggotaan (<code class="docutils literal notranslate"><span class="pre">u</span></code>), dan informasi lain yang digunakan untuk mengelompokkan data.</p></li>
+</ul>
+</li>
+<li><p><strong>Menentukan Kluster Akhir</strong>:</p>
+<ul class="simple">
+<li><p>Setelah proses clustering, data dimasukkan ke dalam kluster berdasarkan derajat keanggotaan tertinggi untuk setiap data.</p></li>
+</ul>
+</li>
+<li><p><strong>Mengukur Akurasi Clustering</strong>:</p>
+<ul class="simple">
+<li><p>Jika kolom <code class="docutils literal notranslate"><span class="pre">kategori</span></code> ada dalam data, maka label kategori asli diubah menjadi numerik (misalnya “Olahraga” = 0, “Makanan” = 1).</p></li>
+<li><p><strong>Akurasi</strong> dihitung dengan membandingkan hasil kluster yang dihasilkan dengan label asli untuk menilai seberapa baik clustering mencocokkan kategori yang ada.</p></li>
+</ul>
+</li>
+<li><p><strong>Output</strong>:</p>
+<ul class="simple">
+<li><p>Jika kolom <code class="docutils literal notranslate"><span class="pre">kategori</span></code> ada, akurasi hasil clustering akan dicetak; jika tidak, pesan bahwa akurasi tidak dapat dihitung akan ditampilkan.</p></li>
+</ul>
+</li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">skfuzzy</span> <span class="k">as</span> <span class="nn">fuzz</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+
+<span class="c1"># 4. Menghapus Label Kategori dari Data untuk Clustering</span>
+<span class="c1"># Misalkan kolom &#39;kategori&#39; berisi label kategori asli, kita drop kolom tersebut untuk proses clustering</span>
+<span class="n">data_features</span> <span class="o">=</span> <span class="n">svd_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;kategori&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>  <span class="c1"># Buat pastikan kolom kategori memang ada</span>
+
+<span class="c1"># 5. Proses Fuzzy C-Means Clustering</span>
+<span class="c1"># Menentukan jumlah kluster (misalnya 2 kluster)</span>
+<span class="n">n_clusters</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="c1"># Menjalankan Fuzzy C-Means</span>
+<span class="n">cntr</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">u0</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">jm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">fpc</span> <span class="o">=</span> <span class="n">fuzz</span><span class="o">.</span><span class="n">cluster</span><span class="o">.</span><span class="n">cmeans</span><span class="p">(</span>
+    <span class="n">data_features</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">n_clusters</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span>
+<span class="p">)</span>
+
+<span class="c1"># Menentukan kluster akhir untuk setiap data berdasarkan derajat keanggotaan tertinggi</span>
+<span class="n">cluster_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># 6. Mengukur Akurasi Clustering</span>
+<span class="c1"># Misalkan kolom &#39;kategori&#39; menyimpan label asli</span>
+<span class="k">if</span> <span class="s1">&#39;kategori&#39;</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="c1"># Mengonversi label kategori ke bentuk numerik jika belum</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;kategori_numerik&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">factorize</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;kategori&#39;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># Menghitung akurasi dengan membandingkan hasil clustering dengan label asli</span>
+    <span class="n">akurasi</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;kategori_numerik&#39;</span><span class="p">],</span> <span class="n">cluster_labels</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Akurasi Clustering Fuzzy C-Means: </span><span class="si">{</span><span class="n">akurasi</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Kolom &#39;kategori&#39; tidak ditemukan pada dataset; akurasi tidak dapat dihitung.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Akurasi Clustering Fuzzy C-Means: 0.18
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic simple">
+<li><p><strong>Menambahkan Kolom Kluster ke DataFrame</strong>:</p>
+<ul class="simple">
+<li><p>Hasil dari <strong>Fuzzy C-Means Clustering</strong> yang berisi kluster untuk setiap dokumen disimpan dalam kolom baru bernama <code class="docutils literal notranslate"><span class="pre">cluster</span></code> di DataFrame <code class="docutils literal notranslate"><span class="pre">df</span></code>. Ini memudahkan untuk melihat dokumen beserta kategori asli dan kluster mereka.</p></li>
+</ul>
+</li>
+<li><p><strong>Visualisasi Hasil Clustering</strong>:</p>
+<ul class="simple">
+<li><p><strong>PCA (Principal Component Analysis)</strong> digunakan untuk mereduksi dimensi data dari banyak fitur menjadi 2 dimensi agar bisa divisualisasikan.</p></li>
+<li><p>Setelah data direduksi, DataFrame <code class="docutils literal notranslate"><span class="pre">pca_df</span></code> dibuat untuk memudahkan plotting data 2D. Di sini, kolom <code class="docutils literal notranslate"><span class="pre">PC1</span></code> dan <code class="docutils literal notranslate"><span class="pre">PC2</span></code> adalah komponen utama yang diperoleh dari PCA, dan kolom <code class="docutils literal notranslate"><span class="pre">cluster</span></code> berisi kluster yang dihasilkan.</p></li>
+</ul>
+</li>
+<li><p><strong>Plot Hasil Clustering</strong>:</p>
+<ul class="simple">
+<li><p>Dengan menggunakan <strong>matplotlib</strong>, data yang telah diproses dipetakan ke dalam grafik 2D.</p></li>
+<li><p>Setiap kluster digambarkan dengan warna berbeda (misalnya merah untuk kluster 1, biru untuk kluster 2).</p></li>
+<li><p>Grafik ini memberi gambaran visual mengenai bagaimana data dikelompokkan oleh algoritma <strong>Fuzzy C-Means</strong>.</p></li>
+</ul>
+</li>
+<li><p><strong>Output Visual</strong>:</p>
+<ul class="simple">
+<li><p>Grafik 2D menampilkan kluster-kluster yang dihasilkan dari proses clustering, memudahkan untuk melihat pola atau keterkaitan antar dokumen berdasarkan pengelompokkan yang telah dilakukan.</p></li>
+</ul>
+</li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+
+<span class="c1"># 7. Menambahkan Kolom Kluster ke DataFrame</span>
+<span class="c1"># Menyimpan hasil kluster di dalam DataFrame asli untuk memudahkan tampilan</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cluster_labels</span>
+
+<span class="c1"># Menampilkan beberapa dokumen beserta kluster mereka</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;stopword_removal&#39;</span><span class="p">,</span> <span class="s1">&#39;kategori&#39;</span><span class="p">,</span> <span class="s1">&#39;cluster&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+
+<span class="c1"># 8. Visualisasi Kluster</span>
+<span class="c1"># Menggunakan PCA untuk mereduksi data ke dalam 2 dimensi agar bisa divisualisasikan</span>
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">pca_result</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data_features</span><span class="p">)</span>
+
+<span class="c1"># Mengonversi hasil PCA ke DataFrame untuk kemudahan visualisasi</span>
+<span class="n">pca_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pca_result</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;PC1&#39;</span><span class="p">,</span> <span class="s1">&#39;PC2&#39;</span><span class="p">])</span>
+<span class="n">pca_df</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cluster_labels</span>
+
+<span class="c1"># Plot hasil klustering</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">]</span>  <span class="c1"># Sesuaikan warna untuk setiap kluster</span>
+
+<span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_clusters</span><span class="p">):</span>
+    <span class="n">subset</span> <span class="o">=</span> <span class="n">pca_df</span><span class="p">[</span><span class="n">pca_df</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">cluster</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">subset</span><span class="p">[</span><span class="s1">&#39;PC1&#39;</span><span class="p">],</span> <span class="n">subset</span><span class="p">[</span><span class="s1">&#39;PC2&#39;</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">cluster</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Cluster </span><span class="si">{</span><span class="n">cluster</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Menambahkan keterangan dan judul grafik</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Visualisasi Hasil Clustering Fuzzy C-Means&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Principal Component 1&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Principal Component 2&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-f0793aed-7751-45d0-af9a-53eac7b86fd6" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>stopword_removal</th>
+      <th>kategori</th>
+      <th>cluster</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>marc marquez mengaku tantangan motogp tim baru...</td>
+      <td>Olahraga</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>avila bahar tampil balapan km digelar sepang m...</td>
+      <td>Olahraga</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>kiper timnas indonesia maarten paes mengisi ac...</td>
+      <td>Olahraga</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>rider honda luca marini melontarkan klaim bera...</td>
+      <td>Olahraga</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>motogp tuntas tes seri pamungkas marc marquez ...</td>
+      <td>Olahraga</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>lada merica ketumbar rempah khas masakan indon...</td>
+      <td>Makanan</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>campuran kopi kunyit menawarkan manfaat tubuh ...</td>
+      <td>Makanan</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>nasi goreng diracik bumbu rempahrempah segar n...</td>
+      <td>Makanan</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>teh hijau dikonsumsi pagi minum teh hijau peru...</td>
+      <td>Makanan</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>kolesterol jahat membahayakan kesehatan mengur...</td>
+      <td>Makanan</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 3 columns</p>
+</div>
+    <div class="colab-df-buttons">
+      
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-f0793aed-7751-45d0-af9a-53eac7b86fd6')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+      
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+    
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-f0793aed-7751-45d0-af9a-53eac7b86fd6 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-f0793aed-7751-45d0-af9a-53eac7b86fd6');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+  
+    </div>
+  </div>
+  </div><img alt="../_images/97fcadb54dea1949508162e4ab681d905ead3f6cb36a4b6b5968ff66ee476c83.png" src="../_images/97fcadb54dea1949508162e4ab681d905ead3f6cb36a4b6b5968ff66ee476c83.png" />
+</div>
+</div>
+<section id="membaca-dataset">
+<h2>1. <strong>Membaca Dataset</strong><a class="headerlink" href="#membaca-dataset" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Kode ini membaca dataset dari file CSV yang disimpan di Google Drive, dan mengisi nilai kosong (<code class="docutils literal notranslate"><span class="pre">NaN</span></code>) pada kolom <code class="docutils literal notranslate"><span class="pre">stopword_removal</span></code> dengan string kosong (<code class="docutils literal notranslate"><span class="pre">''</span></code>).</p></li>
+</ul>
+</section>
+<section id="tf-idf-vectorizer">
+<h2>2. <strong>TF-IDF Vectorizer</strong><a class="headerlink" href="#tf-idf-vectorizer" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>TfidfVectorizer</strong> digunakan untuk mengubah teks pada kolom <code class="docutils literal notranslate"><span class="pre">stopword_removal</span></code> menjadi representasi numerik berupa <strong>matriks TF-IDF</strong>. TF-IDF adalah cara untuk menghitung bobot kata-kata dalam dokumen, dengan mempertimbangkan seberapa sering kata muncul dan seberapa penting kata tersebut dalam seluruh dokumen.</p></li>
+</ul>
+</section>
+<section id="inisialisasi-akurasi-untuk-plot">
+<h2>3. <strong>Inisialisasi Akurasi untuk Plot</strong><a class="headerlink" href="#inisialisasi-akurasi-untuk-plot" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Rentang jumlah komponen untuk <strong>SVD (Singular Value Decomposition)</strong> ditentukan, mulai dari 2 hingga 100 komponen.</p></li>
+<li><p>Sebuah list <code class="docutils literal notranslate"><span class="pre">akurasi_list</span></code> disiapkan untuk menyimpan nilai akurasi dari setiap iterasi pengurangan dimensi.</p></li>
+</ul>
+</section>
+<section id="perulangan-untuk-mengurangi-komponen">
+<h2>4. <strong>Perulangan untuk Mengurangi Komponen</strong><a class="headerlink" href="#perulangan-untuk-mengurangi-komponen" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Dalam perulangan, kode ini:</p>
+<ul>
+<li><p>Melakukan <strong>SVD</strong> untuk mereduksi dimensi matriks TF-IDF menjadi <code class="docutils literal notranslate"><span class="pre">n_components</span></code> yang berbeda-beda, dari 2 hingga 100.</p></li>
+<li><p>Hasil <strong>SVD</strong> disimpan dalam <code class="docutils literal notranslate"><span class="pre">svd_matrix</span></code> dan dikonversi menjadi DataFrame <code class="docutils literal notranslate"><span class="pre">data_features</span></code> untuk kemudahan analisis lebih lanjut.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="fuzzy-c-means-clustering">
+<h2>5. <strong>Fuzzy C-Means Clustering</strong><a class="headerlink" href="#fuzzy-c-means-clustering" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Fuzzy C-Means Clustering</strong> digunakan untuk mengelompokkan data ke dalam 2 kluster. Algoritma ini menghasilkan <strong>derajat keanggotaan</strong> setiap dokumen terhadap masing-masing kluster.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">u</span></code></strong> adalah matriks keanggotaan, dan kluster yang dipilih untuk setiap dokumen adalah kluster dengan derajat keanggotaan tertinggi (<code class="docutils literal notranslate"><span class="pre">np.argmax(u,</span> <span class="pre">axis=0)</span></code>).</p></li>
+</ul>
+</section>
+<section id="mengukur-akurasi">
+<h2>6. <strong>Mengukur Akurasi</strong><a class="headerlink" href="#mengukur-akurasi" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Jika kolom <code class="docutils literal notranslate"><span class="pre">kategori</span></code> ada dalam DataFrame, label kategori dikonversi menjadi numerik menggunakan <code class="docutils literal notranslate"><span class="pre">pd.factorize</span></code>, lalu dihitung akurasi menggunakan <strong>accuracy_score</strong> antara hasil kluster dan label kategori asli.</p></li>
+<li><p>Jika tidak ada kolom <code class="docutils literal notranslate"><span class="pre">kategori</span></code>, akurasi tidak dihitung.</p></li>
+</ul>
+</section>
+<section id="plot-akurasi-berdasarkan-jumlah-komponen-svd">
+<h2>7. <strong>Plot Akurasi Berdasarkan Jumlah Komponen SVD</strong><a class="headerlink" href="#plot-akurasi-berdasarkan-jumlah-komponen-svd" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Setelah melakukan perulangan untuk berbagai nilai <code class="docutils literal notranslate"><span class="pre">n_components</span></code>, akurasi yang dihitung pada setiap langkah disimpan dalam list <code class="docutils literal notranslate"><span class="pre">akurasi_list</span></code>.</p></li>
+<li><p>Kemudian, grafik akurasi vs jumlah komponen SVD digambarkan dengan menggunakan <strong>matplotlib</strong> untuk melihat bagaimana perubahan jumlah komponen mempengaruhi hasil clustering.</p></li>
+</ul>
+</section>
+<section id="tujuan-dari-kode">
+<h2>Tujuan dari kode:<a class="headerlink" href="#tujuan-dari-kode" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Menilai performa <strong>Fuzzy C-Means clustering</strong> pada data teks dengan <strong>reduksi dimensi</strong> menggunakan <strong>SVD</strong>.</p></li>
+<li><p>Menghitung dan memvisualisasikan akurasi clustering dengan jumlah komponen yang berbeda dalam proses reduksi dimensi, untuk menentukan jumlah komponen SVD yang optimal bagi performa clustering.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">TruncatedSVD</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">cosine_similarity</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">import</span> <span class="nn">skfuzzy</span> <span class="k">as</span> <span class="nn">fuzz</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># 1. Membaca Dataset</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;/content/drive/My Drive/PPW-A/report/Tugas-PPW-A/hasil_preprocesing.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;stopword_removal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;stopword_removal&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="c1"># 2. TF-IDF Vectorizer</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">norm</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">)</span>
+<span class="n">tfidf_matrix</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;stopword_removal&#39;</span><span class="p">])</span>
+
+<span class="c1"># 3. Inisialisasi Akurasi untuk Plot</span>
+<span class="n">component_range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>  <span class="c1"># Ubah sesuai rentang yang diinginkan</span>
+<span class="n">akurasi_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># 4. Perulangan untuk Mengurangi Komponen</span>
+<span class="k">for</span> <span class="n">n_components</span> <span class="ow">in</span> <span class="n">component_range</span><span class="p">:</span>
+    <span class="n">svd</span> <span class="o">=</span> <span class="n">TruncatedSVD</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">n_components</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">svd_matrix</span> <span class="o">=</span> <span class="n">svd</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">tfidf_matrix</span><span class="p">)</span>
+
+    <span class="n">data_features</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">svd_matrix</span><span class="p">)</span>
+
+    <span class="c1"># 5. Fuzzy C-Means Clustering</span>
+    <span class="n">n_clusters</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">cntr</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">u0</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">jm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">fpc</span> <span class="o">=</span> <span class="n">fuzz</span><span class="o">.</span><span class="n">cluster</span><span class="o">.</span><span class="n">cmeans</span><span class="p">(</span>
+        <span class="n">data_features</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">n_clusters</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span>
+    <span class="p">)</span>
+    <span class="n">cluster_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># 6. Mengukur Akurasi (Jika Kategori Ada)</span>
+    <span class="k">if</span> <span class="s1">&#39;kategori&#39;</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;kategori_numerik&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">factorize</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;kategori&#39;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">akurasi</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;kategori_numerik&#39;</span><span class="p">],</span> <span class="n">cluster_labels</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">akurasi</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Tidak ada pengukuran jika tidak ada label kategori</span>
+
+    <span class="n">akurasi_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">akurasi</span><span class="p">)</span>
+
+<span class="c1"># 7. Plot Akurasi Berdasarkan Komponen</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">component_range</span><span class="p">,</span> <span class="n">akurasi_list</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Akurasi&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Performa Clustering Berdasarkan Jumlah Komponen SVD&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Jumlah Komponen SVD&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Akurasi Clustering&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e450c4aec62773ed5fab6bd1729eb525bf750e67f3a76602d36c5b3c9638072c.png" src="../_images/e450c4aec62773ed5fab6bd1729eb525bf750e67f3a76602d36c5b3c9638072c.png" />
+</div>
+</div>
+</section>
+<section id="fungsi-clean-data-matrix">
+<h2>1. <strong>Fungsi <code class="docutils literal notranslate"><span class="pre">clean_data(matrix)</span></code></strong><a class="headerlink" href="#fungsi-clean-data-matrix" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Fungsi ini digunakan untuk membersihkan data, mengubah nilai <code class="docutils literal notranslate"><span class="pre">NaN</span></code> dan nilai tak terhingga (positif/negatif infinity) menjadi 0.0 dalam matriks.</p></li>
+</ul>
+</section>
+<section id="fungsi-evaluate-clustering-data-features-true-labels-n-clusters-2">
+<h2>2. <strong>Fungsi <code class="docutils literal notranslate"><span class="pre">evaluate_clustering(data_features,</span> <span class="pre">true_labels,</span> <span class="pre">n_clusters=2)</span></code></strong><a class="headerlink" href="#fungsi-evaluate-clustering-data-features-true-labels-n-clusters-2" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Fungsi ini melakukan clustering menggunakan <strong>Fuzzy C-Means</strong> pada data fitur dan membandingkan hasil klustering dengan label asli menggunakan <strong>accuracy_score</strong>.</p></li>
+<li><p>Hasilnya adalah akurasi dan label kluster yang dihasilkan.</p></li>
+</ul>
+</section>
+<section id="fungsi-reduce-features-and-evaluate-tfidf-matrix-true-labels">
+<h2>3. <strong>Fungsi <code class="docutils literal notranslate"><span class="pre">reduce_features_and_evaluate(tfidf_matrix,</span> <span class="pre">true_labels,</span> <span class="pre">...)</span></code></strong><a class="headerlink" href="#fungsi-reduce-features-and-evaluate-tfidf-matrix-true-labels" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Fungsi utama yang mengurangi dimensi data secara bertahap (melalui reduksi fitur) dan kemudian mengevaluasi akurasi clustering menggunakan <strong>Fuzzy C-Means</strong>.</p></li>
+<li><p><strong>Tahap 1</strong>: Melakukan pengurangan fitur yang cepat dari jumlah fitur asli hingga 500.</p></li>
+<li><p><strong>Tahap 2</strong>: Melakukan pengurangan fitur secara lebih halus dari 500 hingga 2 fitur.</p></li>
+<li><p>Menghitung akurasi clustering pada setiap tahap dan menyimpan hasilnya.</p></li>
+</ul>
+</section>
+<section id="persiapan-data">
+<h2>4. <strong>Persiapan Data</strong><a class="headerlink" href="#persiapan-data" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Dataset dibaca dari file CSV, kemudian teks pada kolom <code class="docutils literal notranslate"><span class="pre">stopword_removal</span></code> diubah menjadi matriks TF-IDF menggunakan <strong>TfidfVectorizer</strong>.</p></li>
+</ul>
+</section>
+<section id="reduksi-dimensi-dan-evaluasi">
+<h2>5. <strong>Reduksi Dimensi dan Evaluasi</strong><a class="headerlink" href="#reduksi-dimensi-dan-evaluasi" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Reduksi Dimensi</strong> dilakukan dengan menggunakan <strong>TruncatedSVD</strong> untuk mereduksi jumlah fitur.</p></li>
+<li><p><strong>Fuzzy C-Means Clustering</strong> dievaluasi pada setiap jumlah fitur yang dikurangi, dan akurasi dihitung.</p></li>
+</ul>
+</section>
+<section id="visualisasi-hasil">
+<h2>6. <strong>Visualisasi Hasil</strong><a class="headerlink" href="#visualisasi-hasil" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>3 plot</strong> dihasilkan untuk memvisualisasikan hubungan antara jumlah fitur dan akurasi:</p>
+<ol class="arabic simple">
+<li><p><strong>Line Plot</strong> antara jumlah fitur dan akurasi.</p></li>
+<li><p><strong>Scatter Plot</strong> dengan warna berdasarkan akurasi.</p></li>
+<li><p><strong>Scatter Plot</strong> dengan ukuran titik yang proporsional terhadap akurasi.</p></li>
+</ol>
+</li>
+<li><p><strong>Scatter plot kluster</strong> juga ditampilkan berdasarkan hasil clustering terbaik, dengan komponen utama yang diperoleh melalui <strong>PCA</strong>.</p></li>
+</ul>
+</section>
+<section id="menampilkan-hasil-terbaik">
+<h2>7. <strong>Menampilkan Hasil Terbaik</strong><a class="headerlink" href="#menampilkan-hasil-terbaik" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Indeks dengan akurasi tertinggi dicari, dan informasi terkait jumlah fitur terbaik serta akurasi terbaik ditampilkan.</p></li>
+<li><p><strong>Tabel Hasil</strong> yang menunjukkan jumlah fitur dan akurasi pada setiap langkah juga ditampilkan.</p></li>
+</ul>
+</section>
+<section id="tujuan">
+<h2>Tujuan:<a class="headerlink" href="#tujuan" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Kode ini bertujuan untuk mengevaluasi performa <strong>Fuzzy C-Means Clustering</strong> dengan jumlah fitur yang berbeda, dan untuk menentukan jumlah fitur optimal yang memberikan akurasi clustering terbaik. Selain itu, dilakukan visualisasi kluster dan analisis akurasi dalam bentuk grafik yang informatif.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">skfuzzy</span> <span class="k">as</span> <span class="nn">fuzz</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">TruncatedSVD</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Fungsi untuk membersihkan data</span>
+<span class="k">def</span> <span class="nf">clean_data</span><span class="p">(</span><span class="n">matrix</span><span class="p">):</span>
+    <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">nan</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">posinf</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">neginf</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">matrix</span>
+
+<span class="c1"># Fungsi untuk melakukan clustering dan evaluasi</span>
+<span class="k">def</span> <span class="nf">evaluate_clustering</span><span class="p">(</span><span class="n">data_features</span><span class="p">,</span> <span class="n">true_labels</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Membersihkan data sebelum clustering</span>
+        <span class="n">data_features</span> <span class="o">=</span> <span class="n">clean_data</span><span class="p">(</span><span class="n">data_features</span><span class="p">)</span>
+
+        <span class="c1"># Menjalankan Fuzzy C-Means</span>
+        <span class="n">cntr</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">u0</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">jm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">fpc</span> <span class="o">=</span> <span class="n">fuzz</span><span class="o">.</span><span class="n">cluster</span><span class="o">.</span><span class="n">cmeans</span><span class="p">(</span>
+            <span class="n">data_features</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">n_clusters</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Menentukan kluster akhir</span>
+        <span class="n">cluster_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># Mengonversi label true ke numerik jika belum</span>
+        <span class="n">label_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+        <span class="n">true_labels_encoded</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">true_labels</span><span class="p">)</span>
+
+        <span class="c1"># Menghitung akurasi</span>
+        <span class="n">akurasi</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">true_labels_encoded</span><span class="p">,</span> <span class="n">cluster_labels</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">akurasi</span><span class="p">,</span> <span class="n">cluster_labels</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error dalam clustering: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+
+<span class="k">def</span> <span class="nf">reduce_features_and_evaluate</span><span class="p">(</span><span class="n">tfidf_matrix</span><span class="p">,</span> <span class="n">true_labels</span><span class="p">,</span>
+                                 <span class="n">max_features</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                 <span class="n">min_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                                 <span class="n">component_reduction</span><span class="o">=</span><span class="mi">200</span><span class="p">):</span>  <span class="c1"># Tambahkan parameter component_reduction</span>
+    <span class="c1"># Jika max_features tidak ditentukan, gunakan jumlah fitur asli</span>
+    <span class="k">if</span> <span class="n">max_features</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">max_features</span> <span class="o">=</span> <span class="n">tfidf_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># Daftar untuk menyimpan hasil</span>
+    <span class="n">feature_counts</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">accuracies</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">all_cluster_labels</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Konversi sparse matrix ke dense dan bersihkan</span>
+    <span class="n">tfidf_matrix_dense</span> <span class="o">=</span> <span class="n">clean_data</span><span class="p">(</span><span class="n">tfidf_matrix</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
+
+    <span class="c1"># Tahap 1: Reduksi cepat ke 500 fitur</span>
+    <span class="n">current_features</span> <span class="o">=</span> <span class="n">max_features</span>
+    <span class="k">while</span> <span class="n">current_features</span> <span class="o">&gt;</span> <span class="mi">500</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Reduksi dimensi dengan SVD</span>
+            <span class="n">svd</span> <span class="o">=</span> <span class="n">TruncatedSVD</span><span class="p">(</span>
+                <span class="n">n_components</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">current_features</span><span class="p">,</span> <span class="n">tfidf_matrix_dense</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span>
+                <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+            <span class="p">)</span>
+            <span class="n">svd_matrix</span> <span class="o">=</span> <span class="n">clean_data</span><span class="p">(</span><span class="n">svd</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">tfidf_matrix_dense</span><span class="p">))</span>
+
+            <span class="c1"># Evaluasi clustering</span>
+            <span class="n">akurasi</span><span class="p">,</span> <span class="n">cluster_labels</span> <span class="o">=</span> <span class="n">evaluate_clustering</span><span class="p">(</span><span class="n">svd_matrix</span><span class="p">,</span> <span class="n">true_labels</span><span class="p">)</span>
+
+            <span class="c1"># Jika clustering berhasil</span>
+            <span class="k">if</span> <span class="n">akurasi</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">feature_counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_features</span><span class="p">)</span>
+                <span class="n">accuracies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">akurasi</span><span class="p">)</span>
+                <span class="n">all_cluster_labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cluster_labels</span><span class="p">)</span>
+
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fitur: </span><span class="si">{</span><span class="n">current_features</span><span class="si">}</span><span class="s2">, Akurasi: </span><span class="si">{</span><span class="n">akurasi</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Kurangi jumlah fitur secara signifikan</span>
+            <span class="n">current_features</span> <span class="o">-=</span> <span class="n">component_reduction</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Terjadi kesalahan dengan </span><span class="si">{</span><span class="n">current_features</span><span class="si">}</span><span class="s2"> fitur: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">current_features</span> <span class="o">-=</span> <span class="n">component_reduction</span>
+            <span class="k">continue</span>
+
+    <span class="c1"># Tahap 2: Reduksi perlahan dari 500 ke 2</span>
+    <span class="k">while</span> <span class="n">current_features</span> <span class="o">&gt;=</span> <span class="n">min_components</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Reduksi dimensi dengan SVD</span>
+            <span class="n">svd</span> <span class="o">=</span> <span class="n">TruncatedSVD</span><span class="p">(</span>
+                <span class="n">n_components</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">current_features</span><span class="p">,</span> <span class="n">tfidf_matrix_dense</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span>
+                <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+            <span class="p">)</span>
+            <span class="n">svd_matrix</span> <span class="o">=</span> <span class="n">clean_data</span><span class="p">(</span><span class="n">svd</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">tfidf_matrix_dense</span><span class="p">))</span>
+
+            <span class="c1"># Evaluasi clustering</span>
+            <span class="n">akurasi</span><span class="p">,</span> <span class="n">cluster_labels</span> <span class="o">=</span> <span class="n">evaluate_clustering</span><span class="p">(</span><span class="n">svd_matrix</span><span class="p">,</span> <span class="n">true_labels</span><span class="p">)</span>
+
+            <span class="c1"># Jika clustering berhasil</span>
+            <span class="k">if</span> <span class="n">akurasi</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">feature_counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_features</span><span class="p">)</span>
+                <span class="n">accuracies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">akurasi</span><span class="p">)</span>
+                <span class="n">all_cluster_labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cluster_labels</span><span class="p">)</span>
+
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fitur: </span><span class="si">{</span><span class="n">current_features</span><span class="si">}</span><span class="s2">, Akurasi: </span><span class="si">{</span><span class="n">akurasi</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Kurangi jumlah fitur satu per satu</span>
+            <span class="n">current_features</span> <span class="o">-=</span> <span class="mi">1</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Terjadi kesalahan dengan </span><span class="si">{</span><span class="n">current_features</span><span class="si">}</span><span class="s2"> fitur: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">current_features</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="k">continue</span>
+
+    <span class="k">return</span> <span class="n">feature_counts</span><span class="p">,</span> <span class="n">accuracies</span><span class="p">,</span> <span class="n">all_cluster_labels</span>
+
+
+<span class="c1"># Membaca Dataset</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;/content/drive/My Drive/PPW-A/report/Tugas-PPW-A/hasil_preprocesing.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Inisialisasi TF-IDF Vectorizer</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">norm</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">)</span>
+<span class="n">tfidf_matrix</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;stopword_removal&#39;</span><span class="p">])</span>
+
+<span class="c1"># Lakukan reduksi fitur dan evaluasi</span>
+<span class="n">feature_counts</span><span class="p">,</span> <span class="n">accuracies</span><span class="p">,</span> <span class="n">all_cluster_labels</span> <span class="o">=</span> <span class="n">reduce_features_and_evaluate</span><span class="p">(</span>
+    <span class="n">tfidf_matrix</span><span class="p">,</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;kategori&#39;</span><span class="p">],</span>
+    <span class="n">min_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">component_reduction</span><span class="o">=</span><span class="mi">200</span>  <span class="c1"># Anda bisa sesuaikan jumlah pengurangan</span>
+<span class="p">)</span>
+
+<span class="c1"># Siapkan plot dengan 3 subplot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># 1. Plot Akurasi vs Jumlah Fitur (Line Plot)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">feature_counts</span><span class="p">,</span> <span class="n">accuracies</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Akurasi Clustering vs Jumlah Fitur&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Jumlah Fitur&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Akurasi&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># 2. Scatter Plot Akurasi vs Jumlah Fitur</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">scatter</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">feature_counts</span><span class="p">,</span> <span class="n">accuracies</span><span class="p">,</span>
+                      <span class="n">c</span><span class="o">=</span><span class="n">accuracies</span><span class="p">,</span>
+                      <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span>
+                      <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                      <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">scatter</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Scatter Plot Akurasi vs Jumlah Fitur&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Jumlah Fitur&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Akurasi&#39;</span><span class="p">)</span>
+
+<span class="c1"># 3. Scatter Plot dengan Ukuran Proporional pada Akurasi</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">sizes</span> <span class="o">=</span> <span class="p">[(</span><span class="n">acc</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span> <span class="k">for</span> <span class="n">acc</span> <span class="ow">in</span> <span class="n">accuracies</span><span class="p">]</span>  <span class="c1"># Skala ukuran titik</span>
+<span class="n">scatter</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">feature_counts</span><span class="p">,</span> <span class="n">accuracies</span><span class="p">,</span>
+                      <span class="n">c</span><span class="o">=</span><span class="n">accuracies</span><span class="p">,</span>
+                      <span class="n">s</span><span class="o">=</span><span class="n">sizes</span><span class="p">,</span>
+                      <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span>
+                      <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">scatter</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Scatter Plot Akurasi</span><span class="se">\n</span><span class="s1">(Ukuran Titik Proporsional)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Jumlah Fitur&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Akurasi&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Temukan indeks akurasi tertinggi</span>
+<span class="n">best_index</span> <span class="o">=</span> <span class="n">accuracies</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">accuracies</span><span class="p">))</span>
+<span class="n">best_features</span> <span class="o">=</span> <span class="n">feature_counts</span><span class="p">[</span><span class="n">best_index</span><span class="p">]</span>
+<span class="n">best_cluster_labels</span> <span class="o">=</span> <span class="n">all_cluster_labels</span><span class="p">[</span><span class="n">best_index</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Jumlah fitur terbaik: </span><span class="si">{</span><span class="n">best_features</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Akurasi terbaik: </span><span class="si">{</span><span class="n">accuracies</span><span class="p">[</span><span class="n">best_index</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Visualisasi kluster terbaik dengan PCA</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+
+<span class="c1"># Konversi sparse matrix ke dense dan bersihkan</span>
+<span class="n">tfidf_matrix_dense</span> <span class="o">=</span> <span class="n">clean_data</span><span class="p">(</span><span class="n">tfidf_matrix</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
+
+<span class="c1"># Reduksi dimensi untuk visualisasi</span>
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">svd</span> <span class="o">=</span> <span class="n">TruncatedSVD</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">best_features</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">svd_matrix</span> <span class="o">=</span> <span class="n">clean_data</span><span class="p">(</span><span class="n">svd</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">tfidf_matrix_dense</span><span class="p">))</span>
+<span class="n">pca_result</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">svd_matrix</span><span class="p">)</span>
+
+<span class="c1"># Plot scatter dengan warna kluster</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">scatter</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">pca_result</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">pca_result</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>
+                      <span class="n">c</span><span class="o">=</span><span class="n">best_cluster_labels</span><span class="p">,</span>
+                      <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span>
+                      <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">scatter</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Clustering dengan </span><span class="si">{</span><span class="n">best_features</span><span class="si">}</span><span class="s1"> Fitur</span><span class="se">\n</span><span class="s1">Akurasi: </span><span class="si">{</span><span class="n">accuracies</span><span class="p">[</span><span class="n">best_index</span><span class="p">]</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Principal Component 1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Principal Component 2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Tambahan: Tabel hasil untuk referensi</span>
+<span class="n">hasil_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Jumlah Fitur&#39;</span><span class="p">:</span> <span class="n">feature_counts</span><span class="p">,</span>
+    <span class="s1">&#39;Akurasi&#39;</span><span class="p">:</span> <span class="n">accuracies</span>
+<span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Tabel Hasil Reduksi Fitur:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hasil_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 4982, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 4782, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 4582, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 4382, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 4182, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 3982, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 3782, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 3582, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 3382, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 3182, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 2982, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 2782, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 2582, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 2382, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 2182, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 1982, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 1782, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 1582, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 1382, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 1182, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 982, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 782, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 582, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 382, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 381, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 380, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 379, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 378, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 377, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 376, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 375, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 374, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 373, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 372, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 371, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 370, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 369, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 368, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 367, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 366, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 365, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 364, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 363, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 362, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 361, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 360, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 359, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 358, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 357, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 356, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 355, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 354, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 353, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 352, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 351, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 350, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 349, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 348, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 347, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 346, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 345, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 344, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 343, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 342, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 341, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 340, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 339, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 338, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 337, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 336, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 335, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 334, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 333, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 332, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 331, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 330, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 329, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 328, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 327, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 326, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 325, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 324, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 323, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 322, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 321, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 320, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 319, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 318, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 317, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 316, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 315, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 314, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 313, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 312, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 311, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 310, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 309, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 308, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 307, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 306, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 305, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 304, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 303, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 302, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 301, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 300, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 299, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 298, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 297, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 296, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 295, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 294, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 293, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 292, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 291, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 290, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 289, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 288, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 287, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 286, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 285, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 284, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 283, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 282, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 281, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 280, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 279, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 278, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 277, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 276, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 275, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 274, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 273, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 272, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 271, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 270, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 269, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 268, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 267, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 266, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 265, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 264, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 263, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 262, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 261, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 260, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 259, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 258, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 257, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 256, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 255, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 254, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 253, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 252, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 251, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 250, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 249, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 248, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 247, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 246, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 245, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 244, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 243, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 242, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 241, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 240, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 239, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 238, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 237, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 236, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 235, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 234, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 233, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 232, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 231, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 230, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 229, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 228, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 227, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 226, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 225, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 224, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 223, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 222, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 221, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 220, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 219, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 218, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 217, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 216, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 215, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 214, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 213, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 212, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 211, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 210, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 209, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 208, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 207, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 206, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 205, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 204, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 203, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 202, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 201, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 200, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 199, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 198, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 197, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 196, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 195, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 194, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 193, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 192, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 191, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 190, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 189, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 188, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 187, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 186, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 185, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 184, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 183, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 182, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 181, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 180, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 179, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 178, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 177, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 176, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 175, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 174, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 173, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 172, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 171, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 170, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 169, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 168, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 167, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 166, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 165, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 164, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 163, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 162, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 161, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 160, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 159, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 158, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 157, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 156, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 155, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 154, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 153, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 152, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 151, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 150, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 149, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 148, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 147, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 146, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 145, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 144, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 143, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 142, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 141, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 140, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 139, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 138, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 137, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 136, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 135, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 134, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 133, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 132, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 131, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 130, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 129, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 128, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 127, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 126, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 125, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 124, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 123, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 122, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 121, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 120, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 119, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 118, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 117, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 116, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 115, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 114, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 113, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 112, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 111, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 110, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 109, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 108, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 107, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 106, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 105, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 104, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 103, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 102, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 101, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 100, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 99, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 98, Akurasi: 0.8000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 97, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 96, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 95, Akurasi: 0.8300
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 94, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 93, Akurasi: 0.8300
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 92, Akurasi: 0.8300
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 91, Akurasi: 0.8300
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 90, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 89, Akurasi: 0.8300
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 88, Akurasi: 0.8300
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 87, Akurasi: 0.8300
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 86, Akurasi: 0.8300
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 85, Akurasi: 0.8300
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 84, Akurasi: 0.8300
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 83, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 82, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 81, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 80, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 79, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 78, Akurasi: 0.8100
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 77, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 76, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 75, Akurasi: 0.8100
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 74, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 73, Akurasi: 0.8000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 72, Akurasi: 0.8000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 71, Akurasi: 0.8000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 70, Akurasi: 0.8000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 69, Akurasi: 0.8000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 68, Akurasi: 0.8000
+Fitur: 67, Akurasi: 0.8000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 66, Akurasi: 0.8000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 65, Akurasi: 0.8000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 64, Akurasi: 0.8100
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 63, Akurasi: 0.8000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 62, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 61, Akurasi: 0.8100
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 60, Akurasi: 0.8000
+Fitur: 59, Akurasi: 0.8100
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 58, Akurasi: 0.8000
+Fitur: 57, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 56, Akurasi: 0.8000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 55, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 54, Akurasi: 0.8100
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 53, Akurasi: 0.8100
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 52, Akurasi: 0.8300
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 51, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 50, Akurasi: 0.8100
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 49, Akurasi: 0.8100
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 48, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 47, Akurasi: 0.8400
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 46, Akurasi: 0.8100
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 45, Akurasi: 0.8300
+Fitur: 44, Akurasi: 0.8300
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 43, Akurasi: 0.8300
+Fitur: 42, Akurasi: 0.8100
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 41, Akurasi: 0.8300
+Fitur: 40, Akurasi: 0.8300
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 39, Akurasi: 0.8300
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 38, Akurasi: 0.8300
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 37, Akurasi: 0.8300
+Fitur: 36, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 35, Akurasi: 0.8400
+Fitur: 34, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 33, Akurasi: 0.8300
+Fitur: 32, Akurasi: 0.8400
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 31, Akurasi: 0.7700
+Fitur: 30, Akurasi: 0.7900
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 29, Akurasi: 0.7900
+Fitur: 28, Akurasi: 0.8300
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 27, Akurasi: 0.8500
+Fitur: 26, Akurasi: 0.8200
+Fitur: 25, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 24, Akurasi: 0.8200
+Fitur: 23, Akurasi: 0.8200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 22, Akurasi: 0.8100
+Fitur: 21, Akurasi: 0.8000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 20, Akurasi: 0.9000
+Fitur: 19, Akurasi: 0.8100
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 18, Akurasi: 0.8900
+Fitur: 17, Akurasi: 0.8700
+Fitur: 16, Akurasi: 0.8800
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 15, Akurasi: 0.8800
+Fitur: 14, Akurasi: 0.8000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 13, Akurasi: 0.7900
+Fitur: 12, Akurasi: 0.7600
+Fitur: 11, Akurasi: 0.7700
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 10, Akurasi: 0.7200
+Fitur: 9, Akurasi: 0.9100
+Fitur: 8, Akurasi: 0.9000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 7, Akurasi: 0.9200
+Fitur: 6, Akurasi: 0.9000
+Fitur: 5, Akurasi: 0.9000
+Fitur: 4, Akurasi: 0.8500
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur: 3, Akurasi: 0.8400
+Fitur: 2, Akurasi: 0.7000
+</pre></div>
+</div>
+<img alt="../_images/5fc1fb97cba4bfa55dfd65aac3ade09bfc83f541f7d92fe91ca31b28663c6ca9.png" src="../_images/5fc1fb97cba4bfa55dfd65aac3ade09bfc83f541f7d92fe91ca31b28663c6ca9.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah fitur terbaik: 7
+Akurasi terbaik: 0.9200
+</pre></div>
+</div>
+<img alt="../_images/5bc7725766a456996e0e7a2d621415cb1a1e3074edfe37521d0d5543c95b8f9c.png" src="../_images/5bc7725766a456996e0e7a2d621415cb1a1e3074edfe37521d0d5543c95b8f9c.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tabel Hasil Reduksi Fitur:
+     Jumlah Fitur  Akurasi
+0            4982     0.82
+1            4782     0.82
+2            4582     0.82
+3            4382     0.82
+4            4182     0.82
+..            ...      ...
+399             6     0.90
+400             5     0.90
+401             4     0.85
+402             3     0.84
+403             2     0.70
+
+[404 rows x 2 columns]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Tugas-PPW-A"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Tugas6.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Tugas 6 : Klasifikasi Berita Metode Logistic Regression dengan reduksi dimensi SVD</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membaca-dataset">1. <strong>Membaca Dataset</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf-vectorizer">2. <strong>TF-IDF Vectorizer</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inisialisasi-akurasi-untuk-plot">3. <strong>Inisialisasi Akurasi untuk Plot</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perulangan-untuk-mengurangi-komponen">4. <strong>Perulangan untuk Mengurangi Komponen</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuzzy-c-means-clustering">5. <strong>Fuzzy C-Means Clustering</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mengukur-akurasi">6. <strong>Mengukur Akurasi</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-akurasi-berdasarkan-jumlah-komponen-svd">7. <strong>Plot Akurasi Berdasarkan Jumlah Komponen SVD</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-dari-kode">Tujuan dari kode:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-clean-data-matrix">1. <strong>Fungsi <code class="docutils literal notranslate"><span class="pre">clean_data(matrix)</span></code></strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-evaluate-clustering-data-features-true-labels-n-clusters-2">2. <strong>Fungsi <code class="docutils literal notranslate"><span class="pre">evaluate_clustering(data_features,</span> <span class="pre">true_labels,</span> <span class="pre">n_clusters=2)</span></code></strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-reduce-features-and-evaluate-tfidf-matrix-true-labels">3. <strong>Fungsi <code class="docutils literal notranslate"><span class="pre">reduce_features_and_evaluate(tfidf_matrix,</span> <span class="pre">true_labels,</span> <span class="pre">...)</span></code></strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persiapan-data">4. <strong>Persiapan Data</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduksi-dimensi-dan-evaluasi">5. <strong>Reduksi Dimensi dan Evaluasi</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-hasil">6. <strong>Visualisasi Hasil</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-hasil-terbaik">7. <strong>Menampilkan Hasil Terbaik</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">Tujuan:</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Al-Hasib
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
